@@ -1,0 +1,117 @@
+.btn_group {position:static !important;margin:0;padding:0;}
+.btn_group .btn_small{margin-left:-1px;padding:2px 6px !important;}
+.btn_group .btn_small:first-child {margin-left:0 !important;}
+
+.btn_ssmall, .btn_small, .btn_lsmall, .btn_medium, .btn_large, .btn_txt, .btn_letter {
+	display:inline-block;
+	text-decoration:none !important;
+	vertical-align:middle !important;
+	font-family:inherit;
+	white-space:nowrap;
+	cursor:pointer;
+	background:transparent;
+	text-align:center;
+	border-radius:0;
+	outline:0;
+    -webkit-box-sizing:border-box;
+       -moz-box-sizing:border-box;
+            box-sizing:border-box;
+ }
+
+.btn_ssmall {
+	padding:1px 5px;
+	font-size:11px;
+	line-height:1.222;
+	font-weight:normal !important;
+}
+
+.btn_small {
+	padding:2px 8px;
+	font-size:11px;
+	line-height:1.555;
+	font-weight:normal !important;
+}
+
+.btn_lsmall {
+	padding:3px 10px;
+	font-size:12px;
+	line-height:1.666;
+	font-weight:normal !important;
+}
+
+.btn_medium {
+	padding:8px 15px;
+	font-size:13px;
+	line-height:1.444;
+	font-weight:600;
+}
+
+.btn_large {
+	padding:10px 21px;
+	font-size:15px;
+	line-height:1.222;
+	font-weight:600;
+}
+
+.btn_ssmall,
+.btn_small,
+.btn_lsmall,
+.btn_medium,
+.btn_large {
+	background:#333;
+	border:1px solid #333;
+	color:#fff !important;
+}
+
+.btn_ssmall:hover,
+.btn_small:hover,
+.btn_lsmall:hover,
+.btn_medium:hover,
+.btn_large:hover {
+	background:#222;
+	border:1px solid #222;
+	color:#fff !important;
+}
+
+.btn_letter {width:78px;height:76px;font-size:13px;font-weight:600;line-height:1.333;color:#fff !important;background:#777;}
+a.btn_letter {padding-top:19px;}
+
+/*color*/
+.white,.white:active {background:#fff;border:1px solid #ccc;color:#181c1f !important;}
+.white:hover,.white:focus {background:#e6e6e6;border:1px solid #ccc;color:#181c1f !important;}
+.grey {background:#888;border:1px solid #888;color:#fff !important;}
+.grey:hover {background:#666;border:1px solid #666;color:#fff !important;}
+.grey2 {background:#bbb;border:1px solid #bbb;color:#fff !important;}
+.grey2:hover {background:#aaa;border:1px solid #aaa;color:#fff !important;}
+.green {background:#26c281;border:1px solid #26c281;color:#fff !important;}
+.green:hover {background:#1e9765;border:1px solid #1c8f5f;color:#fff !important;}
+.yellow {background:#e87e04;border:1px solid #e87e04;color:#fff !important;}
+.yellow:hover {background:#b66303;border:1px solid #ac5d03;color:#fff !important;}
+.red {background:#ef4836;border:1px solid #ef4836;color:#fff !important;}
+.red:hover {background:#e02612;border:1px solid #d72411;color:#fff !important;}
+.blue {background:#4b77be;border:1px solid #4b77be;color:#fff !important;}
+.blue:hover {background:#395f9d;border:1px solid #365b96;color:#fff !important;}
+
+/*box*/
+.bx-white {background:#fff;border:1px solid #ccc;color:#222 !important;}
+.bx-white:hover {background:#fff;border:1px solid #222;color:#222 !important;}
+.bx-black {background:#fff;border:1px solid #222;color:#222 !important;}
+.bx-black:hover {background:#222;border:1px solid #222;color:#fff !important;}
+.bx-grey {background:#f8f8f8;border:1px solid #ccc;color:#666 !important;}
+.bx-grey:hover {background:#999;border:1px solid #999;color:#fff !important;}
+.bx-green {background:#fff;border:1px solid #26c281;color:#26c281 !important;}
+.bx-green:hover {background:#26c281;border:1px solid #26c281;color:#fff !important;}
+.bx-yellow {background:#fff;border:1px solid #e87e04;color:#e87e04 !important;}
+.bx-yellow:hover {background:#e87e04;border:1px solid #e87e04;color:#fff !important;}
+.bx-red {background:#fff;border:1px solid #ef4836;color:#ef4836 !important;}
+.bx-red:hover {background:#ef4836;border:1px solid #ef4836;color:#fff !important;}
+.bx-blue {background:#fff;border:1px solid #4b77be;color:#4b77be !important;}
+.bx-blue:hover {background:#4b77be;border:1px solid #4b77be;color:#fff !important;}
+
+/*txt button*/
+.btn_txt {font-size:12px;height:18px;line-height:1.6;font-weight:normal;color:#999 !important;letter-spacing:0;}
+.btn_txt i {margin-left:5px;}
+
+/*mobile_box*/
+.bx-grey2 {background:transparent;border:1px solid #888;color:#bbb !important;}
+.bx-grey2:hover {background:transparent;border:1px solid #fff;color:#fff !important;}

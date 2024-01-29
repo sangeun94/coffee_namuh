@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-config.dtd">
+				
+<configuration>
+	
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />		
+	</settings>
+
+	<typeAliases>
+		<!-- 
+		<typeAlias type="com.rsrvapp.dto.user.User" alias="User" />
+		<typeAlias type="com.rsrvapp.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
+		<typeAlias type="com.rsrvapp.dto.room.Room" alias="Room" />
+		<typeAlias type="com.rsrvapp.dto.room.RoomSearchCondition" alias="RoomSearchCondition"/> 
+		-->
+	
+	</typeAliases>
+</configuration>

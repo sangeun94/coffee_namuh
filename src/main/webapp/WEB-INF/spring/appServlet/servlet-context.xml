@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+			 					 http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			 					 http://www.springframework.org/schema/beans
+			 					 http://www.springframework.org/schema/beans/spring-beans.xsd
+			 					 http://www.springframework.org/schema/context
+			 					 http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- 스캔 패키지에 있는 클래스 중 Controller 어노테이션 있으면 Controller 로 로딩 -->
+	<annotation-driven>
+		<message-converters>
+			<!-- @ResponseBody로 String 처리할때 한글처리 -->
+			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<beans:property name="supportedMediaTypes">
+					<beans:list>
+						<beans:value>text/html;charset=UTF-8</beans:value>
+						<beans:value>application/text;charset=UTF-8</beans:value>
+						<beans:value>text/plain;charset=UTF-8</beans:value>
+						<beans:value>application/json;charset=UTF-8</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+		</message-converters>
+	</annotation-driven>
+	
+	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
+	<context:component-scan base-package="com.cafeapp.controller" />
+	<context:component-scan base-package="com.cafeapp.service" />
+	<context:component-scan base-package="com.cafeapp.dao" />
+
+
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/"></beans:property>
+		<beans:property name="suffix" value=".jsp"></beans:property>
+	</beans:bean>
+	
+	<resources mapping="/**" location="/resources/" />
+
+</beans:beans>

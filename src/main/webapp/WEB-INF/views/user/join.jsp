@@ -88,9 +88,14 @@
                 <div class="coffeenamuh-join-logo">
                     <img src="/ex) 3차 html/img/KakaoTalk_20240129_084923601.png">
                 </div>
+
                 <h2 class="coffeenamuh-logo">JOIN</h2>
-                <label for="username">아이디:</label>
+
+                <label for="username">이름:</label>
                 <input type="text" id="username" name="username" required>
+
+                <label for="username">아이디:</label>
+                <input type="text" id="id" name="id" required>
 
                 <label for="password">비밀번호:</label>
                 <input type="password" id="password" name="password" required>

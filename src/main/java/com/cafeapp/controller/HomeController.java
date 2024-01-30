@@ -1,5 +1,5 @@
 package com.cafeapp.controller;
 
-public class test {
+public class HomeController {
 
 }

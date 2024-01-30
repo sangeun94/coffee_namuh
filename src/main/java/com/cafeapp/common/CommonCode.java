@@ -1,5 +1,5 @@
 package com.cafeapp.common;
 
-public class test {
+public class CommonCode {
 
 }

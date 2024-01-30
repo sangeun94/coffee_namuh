@@ -31,13 +31,14 @@ var tb_admin_url = "";
 <script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/src/main/webapp/resources/js/admin/common.js"></script>
 <script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+
 </head>
 <body>
 
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href="http://demofran.com/admin/"><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="http://demofran.com/admin/config.php?code=super">관리자정보</a></li>
@@ -60,11 +61,11 @@ var tb_admin_url = "";
 				<li class="gnb_1dli">
 					<a href="http://demofran.com/admin/order.php?code=list" class="gnb_1da">주문관리</a>
 				</li>
-
+				
 				<li class="gnb_1dli active">
 					<a href="http://demofran.com/admin/help.php?code=qa" class="gnb_1da">고객지원</a>
 				</li>
-
+				
 				<li class="gnb_1dli">
 					<a href="http://demofran.com/admin/config.php?code=default" class="gnb_1da">마이페이지</a>
 				</li>
@@ -80,125 +81,73 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="h10 menu_toggle">고객지원</dt>		
-        <dd class="h10"><a href="http://demofran.com/admin/help.php?code=qa">1:1 상담문의</a></dd>		        
+        <dd class="h10 active"><a href="http://demofran.com/admin/help.php?code=qa">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20 active"><a href="http://demofran.com/admin/help.php?code=faq">공지사항 관리</a></dd>        
+        <dd class="h20"><a href="http://demofran.com/admin/help.php?code=faq">공지사항 관리</a></dd>        
         <dd class="h20"><a href="http://demofran.com/admin/help.php?code=faq">FAQ 관리</a></dd>	
-        </dl>	
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 고객지원 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 공지사항 관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 1:1 상담문의		
         </div>
 	
 <div class="s_wrap">
-	<h1>공지사항 관리</h1>
-	
-<h2>기본검색</h2>
-<form name="fsearch" id="fsearch" method="get">
-<input type="hidden" name="code" value="faq">
-<div class="tbl_frm01">
+	<h1>1:1 상담문의 댓글</h1>
+
+<form name="faqform" method="post" onsubmit="return faqform_submit(this);">
+<input type="hidden" name="w" value="">
+<input type="hidden" name="sca" value="">
+<input type="hidden" name="sfl" value="">
+<input type="hidden" name="stx" value="">
+<input type="hidden" name="page" value="">
+<input type="hidden" name="index_no" value="">
+
+<div class="tbl_frm02">
 	<table>
 	<colgroup>
-		<col class="w100">
+		<col class="w140">
 		<col>
 	</colgroup>
 	<tbody>
 	<tr>
-		<th scope="row">검색어</th>
+		<th scope="row">일자</th>
 		<td>
-			<select name="sfl">
-				<option value="subject">제목</option>
-				<option value="memo">내용</option>
-			</select>
-			<input type="text" name="stx" value="" class="frm_input" size="30">
+			<input type="text" name="to_date" value="" id="to_date" class="frm_input w80" maxlength="10" autocomplete="off">	
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row">내용</th>
+		<td>
+			<span class="sound_only">웹에디터 시작</span>
+			<script src="http://demofran.com/plugin/editor/smarteditor2/js/HuskyEZCreator.js"></script>
+			<script>var tw_editor_url = "http://demofran.com/plugin/editor/smarteditor2", oEditors = [];</script>
+			<script src="http://demofran.com/plugin/editor/smarteditor2/config.js"></script>
+			<textarea id="memo" name="memo" class="smarteditor2" maxlength="65536" style="width:100%"></textarea>
+			<span class="sound_only">웹 에디터 끝</span>		
 		</td>
 	</tr>
 	</tbody>
 	</table>
 </div>
+
 <div class="btn_confirm">
-	<input type="submit" value="검색" class="btn_medium">
-	<input type="button" value="초기화" id="frmRest" class="btn_medium grey">	
+	<input type="submit" value="저장" class="btn_large" accesskey="s">
+	<a href="./help.php?code=faq&page=" class="btn_large bx-white">목록</a>
 </div>
 </form>
-
-<form name="ffaqlist" id="ffaqlist" method="post" action="./help/help_faq_delete.php" onsubmit="return ffaqlist_submit(this);">
-<input type="hidden" name="q1" value="code=faq">
-<input type="hidden" name="page" value="1">
-
-<div class="local_ov mart30">
-	전체 : <b class="fc_red">0</b> 건 조회
-</div>
-<div class="local_frm01">
-	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
-<a href="./help.php?code=faq_from" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
-<div class="tbl_head01">
-	<table>
-	<colgroup>
-		<col class="w50">
-		<col class="w50">
-		<col class="w80">
-		<col class="w80">
-		<col>
-		<col class="w60">
-	</colgroup>
-	<thead>
-	<tr>
-		<th scope="col"><input type="checkbox" name="chkall" value="1" onclick="check_all(this.form);"></th>
-		<th scope="col">번호</th>
-		<th scope="col">작성자</th>
-		<th scope="col">제목</th>
-		<th scope="col">내용</th>
-		<th scope="col">일자</th>
-	</tr>
-	</thead>
-	<tbody><tr><td colspan="6" class="empty_table">자료가 없습니다.</td></tr>	</tbody>
-	</table>
-</div>
-<div class="local_frm02">
-	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
-<a href="./help.php?code=faq_from" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
-</form>
-
 
 <script>
-function ffaqlist_submit(f)
-{
-    if(!is_checked("chk[]")) {
-        alert(document.pressed+" 하실 항목을 하나 이상 선택하세요.");
-        return false;
-    }
+function faqform_submit(f) {
+	var memo_editor_data = oEditors.getById['memo'].getIR();
+oEditors.getById['memo'].exec('UPDATE_CONTENTS_FIELD', []);
+if(jQuery.inArray(document.getElementById('memo').value.toLowerCase().replace(/^\s*|\s*$/g, ''), ['&nbsp;','<p>&nbsp;</p>','<p><br></p>','<div><br></div>','<p></p>','<br>','']) != -1){document.getElementById('memo').value='';}
 
-    if(document.pressed == "선택삭제") {
-        if(!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
-            return false;
-        }
-    }
-
+	f.action = "./help/help_faq_form_update.php";
     return true;
 }
-
-var ubDisplay = {
-      q_old : "",
-      a_old : "",
-
-      display : function(seq){
-      var a_new = document.getElementById("view_"+seq);
-
-      if(this.a_old != a_new){
-         if(this.a_old != "")
-             this.a_old.style.display = "none";
-             a_new.style.display = "";
-             this.a_old = a_new;
-         }else{
-             a_new.style.display = "none";
-             this.a_old = "";
-         }
-       }
-   };
 </script>
 </div>
 
@@ -215,5 +164,35 @@ var ubDisplay = {
 <script src="/src/main/webapp/resources/js/admin/admin.js"></script>
 
 <script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+
+<script type="text/javascript" src="/src/main/webapp/resources/js/admin/jquery-ui.min.js"></script>
+<script>
+jQuery(function($){
+    $.datepicker.regional["ko"] = {
+        closeText: "닫기",
+        prevText: "이전달",
+        nextText: "다음달",
+        currentText: "오늘",
+        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
+        monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
+        dayNames: ["일","월","화","수","목","금","토"],
+        dayNamesShort: ["일","월","화","수","목","금","토"],
+        dayNamesMin: ["일","월","화","수","목","금","토"],
+        weekHeader: "Wk",
+        dateFormat: "yymmdd",
+        firstDay: 0,
+        isRTL: false,
+        showMonthAfterYear: true,
+        yearSuffix: ""
+    };
+	$.datepicker.setDefaults($.datepicker.regional["ko"]);
+});
+</script>
+<script>
+	$(function() {
+		$("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
+	});
+</script>
+
 </body>
 </html>

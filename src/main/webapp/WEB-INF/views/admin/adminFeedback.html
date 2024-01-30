@@ -31,13 +31,14 @@ var tb_admin_url = "";
 <script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/src/main/webapp/resources/js/admin/common.js"></script>
 <script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+
 </head>
 <body>
 
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href="http://demofran.com/admin/"><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="http://demofran.com/admin/config.php?code=super">관리자정보</a></li>
@@ -60,7 +61,8 @@ var tb_admin_url = "";
 				<li class="gnb_1dli">
 					<a href="http://demofran.com/admin/order.php?code=list" class="gnb_1da">주문관리</a>
 				</li>
-
+		
+				</li>
 				<li class="gnb_1dli active">
 					<a href="http://demofran.com/admin/help.php?code=qa" class="gnb_1da">고객지원</a>
 				</li>
@@ -76,29 +78,27 @@ var tb_admin_url = "";
 	
 <div id="snb">
 	<div class="snb_header ico_config">
-		<ion-icon name="accessibility-outline" class="announcement_outline"></ion-icon><h2>고객지원</h2>
+        <ion-icon name="accessibility-outline" class="announcement_outline"></ion-icon><h2>고객지원</h2>
 	</div>
-		<dl>
+    <dl>
 		<dt class="h10 menu_toggle">고객지원</dt>		
-        <dd class="h10"><a href="http://demofran.com/admin/help.php?code=qa">1:1 상담문의</a></dd>		        
+        <dd class="h10 active"><a href="http://demofran.com/admin/help.php?code=qa">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20 active"><a href="http://demofran.com/admin/help.php?code=faq">공지사항 관리</a></dd>        
+        <dd class="h20"><a href="http://demofran.com/admin/help.php?code=faq">공지사항 관리</a></dd>        
         <dd class="h20"><a href="http://demofran.com/admin/help.php?code=faq">FAQ 관리</a></dd>	
-        </dl>	
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 고객지원 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 공지사항 관리		
-        </div>
-	
+            <ion-icon name="chevron-forward-outline"></ion-icon> 1:1 상담문의	
+        </div>	
 <div class="s_wrap">
-	<h1>공지사항 관리</h1>
+	<h1>1:1 상담문의</h1>
 	
 <h2>기본검색</h2>
 <form name="fsearch" id="fsearch" method="get">
-<input type="hidden" name="code" value="faq">
+<input type="hidden" name="code" value="qa">
 <div class="tbl_frm01">
 	<table>
 	<colgroup>
@@ -110,8 +110,8 @@ var tb_admin_url = "";
 		<th scope="row">검색어</th>
 		<td>
 			<select name="sfl">
+				<option value="mb_id">작성자</option>
 				<option value="subject">제목</option>
-				<option value="memo">내용</option>
 			</select>
 			<input type="text" name="stx" value="" class="frm_input" size="30">
 		</td>
@@ -125,47 +125,59 @@ var tb_admin_url = "";
 </div>
 </form>
 
-<form name="ffaqlist" id="ffaqlist" method="post" action="./help/help_faq_delete.php" onsubmit="return ffaqlist_submit(this);">
-<input type="hidden" name="q1" value="code=faq">
+<form name="fqalist" id="fqalist" method="post" action="./help/help_qa_delete.php" onsubmit="return fqalist_submit(this);">
+<input type="hidden" name="q1" value="code=qa">
 <input type="hidden" name="page" value="1">
 
 <div class="local_ov mart30">
 	전체 : <b class="fc_red">0</b> 건 조회
 </div>
 <div class="local_frm01">
-	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
-<a href="./help.php?code=faq_from" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
+	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value"></div>
 <div class="tbl_head01">
 	<table>
 	<colgroup>
-		<col class="w50">
-		<col class="w50">
-		<col class="w80">
-		<col class="w80">
-		<col>
-		<col class="w60">
 	</colgroup>
 	<thead>
 	<tr>
 		<th scope="col"><input type="checkbox" name="chkall" value="1" onclick="check_all(this.form);"></th>
 		<th scope="col">번호</th>
 		<th scope="col">작성자</th>
-		<th scope="col">제목</th>
 		<th scope="col">내용</th>
-		<th scope="col">일자</th>
+        <th scope="col">댓글</th>
+		<th scope="col">작성일</th>
+		<th scope="col">답변</th>
+		<th scope="col">답변관리</th>
 	</tr>
 	</thead>
-	<tbody><tr><td colspan="6" class="empty_table">자료가 없습니다.</td></tr>	</tbody>
+	<tbody>
+        <tr class="list0">
+            <td>
+                <input type="hidden" name="gs_id[0]" value="21">
+                <input type="checkbox" name="chk[]" value="0">
+            </td>
+            <td>29</td>
+            <td>29</td>
+            <td>2dfsfdsddsfsdfdㄹㄴㅇ맬어레ㅐ안매ㅔ라앨ㄴㅁ라ㅐㅔㅇ라ㅐㅔㅇㅁㄴ레ㅐㅇㄴㅁ라ㅐㅇㄴ마래날매네ㅏㅇ내ㅔ란매란ㅁㅇ란에라ㅇ란애ㅔㄹㅇ나ㅐㅔㅇ날ㄴㅇㄹㅇ내ㅏㅔㅇ래ㅏㄹㄴㅇㄹ9ㅔㅏ아래ㅔ앙내ㅔ랑네ㅐㅏ9</td>
+            <td>ㅇㄴㄹㅇ널ㅇ나래ㅔ아래ㅔ랑내ㅔ라안아래ㅏ에랑나래ㅏㅇ네ㅏ랜아랜아랭나랭나레ㅐ아레ㅐㅇ남래ㅔ아ㅇ래ㅔㄴ알ㅇ네ㅐㅏ에내ㅏ</td>
+            <td>2024/01/05</td>
+            <td>
+                <a href="" class="btn_lsmall">댓글</a>
+            </td>
+            <td>
+                <button class="btn_lsmall">수정</button>
+            </td>
+        </tr>	
+    </tbody>
 	</table>
 </div>
 <div class="local_frm02">
-	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
-<a href="./help.php?code=faq_from" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
+	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value"></div>
 </form>
 
 
 <script>
-function ffaqlist_submit(f)
+function fqalist_submit(f)
 {
     if(!is_checked("chk[]")) {
         alert(document.pressed+" 하실 항목을 하나 이상 선택하세요.");
@@ -180,25 +192,6 @@ function ffaqlist_submit(f)
 
     return true;
 }
-
-var ubDisplay = {
-      q_old : "",
-      a_old : "",
-
-      display : function(seq){
-      var a_new = document.getElementById("view_"+seq);
-
-      if(this.a_old != a_new){
-         if(this.a_old != "")
-             this.a_old.style.display = "none";
-             a_new.style.display = "";
-             this.a_old = a_new;
-         }else{
-             a_new.style.display = "none";
-             this.a_old = "";
-         }
-       }
-   };
 </script>
 </div>
 

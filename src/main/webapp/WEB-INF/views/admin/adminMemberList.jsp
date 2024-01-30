@@ -5,11 +5,11 @@
 <head>
 <meta charset="utf-8">
 <title>관리자 페이지</title>
-<link type="text/css" href="/src/main/webapp/resources/css/admin/reset.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/basic.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/button.css" rel="stylesheet">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/admin.css">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/jquery-ui.css">
+<link type="text/css" href="/css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/basic.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/button.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin/admin.css">
+<link rel="stylesheet" href="/css/admin/jquery-ui.css">
 
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,17 +29,17 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/src/main/webapp/resources/js/admin/jquery-1.8.3.min.js"></script>
-<script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
-<script src="/src/main/webapp/resources/js/admin/common.js"></script>
-<script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/categorylist.js"></script>
 </head>
 <body>
 
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href="/src/main/webapp/WEB-INF/views/admin/adminMemberList.html"><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/image/admin/logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -107,7 +107,6 @@ var tb_admin_url = "";
 		<th scope="row">검색어</th>
 		<td>
 			<select name="sfl">
-				<option value="">번호</option>
 				<option value="">아이디</option>
 				<option value="">이메일</option>
 				<option value="">이름</option>
@@ -135,13 +134,7 @@ var tb_admin_url = "";
 <div class="tbl_head01">
 	<table>
 	<colgroup>
-		<col class="w50">
-		<col class="w130">
-		<col class="w150">
-		<col class="w130">
-		<col class="w100">
-		<col class="w130">
-		<col class="w90">
+
 	</colgroup>
 	<thead>
 	<tr>
@@ -174,7 +167,7 @@ var tb_admin_url = "";
 </div>
 <div class="local_frm02">
 	
-	<a href="./member.php?code=register_form" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 회원추가</a>
+	<a href="" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 회원추가</a>
 </div>
 
 
@@ -219,11 +212,11 @@ $(function(){
 </div>
 
 
-<div id="ajax-loading"><img src="/src/main/webapp/resources/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<script src="/src/main/webapp/resources/js/admin/admin.js"></script>
+<script src="/js/admin/admin.js"></script>
 
-<script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+<script src="/js/admin/wrest.js"></script>
 </body>
 </html>

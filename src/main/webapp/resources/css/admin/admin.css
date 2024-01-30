@@ -72,7 +72,7 @@ box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.2);}
 #hd h1, #hd h2{position:absolute;border:0;font-size:0;line-height:0;overflow:hidden;}
 #hd_wrap{z-index:11;position:relative;margin:0 auto;}
 #logo{position:relative;height:50px;}
-#logo img{position:absolute;top:16px;left:17px;}
+#logo img{position:absolute;left:17px;width:150px;}
 
 /*tnb*/
 #tnb {z-index:2;position:absolute;top:0;right:30px;zoom:1;}

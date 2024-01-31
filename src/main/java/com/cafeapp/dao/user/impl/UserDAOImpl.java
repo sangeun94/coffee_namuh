@@ -16,6 +16,7 @@ public class UserDAOImpl implements UserDAO{
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate; //의존성 주입
 
+	//회원 조회 + 검색
 	@Override
 	public List<User> findMemberListBySearchCondition(UserSearchCondition userSearchCondition) {
 		// TODO Auto-generated method stub
@@ -25,6 +26,30 @@ public class UserDAOImpl implements UserDAO{
 		return userList;
 
 	}
+
+	//회원 각자 정보
+	@Override
+	public User findMemberByUserNumber(int userNumber) {
+		// TODO Auto-generated method stub
+		
+		User user = sqlSessionTemplate.selectOne("admin_mapper.findMemberByUserNumber", userNumber);
+		
+		return user;
+	}
+	
+	
+	//회원 정보 수정
+	@Override
+	public int modifyMember(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("admin_mapper.modifyMember", user);
+		
+		return result;
+	}
+
+	
+	
 	
 	
 }

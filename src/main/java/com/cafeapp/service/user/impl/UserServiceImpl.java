@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserDAO userDAO; //의존성 주입
 	
-	//회원 목록 조회
+	//회원 목록 조회+검색
 	@Override
 	public List<User> findMemberListBySearchCondition(UserSearchCondition userSearchCondition) {
 		// TODO Auto-generated method stub
@@ -27,6 +27,28 @@ public class UserServiceImpl implements UserService{
 		return userList;
 
 	}
+	
+	//회원 각자 정보
+	@Override
+	public User findMemberByUserNumber(int userNumber) {
+		// TODO Auto-generated method stub
+		
+		User user = userDAO.findMemberByUserNumber(userNumber);
+		
+		return user;
+	}
+	
+	
+	//회원 정보 수정
+	@Override
+	public int modifyMember(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = userDAO.modifyMember(user);
+		
+		return result;
+	}
+
 
 
 }

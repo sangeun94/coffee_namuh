@@ -155,28 +155,28 @@ var tb_admin_url = "";
 
 	</tr>
 	</thead>
-	<c:forEach var="userItem" items="${userList}">
-		<tbody class="list">
-			<tr class="list0">
-				<td>${userItem.userNumber}</td>
-				<td class="tal">${userItem.userId}</td>
-				<td class="tal">${userItem.userEmail}</td>
-				<td>${userItem.userName}</td>
-				<td>
-					<!-- <c:out> 태그는 HTML 페이지에 값을 출력할 때 사용 -->
-					<c:out value="${fn:substring(userItem.userBirth, 0, 4)}-${fn:substring(userItem.userBirth, 4, 6)}-${fn:substring(userItem.userBirth, 6, 8)}"></c:out>									
-				</td>
-				<td>${userItem.userAddress} ${userItem.userDetailAddress}</td>
-				<td>
-					<c:choose>
-	                    <c:when test="${userItem.isMember == 1}">회원</c:when>
-	                    <c:when test="${userItem.isMember == 0}">탈퇴</c:when>
-                	</c:choose>
-				</td>
-				<td><a href="" class="btn_lsmall">수정</a></div></td>
-			</tr>		
-		</tbody>
-	</c:forEach>
+        <c:forEach var="userItem" items="${userList}">
+            <tr class="list0">
+                <td>${userItem.userNumber}</td>
+                <td class="tal">${userItem.userId}</td>
+                <td class="tal">${userItem.userEmail}</td>
+                <td>${userItem.userName}</td>
+                <td>
+                    <c:out value="${fn:substring(userItem.userBirth, 0, 4)}-${fn:substring(userItem.userBirth, 4, 6)}-${fn:substring(userItem.userBirth, 6, 8)}"></c:out>                                   
+                </td>
+                <td>${userItem.userAddress} ${userItem.userDetailAddress}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${userItem.isMember == 1}">회원</c:when>
+                        <c:when test="${userItem.isMember == 0}">탈퇴</c:when>
+                    </c:choose>
+                </td>
+                <td>
+                	<button onclick="location.href='/admin/modifyMember?userNumber=${userItem.userNumber}'" class="btn_lsmall">수정</button>
+                </td>
+            </tr>       
+        </c:forEach>
+    </tbody>
 	</table>
 </div>
 

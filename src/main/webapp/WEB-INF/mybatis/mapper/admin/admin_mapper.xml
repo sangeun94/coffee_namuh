@@ -21,7 +21,7 @@
 	    </if>
 	    
 	    <if test="searchType == 'userBirth' and searchKeyword != null and searchKeyword != ''">
-        AND user_birth LIKE '%' || #{searchKeyword} || '%'
+        	AND user_birth LIKE '%' || #{searchKeyword} || '%'
     	</if>
     	
 	    <if test="searchType == 'userAddress' and searchKeyword != null and searchKeyword != ''">
@@ -39,4 +39,25 @@
 	    AND is_member IN (0,1)
 	</select>	
 
+	<!-- 각각 회원정보 나오게 하기  -->
+	<select id="findMemberByUserNumber" resultType="User" parameterType="int">
+		SELECT * FROM users
+		WHERE user_number = #{userNumber}
+	</select>
+	
+	<!-- 회원 정보수정 -->
+	<update id="modifyMember" parameterType="User" >
+		UPDATE users
+		SET user_id = #{userId},
+			user_password = #{userPassword},
+			user_email = #{userEmail},
+			user_name = #{userName},
+			user_birth = #{userBirth},
+			user_zipcode = #{userZipcode},
+			user_address = #{userAddress},
+			user_detailAddress = #{userDetailAddress},
+			is_member = #{isMember}		
+		WHERE
+			user_number = #{userNumber}
+	</update>
 </mapper>

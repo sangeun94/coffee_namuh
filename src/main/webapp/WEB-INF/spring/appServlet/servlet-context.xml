@@ -34,6 +34,7 @@
 	<context:component-scan base-package="com.cafeapp.controller" />
 	<context:component-scan base-package="com.cafeapp.service" />
 	<context:component-scan base-package="com.cafeapp.dao" />
+	<context:component-scan base-package="com.cafeapp.util" />
 
 
 	<beans:bean

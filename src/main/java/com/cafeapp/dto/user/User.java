@@ -1,15 +1,16 @@
-package com.cafeapp.dto.users;
+package com.cafeapp.dto.user;
 
 import lombok.Data;
 
 @Data
-public class Users {
+public class User {
 	
 	int userNumber;
 	String userId;
 	String userPassword;
 	String userEmail;
 	String userName;
+	String userBirth;
 	String userZipcode;
 	String userAddress;
 	String userDetailAddress;

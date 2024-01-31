@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cafeapp.service.users.UsersService;
+import com.cafeapp.common.CommonCode;
+import com.cafeapp.dto.user.User;
+import com.cafeapp.dto.user.UserSearchCondition;
+import com.cafeapp.service.user.UserService;
 
 
 @Controller
@@ -17,10 +20,21 @@ import com.cafeapp.service.users.UsersService;
 public class AdminController {
 
 	@Autowired
-	UsersService usersService;
+	UserService userService;
 	
-	@RequestMapping("/coffee_namuh")
-	public String adminMain() {
+	@RequestMapping("/adminMember")
+	public String adminMain(Model model, @ModelAttribute UserSearchCondition userSearchCondition) {
+		
+		System.out.println(userSearchCondition);
+		
+		//회원목록페이지 -> 회원, 탈퇴한 회원만 나오게! => mapper에서 설정!
+
+	    
+		List<User> userList = userService.findMemberListBySearchCondition(userSearchCondition); //검색	
+		
+		model.addAttribute("userList", userList);
+	    model.addAttribute("totalUsers", userList.size()); // 회원 수를 모델에 추가
+
 		return "admin/adminMemberList";
 	}
 	

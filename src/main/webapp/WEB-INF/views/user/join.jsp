@@ -59,8 +59,9 @@ h2 {
 }
 
 form {
-	width: 100%;
+	width: 50%;
 	box-sizing: border-box;
+	margin: 0 auto;
 }
 
 label {
@@ -71,7 +72,7 @@ label {
 }
 
 input {
-	width: calc(100% - 16px); /* 좌우 8px의 여백 제외 */
+	width: calc(100% - 16px); 
 	padding: 8px;
 	margin-bottom: 16px;
 	border: 1px solid #ccc;
@@ -95,6 +96,11 @@ a {
 	text-decoration: none;
 }
 
+#btn_checkDupId {
+	width: 40%;
+	box-sizing: border-box;
+}
+
 </style>
 </head>
 <body>
@@ -108,8 +114,10 @@ a {
             <input type="text" id="userName" name="userName" required>
            
 
-            <label for="userId">아이디:</label>
+            <label for="userId">아이디:</label> 
             <input type="text" id="userId" name="userId" required>
+            <button type="button" id="btn_checkDupId">중복확인</button>
+    		<div id="idCheckResult"></div>
 
             <label for="userPassword">비밀번호:</label>
             <input type="password" id="userPassword" name="userPassword" required>
@@ -199,10 +207,45 @@ a {
             }).open();
         });
     </script>
-   
-   
-       
-       
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const btn_checkDupId = document.getElementById('btn_checkDupId');
+        const userIdInput = document.getElementById('userId');
+        const idCheckResult = document.getElementById('idCheckResult');
+
+        btn_checkDupId.addEventListener('click', function () {
+            const input_id = userIdInput.value;
+
+           
+            $.ajax({
+                type: "POST",
+                url: "/customer/isDuplicatedId",
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded"
+                },
+                data: { id: input_id },
+                dataType: 'json',
+                success: function (result) {
+                    // 서버로부터의 응답(result)에 따라 메시지 표시
+                    if (result.resultCode === 409) {
+                        idCheckResult.textContent = '이미 사용 중인 아이디입니다.';
+                    } else {
+                        idCheckResult.textContent = '사용 가능한 아이디입니다.';
+                    }
+                },
+                error: function () {
+                    console.log('실패 에러');
+                }
+            });
+        });
+    });
+</script>
+	
+
+
+
+
 </body>
 </html>

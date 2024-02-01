@@ -17,16 +17,20 @@
     #{userAddress},
     #{userDetailAddress},
     #{isMember}
-		)
-		
-		
-		 
+		)	 
 	</insert>
+
+	<select id="findUserById" resultType="com.cafeapp.dto.user.User" parameterType="String">
+        SELECT * FROM users WHERE user_id = #{id}
+    </select>
+
 
 	<!-- 중복된 사용자 ID 확인 -->
 	<select id="isDuplicatedId" resultType="int"
 		parameterType="String">
 		SELECT COUNT(*) FROM users WHERE user_id = #{userId}
 	</select>
+	
+	
 
 </mapper>

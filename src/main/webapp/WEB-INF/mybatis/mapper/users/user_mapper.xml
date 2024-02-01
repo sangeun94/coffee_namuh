@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user_mapper">
+
+	<!-- 회원가입 저장 -->
+	<insert id="saveUser" parameterType="User">
+		INSERT INTO users 
+		 VALUES (
+		 SEQ_USERS_PK.nextval,
+    #{userId},
+    #{userPassword},
+    #{userEmail},
+    #{userName},
+    #{userBirth},
+    #{userZipcode},
+    #{userAddress},
+    #{userDetailAddress},
+    #{isMember}
+		)
+		
+		
+		 
+	</insert>
+
+	<!-- 중복된 사용자 ID 확인 -->
+	<select id="isDuplicatedId" resultType="int"
+		parameterType="String">
+		SELECT COUNT(*) FROM users WHERE user_id = #{userId}
+	</select>
+
+</mapper>

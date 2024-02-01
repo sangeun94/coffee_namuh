@@ -9,14 +9,11 @@
 	</settings>
 
 	<typeAliases>
-		<!-- 
-		<typeAlias type="com.rsrvapp.dto.user.User" alias="User" />
-		<typeAlias type="com.rsrvapp.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
-		<typeAlias type="com.rsrvapp.dto.room.Room" alias="Room" />
-		<typeAlias type="com.rsrvapp.dto.room.RoomSearchCondition" alias="RoomSearchCondition"/> 
-		-->
 		<typeAlias type="com.cafeapp.dto.user.User" alias="User" />
 		<typeAlias type="com.cafeapp.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
+		
+		<typeAlias type="com.cafeapp.dto.board.Announcement" alias="Announcement" />
+		<typeAlias type="com.cafeapp.dto.board.AnnouncementSearchCondition" alias="AnnouncementSearchCondition" />
 		
 	
 	</typeAliases>

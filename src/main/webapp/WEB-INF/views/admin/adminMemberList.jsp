@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <title>관리자 페이지</title>
-<link type="text/css" href="css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/reset.css" rel="stylesheet">
 <link type="text/css" href="/css/admin/basic.css" rel="stylesheet">
 <link type="text/css" href="/css/admin/button.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/admin/admin.css">
@@ -99,7 +99,7 @@ var tb_admin_url = "";
 	<h1>회원 정보관리</h1>
 
 <h2>기본검색</h2>
-<form action="/adminMember" name="fsearch" id="fsearch" method="get">
+<form action="/admin/adminMember" name="fsearch" id="fsearch" method="get">
     <div class="tbl_frm01">
         <table>
             <colgroup>
@@ -155,6 +155,7 @@ var tb_admin_url = "";
 
 	</tr>
 	</thead>
+	<tbody>
         <c:forEach var="userItem" items="${userList}">
             <tr class="list0">
                 <td>${userItem.userNumber}</td>
@@ -200,10 +201,10 @@ var tb_admin_url = "";
 <script src="/js/admin/wrest.js"></script>
 
 <script>
-function resetSearchForm() {
-    // 'fsearch'라는 ID를 가진 폼의 내용을 초기화
-    document.getElementById('fsearch').reset();
-}
+	function resetSearchForm() {
+	    // 'fsearch'라는 ID를 가진 폼의 내용을 초기화
+	    document.getElementById('fsearch').reset();
+	}
 </script>
 
 </body>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- 스프링 관련 -->
 <beans:beans
 	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -29,20 +30,33 @@
 			</beans:bean>
 		</message-converters>
 	</annotation-driven>
-	
-	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
-	<context:component-scan base-package="com.cafeapp.controller" />
-	<context:component-scan base-package="com.cafeapp.service" />
-	<context:component-scan base-package="com.cafeapp.dao" />
-	<context:component-scan base-package="com.cafeapp.util" />
 
+	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
+	<context:component-scan
+		base-package="com.cafeapp.controller" />
+	<context:component-scan
+		base-package="com.cafeapp.service" />
+	<context:component-scan
+		base-package="com.cafeapp.dao" />
+	<context:component-scan
+		base-package="com.cafeapp.util" />
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/"></beans:property>
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
-	
+
+	<!-- file:///D:/파일이름 파일탐색기 D드라이브  -->
+	<resources mapping="/fileStorage/**" location="file:///D:/fileStorage/" />
 	<resources mapping="/**" location="/resources/" />
+
+	
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
 
 </beans:beans>

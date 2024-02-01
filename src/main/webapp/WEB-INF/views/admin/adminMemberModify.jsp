@@ -43,7 +43,7 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="	/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
+		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -94,16 +94,12 @@ var tb_admin_url = "";
             <ion-icon name="chevron-forward-outline"></ion-icon> 회원 정보관리		
         </div>
         
-        	
-<div class="s_wrap">
-	<h1>회원 정보수정</h1>
-
-	<h2 class="mart30">개인정보 입력</h2>
-	<div class="tbl_frm01">
+<form action="/admin/modifyMember" method="post">
+	<div class="s_wrap">
+		<h1>회원 정보수정</h1>
 	
-	<form action="/admin/modifyMember" method="post">
-	<!-- roomId가 식별자라서! hidden해놓고 넘기긴 해야지! -->
-	<input type="hidden" name="userNumber" value="${user.userNumber}">
+		<h2 class="mart30">개인정보 입력</h2>
+		<div class="tbl_frm01">
 	
 		<table>
 		<colgroup>
@@ -111,13 +107,17 @@ var tb_admin_url = "";
 			<col>
 		</colgroup>
 		<tbody>
+		
+		<!-- roomId가 식별자라서! hidden해놓고 넘기긴 해야지! -->
+		<input type="hidden" name="userNumber" value="${user.userNumber}">
+		
 		<tr>
 			<th scope="row"><label>아이디</label></th>
 			<td><input type="text" name="userId" value="${user.userId}" class="frm_input" size="20" maxlength="20"></td>
 		</tr>
 		<tr>
-			<th scope="row"><label>비밀번호</label></th>
-	        <td><input type="password" name="userPassword" value="${user.userPassword}" class="frm_input" size="20" maxlength="20"></td>
+			<th scope="row"><label>임시 비밀번호</label></th>
+	        <td><input type="text" name="userPassword" value="${user.userPassword}" class="frm_input" size="20" maxlength="20"></td>
 	
 		</tr>
 		<tr>
@@ -148,10 +148,10 @@ var tb_admin_url = "";
 	        <th scope="row">회원여부</th>
 	        <td>
 				<label for="withdrawal">
-	            	<input type="radio" name="isMember" value="0" id="withdrawal">
+	            	<input type="radio" name="isMember" value="0" id="withdrawal" ${user.isMember == 0 ? 'checked' : ''}>
 	            탈퇴</label>
 				<label for="member">
-	            	<input type="radio" name="isMember" value="1" id="member">
+	            	<input type="radio" name="isMember" value="1" id="member" ${user.isMember == 1 ? 'checked' : ''}>
 	            회원</label>
 	        </td>
 		</tr>
@@ -165,79 +165,22 @@ var tb_admin_url = "";
 </form>
 
 <script>
-function fregisterform_submit(f)
-{
-	// 회원아이디 검사
-	var msg = reg_mb_id_check();
-	if(msg) {
-		alert(msg);
-		f.mb_id.select();
-		return false;
+	function validateForm() {
+	    var userPassword = document.querySelector("input[name='userPassword']").value;
+	    if (!userPassword) { // userPassword가 비어있거나 null일 경우
+	        alert("임시 비밀번호를 입력해주세요.");
+	        return false; // 폼 제출을 중단
+	    }
+	    return true; // userPassword가 유효하면 폼 제출 계속
 	}
-
-	if(f.mb_password.value.length < 4) {
-		alert("비밀번호를 4글자 이상 입력하십시오.");
-		f.mb_password.focus();
-		return false;
-	}
-
-	if(f.mb_password.value != f.mb_password_re.value) {
-		alert("비밀번호가 같지 않습니다.");
-		f.mb_password_re.focus();
-		return false;
-	}
-
-	if(f.mb_password.value.length > 0) {
-		if(f.mb_password_re.value.length < 4) {
-			alert("비밀번호를 4글자 이상 입력하십시오.");
-			f.mb_password_re.focus();
-			return false;
-		}
-	}
-
-	// 이름 검사
-	if(f.mb_name.value.length < 1) {
-		alert("이름을 입력하십시오.");
-		f.mb_name.focus();
-		return false;
-	}
-
-	/*
-	var pattern = /([^가-힣\x20])/i;
-	if(pattern.test(f.mb_name.value)) {
-		alert("이름은 한글로 입력하십시오.");
-		f.mb_name.select();
-		return false;
-	}
-	*/
-
-	// E-mail 검사
-	var msg = reg_mb_email_check();
-	if(msg) {
-		alert(msg);
-		f.reg_mb_email.select();
-		return false;
-	}
-
-	if(typeof(f.mb_recommend) != "undefined" && f.mb_recommend.value) {
-		if(f.mb_id.value == f.mb_recommend.value) {
-			alert("본인을 추천할 수 없습니다.");
-			f.mb_recommend.focus();
-			return false;
-		}
-
-		var msg = reg_mb_recommend_check();
-		if(msg) {
-			alert(msg);
-			f.mb_recommend.select();
-			return false;
-		}
-	}
-
-	document.getElementById("btn_submit").disabled = "disabled";
-
-    return true;
-}
+	
+	// 폼 제출 시 validateForm 함수 호출
+	var form = document.querySelector("form");
+	form.onsubmit = function(event) {
+	    if (!validateForm()) {
+	        event.preventDefault(); //유효성 검사를 통과하지 못하면, 폼의 기본 제출 동작을 중단
+	    }
+	};
 </script>
 </div>
 

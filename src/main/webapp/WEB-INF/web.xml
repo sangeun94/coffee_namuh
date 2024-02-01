@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 	                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
+<!-- 톰캣 관련 -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -18,6 +19,11 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+
+		<multipart-config>
+			<max-file-size>31457280</max-file-size>   <!-- 30mb -->
+			<max-request-size>1004857600</max-request-size>  <!-- 100mb -->
+		</multipart-config>
 	</servlet>
 
 

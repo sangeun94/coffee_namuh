@@ -111,39 +111,43 @@
 
         <form id="infoForm" method="post" action="/register">
             <label for="userName">이름:</label>
-            <input type="text" id="userName" name="userName" required>
+            <input type="text" id="userName" name="userName">
+            <div id="nameCheckResult"></div>
             
             <label for="userId">아이디:</label> 
-            <input type="text" id="userId" name="userId" required>
+            <input type="text" id="userId" name="userId">
             <button type="button" id="btn_checkDupId">중복확인</button>
             <div id="idCheckResult"></div>
 
             <label for="userPassword">비밀번호:</label>
-            <input type="password" id="userPassword" name="userPassword" required>
+            <input type="password" id="userPassword" name="userPassword">
              <div id="pwCheckResult"></div>
            
             <label for="confirm_password">비밀번호 확인:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
+            <input type="password" id="confirmPassword" name="confirmPassword">
            	 <div id="pwConfirmCheckResult"></div>
            	 
             <label for="userEmail">이메일:</label>
-            <input type="email" id="userEmail" name="userEmail" required>
+            <input type="email" id="userEmail" name="userEmail">
             <div id="emailCheckResult"></div>
             
             <label for="userBirth">생년월일:</label>
-            <input type="text" id="userBirth" name="userBirth" required>
+            <input type="text" id="userBirth" name="userBirth">
            	<div id="birthCheckResult"></div>
            	
             <div class="address-inputs">
                 <label for="userZipcode">우편번호:</label>
-                <input type="text" id="userZipcode" name="userZipcode" required>
+                <input type="text" id="userZipcode" name="userZipcode">
                 <input type="button" value="우편번호검색" id="btn">
+                <div id="zipCheckResult"></div>
 
                 <label for="userAddress">주소:</label>
-                <input type="text" id="userAddress" name="userAddress" required>
+                <input type="text" id="userAddress" name="userAddress">
+                <div id="AddressCheckResult"></div>
                
                 <label for="userDetailAddress">상세주소:</label>
-                <input type="text" id="userDetailAddress" name="userDetailAddress" required>
+                <input type="text" id="userDetailAddress" name="userDetailAddress">
+                <div id="detailAddressCheckResult"></div>
             </div>
 
             <button type="submit">가입하기</button>
@@ -208,9 +212,10 @@
         const idCheckResult = document.getElementById('idCheckResult');
         const userNameInput = document.getElementById('userName');
         const userPasswordInput = document.getElementById('userPassword');
-        const confirmPasswordInput = document.getElementById('confirm_password');
+        //비번 컨펌창자리
         const userEmailInput = document.getElementById('userEmail');
-
+        const userBirthInput = document.getElementById('userBirth');
+		
         btn_checkDupId.addEventListener('click', function () {
             const input_id = userIdInput.value;
 
@@ -234,12 +239,25 @@
                 }
             });
         });
-
+		
+        
+     // userName검증
+        userNameInput.addEventListener('input', function () {
+            if (!/^[가-힣]{1,}$/.test(userNameInput.value)) {
+            	userNameInput.style.background = 'pink';
+                nameCheckResult.textContent = '한글만 입력 가능합니다.';
+            } else {
+            	userNameInput.style.background = 'aqua';
+                nameCheckResult.textContent = '';
+            }
+        });
+        
+        
         // userId검증
         userIdInput.addEventListener('input', function () {
             if (!/^[a-zA-Z0-9]{4,14}$/.test(userIdInput.value)) {
                 userIdInput.style.background = 'pink';
-                idCheckResult.textContent = '[영문과 숫자 조합으로 4~14자 조합해주세요.]';
+                idCheckResult.textContent = '영문과 숫자 조합으로 4~14자 조합해주세요.';
             } else {
                 userIdInput.style.background = 'aqua';
                 idCheckResult.textContent = '';
@@ -260,7 +278,30 @@
 		    }
 		});
         
+        //userEmail
+        userEmailInput.addEventListener('input', function () {
+            if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(userEmailInput.value)) {
+                userEmailInput.style.background = 'pink';
+                emailCheckResult.textContent = '올바른 이메일 주소를 입력해주세요.';
+            } else {
+            	userEmailInput.style.background = 'aqua';
+            	emailCheckResult.textContent = '';
+            }
+        });
+        
+        //생년월일 검증
+        userBirthInput.addEventListener('input', function () {
+            const userBirth = userBirthInput.value;
+            const birthRegex = /^19\d{6}$/;
 
+            if (!birthRegex.test(userBirth)) {
+                userBirthInput.style.background = 'pink';
+                birthCheckResult.textContent = '생년월일 8자리를 입력해주세요. (19YYMMDD)';
+            } else {
+                userBirthInput.style.background = 'aqua';
+                birthCheckResult.textContent = '';
+            }
+        });
         
 
         document.getElementById('infoForm').addEventListener('submit', function (e) {
@@ -279,6 +320,28 @@
             document.getElementById(field + 'ErrorMsg').textContent = '';
         }
     });
+</script>
+
+<script>
+ 
+
+    document.getElementById('infoForm').addEventListener('submit', function (e) {
+        const userZipcodeInput = document.getElementById('userZipcode');
+        const userAddressInput = document.getElementById('userAddress');
+        const userDetailAddressInput = document.getElementById('userDetailAddress');
+
+        // 주소 필수 입력 검증
+        if (!userZipcodeInput.value.trim() || !userAddressInput.value.trim() || !userDetailAddressInput.value.trim()) {
+            e.preventDefault();
+            alert('주소를 입력은 필수 입니다.'); // 혹은 원하는 다른 처리를 수행할 수 있습니다.
+        }
+
+        if (!validateForm()) {
+            e.preventDefault();
+        }
+    });
+  	
+    
 </script>
 
 

@@ -3,6 +3,7 @@ package com.cafeapp.controller.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -51,6 +52,7 @@ public class UserController {
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("user", new User());
+        
         return "user/login";
     }
 
@@ -74,6 +76,8 @@ public class UserController {
     public String showMainPage(HttpServletRequest request, Model model) {
         User loginUser = (User) sessionManager.getSession(request);
 
+        
+        
         if (loginUser == null) {
             // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
             return "redirect:/login";
@@ -133,10 +137,79 @@ public class UserController {
         return response;
     }
     
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
+        sessionManager.expire(request); // 세션 만료 처리
+        Cookie cookie = new Cookie(SessionManager.SESSION_COOKIE_NAME, null);
+        cookie.setMaxAge(0); // 쿠키 삭제
+        response.addCookie(cookie);
+
+        
+        model.addAttribute("sessionExpired", true);
+
+        return "redirect:/login";
+    }
+    
     
     @RequestMapping("/main")
     public String main() {
     	return"user/main";
     }
+    
+    @RequestMapping("/admin")
+    public String adminPage() {
+    	return"admin/admin";
+    }
+    
+  //adminLogin
+    
+    @GetMapping("/admin")
+    public String showAdminLoginForm(Model model) {
+        model.addAttribute("user", new User());
+        
+        return "admin/adminLogin";
+    }
+
+    @PostMapping("/admin/adminLogin")
+    public String loginAdminUser(User user, HttpServletResponse response) {
+        User loginUser = userService.isValidAdminLogin(user);
+        System.out.println(loginUser);
+        if (loginUser != null) {
+            // 로그인 성공 시 처리
+            sessionManager.createSession(loginUser, response);
+            return "redirect:/admin";
+        } else {
+            // 로그인 실패 시 처리
+            return "redirect:/adminlogin";
+        }
+    }
+
+    @GetMapping("/admin/main")
+    public String showAdminMainPage(HttpServletRequest request, Model model) {
+        User loginUser = (User) sessionManager.getSession(request);
+        System.out.println(loginUser);
+        if (loginUser == null) {
+            
+            return "redirect:/adminLogin";
+        }
+
+        // 로그인 성공 시 메인 페이지로 이동
+        model.addAttribute("loginUser", loginUser);
+        return "admin/main";
+    }
+
+    @GetMapping("/admin/logout")
+    public String logoutAdmin(HttpServletRequest request, HttpServletResponse response, Model model) {
+        sessionManager.expire(request); // 세션 만료 처리
+        Cookie cookie = new Cookie(SessionManager.SESSION_COOKIE_NAME, null);
+        cookie.setMaxAge(0); // 쿠키 삭제
+        response.addCookie(cookie);
+
+        
+        model.addAttribute("sessionExpired", true);
+
+        return "redirect:/adminLogin";
+    }
+    
     
 }

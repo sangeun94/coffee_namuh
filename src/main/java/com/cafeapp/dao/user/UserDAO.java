@@ -6,6 +6,8 @@ import com.cafeapp.dto.user.User;
 
 public interface UserDAO {
     User findLoginUser(User user);
+    
+    User findLoginAdmin(User user);
 
     int saveUser(User user);
 

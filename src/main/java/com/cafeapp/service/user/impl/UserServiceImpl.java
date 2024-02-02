@@ -31,6 +31,18 @@ public class UserServiceImpl implements UserService {
 
         return null; // 로그인 실패
     }
+    
+    @Override
+    public User isValidAdminLogin(User user) {
+        // 관리자 로그인 로직 구현
+        User adminLoginUser = userDAO.findLoginAdmin(user);
+        if (adminLoginUser != null && adminLoginUser.getIsMember() == CommonCode.USER_ISMEMBER_ADMIN) {
+            user.setIsMember(2);
+            System.out.println("service " + adminLoginUser);
+            return adminLoginUser;
+        }
+        return null;
+    }
 
     @Override
     public int saveCustomerUser(User user) {
@@ -46,4 +58,6 @@ public class UserServiceImpl implements UserService {
         // 중복된 아이디 확인 로직 구현
         return userDAO.findUserById(id) != null;
     }
+
+	
 }

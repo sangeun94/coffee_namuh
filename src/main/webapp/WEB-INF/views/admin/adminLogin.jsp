@@ -3,18 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script>
-        // 세션이 만료되었을 때 경고 창 표시
-        var sessionExpired = ${sessionExpired};
-        if (sessionExpired) {
-            alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
-        }
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-    <style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
          body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -97,15 +88,14 @@ button {
     width: 100%;
     box-sizing: border-box;
 }
-
-       
-    </style>
+</style>
 </head>
 <body>
-    <div id="container">
+
+<div id="container">
         <img id="profile-image" src="/image/user/COFFEENAMUH_logo.png" >
         
-        <h2>로그인</h2>
+        <h2>관리자 로그인</h2>
 
         <form id="infoForm" action="" method="post">
     <label>아이디:</label>
@@ -116,10 +106,19 @@ button {
 
     <button type="submit">로그인</button>
 </form>
+</div>
 
+<script>
+        // 세션이 만료되었을 때 경고 창 표시
+        var sessionExpired = ${sessionExpired};
+        if (sessionExpired) {
+            alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
+        }
+    </script>
 
 
 </body>
 </html>
 
 
+    

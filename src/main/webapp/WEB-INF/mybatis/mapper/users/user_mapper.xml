@@ -36,5 +36,9 @@
 	<select id="findLoginUser" parameterType="User" resultType="User">
 		SELECT * FROM users WHERE USER_ID = #{userId} AND user_password=#{userPassword} AND is_member=1
 	</select>
+	
+	<select id="findLoginAdmin" parameterType="User" resultType="User">
+		SELECT * FROM users WHERE USER_ID = #{userId} AND user_password=#{userPassword} AND is_member=2
+	</select>
 
 </mapper>

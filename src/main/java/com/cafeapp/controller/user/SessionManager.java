@@ -16,14 +16,18 @@ public class SessionManager {
 
     public static final String SESSION_COOKIE_NAME = "mySessionId";
     private Map<String, Object> sessionStore = new ConcurrentHashMap<>();
-
+ // 세션 만료 시간 (3분으로 설정)
+    private static final long SESSION_EXPIRATION_TIME = 3 * 60 * 1000; // 3분 (밀리초 단위)
+    
+    
     public void createSession(Object value, HttpServletResponse response) {
         // 세션 생성
         String sessionId = UUID.randomUUID().toString();
         sessionStore.put(sessionId, value);
 
-        // 쿠키 생성 후 저장
+     // 쿠키 생성 후 저장 (세션 만료 시간 설정)
         Cookie cookie = new Cookie(SESSION_COOKIE_NAME, sessionId);
+        cookie.setMaxAge((int) (SESSION_EXPIRATION_TIME / 1000)); // 세션 만료 시간을 초 단위로 설정
         response.addCookie(cookie);
     }
 
@@ -52,4 +56,6 @@ public class SessionManager {
                 .findAny()
                 .orElse(null);
     }
+    
+    
 }

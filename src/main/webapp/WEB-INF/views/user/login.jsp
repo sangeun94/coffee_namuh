@@ -99,17 +99,17 @@ button {
         
         <h2>로그인</h2>
 
-        <form id="infoForm">
-            <label for="userid">아이디:</label>
-            <input type="text" id="userid" name="userid" required>
+        <form id="infoForm" action="" method="post">
+    <label>아이디:</label>
+    <input type="text" id="userId" name="userId">
 
-            <label for="password">비밀번호:</label>
-            <input type="password" id="password" name="password" required>
-            
+    <label>비밀번호:</label>
+    <input type="password" id="userPassword" name="userPassword">
 
-            <button type="button" onclick="login()">로그인</button>
-        </form>
-    </div>
+    <button type="submit">로그인</button>
+</form>
+
+
 
 </body>
 </html>

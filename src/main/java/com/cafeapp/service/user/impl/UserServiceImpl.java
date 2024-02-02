@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafeapp.common.CommonCode;
 import com.cafeapp.dao.user.UserDAO;
 import com.cafeapp.dto.user.User;
 import com.cafeapp.service.user.UserService;
@@ -18,7 +19,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User isValidCustomerLogin(User user) {
         // 로그인 로직 구현
-        return userDAO.findLoginUser(user);
+    	System.out.println("service " + user);
+    	User loginUser = userDAO.findLoginUser(user);
+    	System.out.println("service " + loginUser);
+        // 사용자가 회원인 경우에만 로그인 허용
+    	if (loginUser != null && loginUser.getIsMember() == CommonCode.USER_ISMEMBER_MEMBER) {
+            user.setIsMember(1); 
+            System.out.println("service " + loginUser);
+            return loginUser;
+        }
+
+        return null; // 로그인 실패
     }
 
     @Override
@@ -28,11 +39,7 @@ public class UserServiceImpl implements UserService {
         return userDAO.saveUser(user);
     }
 
-    @Override
-    public List<User> findCustomerUserList() {
-        // 사용자 목록 조회 로직 구현
-        return userDAO.findUserListByUserType("CUS");
-    }
+  
 
     @Override
     public boolean isDuplicatedId(String id) {

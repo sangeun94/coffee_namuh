@@ -123,8 +123,8 @@
             <input type="password" id="userPassword" name="userPassword">
              <div id="pwCheckResult"></div>
            
-            <label for="confirm_password">비밀번호 확인:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword">
+            <label for="userConfirmpassword">비밀번호 확인:</label>
+            <input type="password" id="userConfirmPassword" name="userConfirmPassword">
            	 <div id="pwConfirmCheckResult"></div>
            	 
             <label for="userEmail">이메일:</label>
@@ -147,7 +147,7 @@
                
                 <label for="userDetailAddress">상세주소:</label>
                 <input type="text" id="userDetailAddress" name="userDetailAddress">
-                <div id="detailAddressCheckResult"></div>
+                <div id="detailAddressCheckResult"></div>		
             </div>
 
             <button type="submit">가입하기</button>
@@ -212,7 +212,7 @@
         const idCheckResult = document.getElementById('idCheckResult');
         const userNameInput = document.getElementById('userName');
         const userPasswordInput = document.getElementById('userPassword');
-        //비번 컨펌창자리
+        const userConfirmPasswordInput = document.getElementById('userConfirmPassword');
         const userEmailInput = document.getElementById('userEmail');
         const userBirthInput = document.getElementById('userBirth');
 		
@@ -221,7 +221,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/customer/isDuplicatedId",
+                url: "/customer/isDuplicatedId", // 여기를 수정
                 headers: {
                     "Content-type": "application/x-www-form-urlencoded"
                 },
@@ -277,6 +277,24 @@
 		        pwCheckResult.textContent = '';
 		    }
 		});
+        
+     	// user컨펌Password 검증
+        userConfirmPasswordInput.addEventListener('input', function () {
+            const userPassword = userPasswordInput.value;
+            const userConfirmPassword = userConfirmPasswordInput.value;
+            const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+
+            if (userPassword !== userConfirmPassword) {
+                userConfirmPasswordInput.style.background = 'pink';
+                pwConfirmCheckResult.textContent = '동일하지 않은 비밀번호입니다.';
+            } else if (!pwRegex.test(userPassword)) {
+                userConfirmPasswordInput.style.background = 'pink';
+                pwConfirmCheckResult.textContent = '비밀번호는 특수문자 포함 8자 이상이어야 합니다.';
+            } else {
+                userConfirmPasswordInput.style.background = 'aqua';
+                pwConfirmCheckResult.textContent = '';
+            }
+        });
         
         //userEmail
         userEmailInput.addEventListener('input', function () {

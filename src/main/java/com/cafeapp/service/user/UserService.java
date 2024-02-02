@@ -10,7 +10,5 @@ public interface UserService {
 
     int saveCustomerUser(User user);
 
-    List<User> findCustomerUserList();
-
     boolean isDuplicatedId(String id);
 }

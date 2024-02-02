@@ -17,7 +17,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User findLoginUser(User user) {
-        return sqlSessionTemplate.selectOne("user_mapper.findLoginUser", user);
+    	System.out.println("dao " + user);
+    	user = sqlSessionTemplate.selectOne("user_mapper.findLoginUser", user);
+        System.out.println("dao " + user);
+        
+        return user;
     }
 
     @Override

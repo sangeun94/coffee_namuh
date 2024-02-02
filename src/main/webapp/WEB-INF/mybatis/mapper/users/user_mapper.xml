@@ -10,6 +10,7 @@
 		 SEQ_USERS_PK.nextval,
     #{userId},
     #{userPassword},
+    #{userConfirmPassword},
     #{userEmail},
     #{userName},
     #{userBirth},
@@ -32,5 +33,8 @@
 	</select>
 	
 	
+	<select id="findLoginUser" parameterType="User" resultType="User">
+		SELECT * FROM users WHERE USER_ID = #{userId} AND user_password=#{userPassword} AND is_member=1
+	</select>
 
 </mapper>

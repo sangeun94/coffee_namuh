@@ -20,4 +20,7 @@ public interface AnnouncementDAO {
 	//공지사항 수정
 	public int modifyAnnouncement(Announcement announcement);
 
+	//공지사항 삭제
+	public int removeAnnouncement(int announcementNumber);
+	
 }

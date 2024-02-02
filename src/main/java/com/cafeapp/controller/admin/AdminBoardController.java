@@ -1,6 +1,7 @@
 package com.cafeapp.controller.admin;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,6 +86,22 @@ public class AdminBoardController { // 공지사항, FAQ, 1:1상담
 			return "admin/adminAnnouncementModify"; //수정실패: 공지사항 수정페이지 
 		}
 		
+	}
+	
+	//공지사항 삭제
+	@PostMapping("/admin/removeAnnounce")
+	public String removeAnnounce(@RequestParam List<String> announcementNumber) {
+
+		System.out.println(announcementNumber);
+
+		// String 리스트를 Integer 리스트로 변환
+	    List<Integer> numbers = announcementNumber.stream()
+	                                               .map(Integer::parseInt)
+	                                               .collect(Collectors.toList());
+	    
+		announcementService.removeAnnouncement(numbers);
+		
+		return "redirect:/admin/announcement";
 	}
 	
 }

@@ -120,13 +120,13 @@ var tb_admin_url = "";
 	<tr>
 		<th scope="row">제목</th>
 		<td>
-			<input type="text" name="subject" value="" required itemname="제목" class="frm_input required" size="60">
+			<input type="text" name="title" value="" required itemname="제목" class="frm_input required" size="60">
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">내용</th>
 		<td>
-			<textarea id="memo" name="memo" class="smarteditor2" maxlength="65536" style="width:100%"></textarea>
+			<textarea id="memo" name="content" class="smarteditor2" maxlength="65536" style="width:100%"></textarea>
 		</td>
 	</tr>
 	</tbody>
@@ -154,6 +154,26 @@ var tb_admin_url = "";
 <script src="/src/main/webapp/resources/js/admin/admin.js"></script>
 
 <script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+
+<script>
+// 폼 제출 핸들러
+function validateForm() {
+    var title = document.forms["announcementForm"]["title"].value;
+    var content = document.forms["announcementForm"]["content"].value;
+    
+    if (title == null || title.trim() == "") {
+        alert("제목을 입력해주세요.");
+        return false; // 폼 제출을 방지
+    }
+    
+    if (content == null || content.trim() == "") {
+        alert("내용을 입력해주세요.");
+        return false; // 폼 제출을 방지
+    }
+    
+    return true; // 유효성 검사 통과, 폼 제출 진행
+}
+</script>
 
 </body>
 </html>

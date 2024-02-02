@@ -56,6 +56,20 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		
 		return result;
 	}
+	
+	
+	//공지사항 삭제
+	@Override
+	public int removeAnnouncement(List<Integer> announcementNumbers) {
+		// TODO Auto-generated method stub
+		
+		int result = 0;
+		for (int i=0; i<announcementNumbers.size(); i++) {
+			result += announcementDAO.removeAnnouncement(announcementNumbers.get(i));
+		}
+		
+		return result;
+	}
 
 	
 	

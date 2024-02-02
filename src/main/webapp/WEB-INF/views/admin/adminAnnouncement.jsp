@@ -138,12 +138,18 @@ var tb_admin_url = "";
 	</div>
 	</form>
 	
+	
 	<div class="local_ov mart30">
 		전체 : <b class="fc_red">${totalAnnouncement}</b> 건 조회
 	</div>
+	
+	<form action="/admin/removeAnnounce" method="post">
 	<div class="local_frm01">
-		<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
-		<a href="/admin/registerAnnounce" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
+	
+		<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
+		<a href="/admin/registerAnnounce" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a>
+		
+	</div>
 	<div class="tbl_head01">
 	<table>
 	
@@ -153,7 +159,7 @@ var tb_admin_url = "";
 	
 	<thead>
 	<tr>
-		<th scope="col"><input type="checkbox" name="chkall" value="1" onclick="check_all(this.form);"></th>
+		<th scope="col"><input type="checkbox" name="chkall"></th>
 		<th scope="col">번호</th>
 		<th scope="col">작성자</th>
 		<th scope="col">제목</th>
@@ -166,7 +172,7 @@ var tb_admin_url = "";
 		<c:forEach var="announceItem" items="${announcementList}">
 			<tr class="list0">
 				<td>
-					<input type="checkbox" name="chk[]" value="0">
+					<input type="checkbox" class="chb_checkNumber" name="announcementNumber" value="${announceItem.announcementNumber}">
 				</td>
 				<td>${announceItem.announcementNumber}</td>
 				<td>${announceItem.userId}</td>
@@ -187,10 +193,12 @@ var tb_admin_url = "";
 </div>
 
 <div class="local_frm02">
-	<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
+
+	<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
 	<a href="/admin/registerAnnounce" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
 
 </div>
+</form>
 
 </div>
 </div>
@@ -208,37 +216,44 @@ var tb_admin_url = "";
 
 <script type="text/javascript" src="/js/admin/jquery-ui.min.js"></script>
 <script>
-jQuery(function($){
+jQuery(function($) {
     $.datepicker.regional["ko"] = {
         closeText: "닫기",
         prevText: "이전달",
         nextText: "다음달",
         currentText: "오늘",
-        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
-        monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
+        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)",
+                     "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
+        monthNamesShort: ["1월","2월","3월","4월","5월","6월",
+                          "7월","8월","9월","10월","11월","12월"],
         dayNames: ["일","월","화","수","목","금","토"],
         dayNamesShort: ["일","월","화","수","목","금","토"],
         dayNamesMin: ["일","월","화","수","목","금","토"],
         weekHeader: "Wk",
-        dateFormat: "yymmdd",
+        dateFormat: "yy-mm-dd",
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: true,
         yearSuffix: ""
     };
-	$.datepicker.setDefaults($.datepicker.regional["ko"]);
+    $.datepicker.setDefaults($.datepicker.regional["ko"]);
+    
+    $("#to_date").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "yy-mm-dd",
+        showButtonPanel: true,
+        yearRange: "c-99:c+99",
+        maxDate: "+0d"
+    });
 });
-
-	$(function() {
-		$("#to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
-	});
 	
 	// 'fsearch'라는 ID를 가진 폼의 내용을 초기화
 	function resetSearchForm() {
 	    document.getElementById('fsearch').reset();
 	}
 	
-    window.onload = function() {
+/*     window.onload = function() {
         // '모두 선택/해제' 체크박스에 대한 이벤트 리스너 설정
         document.querySelector("input[name='chkall']").addEventListener('change', function() {
             var checkboxes = document.querySelectorAll("input[name='chk[]']");
@@ -257,15 +272,29 @@ jQuery(function($){
                 document.querySelector("input[name='chkall']").checked = allChecked;
             });
         }
-    };
+    }; */
+    
+    document.getElementById('btn_delete').addEventListener('click', ()=>{
+		const chb_arr = document.querySelectorAll('.chb_checkNumber');
+		
+		let sendArr = [];
+		
+		chb_arr.forEach(function(item){
+			if(item.checked == true){
+				console.log(item.value);
+				sendArr.push(item.value);
+			}
+		});
+		
+		console.log(sendArr);
+		//JSON
+		console.log(JSON.stringify(sendArr));
 
-    // 모든 체크박스를 선택/해제하는 함수 (이 부분은 필요에 따라 수정하거나 제거)
-    function check_all(form) {
-        var checkboxes = form.querySelectorAll("input[name='chk[]']");
-        for(var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = form.chkall.checked;
-        }
-    }
+    });
+
+
+ 
+    
 </script>
 	
 </body>

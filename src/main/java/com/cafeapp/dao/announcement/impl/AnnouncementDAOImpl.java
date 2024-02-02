@@ -32,6 +32,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO {
 	@Override
 	public int saveAnnouncement(Announcement announcement) {
 		// TODO Auto-generated method stub
+		System.out.println(announcement);
 		
 		int result = sqlSessionTemplate.insert("announce_mapper.saveAnnouncement", announcement); //namespace.id, 파라미터
 		
@@ -56,6 +57,16 @@ public class AnnouncementDAOImpl implements AnnouncementDAO {
 		// TODO Auto-generated method stub
 		
 		int result = sqlSessionTemplate.update("announce_mapper.modifyAnnouncement", announcement);
+		
+		return result;
+	}
+
+	//공지사항 삭제
+	@Override
+	public int removeAnnouncement(int announcementNumber) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("announce_mapper.removeAnnouncement", announcementNumber);
 		
 		return result;
 	}

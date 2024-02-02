@@ -211,5 +211,19 @@ public class UserController {
         return "redirect:/adminLogin";
     }
     
+    @RequestMapping("/mypageMP")
+    public String updateMP(Model model) {
+    	
+    	model.addAttribute("user", new User());
     
+    	return"user/updateMP";
+    }
+   
+    @RequestMapping("/mypage")
+    public String myPage(Model model) {
+    	
+    	model.addAttribute("user", new User());
+    
+    	return"user/mypage";
+    }   
 }

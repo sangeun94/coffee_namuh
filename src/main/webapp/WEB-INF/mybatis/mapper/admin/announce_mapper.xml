@@ -47,6 +47,7 @@
 	    WHERE announcement_number = #{announcementNumber}
 	</update>
 	
+	
 	<!-- 공지사항 삭제  -->
 	<delete id="removeAnnouncement" parameterType="int">
 		DELETE FROM announcement

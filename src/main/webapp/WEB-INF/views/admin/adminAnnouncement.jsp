@@ -58,7 +58,7 @@ var tb_admin_url = "";
 			<h2>관리자 주메뉴</h2>
 			<ul id="gnb_1dul">
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">회원관리</a>
+					<a href="/admin/adminMember" class="gnb_1da">회원관리</a>
 				</li>
 				
 				<li class="gnb_1dli">
@@ -89,7 +89,7 @@ var tb_admin_url = "";
 		<dt class="h10 menu_toggle">고객지원</dt>		
         <dd class="h10"><a href="">1:1 상담문의</a></dd>		        
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20 active"><a href="">공지사항 관리</a></dd>        
+        <dd class="h20 active"><a href="/admin/announcement">공지사항 관리</a></dd>        
         <dd class="h20"><a href="">FAQ 관리</a></dd>	
         </dl>	
         </dl>
@@ -105,7 +105,6 @@ var tb_admin_url = "";
 		
 <h2>기본검색</h2>
 <form action="/admin/announcement" name="fsearch" id="fsearch" method="get">
-	<input type="hidden" name="code" value="faq">
 	<div class="tbl_frm01">
 		<table>
 		<colgroup>
@@ -143,7 +142,7 @@ var tb_admin_url = "";
 		전체 : <b class="fc_red">${totalAnnouncement}</b> 건 조회
 	</div>
 	
-	<form action="/admin/removeAnnounce" method="post">
+	<form id="frm_customers" action="/admin/removeAnnounce" method="post">
 	<div class="local_frm01">
 	
 		<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
@@ -184,7 +183,7 @@ var tb_admin_url = "";
 					<fmt:formatDate value="${parsedDate}" pattern="yy-MM-dd" />				
 				</td>
 				<td>
-					<button onclick="location.href='/admin/modifyAnnounce?announcementNumber=${announceItem.announcementNumber}'" class="btn_lsmall">수정</button>
+					<button type="button" id="btn_modify" onclick="window.location.href='/admin/modifyAnnounce?announcementNumber=${announceItem.announcementNumber}'" class="btn_lsmall">수정</button>
 				</td>
 			</tr>       
 		</c:forEach>	

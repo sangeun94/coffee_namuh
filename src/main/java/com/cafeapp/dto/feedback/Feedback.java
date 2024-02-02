@@ -10,7 +10,6 @@ public class Feedback {
 	String userid;
 	String title;
 	String content;
-	Date feedback_date;
+	Date feedbackdate;
 	int feedbackcount;
-	int sb_cate;
 }

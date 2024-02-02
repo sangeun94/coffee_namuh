@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +60,7 @@
 								<li>
 									<div class="board_search_wrap">
 										<div class="board_search">
-											<form>
+											<form action="/boardWrite" method="post">
 												<input type="hidden" name="bbs_category" id="bbs_category"
 													value="4"> <input type="hidden"
 													name="bbs_detail_category" id="bbs_detail_category"
@@ -87,11 +89,13 @@
 															<input type="submit" value="검색" class="btn btn1" id="">
 														</div>
 													</li>
+													
 													<li class="board_search_btn">
 														<div class="input_btn_wrap input_wrap2">
 															<input type="submit" value="글쓰기"
-																class="btn btn1 float_right" id="">
+																class="btn btn1 float_right" id="writeButton">
 														</div>
+														
 													</li>
 												</ul>
 											</form>
@@ -104,14 +108,14 @@
 					</div>
 					<div class="cont_text_wrap">
 						<div class="board_list">
-							<table border="1">
+							<table>
 								<colgroup>
 									<col class="board_w75 board_pc">
 									<col>
 									<col class="board_w150 board_pc">
 									<col class="board_w100">
 									<col class="board_w100 board_pc">
-								</colgroup>
+								</colgroup>					
 								<thead>
 									<tr>
 										<th class="board_pc">번호</th>
@@ -122,16 +126,24 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="list" items="${boardList}">
-									<tr>
-									<td>${list.feedbacknumber}</td>
-									<td>${list.userid}</td>
-									<td><a href="./detail?feedbacknumber=${list.feedbacknumber}">${list.title}</td>
-									<fmt:formatDate value="${list.feedbackdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-									<td>${list.feedbackcount}</td>
-									</tr>
-									</c:forEach>
-								</tbody>
+    <c:forEach var="list" items="${boardList}">
+        <tr>
+            <td class="board_pc">${list.feedbacknumber}</td>
+            <td>
+            <div class="text_wrap">
+            <div class="text">
+            <a href="/detail/${list.feedbacknumber}">${list.title}</a>
+            </div>
+            </div>
+            </td>
+            <td class="board_pc">${list.userid}</td>
+            <td class="board_pc"><fmt:formatDate value="${list.feedbackdate}" pattern="yyyy-MM-dd" /></td>
+            <td class="board_pc">${list.feedbackcount}</td>
+        </tr>
+    </c:forEach>
+    <tr>
+							
+</tbody>
 							</table>
 						</div>
 						<div class="board_page_wrap">
@@ -148,5 +160,10 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    document.getElementById("writeButton").addEventListener("click", function() {
+        location.href = "write";
+    });
+</script>
 </body>
 </html>

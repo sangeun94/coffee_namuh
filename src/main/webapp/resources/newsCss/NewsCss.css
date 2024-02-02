@@ -68,6 +68,11 @@
            .robo{font-family:'Roboto', NanumSquareR; font-weight:900 !important; line-height:1 !important; letter-spacing:-1px !important;}
                .robo h1, .robo h2{font-weight:900 !important;}
        
+       tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
            input:-webkit-autofill,
            input:-webkit-autofill:hover, 
            input:-webkit-autofill:focus,
@@ -350,7 +355,14 @@
                    .board_list_gallery .cont_text ul li{margin-top:0;}
                    .board_list_gallery .cont_text_title{margin-bottom:10px;}
    
-   
+                   table {
+                    display: table;
+                    border-collapse: separate;
+                    box-sizing: border-box;
+                    text-indent: initial;
+                    border-spacing: 2px;
+                    border-color: gray;
+                }
        /* table_info */
            .table_info table{width:100%;}
                .table_info table th, .table_info table td{padding-bottom:15px; vertical-align:middle;}
@@ -376,7 +388,7 @@
                    .board_page_wrap .board_page ul li a.board_page_link{cursor:pointer;}
                    .board_page_wrap .board_page .board_page_check{background:#fdd000 !important; border:1px solid #fdd000;}
    
-  
+
    /* board_detail */
        .board_detail{}
            .board_detail_title{padding:30px 0; border-top:2px solid #e0e0e0; border-bottom:1px solid #e0e0e0;}

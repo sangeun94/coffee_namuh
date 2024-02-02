@@ -16,8 +16,8 @@ public class FeedbackServiceImpl implements FeedbackService {
 	@Autowired
 	FeedbackDAO feedbackDAO;
 	
-	public List<Feedback> boardList(int sb_cate){
-		return feedbackDAO.boardList(sb_cate);
+	public List<Feedback> boardList(){
+		return feedbackDAO.boardList();
 	}
 	
 	public void write(Feedback feedback) {

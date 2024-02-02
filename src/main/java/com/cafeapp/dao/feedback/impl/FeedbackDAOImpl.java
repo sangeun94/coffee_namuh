@@ -16,8 +16,9 @@ public class FeedbackDAOImpl implements FeedbackDAO{
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<Feedback> boardList(int sb_cate){
-		return sqlSession.selectList("customerfeedback.boardList", sb_cate);
+	public List<Feedback> boardList(){
+		List<Feedback> fblist = sqlSession.selectList("customerfeedback.boardList");
+		return fblist;
 	}
 	
 	public void write(Feedback feedback) {

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,62 +21,50 @@ import com.cafeapp.dto.feedback.Feedback;
 import com.cafeapp.service.feedback.FeedbackService;
 
 @Controller
-@RequestMapping(value = "/customerFeedBack", method = RequestMethod.GET)
 public class FeedbackController {
 	@Autowired
 	FeedbackService feedbackService;
 	
-	@Autowired
-	@RequestMapping("/customerFeedBack")
-	public ModelAndView board(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("board");
-		int sb_cate = 1;
-		if(request.getParameter("sb_cate") != null) {
-				sb_cate = Integer.parseInt(request.getParameter("sb_cate"));
-				if(sb_cate > 3) {
-						sb_cate = 1;
-				}
-		}
-		mv.addObject("boardList", feedbackService.boardList(sb_cate));
-//		mv.addObject("category", feedbackService.getCategory(sb_cate));//게시판 카테고리
-		mv.addObject("sb_cate",sb_cate);
-		
-		return mv;
+	
+ //@RequestMapping(value = "/board", method = RequestMethod.GET) 
+	@RequestMapping("/board/{userid}")
+	public String board(@PathVariable String userid,Model model) {
+		List<Feedback> boardList = feedbackService.boardList(); // FeedbackService에서 실제로 구현되어야 합니다.
+        model.addAttribute("boardList", boardList);
+		return "news/customerFeedBack/board";
 	}
 	
-	@GetMapping("/write")
-	public String write() {
-		return "write";
-	}
+	@GetMapping("/boardWrite")
+	 public String boardWrite() {
+        return "news/customerFeedBack/write"; // boardWriteForm.jsp로 이동하도록 설정해야 합니다.
+    }
 	
-	@GetMapping("/write")
-	public String write2(Feedback feedback) {
-		feedback.setUserid("son");
-		feedbackService.write(feedback);
-		return "redirect:board?sb_cate=" + feedback.getSb_cate();
+	@PostMapping("/write")
+	public String write2(@ModelAttribute Feedback feedback) {
+	    feedbackService.write(feedback);
+	    return "redirect:/board";
 	}
-	@GetMapping("/detail")
-	public ModelAndView detail(@RequestParam("feedbacknumber") Integer feedbacknumber) {
-		ModelAndView mv = new ModelAndView("detail");
-		mv.addObject("detail", feedbackService.boardDetail(feedbacknumber));
-		return mv;
+	@GetMapping("/detail/{feedbacknumber}")
+	public String detail(@PathVariable int feedbacknumber, Model model) {
+		Feedback feedback = feedbackService.boardDetail(feedbacknumber);
+        model.addAttribute("feedback", feedback);
+		return "news/customerFeedBack/detail";
 	}
-	@GetMapping("/boardDelete")
-	public String boardDelete(@RequestParam("feedbacknumber") Integer feedbacknumber) {
-		int result = feedbackService.delete(feedbacknumber);
-		return "redirect:/board";
+	@GetMapping("/boardDelete/{feedbacknumber}")
+	public String boardDelete(@PathVariable int feedbacknumber) {
+		feedbackService.delete(feedbacknumber);
+        return "redirect:/boardList";
 	}
-	@GetMapping("/boardUpdate")
-	public ModelAndView boardUpdate(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("boardUpdate");
-		int feedbacknumber = Integer.parseInt(request.getParameter("feedbacknumber"));
-		mv.addObject("update", feedbackService.boardDetail(feedbacknumber));
-		return mv;
+	@GetMapping("/boardUpdate/{feedbacknumber}")
+	public String boardUpdate(@PathVariable int feedbacknumber, Model model) {
+		Feedback feedback = feedbackService.boardDetail(feedbacknumber);
+        model.addAttribute("feedback", feedback);
+		return "news/customerFeedBack/boardUpdate";
 	}
 	@PostMapping("/boardUpdate")
-	public String boardUpdate2(Feedback feedback) {
+	public String boardUpdate2(@ModelAttribute Feedback feedback) {
 		feedbackService.update(feedback);
-		return "redirect:/detail?feedbacknumber=" + feedback.getFeedbacknumber();
+		return "redirect:/detail"+ feedback.getFeedbacknumber();
 	}
 	
 	

@@ -5,24 +5,26 @@
 				
 <mapper namespace="customerfeedback">
 	<select id="boardList" resultType="Feedback">
-		select feedback_number, title, user_id, content, feedback_date, feedback_count FROM customer_feedback order by feedback_number desc
+		<!-- SELECT feedback_number, title, user_id, feedback_date, feedback_count FROM customer_feedback ORDER BY feedback_number DESC -->
+		SELECT * FROM customer_feedback
 	</select>
 
 	<insert id="write" parameterType="Feedback">
-		INSERT INTO customer_feedback VALUES #{feedback_number}, #{title}, #{content}, (SELECT feedback_number FROM users WHERE user_id=#{user_id}, ${sb_cate})
+		INSERT INTO customer_feedback (feedbark_number,title, content, user_id,sb_cate)
+		VALUES (#{feedbacknumber}, #{title}, #{content}, #{userid},#{sb_cate})
 	</insert>
 	
 	<!-- MybatisConfig -->
-	<select id="boardDetail" parameterType="integer" resultType="Feedback">
-		SELECT feedback_number, title, content, feedback_date, feedback_count, user_id FROM customer_feedback WHERE feedback_number=#{feedback_number}
+	<select id="boardDetail" parameterType="Integer" resultType="Feedback">
+		SELECT feedback_number, title, content, feedback_date, feedback_count, user_id FROM customer_feedback WHERE feedback_number=#{feedbacknumber}
 	</select>
 	
-	<delete id="boardDelete"  parameterType="int">
-		DELETE FROM customer_feedback WHERE feedback_number=#{feedback_number}
+	<delete id="boardDelete"  parameterType="Integer">
+		DELETE FROM customer_feedback WHERE feedback_number=#{feedbacknumber}
 	</delete>
 	
 	<update id="boardUpdate" parameterType="Feedback">
-		UPDATE customer_feedback SET fb_title=#{title}, content=#{content} WHERE feedback_number=#{feedback_number}
+		UPDATE customer_feedback SET title=#{title}, content=#{content} WHERE feedback_number=#{feedbacknumber}
 	</update>
 	
 </mapper>

@@ -6,7 +6,7 @@ import com.cafeapp.dto.feedback.Feedback;
 
 public interface FeedbackDAO {
 	
-	public List<Feedback> boardList(int sb_cate);
+	public List<Feedback> boardList();
 	
 	public void write(Feedback feedback);
 	

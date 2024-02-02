@@ -15,6 +15,10 @@
 		<typeAlias type="com.rsrvapp.dto.room.Room" alias="Room" />
 		<typeAlias type="com.rsrvapp.dto.room.RoomSearchCondition" alias="RoomSearchCondition"/> 
 		-->
-	
+		<typeAlias type="com.cafeapp.dto.feedback.Feedback" alias="Feedback"/>
+		
+		
 	</typeAliases>
+	
+
 </configuration>

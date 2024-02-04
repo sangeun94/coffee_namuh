@@ -40,5 +40,70 @@
 	<select id="findLoginAdmin" parameterType="User" resultType="User">
 		SELECT * FROM users WHERE USER_ID = #{userId} AND user_password=#{userPassword} AND is_member=2
 	</select>
+	
+	
+		<!-- 비밀번호 업데이트 -->
+	<update id="updatePassword" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_password = #{userPassword}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+	
+	<!-- 이메일 업데이트 -->
+	<update id="updateEmail" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_email = #{userEmail}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+	
+	<!-- 이름 업데이트 -->
+	<update id="updateUserName" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_name = #{userName}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+	
+	<!-- 생년월일 업데이트 -->
+	<update id="updateUserBirth" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_birth = #{userBirth}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+	
+	<!-- 우편번호 업데이트 -->
+	<update id="updateUserZipcode" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_zipcode = #{userZipcode}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+	
+	<!-- 주소 업데이트 -->
+	<update id="updateUserAddress" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_address = #{userAddress}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+	
+	<!-- 상세주소 업데이트 -->
+	<update id="updateUserDetailAddress" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_detail_address = #{userDetailAddress}
+	    WHERE
+	        user_id = #{userId}
+	</update>
+
 
 </mapper>

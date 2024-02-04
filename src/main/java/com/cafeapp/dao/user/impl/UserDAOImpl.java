@@ -1,6 +1,8 @@
 package com.cafeapp.dao.user.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cafeapp.dao.user.UserDAO;
 import com.cafeapp.dto.user.User;
+import com.cafeapp.dto.user.UserUpdate;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -51,6 +54,13 @@ public class UserDAOImpl implements UserDAO {
     public List<User> findUserListByUserType(String userType) {
         return sqlSessionTemplate.selectList("user_mapper.findUserListByUserType", userType);
     }
+
+	@Override
+	public int updateUser(User user) {
+        return sqlSessionTemplate.update("user_mapper.updateUser", user);
+    }
+
+	
 
 	
 }

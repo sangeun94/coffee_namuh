@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafeapp.common.CommonCode;
 import com.cafeapp.dto.user.User;
+import com.cafeapp.dto.user.UserUpdate;
 import com.cafeapp.service.user.UserService;
 
 @Controller
@@ -211,19 +214,38 @@ public class UserController {
         return "redirect:/adminLogin";
     }
     
-    @RequestMapping("/mypageMP")
-    public String updateMP(Model model) {
-    	
-    	model.addAttribute("user", new User());
     
-    	return"user/updateMP";
-    }
    
-    @RequestMapping("/mypage")
-    public String myPage(Model model) {
-    	
-    	model.addAttribute("user", new User());
+    @GetMapping("/mypage")
+    public String myPage(Model model, HttpServletRequest request) {
+        User loginUser = (User) sessionManager.getSession(request);
+
+        if (loginUser == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+            return "redirect:/login";
+        }
+
+        // MyPage 뷰에 사용자 정보 전달
+        model.addAttribute("user", loginUser);
+        return "user/mypage";
+    }
     
-    	return"user/mypage";
-    }   
+    
+    @PostMapping("/mypage/updateUser")
+    public String updateUser(User user, Model model) {
+        int result = userService.updateUser(user);
+
+        if (result > 0) {
+            // 성공적으로 업데이트되면 마이페이지로 리다이렉트 또는 다른 처리
+            return "redirect:/mypage";
+        } else {
+            // 업데이트에 실패하면 실패 페이지로 리다이렉트 또는 다른 처리
+            return "redirect:/error";
+        }
+    }
+    
+    
+   
+    
+    
 }

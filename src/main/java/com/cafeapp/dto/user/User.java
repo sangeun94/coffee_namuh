@@ -14,7 +14,7 @@ public class User {
 	String userBirth;
 	String userZipcode;
 	String userAddress;
-	String userDetailaddress;
+	String userDetailAddress;
 	int isMember;
 }
 

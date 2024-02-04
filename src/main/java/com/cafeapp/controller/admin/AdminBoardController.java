@@ -14,14 +14,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafeapp.dto.board.Announcement;
 import com.cafeapp.dto.board.AnnouncementSearchCondition;
+import com.cafeapp.dto.board.Faq;
+import com.cafeapp.dto.board.FaqSearchCondition;
+import com.cafeapp.dto.feedback.Feedback;
+import com.cafeapp.dto.feedback.FeedbackSearchCondition;
+import com.cafeapp.dto.feedback.Response;
 import com.cafeapp.dto.user.User;
 import com.cafeapp.service.announcement.AnnouncementService;
+import com.cafeapp.service.faq.FaqService;
+import com.cafeapp.service.feedback.FeedbackService;
 
 @Controller
 public class AdminBoardController { // 공지사항, FAQ, 1:1상담
 
 	@Autowired
 	AnnouncementService announcementService;
+	
+	@Autowired
+	FaqService faqService;
+	
+	@Autowired
+	FeedbackService feedbackService;
 	
 	//공지사항 목록 및 검색
 	@RequestMapping("/admin/announcement")
@@ -104,4 +117,135 @@ public class AdminBoardController { // 공지사항, FAQ, 1:1상담
 		return "redirect:/admin/announcement";
 	}
 	
+//	=============================================================================
+	//FAQ 목록 및 검색
+	@RequestMapping("/admin/faq")
+	public String faq(Model model, @ModelAttribute FaqSearchCondition faqSearchCondition) {
+		System.out.println(faqSearchCondition);
+		
+		List<Faq> faqList = faqService.findFaqListBySearchCondition(faqSearchCondition); //검색
+				
+		model.addAttribute("faqList", faqList);
+		model.addAttribute("totalFaq", faqList.size());
+
+		
+		return "admin/adminFaq";
+	}
+	
+	//FAQ 생성
+	@GetMapping("/admin/registerFaq")
+	public String registerFaq() {
+		
+		return "admin/adminFaqRegister";
+	}
+	
+	@PostMapping("/admin/registerFaq")
+	public String registerFaqProcess(Faq faq) { //process
+		
+		System.out.println(faq);
+		
+		int result = faqService.saveFaq(faq);
+		
+		if (result > 0) { //저장 성공
+			return "redirect:/admin/faq"; //FAQ 목록 페이지
+		} else { //저장 실패
+			return "redirect:/admin/registerFaq"; //FAQ 생성 페이지
+		}
+
+	}
+	
+	//FAQ 수정
+	@GetMapping("/admin/modifyFaq")
+	public String modifyFaq(@RequestParam String faqNumber, Model model) {
+		
+		int intFaqNumber = Integer.parseInt(faqNumber);
+		//userNumber가 int인데 혹시나 파라미터로 String이 넘어올수도 있으니까 그 오류가 안나오게 하기위해!
+				
+		Faq faq = faqService.findFaqByFaqNumber(intFaqNumber); //위에서 string으로 받아버렸으니까 원래상태인 int로 변환!
+		
+		System.out.println(faq);
+		
+		model.addAttribute("faq", faq);
+		
+		return "admin/adminFaqModify";
+	}
+	
+	@PostMapping("/admin/modifyFaq")
+	public String modifyFaqProcess(Faq faq) { 
+		System.out.println(faq);
+			
+		int result = faqService.modifyFaq(faq);
+		
+		if (result > 0) { //저장 성공
+			return "redirect:/admin/faq"; //수정성공: FAQ 목록 페이지
+		} else { //저장 실패
+			return "admin/adminFaqModify"; //수정실패: FAQ 수정페이지 
+		}
+		
+	}
+	
+	
+	//FAQ 삭제
+	@PostMapping("/admin/removeFaq")
+	public String removeFaq(@RequestParam List<String> faqNumber) {
+
+		System.out.println(faqNumber);
+
+		// String 리스트를 Integer 리스트로 변환
+	    List<Integer> numbers = faqNumber.stream().map(Integer::parseInt)
+	                                               .collect(Collectors.toList());
+	    
+		faqService.removeFaq(numbers);
+				
+		return "redirect:/admin/faq";
+	}
+	
+//	===================================================================
+	
+	//1:1 상담 목록 및 검색
+	@RequestMapping("/admin/feedback")
+	public String feedback(Model model, @ModelAttribute FeedbackSearchCondition feedbackSearchCondition) {
+		System.out.println(feedbackSearchCondition);
+		
+		List<Feedback> feedbackList = feedbackService.findFeedbackListBySearchCondition(feedbackSearchCondition); //검색
+				
+		model.addAttribute("feedbackList", feedbackList);
+		model.addAttribute("totalFeedback", feedbackList.size());
+
+		
+		return "admin/adminFeedback";
+	}
+	
+	//상담 댓글 생성 , 상담 정보 제공
+	@GetMapping("/admin/registerResponse")
+	public String registerResponse(@RequestParam String feedbackNumber, Model model) {
+		
+		int intFeedbackNumber = Integer.parseInt(feedbackNumber);
+		//userNumber가 int인데 혹시나 파라미터로 String이 넘어올수도 있으니까 그 오류가 안나오게 하기위해!
+				
+		Feedback feedback = feedbackService.findFeedbackByFeedbackNumber(intFeedbackNumber); //위에서 string으로 받아버렸으니까 원래상태인 int로 변환!
+		
+		System.out.println(feedback);
+		
+		model.addAttribute("feedback", feedback);
+
+		return "admin/adminFeedResRegister";
+	}
+	
+	/*
+	@PostMapping("/admin/registerResponse")
+	public String registerResponseProcess(Response response) { //process
+		
+		System.out.println(response);
+		
+		int result = feedbackService.saveResponse(response);
+		
+		if (result > 0) { //저장 성공
+			return "redirect:/admin/feedback"; //1:1상담문의 목록 페이지
+		} else { //저장 실패
+			return "redirect:/admin/registerResponse"; //댓글 생성 페이지
+		}
+
+	}
+	*/
 }

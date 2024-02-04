@@ -88,23 +88,26 @@ var tb_admin_url = "";
 		<dt class="h10 menu_toggle">고객지원</dt>		
         <dd class="h10"><a href="">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20 active"><a href="">공지사항 관리</a></dd>        
-        <dd class="h20"><a href="">FAQ 관리</a></dd>	
+        <dd class="h20"><a href="">공지사항 관리</a></dd>        
+        <dd class="h20 active"><a href="">FAQ 관리</a></dd>	
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 고객지원 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 공지사항 관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> FAQ 관리		
         </div>
 	
 <div class="s_wrap">
-	<h1>공지사항 수정</h1>
+	<h1>FAQ 등록하기</h1>
 
-<form action="/admin/modifyAnnounce" method="post"  name="announcementForm" onsubmit="return validateForm()">
-	<input type="hidden" name="announcementNumber" value="${announcement.announcementNumber}">
-	<input type="hidden" name="userId" value="${announcement.userId}">
-	<input type="hidden" name="postDate" value="${announcement.postDate}">
+<form name="faqForm" method="post" onsubmit="return validateForm();">
+<input type="hidden" name="w" value="">
+<input type="hidden" name="sca" value="">
+<input type="hidden" name="sfl" value="">
+<input type="hidden" name="stx" value="">
+<input type="hidden" name="page" value="">
+<input type="hidden" name="index_no" value="">
 
 <div class="tbl_frm02">
 	<table>
@@ -115,15 +118,15 @@ var tb_admin_url = "";
 	<tbody>
 
 	<tr>
-		<th scope="row">제목</th>
+		<th scope="row">질문</th>
 		<td>
-			<input type="text" name="title" value="${announcement.title}" required itemname="제목" class="frm_input required" size="60">
+			<input type="text" name="question" value="" required itemname="제목" class="frm_input required" size="60">
 		</td>
 	</tr>
 	<tr>
-		<th scope="row">내용</th>
+		<th scope="row">답변</th>
 		<td>
-			<textarea id="memo" name="content" class="smarteditor2" maxlength="65536" style="width:100%">${announcement.content}</textarea>		
+			<textarea id="memo" name="answer" class="smarteditor2" maxlength="65536" style="width:100%"></textarea>
 		</td>
 	</tr>
 	</tbody>
@@ -131,8 +134,8 @@ var tb_admin_url = "";
 </div>
 
 <div class="btn_confirm">
-	<button type="submit" class="btn_large"> 수정 </button>
-	<a href="/admin/announcement" class="btn_large bx-white">목록</a>
+	<button type="submit" class="btn_large"> 추가 </button>
+	<a href="/admin/faq" class="btn_large bx-white">목록</a>
 </div>
 </form>
 
@@ -155,15 +158,15 @@ var tb_admin_url = "";
 <script>
 // 폼 제출 핸들러
 function validateForm() {
-    var title = document.forms["announcementForm"]["title"].value;
-    var content = document.forms["announcementForm"]["content"].value;
+    var question = document.forms["faqForm"]["question"].value;
+    var answer = document.forms["faqForm"]["answer"].value;
     
-    if (title == null || title.trim() == "") {
+    if (question == null || question.trim() == "") {
         alert("제목을 입력해주세요.");
         return false; // 폼 제출을 방지
     }
     
-    if (content == null || content.trim() == "") {
+    if (answer == null || answer.trim() == "") {
         alert("내용을 입력해주세요.");
         return false; // 폼 제출을 방지
     }

@@ -32,7 +32,7 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/categorylist.js"></script>
@@ -101,7 +101,7 @@ var tb_admin_url = "";
 <div class="s_wrap">
 	<h1>공지사항 등록하기</h1>
 
-<form name="faqform" method="post" onsubmit="return faqform_submit(this);">
+<form name="announcementForm" method="post" onsubmit="return validateForm();">
 <input type="hidden" name="w" value="">
 <input type="hidden" name="sca" value="">
 <input type="hidden" name="sfl" value="">
@@ -134,7 +134,7 @@ var tb_admin_url = "";
 </div>
 
 <div class="btn_confirm">
-	<button onclick="location.href='/admin/registerRoom'" class="btn_large"> 추가 </button>
+	<button type="submit" class="btn_large"> 추가 </button>
 	<a href="/admin/announcement" class="btn_large bx-white">목록</a>
 </div>
 </form>
@@ -148,12 +148,12 @@ var tb_admin_url = "";
 </div>
 
 
-<div id="ajax-loading"><img src="/src/main/webapp/resources/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<script src="/src/main/webapp/resources/js/admin/admin.js"></script>
+<script src="/js/admin/admin.js"></script>
 
-<script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+<script src="/js/admin/wrest.js"></script>
 
 <script>
 // 폼 제출 핸들러

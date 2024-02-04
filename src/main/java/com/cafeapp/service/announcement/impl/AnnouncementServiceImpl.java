@@ -65,7 +65,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		
 		int result = 0;
 		for (int i=0; i<announcementNumbers.size(); i++) {
-			result += announcementDAO.removeAnnouncement(announcementNumbers.get(i));
+			result = result + announcementDAO.removeAnnouncement(announcementNumbers.get(i));
 		}
 		
 		return result;

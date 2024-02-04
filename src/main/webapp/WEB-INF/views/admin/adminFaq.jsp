@@ -89,22 +89,22 @@ var tb_admin_url = "";
 		<dt class="h10 menu_toggle">고객지원</dt>		
         <dd class="h10"><a href="">1:1 상담문의</a></dd>		        
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20 active"><a href="/admin/announcement">공지사항 관리</a></dd>        
-        <dd class="h20"><a href="">FAQ 관리</a></dd>	
+        <dd class="h20"><a href="/admin/announcement">공지사항 관리</a></dd>        
+        <dd class="h20 active"><a href="/admin/faq">FAQ 관리</a></dd>	
         </dl>	
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 고객지원 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 공지사항 관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> FAQ 관리		
         </div>
 	
 <div class="s_wrap">
-	<h1>공지사항 관리</h1>
+	<h1>FAQ 관리</h1>
 		
 <h2>기본검색</h2>
-<form action="/admin/announcement" name="fsearch" id="fsearch" method="get">
+<form action="/admin/faq" name="fsearch" id="fsearch" method="get">
 	<div class="tbl_frm01">
 		<table>
 		<colgroup>
@@ -116,8 +116,8 @@ var tb_admin_url = "";
 			<th scope="row">검색어</th>
 			<td>
 				<select name="searchType">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
+					<option value="question">제목</option>
+					<option value="answer">내용</option>
 				</select>
                     <input type="text" name="searchKeyword" value="" class="frm_input" size="30">
 			</td>
@@ -125,7 +125,7 @@ var tb_admin_url = "";
 		<tr>
 			<th scope="row">검색일자</th>
 			<td>
-				<input type="date" name="feedbackDate" value="" id="to_date" class="frm_input w80" maxlength="10" autocomplete="off">	
+				<input type="date" name="postDate" value="" id="to_date" class="frm_input w80" maxlength="10" autocomplete="off">	
 			</td>
 		</tr>
 		</tbody>
@@ -139,14 +139,14 @@ var tb_admin_url = "";
 	
 	
 	<div class="local_ov mart30">
-		전체 : <b class="fc_red">${totalAnnouncement}</b> 건 조회
+		전체 : <b class="fc_red">${totalFaq}</b> 건 조회
 	</div>
 	
-	<form id="frm_customers" action="/admin/removeAnnounce" method="post">
+	<form id="frm_customers" action="/admin/removeFaq" method="post">
 	<div class="local_frm01">
 	
-		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-		<a href="/admin/registerAnnounce" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a>
+		<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
+		<a href="/admin/registerFaq" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a>
 		
 	</div>
 	<div class="tbl_head01">
@@ -175,22 +175,22 @@ var tb_admin_url = "";
 	</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="announceItem" items="${announcementList}">
+		<c:forEach var="faqItem" items="${faqList}">
 			<tr class="list0">
 				<td>
-					<input type="checkbox" class="chb_checkNumber" name="announcementNumber" value="${announceItem.announcementNumber}">
+					<input type="checkbox" class="chb_checkNumber" name="faqNumber" value="${faqItem.faqNumber}">
 				</td>
-				<td>${announceItem.announcementNumber}</td>
-				<td>${announceItem.userId}</td>
-				<td>${announceItem.title}</td>
-				<td>${announceItem.content}</td>
+				<td>${faqItem.faqNumber}</td>
+				<td>${faqItem.userId}</td>
+				<td>${faqItem.question}</td>
+				<td>${faqItem.answer}</td>
 				<td>
 					<!-- parseDate를 사용하여 문자열을 날짜 객체로 변환 -->
-					<fmt:parseDate value="${announceItem.postDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate"/>
+					<fmt:parseDate value="${faqItem.postDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate"/>
 					<fmt:formatDate value="${parsedDate}" pattern="yy-MM-dd" />				
 				</td>
 				<td>
-					<button type="button" id="btn_modify" onclick="window.location.href='/admin/modifyAnnounce?announcementNumber=${announceItem.announcementNumber}'" class="btn_lsmall">수정</button>
+					<button type="button" id="btn_modify" onclick="window.location.href='/admin/modifyFaq?faqNumber=${faqItem.faqNumber}'" class="btn_lsmall">수정</button>
 				</td>
 			</tr>       
 		</c:forEach>	
@@ -200,8 +200,8 @@ var tb_admin_url = "";
 
 <div class="local_frm02">
 
-	<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-	<a href="/admin/registerAnnounce" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
+	<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
+	<a href="/admin/registerFaq" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
 
 </div>
 </form>
@@ -280,22 +280,29 @@ jQuery(function($) {
         }
     }; */
     
-    document.querySelectorAll('.btn_delete').addEventListener('click', ()=>{
-		const chb_arr = document.querySelectorAll('.chb_checkNumber');
-		
-		let sendArr = [];
-		
-		chb_arr.forEach(function(item){
-			if(item.checked == true){
-				console.log(item.value);
-				sendArr.push(item.value);
-			}
-		});
-		
-		console.log(sendArr);
-		//JavaScript 객체나 배열 sendArr를 JSON 형식의 문자열로 변환
-		console.log(JSON.stringify(sendArr));
+    document.querySelectorAll('.btn_delete').addEventListener('click', function(event) {
+        event.preventDefault(); // 폼 자동 제출 방지
 
+        if (confirm("정말 삭제하시겠습니까?")) {
+            console.log('삭제 확인 누름');
+
+            const chb_arr = document.querySelectorAll('.chb_checkNumber');
+
+            let sendArr = [];
+
+            chb_arr.forEach(function(item) {
+                if (item.checked === true) {
+                    console.log(item.value);
+                    sendArr.push(item.value);
+                }
+            });
+
+            console.log(sendArr);
+            console.log(JSON.stringify(sendArr));
+
+            // 필요한 경우 폼 제출
+            document.querySelector('#frm_customers').submit();
+        }
     });
 
 

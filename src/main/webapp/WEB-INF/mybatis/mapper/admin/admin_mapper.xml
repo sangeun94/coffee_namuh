@@ -27,7 +27,7 @@
 	    <if test="searchType == 'userAddress' and searchKeyword != null and searchKeyword != ''">
 	        AND (user_zipcode LIKE '%' || #{searchKeyword} || '%' 
 	             OR user_address LIKE '%' || #{searchKeyword} || '%'
-	             OR user_detailAddress LIKE '%' || #{searchKeyword} || '%')
+	             OR user_detail_address LIKE '%' || #{searchKeyword} || '%')
 	    </if>
 	    
 	    <if test="searchType == 'isMember' and searchKeyword != null and searchKeyword != ''">

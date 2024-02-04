@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="feedback_mapper">
+
+	<!-- 1:1상담 목록 -> 검색 기준에 따라서 조회 -->
+	<select id="findFeedbackListBySearchCondition" resultType="Feedback" parameterType="FeedbackSearchCondition">
+	    SELECT cf.feedback_number, cf.user_id, cf.title, cf.content, cf.feedback_date, cf.feedback_count, fr.response_content
+	    FROM customer_feedback cf
+	    LEFT JOIN feedback_response fr ON cf.feedback_number = fr.feedback_number
+	    WHERE 1 = 1
+	    <if test="searchType == 'userId' and searchKeyword != null and searchKeyword != ''">
+	        AND cf.user_id LIKE '%' || #{searchKeyword} || '%' 
+	    </if>
+	    <if test="searchType == 'title' and searchKeyword != null and searchKeyword != ''">
+	        AND cf.title LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'content' and searchKeyword != null and searchKeyword != ''">
+	        AND cf.content LIKE '%' || #{searchKeyword} || '%'
+	    </if>   
+	    <if test="feedbackDate != null and feedbackDate != ''">
+	        AND cf.feedback_date >= #{feedbackDate}
+	    </if>
+	    ORDER BY cf.feedback_number
+	</select>
+	
+	<!-- 각각 1:1상담문의 나오게 하기  -->
+	<select id="findFeedbackByFeedbackNumber" resultType="Feedback" parameterType="int">
+		SELECT * FROM customer_feedback
+		WHERE feedback_number = #{feedbackNumber}
+	</select>
+	
+	<!-- 댓글 신규등록 -->
+	<insert id="saveResponse" parameterType="Response">
+	    INSERT INTO feedback_response (response_number, feedback_number, user_id, response_content, response_date)
+	    VALUES (response_seq.NEXTVAL, #{feedbackNumber}, 'admin', #{responseContent}, SYSDATE)
+		<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{adminId}로 변경! 지금은 걍 테스트... -->	
+	</insert>
+	
+</mapper>

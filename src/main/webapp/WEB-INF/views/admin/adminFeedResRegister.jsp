@@ -3,6 +3,7 @@
     <!-- jstl 쓸때!! -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -86,25 +87,24 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="h10 menu_toggle">고객지원</dt>		
-        <dd class="h10"><a href="">1:1 상담문의</a></dd>	    		
+        <dd class="h10 active"><a href="">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20 active"><a href="">공지사항 관리</a></dd>        
+        <dd class="h20"><a href="">공지사항 관리</a></dd>        
         <dd class="h20"><a href="">FAQ 관리</a></dd>	
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 고객지원 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 공지사항 관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 1:1 상담문의		
         </div>
 	
 <div class="s_wrap">
-	<h1>공지사항 수정</h1>
+	<h1>1:1 상담문의 댓글</h1>
 
-<form action="/admin/modifyAnnounce" method="post"  name="announcementForm" onsubmit="return validateForm()">
-	<input type="hidden" name="announcementNumber" value="${announcement.announcementNumber}">
-	<input type="hidden" name="userId" value="${announcement.userId}">
-	<input type="hidden" name="postDate" value="${announcement.postDate}">
+<form action="/admin/registerResponse" name="faqForm" method="post" onsubmit="return validateForm();">
+<input type="hidden" name="feedbackNumber" value="${feedback.feedbackNumber}">
+<input type="hidden" name="adminId" value=""> <!-- 나중에 세션 걸었을때? -->
 
 <div class="tbl_frm02">
 	<table>
@@ -113,17 +113,33 @@ var tb_admin_url = "";
 		<col>
 	</colgroup>
 	<tbody>
-
 	<tr>
-		<th scope="row">제목</th>
-		<td>
-			<input type="text" name="title" value="${announcement.title}" required itemname="제목" class="frm_input required" size="60">
-		</td>
+    <th scope="row">일자</th>
+	<td>
+	    <span>${feedback.feedbackDate.substring(0, 10)}</span>
+	</td>
 	</tr>
 	<tr>
-		<th scope="row">내용</th>
+	    <th scope="row">작성자</th>
+	    <td>
+	        <span>${feedback.userId}</span>
+	    </td>
+	</tr>
+	<tr>
+	    <th scope="row">제목</th>
+	    <td>
+	        <span>${feedback.title}</span>
+	    </td>
+	</tr>
+	<tr>
+	    <th scope="row">내용</th>
+	    <td>
+	        <div>${feedback.content}</div>
+	    </td>
+	</tr>
+		<th scope="row">답변</th>
 		<td>
-			<textarea id="memo" name="content" class="smarteditor2" maxlength="65536" style="width:100%">${announcement.content}</textarea>		
+			<textarea id="memo" name="responseContent" class="smarteditor2" maxlength="65536" style="width:100%"></textarea>
 		</td>
 	</tr>
 	</tbody>
@@ -131,8 +147,8 @@ var tb_admin_url = "";
 </div>
 
 <div class="btn_confirm">
-	<button type="submit" class="btn_large"> 수정 </button>
-	<a href="/admin/announcement" class="btn_large bx-white">목록</a>
+	<button type="submit" class="btn_large"> 추가 </button>
+	<a href="/admin/feedback" class="btn_large bx-white">목록</a>
 </div>
 </form>
 
@@ -148,22 +164,18 @@ var tb_admin_url = "";
 <div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<script src="/js/admin/admin.js"></script>
-
-<script src="/js/admin/wrest.js"></script>
-
 <script>
-// 폼 제출 핸들러
+//폼 제출 핸들러
 function validateForm() {
-    var title = document.forms["announcementForm"]["title"].value;
-    var content = document.forms["announcementForm"]["content"].value;
+    var question = document.forms["faqForm"]["question"].value;
+    var answer = document.forms["faqForm"]["answer"].value;
     
-    if (title == null || title.trim() == "") {
+    if (question == null || question.trim() == "") {
         alert("제목을 입력해주세요.");
         return false; // 폼 제출을 방지
     }
     
-    if (content == null || content.trim() == "") {
+    if (answer == null || answer.trim() == "") {
         alert("내용을 입력해주세요.");
         return false; // 폼 제출을 방지
     }
@@ -171,6 +183,11 @@ function validateForm() {
     return true; // 유효성 검사 통과, 폼 제출 진행
 }
 </script>
+
+<script src="/js/admin/admin.js"></script>
+
+<script src="/js/admin/wrest.js"></script>
+
 
 </body>
 </html>

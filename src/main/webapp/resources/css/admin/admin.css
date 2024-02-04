@@ -149,7 +149,7 @@ a.gnb_2da:focus, a.gnb_2da:hover {background:#484848 !important;color:#fff !impo
 #content h2:before {display:inline-block;position:absolute;left:0;top:0;width:4px;height:16px;background:#1a4e99;content:'';}
 
 /*하단*/
-#ft {clear:both;width:100%;min-width:1210px;font-family:"Century Gothic", sans-serif;text-align:center;margin:0;padding:20px 0;color:#999;border-top:1px solid #ccc;}
+#ft {clear:both;width:100%;font-family:"Century Gothic", sans-serif;text-align:center;margin:0;padding:20px 0;color:#999;border-top:1px solid #ccc;}
 
 /*메인*/
 #main_wrap {padding:0 30px 50px;overflow:hidden;}

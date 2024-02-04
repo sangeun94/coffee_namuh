@@ -1,13 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <!-- jstl 쓸때!! -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <title>관리자 페이지</title>
-<link type="text/css" href="/src/main/webapp/resources/css/admin/reset.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/basic.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/button.css" rel="stylesheet">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/admin.css">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/jquery-ui.css">
+<link type="text/css" href="/css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/basic.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/button.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin/admin.css">
+<link rel="stylesheet" href="/css/admin/jquery-ui.css">
 
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,10 +33,10 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/src/main/webapp/resources/js/admin/jquery-1.8.3.min.js"></script>
-<script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
-<script src="/src/main/webapp/resources/js/admin/common.js"></script>
-<script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/categorylist.js"></script>
 
 </head>
 <body>
@@ -38,13 +44,13 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="http://demofran.com/admin/config.php?code=super">관리자정보</a></li>
-				<li><a href="http://demofran.com/admin/">관리자홈</a></li>
-				<li><a href="http://demofran.com" target="_blank">쇼핑몰</a></li>
-				<li id="tnb_logout"><a href="http://demofran.com/bbs/logout.php">로그아웃</a></li>
+				<li><a href="">관리자정보</a></li>
+				<li><a href="">관리자홈</a></li>
+				<li><a href="" target="_blank">쇼핑몰</a></li>
+				<li id="tnb_logout"><a href="">로그아웃</a></li>
 			</ul>
 		</div>
 
@@ -52,22 +58,22 @@ var tb_admin_url = "";
 			<h2>관리자 주메뉴</h2>
 			<ul id="gnb_1dul">
 				<li class="gnb_1dli">
-					<a href="http://demofran.com/admin/member.php?code=list" class="gnb_1da">회원관리</a>
+					<a href="" class="gnb_1da">회원관리</a>
 				</li>
 				
 				<li class="gnb_1dli">
-					<a href="http://demofran.com/admin/goods.php?code=list" class="gnb_1da">상품관리</a>
+					<a href="" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="http://demofran.com/admin/order.php?code=list" class="gnb_1da">주문관리</a>
+					<a href="" class="gnb_1da">주문관리</a>
 				</li>
 				
 				<li class="gnb_1dli active">
-					<a href="http://demofran.com/admin/help.php?code=qa" class="gnb_1da">고객지원</a>
+					<a href="" class="gnb_1da">고객지원</a>
 				</li>
 				
 				<li class="gnb_1dli">
-					<a href="http://demofran.com/admin/config.php?code=default" class="gnb_1da">마이페이지</a>
+					<a href="" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -81,10 +87,10 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="h10 menu_toggle">고객지원</dt>		
-        <dd class="h10 active"><a href="http://demofran.com/admin/help.php?code=qa">1:1 상담문의</a></dd>	    		
+        <dd class="h10 active"><a href="">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20"><a href="http://demofran.com/admin/help.php?code=faq">공지사항 관리</a></dd>        
-        <dd class="h20"><a href="http://demofran.com/admin/help.php?code=faq">FAQ 관리</a></dd>	
+        <dd class="h20"><a href="">공지사항 관리</a></dd>        
+        <dd class="h20"><a href="">FAQ 관리</a></dd>	
         </dl>
 	</div>
 	<div id="content">
@@ -94,7 +100,7 @@ var tb_admin_url = "";
         </div>
 	
 <div class="s_wrap">
-	<h1>1:1 상담문의 댓글 수정</h1>
+	<h1>1:1 상담문의 댓글 수정/삭제</h1>
 
 <form name="faqform" method="post" onsubmit="return faqform_submit(this);">
 <input type="hidden" name="w" value="">
@@ -120,14 +126,7 @@ var tb_admin_url = "";
 
 	<tr>
 		<th scope="row">내용</th>
-		<td>
-			<span class="sound_only">웹에디터 시작</span>
-			<script src="http://demofran.com/plugin/editor/smarteditor2/js/HuskyEZCreator.js"></script>
-			<script>var tw_editor_url = "http://demofran.com/plugin/editor/smarteditor2", oEditors = [];</script>
-			<script src="http://demofran.com/plugin/editor/smarteditor2/config.js"></script>
-			<textarea id="memo" name="memo" class="smarteditor2" maxlength="65536" style="width:100%"></textarea>
-			<span class="sound_only">웹 에디터 끝</span>		
-		</td>
+
 	</tr>
 	</tbody>
 	</table>
@@ -135,7 +134,7 @@ var tb_admin_url = "";
 
 <div class="btn_confirm">
 	<input type="submit" value="저장" class="btn_large" accesskey="s">
-	<a href="./help.php?code=faq&page=" class="btn_large bx-white">목록</a>
+	<a href="" class="btn_large bx-white">목록</a>
     <button onclick="" class="btn_large red">삭제</button>
 </div>
 </form>
@@ -159,14 +158,14 @@ function faqform_submit(f) {
 </div>
 
 
-<div id="ajax-loading"><img src="/src/main/webapp/resources/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<script src="/src/main/webapp/resources/js/admin/admin.js"></script>
+<script src="/js/admin/admin.js"></script>
 
-<script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+<script src="/js/admin/wrest.js"></script>
 
-<script type="text/javascript" src="/src/main/webapp/resources/js/admin/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/admin/jquery-ui.min.js"></script>
 <script>
 jQuery(function($){
     $.datepicker.regional["ko"] = {

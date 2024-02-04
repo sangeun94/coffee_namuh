@@ -15,6 +15,13 @@
 		<typeAlias type="com.cafeapp.dto.board.Announcement" alias="Announcement" />
 		<typeAlias type="com.cafeapp.dto.board.AnnouncementSearchCondition" alias="AnnouncementSearchCondition" />
 		
+		<typeAlias type="com.cafeapp.dto.board.Faq" alias="Faq" />
+		<typeAlias type="com.cafeapp.dto.board.FaqSearchCondition" alias="FaqSearchCondition" />
+		
+		<typeAlias type="com.cafeapp.dto.feedback.Feedback" alias="Feedback" />
+		<typeAlias type="com.cafeapp.dto.feedback.FeedbackSearchCondition" alias="FeedbackSearchCondition" />
+		
+		<typeAlias type="com.cafeapp.dto.feedback.Response" alias="Response" />
 	
 	</typeAliases>
 </configuration>

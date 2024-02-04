@@ -29,7 +29,7 @@
 	</insert>
 	
 	
-	<!-- 각각 회원정보 나오게 하기  -->
+	<!-- 각각 공지사항 나오게 하기  -->
 	<select id="findAnnounceByAnnouncementNumber" resultType="Announcement" parameterType="int">
 		SELECT * FROM announcement
 		WHERE announcement_number = #{announcementNumber}

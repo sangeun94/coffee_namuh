@@ -40,7 +40,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO {
 
 	}
 	
-	//공지사항 정보
+	//공지사항 각각의 정보
 	@Override
 	public Announcement findAnnounceByAnnouncementNumber(int announcementNumber) {
 		// TODO Auto-generated method stub

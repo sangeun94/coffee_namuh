@@ -3,15 +3,14 @@ package com.cafeapp.dto.feedback;
 import lombok.Data;
 
 @Data
-public class Feedback {
-	
-	int feedbackNumber;
+public class FeedbackSearchCondition {
+
 	String userId;
 	String title;
 	String content;
 	String feedbackDate;
-	int feedbackCount;
 	
-	String responseContent;
+	String searchType;
+	String searchKeyword;
 	
 }

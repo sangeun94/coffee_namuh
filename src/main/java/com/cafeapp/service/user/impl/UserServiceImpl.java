@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     	System.out.println("service " + loginUser);
         // 사용자가 회원인 경우에만 로그인 허용
     	if (loginUser != null && loginUser.getIsMember() == CommonCode.USER_ISMEMBER_MEMBER) {
-            user.setIsMember(1); 
+    		loginUser.setIsMember(CommonCode.USER_ISMEMBER_MEMBER); // 이 부분 수정 
             System.out.println("service " + loginUser);
             return loginUser;
         }
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         // 관리자 로그인 로직 구현
         User adminLoginUser = userDAO.findLoginAdmin(user);
         if (adminLoginUser != null && adminLoginUser.getIsMember() == CommonCode.USER_ISMEMBER_ADMIN) {
-            user.setIsMember(2);
+        	adminLoginUser.setIsMember(CommonCode.USER_ISMEMBER_ADMIN); // 이 부분 수정
             System.out.println("service " + adminLoginUser);
             return adminLoginUser;
         }

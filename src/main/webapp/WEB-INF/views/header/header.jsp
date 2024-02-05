@@ -435,7 +435,7 @@
     <div class="head">
         <div class="head_logo">
             <a href="/">
-                <img src="/images/CoffeeNamuh_White_BG.png" class="head_logo_img_fixed">
+                <img src="/images/notice/CoffeeNamuh_White_BG.png" class="head_logo_img_fixed">
             </a>
         </div>
         <div class="head_menu_wrap">
@@ -496,21 +496,21 @@
                     </li>
                     
                     <li>
-                                                                <a href="/bbs/?bbs_category=4" class="pc">
+                                                                <a href="/news/faq/" class="pc">
                                     메가소식										</a>
                                 <a class="m head_menu_down">메가소식</a>
                         <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
                                                                             <li>
-                                        <a href="/bbs/?bbs_category=1">
+                                        <a href="/Notice">
                                             공지사항												</a>
                                     </li>
                                                                             <li>
-                                        <a href="/bbs/?bbs_category=4">
+                                        <a href="/faq">
                                             FAQ												</a>
                                     </li>
                                                                                                                         <li>
-                                            <a href="/news/voc/">
+                                            <a href="/board/1">
                                                 고객의 소리													</a>
                                         </li>
                                                                     </ul>

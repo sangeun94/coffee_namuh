@@ -90,7 +90,7 @@
 .main_body .cont_wrap{padding-top:0 !important;}
     .main_body .cont_box{overflow:hidden;}
 
-.cont_box{padding:100px 0px; width:100%; margin:0 auto; position:relative;}
+.cont_box{padding:80px 0px; width:100%; margin:0 auto; position:relative;}
     /*.cont_box:nth-child(2n-1){background:#fdd000;}*/
     .cont_boxs{width:100%; max-width:1280px; margin:0 auto; margin-bottom:100px;}
         .cont_boxs:last-child{margin-bottom:0;}
@@ -237,7 +237,7 @@
 
 
     .cont_wrap{padding:0; padding-top:60px;}
-        .cont_box{padding:50px 20px !important;}
+        .cont_box{padding:80px 0px !important;}
         .cont_box.cont_banner{padding:30px !important;}
             .cont_boxs{margin-bottom:30px;}
                 .cont_title_wrap{margin-bottom:20px; font-size:16px;}

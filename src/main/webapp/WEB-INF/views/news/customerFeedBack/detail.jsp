@@ -9,17 +9,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Detail</h1>
+<%@ include file="/WEB-INF/views/header/header.jsp"%>
  
 ${feedback.feedbacknumber}<br>
-${feedback.title}<button onclick="location.href='./boardDelete?sb_no=${detail.sb_no}'">삭제</button>
-				<button onclick="location.href='./boardUpdate?sb_no=${detail.sb_no}'">수정</button><br> 
+${feedback.title}<button onclick="location.href='/boardDelete/${feedback.feedbacknumber}'">삭제</button>
+				<button onclick="location.href='/boardDelete/${feedback.feedbacknumber}'">수정</button><br> 
 ${feedback.content}<br>
 ${feedback.feedbackdate}<br>
 ${feedback.feedbackcount}<br>
 ${feedback.userid}<br>
-<a href="/board">게시판으로</a><br>
-<a href="/write">글쓰기</a>
+<a href="/board/1">게시판으로</a><br>
+<a href="/boardWrite">글쓰기</a>
 
 </body>
 </html>

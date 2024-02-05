@@ -7,9 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="write" method="post">
-		<input type="text" name="title">
-		<textarea rows="" cols="" name="content"></textarea>
+<%@ include file="/WEB-INF/views/header/header.jsp"%>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+	<form action="write" method="post"><br>
+		<input type="text" name="title"><br>
+		<textarea rows="" cols="" name="content"></textarea><br>
 		<button>글쓰기</button>
 		<input type="hidden" name="sb_cate" value="">
 	</form>

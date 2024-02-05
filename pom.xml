@@ -3,6 +3,7 @@
 	<groupId>coffee_namuh</groupId>
 	<artifactId>coffee_namuh</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<build>
 		<plugins>
 			<plugin>
@@ -11,6 +12,10 @@
 				<configuration>
 					<release>11</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
 			</plugin>
 		</plugins>
 	</build>

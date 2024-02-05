@@ -1,13 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <!-- jstl 쓸때!! -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <title>관리자 페이지</title>
-<link type="text/css" href="/src/main/webapp/resources/css/admin/reset.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/basic.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/button.css" rel="stylesheet">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/admin.css">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/jquery-ui.css">
+<link type="text/css" href="/css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/basic.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/button.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin/admin.css">
+<link rel="stylesheet" href="/css/admin/jquery-ui.css">
 
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,17 +33,17 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/src/main/webapp/resources/js/admin/jquery-1.8.3.min.js"></script>
-<script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
-<script src="/src/main/webapp/resources/js/admin/common.js"></script>
-<script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/categorylist.js"></script>
 </head>
 <body>
 
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -82,19 +88,19 @@ var tb_admin_url = "";
 		<dt class="o10 menu_toggle">주문관리</dt>		
         <dd class="o10"><a href="">주문리스트(전체)
         <dd class="o10"><a href="">배송준비</a></dd>		
-        <dd class="o10"><a href="">배송중</a></dd>		
-        <dd class="o10 active"><a href="">배송완료</a></dd>		
+        <dd class="o10 active"><a href="">배송중</a></dd>		
+        <dd class="o10"><a href="">배송완료</a></dd>		
 	
     </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 주문관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 배송완료		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 배송중		
         </div>
 	
 <div class="s_wrap">
-	<h1>배송완료</h1>
+	<h1>배송중</h1>
 	
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
 <script>
@@ -211,23 +217,18 @@ jQuery(function($){
 		<col class="w80">
 		<col class="w80">
 		<col class="w90">
-		<col class="w90">
-		<col class="w90">
-
 	</colgroup>
 	<thead>
 	<tr>
-		<th scope="col">번호</th>
-		<th scope="col">주문일시</th>
 		<th scope="col">주문번호</th>
+		<th scope="col">주문일시</th>
 		<th scope="col">주문상품</th>
-		<th scope="col">구매확정</th>
 		<th scope="col">배송회사</th>
-		<th scope="col">배송비</th>
+		<th scope="col">운송장번호</th>
 		<th scope="col">주문자</th>
-		<th scope="col">수령자</th>
 		<th scope="col">총주문액</th>
 		<th scope="col">배송조회</th>
+		<th scope="col">배송완료</th>
 
 	</tr>
 	</thead>
@@ -235,18 +236,17 @@ jQuery(function($){
 		<tr class="list0">
 			<td>29</td>
 			<td>1</td>
-			<td>1</td>
-			<td>1</td>
 			<td>218,000</td>
 			<td>0</td>
 			<td>입금대기</td>
 			<td>본사</td>
 			<td>관리자</td>
-			<td>관리자</td>
 			<td>
 				<a href="" class="btn_lsmall">배송조회</a>
 			</td>
-
+			<td>
+				<a href="" class="btn_lsmall">배송완료</a>
+			</td>
 		</tr>
 	</tbody>
 	</table>
@@ -300,11 +300,11 @@ $(function(){
 </div>
 
 
-<div id="ajax-loading"><img src="/src/main/webapp/resources/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<script src="/src/main/webapp/resources/js/admin/admin.js"></script>
+<script src="/js/admin/admin.js"></script>
 
-<script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+<script src="/js/admin/wrest.js"></script>
 </body>
 </html>

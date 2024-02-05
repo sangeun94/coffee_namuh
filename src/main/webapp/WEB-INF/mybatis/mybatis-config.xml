@@ -24,5 +24,8 @@
 		<typeAlias type="com.cafeapp.dto.feedback.Response" alias="Response" />
 		<typeAlias type="com.cafeapp.dto.feedback.ResponseWithFeedback" alias="ResponseWithFeedback" />
 	
+		<typeAlias type="com.cafeapp.dto.order.OrderList" alias="OrderList" />
+		<typeAlias type="com.cafeapp.dto.order.OrderSearchCondition" alias="OrderSearchCondition" />
+	
 	</typeAliases>
 </configuration>

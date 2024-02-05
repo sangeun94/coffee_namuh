@@ -145,7 +145,7 @@ var tb_admin_url = "";
 	<form id="frm_customers" action="/admin/removeFaq" method="post">
 	<div class="local_frm01">
 	
-		<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
+		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
 		<a href="/admin/registerFaq" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a>
 		
 	</div>
@@ -200,7 +200,7 @@ var tb_admin_url = "";
 
 <div class="local_frm02">
 
-	<button id="btn_delete" type="submit" class="btn_lsmall bx-white">선택삭제</button>
+	<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
 	<a href="/admin/registerFaq" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon></i> 추가하기</a></div>
 
 </div>
@@ -280,31 +280,32 @@ jQuery(function($) {
         }
     }; */
     
-    document.querySelectorAll('.btn_delete').addEventListener('click', function(event) {
-        event.preventDefault(); // 폼 자동 제출 방지
-
-        if (confirm("정말 삭제하시겠습니까?")) {
-            console.log('삭제 확인 누름');
-
-            const chb_arr = document.querySelectorAll('.chb_checkNumber');
-
-            let sendArr = [];
-
-            chb_arr.forEach(function(item) {
-                if (item.checked === true) {
-                    console.log(item.value);
-                    sendArr.push(item.value);
-                }
-            });
-
-            console.log(sendArr);
-            console.log(JSON.stringify(sendArr));
-
-            // 필요한 경우 폼 제출
-            document.querySelector('#frm_customers').submit();
-        }
+    document.querySelectorAll('.btn_delete').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+	        event.preventDefault(); // 폼 자동 제출 방지
+	
+	        if (confirm("정말 삭제하시겠습니까?")) {
+	            console.log('삭제 확인 누름');
+	
+	            const chb_arr = document.querySelectorAll('.chb_checkNumber');
+	
+	            let sendArr = [];
+	
+	            chb_arr.forEach(function(item) {
+	                if (item.checked === true) {
+	                    console.log(item.value);
+	                    sendArr.push(item.value);
+	                }
+	            });
+	
+	            console.log(sendArr);
+	            console.log(JSON.stringify(sendArr));
+	
+	            // 필요한 경우 폼 제출
+	            document.querySelector('#frm_customers').submit();
+	        }
+   		});
     });
-
 
  
     

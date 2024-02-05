@@ -19,6 +19,7 @@ import com.cafeapp.dto.board.FaqSearchCondition;
 import com.cafeapp.dto.feedback.Feedback;
 import com.cafeapp.dto.feedback.FeedbackSearchCondition;
 import com.cafeapp.dto.feedback.Response;
+import com.cafeapp.dto.feedback.ResponseWithFeedback;
 import com.cafeapp.dto.user.User;
 import com.cafeapp.service.announcement.AnnouncementService;
 import com.cafeapp.service.faq.FaqService;
@@ -232,7 +233,6 @@ public class AdminBoardController { // 공지사항, FAQ, 1:1상담
 		return "admin/adminFeedResRegister";
 	}
 	
-	/*
 	@PostMapping("/admin/registerResponse")
 	public String registerResponseProcess(Response response) { //process
 		
@@ -247,5 +247,67 @@ public class AdminBoardController { // 공지사항, FAQ, 1:1상담
 		}
 
 	}
-	*/
+	
+	//댓글 수정
+	@GetMapping("/admin/modifyResponse")
+	public String modifyResponse(@RequestParam String responseNumber, Model model) {
+		
+		int intResponseNumber = Integer.parseInt(responseNumber);
+		//userNumber가 int인데 혹시나 파라미터로 String이 넘어올수도 있으니까 그 오류가 안나오게 하기위해!
+				
+		ResponseWithFeedback response = feedbackService.findResponseByResponseNumber(intResponseNumber); //위에서 string으로 받아버렸으니까 원래상태인 int로 변환!
+		
+		System.out.println(response);
+		
+		model.addAttribute("response", response);
+		
+		return "admin/adminFeedResModify";
+	}
+	
+	@PostMapping("/admin/modifyResponse")
+	public String modifyResponseProcess(Response response) { 
+		System.out.println(response);
+			
+		int result = feedbackService.modifyResponse(response);
+		
+		if (result > 0) { //저장 성공
+			return "redirect:/admin/feedback"; //수정성공: feedback 목록 페이지
+		} else { //저장 실패
+			return "admin/adminFeedResModify"; //수정실패: 댓글 수정페이지 
+		}
+		
+	}
+	
+	//1:1상담+댓글 삭제
+	@PostMapping("/admin/removeFeedback")
+	public String removeFeedback(@RequestParam List<String> feedbackNumber) {
+
+		System.out.println(feedbackNumber);
+
+		// String 리스트를 Integer 리스트로 변환
+	    List<Integer> numbers = feedbackNumber.stream().map(Integer::parseInt)
+	                                               .collect(Collectors.toList());
+	    
+		feedbackService.removeFeedback(numbers);
+				
+		return "redirect:/admin/feedback";
+	}
+	
+	//댓글만 삭제
+	@PostMapping("/admin/removeResponse")
+	public String removeResponseProcess(@RequestParam String responseNumber) {
+		
+		int intResponseNumber = Integer.parseInt(responseNumber);
+		
+		int result = feedbackService.removeResponse(intResponseNumber); 
+		
+		if (result > 0) {
+			return "redirect:/admin/feedback"; //삭제성공: feedback 목록 페이지
+		} else {
+			return "admin/adminFeedResModify"; //삭제실패 : 삭제페이지
+		}
+		
+	}
+	
+	
 }

@@ -22,6 +22,7 @@
 		<typeAlias type="com.cafeapp.dto.feedback.FeedbackSearchCondition" alias="FeedbackSearchCondition" />
 		
 		<typeAlias type="com.cafeapp.dto.feedback.Response" alias="Response" />
+		<typeAlias type="com.cafeapp.dto.feedback.ResponseWithFeedback" alias="ResponseWithFeedback" />
 	
 	</typeAliases>
 </configuration>

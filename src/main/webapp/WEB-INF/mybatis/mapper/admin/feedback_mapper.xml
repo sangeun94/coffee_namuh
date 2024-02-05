@@ -6,7 +6,7 @@
 
 	<!-- 1:1상담 목록 -> 검색 기준에 따라서 조회 -->
 	<select id="findFeedbackListBySearchCondition" resultType="Feedback" parameterType="FeedbackSearchCondition">
-	    SELECT cf.feedback_number, cf.user_id, cf.title, cf.content, cf.feedback_date, cf.feedback_count, fr.response_content
+	    SELECT cf.feedback_number, cf.user_id, cf.title, cf.content, cf.feedback_date, cf.feedback_count, fr.response_content, fr.response_number
 	    FROM customer_feedback cf
 	    LEFT JOIN feedback_response fr ON cf.feedback_number = fr.feedback_number
 	    WHERE 1 = 1
@@ -37,5 +37,43 @@
 	    VALUES (response_seq.NEXTVAL, #{feedbackNumber}, 'admin', #{responseContent}, SYSDATE)
 		<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{adminId}로 변경! 지금은 걍 테스트... -->	
 	</insert>
+	
+	<!-- 각각 response 나오게 하기  -->
+	<select id="findResponseByResponseNumber" resultType="ResponseWithFeedback" parameterType="int">
+	    SELECT fr.response_number, fr.feedback_number, fr.user_id AS admin_id, fr.response_content, fr.response_date,
+	           cf.user_id AS user_id, cf.title, cf.content, cf.feedback_date
+	    FROM feedback_response fr
+	    JOIN customer_feedback cf ON fr.feedback_number = cf.feedback_number
+	    WHERE fr.response_number = #{responseNumber}
+	</select>
+	
+	<!-- response 수정 -->
+	<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{userId}로 변경! 지금은 걍 테스트... -->
+	<update id="modifyResponse" parameterType="Response">
+	    UPDATE feedback_response
+	    SET feedback_number = #{feedbackNumber},
+	        user_id = #{adminId},
+	        response_content = #{responseContent},
+	        response_date = SYSDATE 
+	    WHERE response_number = #{responseNumber}
+	</update>
+	
+	<!-- 댓글 먼저 삭제 -->
+	<delete id="removeFeedbackResponses" parameterType="int">
+	    DELETE FROM feedback_response
+	    WHERE feedback_number = #{feedbackNumber}
+	</delete>
+	
+	<!-- 그 후 1:1상담 삭제 -->
+	<delete id="removeFeedback" parameterType="int">
+	    DELETE FROM customer_feedback
+	    WHERE feedback_number = #{feedbackNumber}
+	</delete>
+	
+	<!-- 댓글만 삭제  -->
+	<delete id="removeResponse" parameterType="int">
+		DELETE FROM feedback_response
+		WHERE response_number = #{responseNumber}
+	</delete>
 	
 </mapper>

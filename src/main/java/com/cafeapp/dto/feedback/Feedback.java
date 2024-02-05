@@ -13,5 +13,6 @@ public class Feedback {
 	int feedbackCount;
 	
 	String responseContent;
-	
+	int responseNumber;
+
 }

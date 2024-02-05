@@ -55,7 +55,7 @@
 			user_birth = #{userBirth},
 			user_zipcode = #{userZipcode},
 			user_address = #{userAddress},
-			user_detailAddress = #{userDetailAddress},
+			user_detail_address = #{userDetailAddress},
 			is_member = #{isMember}		
 		WHERE
 			user_number = #{userNumber}

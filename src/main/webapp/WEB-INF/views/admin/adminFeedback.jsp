@@ -91,8 +91,8 @@ var tb_admin_url = "";
 		<dt class="h10 menu_toggle">고객지원</dt>		
         <dd class="h10 active"><a href="/admin/feedback">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
-        <dd class="h20"><a href="">공지사항 관리</a></dd>        
-        <dd class="h20"><a href="">FAQ 관리</a></dd>	
+        <dd class="h20"><a href="/admin/announcement">공지사항 관리</a></dd>        
+        <dd class="h20"><a href="/admin/faq">FAQ 관리</a></dd>	
         </dl>
 	</div>
 	<div id="content">
@@ -139,13 +139,14 @@ var tb_admin_url = "";
 	</div>
 	</form>
 	
-	<form action="" name="fqalist" id="fqalist" method="post" onsubmit="return fqalist_submit(this);">
 	<input type="hidden" name="q1" value="code=qa">
 	<input type="hidden" name="page" value="1">
 	
 	<div class="local_ov mart30">
 		전체 : <b class="fc_red">${totalFeedback}</b> 건 조회
 	</div>
+	
+	<form id="frm_customers" action="/admin/removeFeedback" method="post">
 	
 	<div class="local_frm01">
 	
@@ -182,15 +183,16 @@ var tb_admin_url = "";
 						<fmt:parseDate value="${feedbackItem.feedbackDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate"/>
 						<fmt:formatDate value="${parsedDate}" pattern="yy-MM-dd" />						            	
 		            </td>
-		            <td>${feedbackItem.responseContent}</td>
+		            <td class="responseContent">${feedbackItem.responseContent}</td>
 		            <td>
 		                <a href="" class="reply-add btn_lsmall" data-response="${feedbackItem.responseContent}">댓글</a>
-		            </td>
+		            </td>		            
 		            <td>
-		                <button class="btn_lsmall">수정</button>
+		            	<%-- <a href="" class="reply-modify btn_lsmall" data-responseNumber="${feedbackItem.responseNumber}">수정</a> --%>	            
+						<button type="button" class="btn_modify btn_lsmall" data-response-number="${feedbackItem.responseNumber}" onclick="window.location.href='/admin/modifyResponse?responseNumber=${feedbackItem.responseNumber}'">수정</button>
 		            </td>
 		        </tr>
-	        </c:forEach>	
+		    </c:forEach>		        
 	    </tbody>
 		</table>
 	</div>
@@ -198,20 +200,54 @@ var tb_admin_url = "";
 		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
 	</form>
 
+</div>
+
+</div>
+</div>
+<div id="ft">
+	<p>Copyright &copy; coffee namuh. All rights reserved.</p>
+</div>
+
+
+<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
+<div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+
+<script src="/js/admin/admin.js"></script>
+
+<script src="/js/admin/wrest.js"></script>
 
 <script>
-function fqalist_submit(f)
-{
+document.querySelectorAll('.btn_delete').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // 폼 자동 제출 방지
 
-    if(document.pressed == "선택삭제") {
-        if(!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
-            return false;
+        if (confirm("정말 삭제하시겠습니까?")) {
+            console.log('삭제 확인 누름');
+
+            const chb_arr = document.querySelectorAll('.chb_checkNumber');
+
+            let sendArr = [];
+
+            chb_arr.forEach(function(item) {
+                if (item.checked === true) {
+                    console.log(item.value);
+                    sendArr.push(item.value);
+                }
+            });
+
+            console.log(sendArr);
+            console.log(JSON.stringify(sendArr));
+
+            // 필요한 경우 폼 제출
+            var form = document.querySelector('#frm_customers');
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error('Form not found');
+                }
         }
-    }
-
-    return true;
-}
-
+	});
+});
 
 
 // 'fsearch'라는 ID를 가진 폼의 내용을 초기화
@@ -229,6 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             var feedbackNumber = this.closest('tr').querySelector('input[name="feedbackNumber"]').value;
             var responseContent = this.getAttribute('data-response');
+            
             if (responseContent.trim() !== '') {
                 // 답변이 이미 존재하는 경우
                 alert('이미 답변하셨습니다.');
@@ -239,24 +276,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    
+	//'수정' 버튼 클릭 이벤트 핸들러
+    document.querySelectorAll('.btn_modify').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            // 기본 이벤트 방지
+            event.preventDefault();
+            
+            var responseNumber = parseInt(this.getAttribute('data-response-number'), 10);
+            
+            if (responseNumber === 0) {
+                // 답변 번호가 0인 경우, 즉 답변이 존재하지 않는 경우
+                alert('답변을 먼저 추가해주세요.');
+                window.location.href="/admin/feedback";
+            } 
+        });
+    });
+    
+    
 });
 
 </script>
-</div>
-
-</div>
-</div>
-<div id="ft">
-	<p>Copyright &copy; coffee namuh. All rights reserved.</p>
-</div>
-
-
-<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
-<div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
-
-<script src="/js/admin/admin.js"></script>
-
-<script src="/js/admin/wrest.js"></script>
 
 </body>
 </html>

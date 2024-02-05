@@ -33,7 +33,7 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/categorylist.js"></script>
@@ -100,16 +100,14 @@ var tb_admin_url = "";
         </div>
 	
 <div class="s_wrap">
-	<h1>1:1 상담문의 댓글 수정/삭제</h1>
+	<h1>1:1 상담문의 댓글 수정</h1>
 
-<form name="faqform" method="post" onsubmit="return faqform_submit(this);">
-<input type="hidden" name="w" value="">
-<input type="hidden" name="sca" value="">
-<input type="hidden" name="sfl" value="">
-<input type="hidden" name="stx" value="">
-<input type="hidden" name="page" value="">
-<input type="hidden" name="index_no" value="">
-
+<form action="/admin/modifyResponse" method="post"  name="responseForm" onsubmit="return validateForm()">
+	<input type="hidden" name="responseNumber" value="${response.responseNumber}">
+	<input type="hidden" name="feedbackNumber" value="${response.feedbackNumber}">
+	<input type="hidden" name="responseDate" value="${response.responseDate}">
+	<input type="hidden" name="adminId" value="${response.adminId}">
+	
 <div class="tbl_frm02">
 	<table>
 	<colgroup>
@@ -118,36 +116,49 @@ var tb_admin_url = "";
 	</colgroup>
 	<tbody>
 	<tr>
-		<th scope="row">일자</th>
-		<td>
-			<input type="text" name="to_date" value="" id="to_date" class="frm_input w80" maxlength="10" autocomplete="off">	
-		</td>
+    <th scope="row">일자</th>
+	<td>
+	    <span>${response.feedbackDate.substring(0, 10)}</span>
+	</td>
 	</tr>
-
 	<tr>
-		<th scope="row">내용</th>
-
+	    <th scope="row">작성자</th>
+	    <td>
+	        <span>${response.userId}</span>
+	    </td>
+	</tr>
+	<tr>
+	    <th scope="row">제목</th>
+	    <td>
+	        <span>${response.title}</span>
+	    </td>
+	</tr>
+	<tr>
+	    <th scope="row">내용</th>
+	    <td>
+	        <div>${response.content}</div>
+	    </td>
+	</tr>
+		<th scope="row">답변</th>
+		<td>
+			<textarea id="memo" name="responseContent" class="smarteditor2" maxlength="65536" style="width:100%">${response.responseContent}</textarea>
+		</td>
 	</tr>
 	</tbody>
 	</table>
 </div>
 
 <div class="btn_confirm">
-	<input type="submit" value="저장" class="btn_large" accesskey="s">
-	<a href="" class="btn_large bx-white">목록</a>
-    <button onclick="" class="btn_large red">삭제</button>
+	<button type="submit" class="btn_large"> 수정 </button>
+	<a href="/admin/feedback" class="btn_large bx-white">목록</a>	
 </div>
 </form>
 
-<script>
-function faqform_submit(f) {
-	var memo_editor_data = oEditors.getById['memo'].getIR();
-    oEditors.getById['memo'].exec('UPDATE_CONTENTS_FIELD', []);
-    if(jQuery.inArray(document.getElementById('memo').value.toLowerCase().replace(/^\s*|\s*$/g, ''), ['&nbsp;','<p>&nbsp;</p>','<p><br></p>','<div><br></div>','<p></p>','<br>','']) != -1){document.getElementById('memo').value='';}
 
-	f.action = "./help/help_faq_form_update.php";
-    return true;
-}
+<script>
+
+
+
 </script>
 </div>
 
@@ -165,34 +176,7 @@ function faqform_submit(f) {
 
 <script src="/js/admin/wrest.js"></script>
 
-<script type="text/javascript" src="/js/admin/jquery-ui.min.js"></script>
-<script>
-jQuery(function($){
-    $.datepicker.regional["ko"] = {
-        closeText: "닫기",
-        prevText: "이전달",
-        nextText: "다음달",
-        currentText: "오늘",
-        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
-        monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
-        dayNames: ["일","월","화","수","목","금","토"],
-        dayNamesShort: ["일","월","화","수","목","금","토"],
-        dayNamesMin: ["일","월","화","수","목","금","토"],
-        weekHeader: "Wk",
-        dateFormat: "yymmdd",
-        firstDay: 0,
-        isRTL: false,
-        showMonthAfterYear: true,
-        yearSuffix: ""
-    };
-	$.datepicker.setDefaults($.datepicker.regional["ko"]);
-});
-</script>
-<script>
-	$(function() {
-		$("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
-	});
-</script>
+
 
 </body>
 </html>

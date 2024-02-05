@@ -3,7 +3,7 @@ package com.cafeapp.dao.user;
 import java.util.List;
 
 import com.cafeapp.dto.user.User;
-import com.cafeapp.dto.user.UserUpdate;
+
 
 public interface UserDAO {
     User findLoginUser(User user);
@@ -17,6 +17,7 @@ public interface UserDAO {
     User findUserById(String id);
 
     List<User> findUserListByUserType(String userType);
-    
+
     int updateUser(User user);
+ 
 }

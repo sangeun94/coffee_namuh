@@ -117,8 +117,4 @@ button {
         </form>
     </div>
 
-    <script>
-        function updateInfo() {
-            // 여기에 정보 업데이트 로직을 추가할 수 있습니다.
-            alert('정보가 성공적으로 업데이트되었습니다.');
     

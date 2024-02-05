@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cafeapp.dao.user.UserDAO;
 import com.cafeapp.dto.user.User;
-import com.cafeapp.dto.user.UserUpdate;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -55,12 +54,11 @@ public class UserDAOImpl implements UserDAO {
         return sqlSessionTemplate.selectList("user_mapper.findUserListByUserType", userType);
     }
 
-	@Override
-	public int updateUser(User user) {
+    @Override
+    public int updateUser(User user) {
         return sqlSessionTemplate.update("user_mapper.updateUser", user);
     }
 
 	
-
 	
 }

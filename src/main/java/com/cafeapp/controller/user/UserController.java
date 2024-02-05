@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.cafeapp.common.CommonCode;
 import com.cafeapp.dto.user.User;
-import com.cafeapp.dto.user.UserUpdate;
 import com.cafeapp.service.user.UserService;
 
 @Controller
@@ -230,22 +229,25 @@ public class UserController {
         return "user/mypage";
     }
     
-    
-    @PostMapping("/mypage/updateUser")
-    public String updateUser(User user, Model model) {
-        int result = userService.updateUser(user);
+
+    @PostMapping("/updateUser")
+    public String updateUserInfo(User user, Model model) {
+        int result = userService.updateUserInfo(user);
 
         if (result > 0) {
-            // 성공적으로 업데이트되면 마이페이지로 리다이렉트 또는 다른 처리
-            return "redirect:/mypage";
+            // 업데이트 성공 시 처리
+            model.addAttribute("updateSuccess", true);
+            return "user/mypage";
         } else {
-            // 업데이트에 실패하면 실패 페이지로 리다이렉트 또는 다른 처리
-            return "redirect:/error";
+            // 업데이트 실패 시 처리
+            model.addAttribute("updateFailed", true);
+            return "user/login";
         }
+
+        
     }
-    
-    
-   
-    
+
+
+
     
 }

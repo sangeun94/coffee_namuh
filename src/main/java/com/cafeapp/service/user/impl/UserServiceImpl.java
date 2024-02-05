@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.cafeapp.common.CommonCode;
 import com.cafeapp.dao.user.UserDAO;
 import com.cafeapp.dto.user.User;
-import com.cafeapp.dto.user.UserUpdate;
 import com.cafeapp.service.user.UserService;
 
 @Service
@@ -59,9 +58,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int updateUser(User user) {
+    public int updateUserInfo(User user) {
         return userDAO.updateUser(user);
     }
-
 
 }

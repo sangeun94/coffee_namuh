@@ -10,6 +10,13 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header/header.jsp"%>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
  
 ${feedback.feedbacknumber}<br>
 ${feedback.title}<button onclick="location.href='/boardDelete/${feedback.feedbacknumber}'">삭제</button>

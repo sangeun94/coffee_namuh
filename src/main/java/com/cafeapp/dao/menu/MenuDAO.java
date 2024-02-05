@@ -1,5 +1,5 @@
 package com.cafeapp.dao.menu;
 
-public class MenuDAO {
+public interface MenuDAO {
 
 }

@@ -1,5 +1,10 @@
 package com.cafeapp.service.menu.impl;
 
-public class MenuServiceImpl {
+import org.springframework.stereotype.Service;
+
+import com.cafeapp.service.menu.MenuService;
+
+@Service
+public class MenuServiceImpl implements MenuService {
 
 }

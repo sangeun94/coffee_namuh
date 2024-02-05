@@ -1,5 +1,5 @@
 package com.cafeapp.service.menu;
 
-public class MenuService {
+public interface MenuService {
 
 }

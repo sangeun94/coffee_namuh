@@ -128,17 +128,17 @@
 								<tbody>
     <c:forEach var="list" items="${boardList}">
         <tr>
-            <td class="board_pc">${list.feedbacknumber}</td>
+            <td class="board_pc">${list.feedbackNumber}</td>
             <td>
             <div class="text_wrap">
             <div class="text">
-            <a href="/detail/${list.feedbacknumber}">${list.title}</a>
+            <a href="/detail/${list.feedbackNumber}">${list.title}</a>
             </div>
             </div>
             </td>
-            <td class="board_pc">${list.userid}</td>
-            <td class="board_pc"><fmt:formatDate value="${list.feedbackdate}" pattern="yyyy-MM-dd" /></td>
-            <td class="board_pc">${list.feedbackcount}</td>
+            <td class="board_pc">${list.userId}</td>
+            <td class="board_pc"><fmt:formatDate value="${list.feedbackDate}" pattern="yyyy-MM-dd" /></td>
+            <td class="board_pc">${list.feedbackCount}</td>
         </tr>
     </c:forEach>
     <tr>

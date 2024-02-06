@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="/mainhome/mainhome.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainhome.css">
   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -41,7 +41,7 @@
 <div class="content"><img src="/images/notice/20210201112030.jpg"></div>
 <div class="content"><img src="/images/notice/coding1.jpg"></div>
 <div class="content"><img src="/images/notice/coding2.jpg"></div>
-<div class="content"><h1>7</h1></div>
+<div class="content"><%@ include file="/WEB-INF/views/footer/footer.jsp"%></div>
 
 <div class="chap_list_wrap robo">
 		<ul>

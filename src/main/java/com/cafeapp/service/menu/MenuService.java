@@ -1,5 +1,11 @@
 package com.cafeapp.service.menu;
 
-public class MenuService {
+import java.util.List;
 
+import com.cafeapp.dto.menu.Menu;
+
+public interface MenuService {
+
+	public List<Menu> ShowMenuList();
+	
 }

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/newsCss/NewsCss.css" rel="stylesheet" type="text/css">
+<link href="/css/news.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
@@ -168,5 +168,6 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 </body>
 </html>

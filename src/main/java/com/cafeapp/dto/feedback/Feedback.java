@@ -1,15 +1,16 @@
 package com.cafeapp.dto.feedback;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
 public class Feedback {
-	int feedbacknumber;
-	String userid;
+	int feedbackNumber;
+	String userId;
 	String title;
 	String content;
-	Date feedbackdate;
-	int feedbackcount;
+	String feedbackDate;
+	int feedbackCount;
+	
+	String responseContent;
+	int responseNumber;
 }

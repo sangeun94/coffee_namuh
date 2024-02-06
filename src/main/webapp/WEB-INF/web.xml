@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 	                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
+<!-- 톰캣 관련 -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

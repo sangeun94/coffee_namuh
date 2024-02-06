@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="admin_mapper">
+
+	<!-- 회원목록 -> 검색 기준에 따라서 조회 -->
+	<select id="findMemberListBySearchCondition" resultType="User" parameterType="UserSearchCondition">
+	    select * from users
+	    where 1 = 1
+	    <if test="searchType == 'userId' and searchKeyword != null and searchKeyword != ''">
+	        AND user_id LIKE '%' || #{searchKeyword} || '%' 
+	    </if>
+	    
+	    <if test="searchType == 'userEmail' and searchKeyword != null and searchKeyword != ''">
+	        AND user_email LIKE '%' || #{searchKeyword} || '%'
+	    </if>  
+	    
+	    <if test="searchType == 'userName' and searchKeyword != null and searchKeyword != ''">
+	        AND user_name LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    
+	    <if test="searchType == 'userBirth' and searchKeyword != null and searchKeyword != ''">
+        	AND user_birth LIKE '%' || #{searchKeyword} || '%'
+    	</if>
+    	
+	    <if test="searchType == 'userAddress' and searchKeyword != null and searchKeyword != ''">
+	        AND (user_zipcode LIKE '%' || #{searchKeyword} || '%' 
+	             OR user_address LIKE '%' || #{searchKeyword} || '%'
+	             OR user_detail_address LIKE '%' || #{searchKeyword} || '%')
+	    </if>
+	    
+	    <if test="searchType == 'isMember' and searchKeyword != null and searchKeyword != ''">
+	        AND is_member = CASE #{searchKeyword}
+	                            WHEN '회원' THEN 1
+	                            WHEN '탈퇴' THEN 0
+	                        END
+	    </if>
+	    AND is_member IN (0,1)
+	</select>	
+
+	<!-- 각각 회원정보 나오게 하기  -->
+	<select id="findMemberByUserNumber" resultType="User" parameterType="int">
+		SELECT * FROM users
+		WHERE user_number = #{userNumber}
+	</select>
+	
+	<!-- 회원 정보수정 -->
+	<update id="modifyMember" parameterType="User" >
+		UPDATE users
+		SET user_id = #{userId},
+			user_password = #{userPassword},
+			user_email = #{userEmail},
+			user_name = #{userName},
+			user_birth = #{userBirth},
+			user_zipcode = #{userZipcode},
+			user_address = #{userAddress},
+			user_detail_address = #{userDetailAddress},
+			is_member = #{isMember}		
+		WHERE
+			user_number = #{userNumber}
+	</update>
+</mapper>

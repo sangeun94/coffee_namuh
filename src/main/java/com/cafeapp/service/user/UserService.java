@@ -28,4 +28,7 @@ public interface UserService {
     boolean isDuplicatedId(String id);
 
     int updateUserInfo(User user);
+    
+    User findUserById(String userId);
+
 }

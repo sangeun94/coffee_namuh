@@ -17,18 +17,17 @@ public interface UserDAO {
 	public int modifyMember(User user);
 
 // 태현
+	//로그인
     User findLoginUser(User user);
     
     User findLoginAdmin(User user);
-
+    
+    //회원가입
     int saveUser(User user);
 
-    List<User> findUserList();
 
-    User findUserById(String id);
-
-    List<User> findUserListByUserType(String userType);
-
+    //유저 업데이트
     int updateUser(User user);
- 
+  
+    User findUserById(String userId);
 }

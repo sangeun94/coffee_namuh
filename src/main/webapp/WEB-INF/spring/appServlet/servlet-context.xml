@@ -53,18 +53,15 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 
-<!-- 인터셉터 여러개 걸수 있는!
 	<interceptors>
 		<interceptor>
-			<mapping path="/**" /> 어디에 걸까요: 전체
-			<exclude-mapping path="/admin/login" /> 어디는 제외하고 걸어주세요: /admin/login 제외하고
-			<exclude-mapping path="/css/**" />
-			<exclude-mapping path="/js/**" />
-			<exclude-mapping path="/image/**"/>
-			<exclude-mapping path="/fileStorage/**" />
+			<mapping path="/**" />
+			<exclude-mapping path="/adminLogin" />
+			<exclude-mapping path="/login" />
+			<exclude-mapping path="/main" />
 			<beans:bean class="com.cafeapp.interceptor.LoginInterceptor" />
 		</interceptor>
-	</interceptors> -->
+	</interceptors> 
 
 
 	<beans:bean id="multipartResolver"

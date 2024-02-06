@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +18,16 @@ import org.springframework.web.bind.annotation.*;
 import com.cafeapp.common.CommonCode;
 import com.cafeapp.dto.user.User;
 import com.cafeapp.service.user.UserService;
+import com.cafeapp.util.LoginManager;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private UserService userService;
-
+    UserService userService;
+    
     @Autowired
-    private SessionManager sessionManager;
+	LoginManager loginManager;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -59,14 +61,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(User user, HttpServletResponse response) {
+    public String loginUser(User user, HttpServletResponse response, HttpSession session) {
     	System.out.println(user);
         User loginUser = userService.isValidCustomerLogin(user);
 
         System.out.println(loginUser);
         if (loginUser != null) {
             // 로그인 성공 시 처리
-            sessionManager.createSession(loginUser, response);
+        	loginManager.setSessionLogin(loginUser.getUserId(), session);
+            //sessionManager.createSession(loginUser, response);
+            
             return "redirect:/main";
         } else {
             // 로그인 실패 시 처리
@@ -76,19 +80,7 @@ public class UserController {
 
     @GetMapping("/main")
     public String showMainPage(HttpServletRequest request, Model model) {
-        User loginUser = (User) sessionManager.getSession(request);
-
-        
-        
-        if (loginUser == null) {
-            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-            return "redirect:/login";
-        }
-
-       
-
-        // 로그인 성공 시 메인 페이지로 이동
-        model.addAttribute("loginUser", loginUser);
+      
         return "user/main";
     }
     
@@ -140,15 +132,9 @@ public class UserController {
     }
     
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
-        sessionManager.expire(request); // 세션 만료 처리
-        Cookie cookie = new Cookie(SessionManager.SESSION_COOKIE_NAME, null);
-        cookie.setMaxAge(0); // 쿠키 삭제
-        response.addCookie(cookie);
-
-        
-        model.addAttribute("sessionExpired", true);
-
+    public String logout(HttpSession session) {
+    	loginManager.logout(session);
+    	
         return "redirect:/login";
     }
     
@@ -158,9 +144,9 @@ public class UserController {
     	return"user/main";
     }
     
-    @RequestMapping("/admin")
+    @RequestMapping("/adminLogin")
     public String adminPage() {
-    	return"admin/admin";
+    	return"admin/adminLogin";
     }
     
   //adminLogin
@@ -169,99 +155,63 @@ public class UserController {
     public String showAdminLoginForm(Model model) {
         model.addAttribute("user", new User());
         
-        return "admin/adminLogin";
+        return "/adminLogin";
     }
 
     @PostMapping("/admin/adminLogin")
-    public String loginAdminUser(User user, HttpServletResponse response) {
-        User loginUser = userService.isValidAdminLogin(user);
-        System.out.println(loginUser);
-        if (loginUser != null) {
+    public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session) {
+        User adminLoginUser = userService.isValidAdminLogin(user);
+        
+        System.out.println(adminLoginUser);
+        
+        System.out.println(adminLoginUser);
+        if (adminLoginUser != null) {
             // 로그인 성공 시 처리
-            sessionManager.createSession(loginUser, response);
-            return "redirect:/admin";
+        	loginManager.setSessionLogin(adminLoginUser.getUserId(), session);
+            return "redirect:/admin/adminMember";
         } else {
             // 로그인 실패 시 처리
-            return "redirect:/adminlogin";
+        	return "redirect:/adminlogin";
         }
+        
     }
 
     @GetMapping("/admin/main")
     public String showAdminMainPage(HttpServletRequest request, Model model) {
-        User loginUser = (User) sessionManager.getSession(request);
-        System.out.println(loginUser);
-        if (loginUser == null) {
-            
-            return "redirect:/adminLogin";
-        }
-
-        // 로그인 성공 시 메인 페이지로 이동
-        model.addAttribute("loginUser", loginUser);
+     
         return "admin/main";
     }
 
+    
+    
     @GetMapping("/admin/logout")
     public String logoutAdmin(HttpServletRequest request, HttpServletResponse response, Model model) {
-        sessionManager.expire(request); // 세션 만료 처리
-        Cookie cookie = new Cookie(SessionManager.SESSION_COOKIE_NAME, null);
-        cookie.setMaxAge(0); // 쿠키 삭제
-        response.addCookie(cookie);
-
         
-        model.addAttribute("sessionExpired", true);
 
         return "redirect:/adminLogin";
     }
     
     
-   
+
     @GetMapping("/mypage")
-    public String myPage(Model model, HttpServletRequest request) {
-        User loginUser = (User) sessionManager.getSession(request);
-
-        if (loginUser == null) {
-            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-            return "redirect:/login";
-        }
-
-        // MyPage 뷰에 사용자 정보 전달
-        model.addAttribute("user", loginUser);
-        return "user/mypage";
-    }
-    
-
-    
-    @PostMapping("/updateUser")
-    public String updateUserInfo(@ModelAttribute("user") User updatedUser, HttpServletRequest request, Model model) {
-        User loginUser = (User) sessionManager.getSession(request);
-
-        if (loginUser == null) {
-            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-            return "redirect:/login";
-        }
-
-        // 기존 사용자 정보와 업데이트된 사용자 정보를 병합
-        loginUser.setUserName(updatedUser.getUserName());
-        loginUser.setUserPassword(updatedUser.getUserPassword());
-        loginUser.setUserEmail(updatedUser.getUserEmail());
-        // 나머지 필드도 필요한 대로 업데이트
-
-        // 업데이트된 사용자 정보를 서비스를 통해 저장
-        int result = userService.updateUserInfo(loginUser);
-
-        if (result > 0) {
-            // 업데이트 성공 시 처리
-            model.addAttribute("updateSuccess", true);
-        } else {
-            // 업데이트 실패 시 처리
-            model.addAttribute("updateFailed", true);
-        }
-
-        // MyPage 뷰에 사용자 정보 전달
-        model.addAttribute("user", loginUser);
+    public String showMyPage(@RequestParam String userId, Model model, HttpSession session) {
+    	 userId = (String) session.getAttribute("userId"); // 세션에서 로그인된 사용자의 아이디 가져오기 
+    	 
+    	 
+    	        User user = userService.findUserById(userId);
+    	 
+    	        if (user != null) {
+    	            model.addAttribute("user", user);
+    	            return "mypage"; // mypage.jsp로 이동
+    	        }
+    	   
+    	        
+        // 로그인되지 않은 경우 또는 사용자 정보를 찾을 수 없는 경우 로그인 페이지로 이동
         return "user/mypage";
     }
 
+    
+    
 
     
 }

@@ -87,41 +87,32 @@ body {
 	border-radius: 4px;
 	cursor: pointer;
 }
+/* 모달 스타일 추가 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000; /* 모달이 다른 요소 위에 올라오도록 설정 */
+}
 
-.modal{
-            position:absolute;
-            display:none;
-            
-            justify-content: center;
-            top:0;
-            left:0;
+.modal_body {
+    position: relative;
+    width: 400px;
+    padding: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    transform: translateY(-50%);
+}
 
-            width:100%;
-            height:100%;
 
-            
-
-            background-color: rgba(0,0,0,0.4);
-        }
-        
-.modal_body{
-            position:absolute;
-            top:50%; //모달을 화면가운데 놓기위함. 
-        
-
-            width:400px;  //모달의 가로크기 
-            height:1000px; //모달의 세로크기 
-
-            padding:40px;  
-
-            text-align: center;
-
-            background-color: rgb(255,255,255); //모달창 배경색 흰색
-            border-radius:10px; //테두리 
-            box-shadow:0 2px 3px 0 rgba(34,36,38,0.15); //테두리 그림자 
-
-            transform:translateY(-50%); //모듈창열었을때 위치설정 가운데로 
-        }
 </style>
 </head>
 <body>
@@ -129,88 +120,111 @@ body {
 		<div class="profile-header">
 			<h1>마이페이지</h1>
 		</div>
-		<form action="/update-user" method="post">
-		<div class="profile-form">
-			<div class="label-input-group">
-				<label>성함:</label> <input type="text" id="userName" name="userName" value="${user.userName}">
-			</div>
+		<form action="" method="method">
+		<div class="label-input-group">
+    <label>성함:</label>
+    <input type="text" id="userName" name="userName" value="${user.userName}" disabled>
+</div>
 
-			<div class="label-input-group">
-				<label>아이디:</label> <input type="text" id="userId" name="userId" value="${user.userId}" disabled>
-			</div>
+<div class="label-input-group">
+    <label>아이디:</label>
+    <input type="text" id="userId" name="userId" value="${user.userId}" disabled>
+</div>
 
-			<div class="label-input-group">
-				<label>비밀번호:</label> <input type="text" id="userPassword" name="userPassword" value="${user.userPassword}">
-			</div>
+<div class="label-input-group">
+    <label>비밀번호:</label>
+    <input type="text" id="userPassword" name="userPassword" value="${user.userPassword}">
+</div>
 
-			<div class="label-input-group">
-				<label >이메일:</label> <input type="email"id="userEmail" name="userEmail" value="${user.userEmail}">
-			</div>
+<div class="label-input-group">
+    <label>이메일:</label>
+    <input type="email" id="userEmail" name="userEmail" value="${user.userEmail}">
+</div>
 
-			<div class="label-input-group">
-				<label>생년월일:</label> <input type="text"id="userBirth" name="userBirth" value="${user.userBirth}">
-			</div>
+<div class="label-input-group">
+    <label>생년월일:</label>
+    <input type="text" id="userBirth" name="userBirth" value="${user.userBirth}">
+</div>
 
-			<div class="label-input-group">
-				<label>우편번호:</label> 
-				<input type="text" id="userZipcode" name="userZipcode" value="${user.userZipcode}" disabled>
-				
-			</div>
+<div class="label-input-group">
+    <label>우편번호:</label>
+    <input type="text" id="userUpdateZipcode" name="userUpdateZipcode" value="${user.userZipcode}" disabled>
+</div>
 
-			<div class="label-input-group">
-				<label>주소:</label> <input type="text" id="userAddress" name="userAddress" value="${user.userAddress}"disabled>
-				
+<div class="label-input-group">
+    <label>주소:</label>
+    <input type="text" id="userUpdateAddress" name="userUpdateAddress" value="${user.userAddress}" disabled>
+    
+    <label>상세주소:</label>
+    <input type="text" id="userUpdateDetailAddress" name="userUpdateDetailAddress" value="${user.userDetailAddress}" disabled>
+</div>
 
-				<label>상세주소:</label> <input type="text" id="userDetailAddress" name="userDetailAddress"value="${user.userDetailAddress}" disabled>
-			</div>
-		</div>
-		
+	
 		</form>
 		
-    <button class="btn-open-modal">회원정보 수정하기</button>
+    <button>회원정보 수정하기</button>
     
 	</div>
 	
-	<div class="modal">
-        <div class="modal_body">
-            <h2>회원정보 수정</h2>
-            <form id="updateForm" method="post" action="">
-            
-            <label>이름:</label>
-            <input type="text" id="userName" name="userName">
-            
-            <label>비밀번호:</label>
-            <input type="password" id="userPassword" name="userPassword">
-             <div id="pwCheckResult"></div>
-           
-            <label>비밀번호 확인:</label>
-            <input type="password" id="userConfirmPassword" name="userConfirmPassword">
-           	 <div id="pwConfirmCheckResult"></div>
-            <label for="userEmail">이메일:</label>
-            <input type="email" id="userEmail" name="userEmail">
-            <div id="emailCheckResult"></div>
-            
-            <div class="address-inputs">
-                <label>우편번호:</label>
-                <input type="text" id="userUpdateZipcode" name="userUpdateZipcode">
-                <input type="button" value="우편번호검색" id="btn">
-                
 
-                <label>주소:</label>
-                <input type="text" id="userUpdateAddress" name="userUpdateAddress">
-                
-               
-                <label for="userDetailAddress">상세주소:</label>
-                <input type="text" id="userUpdateDetailAddress" name="userUpdateDetailAddress">
-                		
-            </div>
-            
-            <button type="submit">수정하기</button>
-        </form>
-        <button onclick="modalUpdateUser.style.display='none'">취소</button>
-        </div>
-    </div>
+	<!-- 모달창 -->
+	<div class="modal">
+	    <div class="modal_body">
+	        <h2>정보 수정</h2>
+	        <form id="updateFormModal">
+	            <label>이름:</label>
+	            <input type="text" id="updateUserName" name="userName" value="" >
 	
+	            <label>비밀번호:</label>
+	            <input type="password" id="updateUserPassword" name="userPassword" value="">
+	            <div id="pwCheckResult"></div>
+	
+	            <label>비밀번호 확인:</label>
+	            <input type="password" id="updateUserConfirmPassword" name="userConfirmPassword">
+	            <div id="pwConfirmCheckResult"></div>
+	
+	            <label>이메일:</label>
+	            <input type="email" id="updateUserEmail" name="userEmail" value="">
+	            <div id="emailCheckResult"></div>
+
+	            <label>우편번호:</label>
+	            <input type="text" id="userZipcode" name="userZipcode" value="">
+	            <input type="button" value="우편번호검색" id="btn">
+	
+	            <label>주소:</label>
+	            <input type="text" id="userAddress" name="userAddress" value="">
+	
+	            <label>상세주소:</label>
+	            <input type="text" id="userDetailAddress" name="userDetailAddress" value="">
+	
+	            <button type="submit">수정하기</button>
+	            <button type="button" class="btn-close-modal">취소</button>
+	        </form>
+	
+		
+		
+		
+	    </div>
+	</div>
+	
+	
+	
+	<script>
+	    document.addEventListener('DOMContentLoaded', function () {
+	        const btnOpenUpdateModal = document.querySelector('button');
+	        const modal = document.querySelector('.modal');
+	
+	        btnOpenUpdateModal.addEventListener('click', function () {
+	            modal.style.display = 'flex';
+	        });
+	
+	        const btnCancel = document.querySelector('.modal_body .btn-close-modal');
+	
+	        btnCancel.addEventListener('click', function () {
+	            modal.style.display = 'none';
+	        });
+	    });
+	</script>
 
 
 
@@ -240,32 +254,18 @@ body {
 
                         fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '')
                     }
-                    document.getElementById('userUpdateZipcode').value = data.zonecode;
-                    document.getElementById('userUpdateAddress').value = fullAddr;
-                    document.getElementById('userUpdateDetailAddress').focus();
+                    document.getElementById('userZipcode').value = data.zonecode;
+                    document.getElementById('userAddress').value = fullAddr;
+                    document.getElementById('userDetailAddress').focus();
                 }
             }).open();
         });
     </script>
 	
 	
-    <script>
-        const modal = document.querySelector('.modal');
-        const btnOpenModal=document.querySelector('.btn-open-modal');
-
-        btnOpenModal.addEventListener("click", ()=>{
-            modal.style.display="flex";
-        });
-    </script>
 	
-	<script>
-	    const btnOpenUpdateModal = document.querySelector('#btnOpenUpdateModal');
-	    const modalUpdateUser = document.querySelector('.modal-update-user');
+    
 	
-	    btnOpenUpdateModal.addEventListener('click', () => {
-	        modalUpdateUser.style.display = 'flex';
-	    });
-	</script>
 	
 </body>
 </html>

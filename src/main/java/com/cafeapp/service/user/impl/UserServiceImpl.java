@@ -69,7 +69,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User isValidAdminLogin(User user) {
 		// 관리자 로그인 로직 구현
+		System.out.println("service " + user);
 		User adminLoginUser = userDAO.findLoginAdmin(user);
+		System.out.println("service " + adminLoginUser);
 		if (adminLoginUser != null && adminLoginUser.getIsMember() == CommonCode.USER_ISMEMBER_ADMIN) {
 			adminLoginUser.setIsMember(CommonCode.USER_ISMEMBER_ADMIN); // 이 부분 수정
 			System.out.println("service " + adminLoginUser);
@@ -95,5 +97,13 @@ public class UserServiceImpl implements UserService{
     public int updateUserInfo(User user) {
         return userDAO.updateUser(user);
     }
+
+	@Override
+	public User findUserById(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

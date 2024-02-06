@@ -34,7 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		*/
 		
 		if(loginManager.isLogin(request) == false) { //로그인 안되면
-			response.sendRedirect("/admin/login"); //redirect:경로
+			response.sendRedirect("/login"); //redirect:경로
 			return false; // 인터셉터에서 더이상 진행하지않도록 막음 
 		}
 		

@@ -1,6 +1,6 @@
 package com.cafeapp.common;
 
-public class CommonCode {
+public interface CommonCode {
    
    int USER_ISMEMBER_WITHDRAWAL = 0; //
    int USER_ISMEMBER_MEMBER = 1; //

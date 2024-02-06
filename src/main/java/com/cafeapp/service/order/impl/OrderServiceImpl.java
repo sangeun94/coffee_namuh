@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafeapp.dao.order.OrderDAO;
+import com.cafeapp.dto.order.Order;
 import com.cafeapp.dto.order.OrderDetail;
 import com.cafeapp.dto.order.OrderList;
 import com.cafeapp.dto.order.OrderSearchCondition;
@@ -35,6 +36,16 @@ public class OrderServiceImpl implements OrderService{
 		List<OrderDetail> orderDetailList = orderDAO.findOrderDetailByOrderNumber(orderNumber);
 		
 		return orderDetailList;
+	}
+
+	//주문상태 1로 변경
+	@Override
+	public int updateOrderStatus1(Order order) {
+		// TODO Auto-generated method stub
+		
+		int result = orderDAO.updateOrderStatus1(order);
+		
+		return result;
 	}
 	
 }

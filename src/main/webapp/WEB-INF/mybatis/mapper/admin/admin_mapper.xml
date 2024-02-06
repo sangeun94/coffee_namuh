@@ -37,6 +37,7 @@
 	                        END
 	    </if>
 	    AND is_member IN (0,1)
+	    ORDER BY user_number
 	</select>	
 
 	<!-- 각각 회원정보 나오게 하기  -->

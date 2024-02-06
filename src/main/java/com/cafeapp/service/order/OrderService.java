@@ -2,6 +2,7 @@ package com.cafeapp.service.order;
 
 import java.util.List;
 
+import com.cafeapp.dto.order.Order;
 import com.cafeapp.dto.order.OrderDetail;
 import com.cafeapp.dto.order.OrderList;
 import com.cafeapp.dto.order.OrderSearchCondition;
@@ -14,4 +15,7 @@ public interface OrderService {
 
 	//각각 주문상세
 	public List<OrderDetail> findOrderDetailByOrderNumber(int orderNumber);
+	
+	//주문상태1 로 변경
+	public int updateOrderStatus1(Order order);
 }

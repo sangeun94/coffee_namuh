@@ -56,9 +56,13 @@ var tb_admin_url = "";
     background-color: rgba(0,0,0,0.4); 
 	}
 	
+	#modalBody {
+		margin-top: 20px;
+	}
+	
 	.modal-content {
 	    background-color: #fefefe;
-	    margin: 15% 35%; 
+	    margin: 20% 35%; 
 	    padding: 20px;
 	    border: 1px solid #888;
 	    width: 40%; 
@@ -69,6 +73,7 @@ var tb_admin_url = "";
 	    float: right;
 	    font-size: 28px;
 	    font-weight: bold;
+	    margin-top: -13px;
 	}
 	
 	.close:hover,
@@ -177,7 +182,7 @@ var tb_admin_url = "";
 		<tr>
 			<th scope="row">결제방법</th>
 			<td>
-				<label><input type="radio" name="paymentMethod" value="" checked="checked"> 전체</label>
+				<label><input type="radio" name="paymentMethod" value="0" checked="checked"> 전체</label>
 				<label><input type="radio" name="paymentMethod" value="1"> 신용카드</label>
 				<label><input type="radio" name="paymentMethod" value="2"> 휴대폰결제</label>
 				<label><input type="radio" name="paymentMethod" value="3"> 무통장입금</label>
@@ -198,22 +203,10 @@ var tb_admin_url = "";
 	<strong class="ov_a">총주문액 : ${totalOrderAmount}원</strong>
 </div>
 
-<form name="forderlist" id="forderlist" method="post">
-
-
 <div class="tbl_head01">
 	<table id="sodr_list">
 	<colgroup>
-		<col class="w50">
-		<col class="w100">
-		<col class="w150">
-		<col class="w40">
-		<col class="w40">
-		<col class="w60">
-		<col class="w80">
-		<col class="w80">
-		<col class="w90">
-		<col class="w90">
+
 	</colgroup>
 	<thead>
 	<tr>
@@ -233,6 +226,8 @@ var tb_admin_url = "";
 	</thead>
 	<tbody>
 		<c:forEach var="orderItem" items="${orderList}">
+			<form action="/admin/modifyOrderStatus1" name="forderlist" id="forderlist" method="post">
+				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 			<tr class="list0">
 				<td>${orderItem.orderNumber}</td>
 				<td>
@@ -275,13 +270,13 @@ var tb_admin_url = "";
 				    </c:choose>
 				</td>
 				<td>
-					<button type="button" id="btn_modify" onclick="window.location.href='/admin/modifyAnnounce?announcementNumber=${announceItem.announcementNumber}'" class="btn_lsmall">발주확인</button>
+					<button type="submit" id="btn_modify" class="btn_lsmall">발주확인</button>
 				</td>
 			</tr>
+			</form>
 		</c:forEach>
 	</tbody>
 	</table>
-</form>
 
 </div>
 
@@ -296,7 +291,7 @@ var tb_admin_url = "";
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
 
-<!-- Modal Container -->
+<!-- Modal창 -->
 <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -308,6 +303,21 @@ var tb_admin_url = "";
         </div>
     </div>
 </div>
+
+<!-- 발주확인 메세지 -->
+<c:if test="${not empty successMessage}">
+<script>
+    alert('${successMessage}');
+</script>
+</c:if>
+
+<c:if test="${not empty errorMessage}">
+<script>
+    alert('${errorMessage}');
+</script>
+</c:if>
+
+
 
 <script src="/js/admin/admin.js"></script>
 
@@ -336,22 +346,18 @@ $(function() {
             data: { orderNumber: orderNumber }, // 요청 매개변수로 주문 번호 전달
             success: function(orderDetailList) {
                 // 모달 창의 내용을 업데이트하기 위한 HTML 초기화
-                var modalContent = '<table id="sodr_list">
-                					<tr>
-                					<th scope="col">주문번호</th>
-                					<th scope="col">주문상품</th>
-                					<th scope="col">수량</th>
-                					<th scope="col">총금액</th>
-                					</tr>';
-                
-                // orderDetailList를 반복하여 각 주문 상세 정보를 표에 추가
-                $.each(orderDetailList, function(index, orderDetail) {
-                    modalContent += '<tr>' +
-                                    '<td>' + orderDetail.orderNumber + '</td>' +
-                                    '<td>' + orderDetail.productName + '</td>' +
-                                    '<td>' + orderDetail.orderQuantity + '</td>' +
-                                    '<td>' + orderDetail.price + '</td>' +
-                                    '</tr>';
+                var modalContent = '<div class="tbl_head01"><table class="sodr_list"><colgroup>' +
+				                    '</colgroup><thead>' +
+				                    '<tr><th scope="col">주문번호</th><th scope="col">주문상품</th>' +
+				                    '<th scope="col">수량</th><th scope="col">총금액</th></tr></thead><tbody>';
+
+				$.each(orderDetailList, function(index, orderDetail) {
+				    modalContent += '<tr class="list0">' +
+				                    '<td>' + orderDetail.orderNumber + '</td>' +
+				                    '<td>' + orderDetail.productName + '</td>' +
+				                    '<td>' + orderDetail.orderQuantity + '</td>' +
+				                    '<td>' + orderDetail.price + '</td>' +
+				                    '</tr>';
                 });
                 
                 modalContent += '</table>'; // 테이블 닫기

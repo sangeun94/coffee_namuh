@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cafeapp.dto.order.Order;
 import com.cafeapp.dto.order.OrderDetail;
 import com.cafeapp.dto.order.OrderList;
 import com.cafeapp.dto.order.OrderSearchCondition;
@@ -50,6 +53,32 @@ public class AdminOrderController {
 		return orderDetailList;
 	}
 	
+	
+	// 발주확인 눌렀을때 배송준비중(1)로 수정
+	@PostMapping("/admin/modifyOrderStatus1")
+	public String modifyOrderStatus1(Order order, RedirectAttributes redirectAttributes) {
+	    System.out.println(order);
+	    
+	    int result = orderService.updateOrderStatus1(order);
+	    
+	    if (result > 0) {
+	        // 성공 시 메시지 설정
+	        redirectAttributes.addFlashAttribute("successMessage", "발주 확인되었습니다.");
+	        return "redirect:/admin/orderList";
+	    } else {
+	        // 실패 시 메시지 설정
+	        redirectAttributes.addFlashAttribute("errorMessage", "실패하셨습니다.");
+	        return "redirect:/admin/orderList"; // 실패 시에도 동일한 페이지로
+	    }
+	}
+	
+	
+	//배송준비 목록 및 검색
+	@RequestMapping("/admin/deliveryPrepare")
+	public String deliveryPrepare() {
+		
+		return "admin/adminDeliveryPrepare";
+	}
 	
 	
 	

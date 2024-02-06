@@ -139,8 +139,6 @@ var tb_admin_url = "";
 	</div>
 	</form>
 	
-	<input type="hidden" name="q1" value="code=qa">
-	<input type="hidden" name="page" value="1">
 	
 	<div class="local_ov mart30">
 		전체 : <b class="fc_red">${totalFeedback}</b> 건 조회

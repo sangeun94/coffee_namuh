@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="announce_mapper">
+
+	<!-- 공지사항 목록 -> 검색 기준에 따라서 조회 -->
+	<select id="findAnnouncementListBySearchCondition" resultType="Announcement" parameterType="AnnouncementSearchCondition">
+	    select * from announcement
+	    where 1 = 1
+	<if test="searchType == 'title' and searchKeyword != null and searchKeyword != ''">
+        AND title LIKE '%' || #{searchKeyword} || '%' 
+    </if>
+    <if test="searchType == 'content' and searchKeyword != null and searchKeyword != ''">
+        AND content LIKE '%' || #{searchKeyword} || '%'
+    </if>  
+    <if test="postDate != null and postDate != ''">
+        AND post_date >= #{postDate}
+    </if>
+		order by announcement_number
+	</select>
+	
+	
+	<!-- 공지사항 신규등록 -->
+	<insert id="saveAnnouncement" parameterType="Announcement">
+		INSERT INTO announcement (announcement_number, user_id, title, content, post_date, announcements_count)
+		VALUES (announcement_seq.NEXTVAL, 'admin', #{title}, #{content}, SYSDATE, 0)
+		<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{userId}로 변경! 지금은 걍 테스트... -->	
+	</insert>
+	
+	
+	<!-- 각각 공지사항 나오게 하기  -->
+	<select id="findAnnounceByAnnouncementNumber" resultType="Announcement" parameterType="int">
+		SELECT * FROM announcement
+		WHERE announcement_number = #{announcementNumber}
+	</select>
+	
+	
+	<!-- 공지사항 수정 -->
+	<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{userId}로 변경! 지금은 걍 테스트... -->
+	<update id="modifyAnnouncement" parameterType="Announcement">
+	    UPDATE announcement
+	    SET user_id = #{userId},
+	        title = #{title},
+	        content = #{content},
+	        post_date = SYSDATE 
+	    WHERE announcement_number = #{announcementNumber}
+	</update>
+	
+	
+	<!-- 공지사항 삭제  -->
+	<delete id="removeAnnouncement" parameterType="int">
+		DELETE FROM announcement
+		WHERE announcement_number = #{announcementNumber}
+	</delete>
+	
+	
+</mapper>

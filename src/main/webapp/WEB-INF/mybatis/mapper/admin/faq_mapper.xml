@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="faq_mapper">
+
+	<!-- FAQ 목록 -> 검색 기준에 따라서 조회 -->
+	<select id="findFaqListBySearchCondition" resultType="Faq" parameterType="FaqSearchCondition">
+	    select * from faq
+	    where 1 = 1
+		<if test="searchType == 'question' and searchKeyword != null and searchKeyword != ''">
+	        AND question LIKE '%' || #{searchKeyword} || '%' 
+	    </if>
+	    <if test="searchType == 'answer' and searchKeyword != null and searchKeyword != ''">
+	        AND answer LIKE '%' || #{searchKeyword} || '%'
+	    </if>  
+	    <if test="postDate != null and postDate != ''">
+	        AND post_date >= #{postDate}
+	    </if>
+			order by faq_number
+	</select>
+	
+	<!-- FAQ 신규등록 -->
+	<insert id="saveFaq" parameterType="Faq">
+		INSERT INTO faq (faq_number, user_id, question, answer, post_date, faqs_count)
+		VALUES (faq_seq.NEXTVAL, 'admin', #{question}, #{answer}, SYSDATE, 0)
+		<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{userId}로 변경! 지금은 걍 테스트... -->	
+	</insert>
+	
+	
+	<!-- 각각 FAQ 나오게 하기  -->
+	<select id="findFaqByFaqNumber" resultType="Faq" parameterType="int">
+		SELECT * FROM faq
+		WHERE faq_number = #{faqNumber}
+	</select>
+	
+	<!-- FAQ 수정 -->
+	<!-- 로그인 생기면 세션으로 연결하고 'admin'을 #{userId}로 변경! 지금은 걍 테스트... -->
+	<update id="modifyFaq" parameterType="Faq">
+	    UPDATE faq
+	    SET user_id = #{userId},
+	        question = #{question},
+	        answer = #{answer},
+	        post_date = SYSDATE 
+	    WHERE faq_number = #{faqNumber}
+	</update>
+	
+	
+	<!-- FAQ 삭제  -->
+	<delete id="removeFaq" parameterType="int">
+		DELETE FROM faq
+		WHERE faq_number = #{faqNumber}
+	</delete>
+	
+</mapper>

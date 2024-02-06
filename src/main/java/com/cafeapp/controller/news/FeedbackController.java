@@ -64,7 +64,7 @@ public class FeedbackController {
 	@PostMapping("/boardUpdate")
 	public String boardUpdate2(@ModelAttribute Feedback feedback) {
 		feedbackService.update(feedback);
-		return "redirect:/detail"+ feedback.getFeedbacknumber();
+		return "redirect:/detail"+ feedback.getFeedbackNumber();
 	}
 	
 	

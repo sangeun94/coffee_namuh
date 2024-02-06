@@ -51,7 +51,7 @@ ul {
 
 }
 
-b {
+.b {
     color: #ffffff;
 }
 
@@ -60,7 +60,7 @@ b {
     padding: 0 15px;
 }
 
-.footer-col h4 {
+.footer-col .h4 {
     font-size: 18px;
     color: #ffffff;
     text-transform: capitalize;

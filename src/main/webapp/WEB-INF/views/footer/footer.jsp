@@ -23,7 +23,7 @@
                     <div class="footer-col-info">
                         <img class="footer-logo" src="../../images/menu_drink/Coffee Namuh NONEBG_white_logo.png">
                         <ul>
-                            <li class="li-row"><b>주식회사 커피나무</b></li>
+                            <li class="li-row"><b class="b">주식회사 커피나무</b></li>
                             <li class="li-row">대표자 오승헌</li>
                             <li class="li-row">대표전화 1566-9564</li>
                             <li class="li-row">FAX 041-561-1126</li>
@@ -33,7 +33,7 @@
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>나무 스토리</h4>
+                        <h4 class="h4">나무 스토리</h4>
                         <ul>
                             <li><a href="#">브랜드</a></li>
                             <li><a href="#">BI</a></li>
@@ -41,20 +41,20 @@
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>메뉴소개</h4>
+                        <h4 class="h4">메뉴소개</h4>
                         <ul>
                             <li><a href="#">음료</a></li>
                             <li><a href="#">푸드</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>스토어</h4>
+                        <h4 class="h4">스토어</h4>
                         <ul>
                             <li><a href="#">상품</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>나무소식</h4>
+                        <h4 class="h4">나무소식</h4>
                         <ul>
                             <li><a href="#">공지사항</a></li>
                             <li><a href="#">FAQ</a></li>

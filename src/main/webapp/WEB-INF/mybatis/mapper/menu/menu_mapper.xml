@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 				
-<mapper namespace="menu_drink_mapper">
-	
+<mapper namespace="menu_mapper">
+	<select id="ShowMenuList" resultType="com.cafeapp.dto.menu.Menu">
+		SELECT * FROM MENU ORDER BY MENU_NUMBER
+	</select>
 </mapper>

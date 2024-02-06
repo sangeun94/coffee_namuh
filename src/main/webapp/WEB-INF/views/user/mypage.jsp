@@ -166,17 +166,24 @@ body {
 		</div>
 		
 		</form>
-		<div class="modal">
+		
+    <button class="btn-open-modal">회원정보 수정하기</button>
+    
+	</div>
+	
+	<div class="modal">
         <div class="modal_body">
             <h2>회원정보 수정</h2>
             <form id="updateForm" method="post" action="">
-            <label for="userName">이름:</label>
+            
+            <label>이름:</label>
             <input type="text" id="userName" name="userName">
-            <label for="userPassword">비밀번호:</label>
+            
+            <label>비밀번호:</label>
             <input type="password" id="userPassword" name="userPassword">
              <div id="pwCheckResult"></div>
            
-            <label for="userConfirmpassword">비밀번호 확인:</label>
+            <label>비밀번호 확인:</label>
             <input type="password" id="userConfirmPassword" name="userConfirmPassword">
            	 <div id="pwConfirmCheckResult"></div>
             <label for="userEmail">이메일:</label>
@@ -184,28 +191,25 @@ body {
             <div id="emailCheckResult"></div>
             
             <div class="address-inputs">
-                <label for="userZipcode">우편번호:</label>
-                <input type="text" id="userModalZipcode" name="userModalZipcode">
+                <label>우편번호:</label>
+                <input type="text" id="userUpdateZipcode" name="userUpdateZipcode">
                 <input type="button" value="우편번호검색" id="btn">
                 
 
-                <label for="userAddress">주소:</label>
-                <input type="text" id="userModalAddress" name="userModalAddress">
+                <label>주소:</label>
+                <input type="text" id="userUpdateAddress" name="userUpdateAddress">
                 
                
                 <label for="userDetailAddress">상세주소:</label>
-                <input type="text" id="userModalDetailAddress" name="userModalDetailAddress">
+                <input type="text" id="userUpdateDetailAddress" name="userUpdateDetailAddress">
                 		
             </div>
             
             <button type="submit">수정하기</button>
         </form>
+        <button onclick="modalUpdateUser.style.display='none'">취소</button>
         </div>
     </div>
-    <button class="btn-open-modal">회원정보 수정하기</button>
-    
-	</div>
-
 	
 
 
@@ -236,9 +240,9 @@ body {
 
                         fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '')
                     }
-                    document.getElementById('userModalZipcode').value = data.zonecode;
-                    document.getElementById('userModalAddress').value = fullAddr;
-                    document.getElementById('userModalDetailAddress').focus();
+                    document.getElementById('userUpdateZipcode').value = data.zonecode;
+                    document.getElementById('userUpdateAddress').value = fullAddr;
+                    document.getElementById('userUpdateDetailAddress').focus();
                 }
             }).open();
         });
@@ -253,6 +257,15 @@ body {
             modal.style.display="flex";
         });
     </script>
-
+	
+	<script>
+	    const btnOpenUpdateModal = document.querySelector('#btnOpenUpdateModal');
+	    const modalUpdateUser = document.querySelector('.modal-update-user');
+	
+	    btnOpenUpdateModal.addEventListener('click', () => {
+	        modalUpdateUser.style.display = 'flex';
+	    });
+	</script>
+	
 </body>
 </html>

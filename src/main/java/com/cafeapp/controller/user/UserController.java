@@ -230,23 +230,37 @@ public class UserController {
     }
     
 
+    
     @PostMapping("/updateUser")
-    public String updateUserInfo(User user, Model model) {
-        int result = userService.updateUserInfo(user);
+    public String updateUserInfo(@ModelAttribute("user") User updatedUser, HttpServletRequest request, Model model) {
+        User loginUser = (User) sessionManager.getSession(request);
+
+        if (loginUser == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+            return "redirect:/login";
+        }
+
+        // 기존 사용자 정보와 업데이트된 사용자 정보를 병합
+        loginUser.setUserName(updatedUser.getUserName());
+        loginUser.setUserPassword(updatedUser.getUserPassword());
+        loginUser.setUserEmail(updatedUser.getUserEmail());
+        // 나머지 필드도 필요한 대로 업데이트
+
+        // 업데이트된 사용자 정보를 서비스를 통해 저장
+        int result = userService.updateUserInfo(loginUser);
 
         if (result > 0) {
             // 업데이트 성공 시 처리
             model.addAttribute("updateSuccess", true);
-            return "user/mypage";
         } else {
             // 업데이트 실패 시 처리
             model.addAttribute("updateFailed", true);
-            return "user/login";
         }
 
-        
+        // MyPage 뷰에 사용자 정보 전달
+        model.addAttribute("user", loginUser);
+        return "user/mypage";
     }
-
 
 
     

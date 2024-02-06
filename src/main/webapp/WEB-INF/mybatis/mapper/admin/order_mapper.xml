@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="order_mapper">
+
+	<!-- 주문리스트 조회 및 검색 -->
+	<select id="findOrderListBySearchCondition" resultType="OrderList" parameterType="OrderSearchCondition">
+	    SELECT 
+	        o.order_number,
+	        o.order_date,
+	        p.product_name,
+	        od.order_quantity,
+	        o.shipping_fee,
+	        o.order_status,
+	        u.user_name AS orderer_name,
+	        o.total_price,
+	        pm.payment_method
+	    FROM 
+	        orders o
+	        INNER JOIN order_detail od ON o.order_number = od.order_number
+	        INNER JOIN product p ON od.product_number = p.product_number
+	        INNER JOIN payment pm ON o.order_number = pm.order_number
+	        INNER JOIN users u ON o.user_id = u.user_id
+	    WHERE 
+	        o.order_status = 0 
+	        <if test="searchType == 'orderNumber' and searchKeyword != null and searchKeyword != ''">
+	            AND o.order_number = #{searchKeyword}
+	        </if>
+	        <if test="searchType == 'productName' and searchKeyword != null and searchKeyword != ''">
+	            AND p.product_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="searchType == 'userName' and searchKeyword != null and searchKeyword != ''">
+	            AND u.user_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="orderDateStart != null and orderDateStart != '' and orderDateEnd != null and orderDateEnd != ''">
+			    AND o.order_date BETWEEN #{orderDateStart} AND #{orderDateEnd}
+			</if>
+	        <if test="searchType == 'paymentMethod' and searchKeyword != null and searchKeyword != ''">
+	            AND pm.payment_method LIKE '%' || #{searchKeyword} || '%'
+
+	        </if>
+	</select>
+		
+</mapper>

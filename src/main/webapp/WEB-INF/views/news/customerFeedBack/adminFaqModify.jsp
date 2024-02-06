@@ -1,0 +1,176 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <!-- jstl 쓸때!! -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>관리자 페이지</title>
+<link type="text/css" href="/css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/basic.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/button.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin/admin.css">
+<link rel="stylesheet" href="/css/admin/jquery-ui.css">
+
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<link rel="shortcut icon" href="" type="image/x-icon">
+
+
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var tb_url		 = "";
+var tb_bbs_url	 = "";
+var tb_shop_url  = "";
+var tb_admin_url = "";
+</script>
+
+<!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
+<script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/categorylist.js"></script>
+
+</head>
+<body>
+
+<header id="hd">
+	<div id="hd_wrap">
+		<h1>행복을 주는 쇼핑몰!</h1>
+		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="tnb">
+			<ul>
+				<li><a href="">관리자정보</a></li>
+				<li><a href="">관리자홈</a></li>
+				<li><a href="" target="_blank">쇼핑몰</a></li>
+				<li id="tnb_logout"><a href="">로그아웃</a></li>
+			</ul>
+		</div>
+
+		<nav id="gnb">
+			<h2>관리자 주메뉴</h2>
+			<ul id="gnb_1dul">
+				<li class="gnb_1dli">
+					<a href="" class="gnb_1da">회원관리</a>
+				</li>
+				
+				<li class="gnb_1dli">
+					<a href="" class="gnb_1da">상품관리</a>
+				</li>
+				<li class="gnb_1dli">
+					<a href="" class="gnb_1da">주문관리</a>
+				</li>
+				
+				<li class="gnb_1dli active">
+					<a href="" class="gnb_1da">고객지원</a>
+				</li>
+				
+				<li class="gnb_1dli">
+					<a href="" class="gnb_1da">마이페이지</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<div id="wrapper">
+	
+<div id="snb">
+	<div class="snb_header ico_config">
+		<ion-icon name="accessibility-outline" class="announcement_outline"></ion-icon><h2>고객지원</h2>
+	</div>
+		<dl>
+		<dt class="h10 menu_toggle">고객지원</dt>		
+        <dd class="h10"><a href="">1:1 상담문의</a></dd>	    		
+        <dt class="h20 menu_toggle">기타 관리</dt>			
+        <dd class="h20"><a href="/admin/announcement">공지사항 관리</a></dd>        
+        <dd class="h20 active"><a href="">FAQ 관리</a></dd>	
+        </dl>
+	</div>
+	<div id="content">
+		<div class="breadcrumb">
+			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 고객지원 
+            <ion-icon name="chevron-forward-outline"></ion-icon> FAQ 관리		
+        </div>
+	
+<div class="s_wrap">
+	<h1>FAQ 수정</h1>
+
+<form action="/admin/modifyFaq" method="post"  name="faqForm" onsubmit="return validateForm()">
+	<input type="hidden" name="faqNumber" value="${faq.faqNumber}">
+	<input type="hidden" name="userId" value="${faq.userId}">
+	<input type="hidden" name="postDate" value="${faq.postDate}">
+
+<div class="tbl_frm02">
+	<table>
+	<colgroup>
+		<col class="w140">
+		<col>
+	</colgroup>
+	<tbody>
+
+	<tr>
+		<th scope="row">질문</th>
+		<td>
+			<input type="text" name="question" value="${faq.question}" required itemname="제목" class="frm_input required" size="60">
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">답변</th>
+		<td>
+			<textarea id="memo" name="answer">${faq.answer}</textarea>		
+		</td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+
+<div class="btn_confirm">
+	<button type="submit" class="btn_large"> 수정 </button>
+	<a href="/admin/faq" class="btn_large bx-white">목록</a>
+</div>
+</form>
+
+</div>
+
+</div>
+</div>
+<div id="ft">
+	<p>Copyright &copy; coffee namuh. All rights reserved.</p>
+</div>
+
+
+<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
+<div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+
+<script src="/js/admin/admin.js"></script>
+
+<script src="/js/admin/wrest.js"></script>
+
+<script>
+// 폼 제출 핸들러
+function validateForm() {
+    var question = document.forms["faqForm"]["question"].value;
+    var answer = document.forms["faqForm"]["answer"].value;
+    
+    if (question == null || question.trim() == "") {
+        alert("제목을 입력해주세요.");
+        return false; // 폼 제출을 방지
+    }
+    
+    if (answer == null || answer.trim() == "") {
+        alert("내용을 입력해주세요.");
+        return false; // 폼 제출을 방지
+    }
+    
+    return true; // 유효성 검사 통과, 폼 제출 진행
+}
+</script>
+
+</body>
+</html>

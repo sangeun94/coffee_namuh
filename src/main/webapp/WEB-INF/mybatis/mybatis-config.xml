@@ -5,10 +5,31 @@
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />		
 	</settings>
-	
+
 	<typeAliases>
 		<typeAlias type="com.cafeapp.dto.user.User" alias="User" />
+		<typeAlias type="com.cafeapp.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
+		
+		<typeAlias type="com.cafeapp.dto.board.Announcement" alias="Announcement" />
+		<typeAlias type="com.cafeapp.dto.board.AnnouncementSearchCondition" alias="AnnouncementSearchCondition" />
+		
+		<typeAlias type="com.cafeapp.dto.board.Faq" alias="Faq" />
+		<typeAlias type="com.cafeapp.dto.board.FaqSearchCondition" alias="FaqSearchCondition" />
+		
+		<typeAlias type="com.cafeapp.dto.feedback.Feedback" alias="Feedback" />
+		<typeAlias type="com.cafeapp.dto.feedback.FeedbackSearchCondition" alias="FeedbackSearchCondition" />
+		
+		<typeAlias type="com.cafeapp.dto.feedback.Response" alias="Response" />
+		<typeAlias type="com.cafeapp.dto.feedback.ResponseWithFeedback" alias="ResponseWithFeedback" />
+	
+		<typeAlias type="com.cafeapp.dto.order.OrderList" alias="OrderList" />
+		<typeAlias type="com.cafeapp.dto.order.OrderSearchCondition" alias="OrderSearchCondition" />
+	
+		<!--  -->
+		<typeAlias type="com.cafeapp.dto.user.User" alias="User" />
+
 		<typeAlias type="com.cafeapp.dto.feedback.Feedback" alias="Feedback"/>
+		
 		<typeAlias type="com.cafeapp.dto.menu.Menu" alias="Menu"/>
 	</typeAliases>
 	

@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>관리자 페이지</title>
+<link type="text/css" href="/src/main/webapp/resources/css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/src/main/webapp/resources/css/admin/basic.css" rel="stylesheet">
+<link type="text/css" href="/src/main/webapp/resources/css/admin/button.css" rel="stylesheet">
+<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/admin.css">
+<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/jquery-ui.css">
+
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<link rel="shortcut icon" href="" type="image/x-icon">
+
+
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var tb_url		 = "";
+var tb_bbs_url	 = "";
+var tb_shop_url  = "";
+var tb_admin_url = "";
+</script>
+
+<script src="/src/main/webapp/resources/js/admin/jquery-1.8.3.min.js"></script>
+<script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
+<script src="/src/main/webapp/resources/js/admin/common.js"></script>
+<script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+</head>
+<body>
+
+<header id="hd">
+	<div id="hd_wrap">
+		<h1>행복을 주는 쇼핑몰!</h1>
+		<div id="logo"><a href="http://demofran.com/admin/"><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="tnb">
+			<ul>
+				<li><a href="http://demofran.com/admin/config.php?code=super">관리자정보</a></li>
+				<li><a href="http://demofran.com/admin/">관리자홈</a></li>
+				<li><a href="http://demofran.com" target="_blank">쇼핑몰</a></li>
+				<li id="tnb_logout"><a href="http://demofran.com/bbs/logout.php">로그아웃</a></li>
+			</ul>
+		</div>
+
+		<nav id="gnb">
+			<h2>관리자 주메뉴</h2>
+			<ul id="gnb_1dul">
+				<li class="gnb_1dli">
+					<a href="http://demofran.com/admin/member.php?code=list" class="gnb_1da">회원관리</a>
+				</li>
+				
+				<li class="gnb_1dli active">
+					<a href="http://demofran.com/admin/goods.php?code=list" class="gnb_1da">상품관리</a>
+				</li>
+				<li class="gnb_1dli">
+					<a href="http://demofran.com/admin/order.php?code=list" class="gnb_1da">주문관리</a>
+				</li>
+				
+				<li class="gnb_1dli">
+					<a href="http://demofran.com/admin/help.php?code=qa" class="gnb_1da">고객지원</a>
+				</li>
+				
+				<li class="gnb_1dli">
+					<a href="http://demofran.com/admin/config.php?code=default" class="gnb_1da">마이페이지</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<div id="wrapper">
+	
+<div id="snb">
+	<div class="snb_header ico_config">
+		<ion-icon name="bag-handle-outline" class="bag_handle"></ion-icon><h2>상품관리</h2>
+	</div>
+		<dl>
+		<dt class="g10 menu_toggle">상품관리</dt>		
+        <dd class="g10"><a href="http://demofran.com/admin/goods.php?code=list">음료 관리</a></dd>				
+        <dd class="g10 active"><a href="http://demofran.com/admin/goods.php?code=userlist">푸드 관리</a></dd>		
+        <dd class="g10"><a href="http://demofran.com/admin/goods.php?code=type">상품 관리</a></dd>		
+        <dd class="g10"><a href="http://demofran.com/admin/goods.php?code=brand_list">전체 매출액</a></dd>		
+        </dl>
+	</div>
+	<div id="content">
+		<div class="breadcrumb">
+			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 상품관리 
+            <ion-icon name="chevron-forward-outline"></ion-icon> 푸드관리		
+        </div>	
+<div class="s_wrap">
+	<h1>푸드 정보수정</h1>
+	
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
+<script>
+jQuery(function($){
+    $.datepicker.regional["ko"] = {
+        closeText: "닫기",
+        prevText: "이전달",
+        nextText: "다음달",
+        currentText: "오늘",
+        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
+        monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
+        dayNames: ["일","월","화","수","목","금","토"],
+        dayNamesShort: ["일","월","화","수","목","금","토"],
+        dayNamesMin: ["일","월","화","수","목","금","토"],
+        weekHeader: "Wk",
+        dateFormat: "yymmdd",
+        firstDay: 0,
+        isRTL: false,
+        showMonthAfterYear: true,
+        yearSuffix: ""
+    };
+	$.datepicker.setDefaults($.datepicker.regional["ko"]);
+});
+</script>
+<script src="http://demofran.com/js/categoryform.js?ver=20240129211324"></script>
+
+<form name="fregform" method="post" onsubmit="return fregform_submit(this)" enctype="MULTIPART/FORM-DATA">
+<input type="hidden" name="w" value="u">
+<input type="hidden" name="gs_id" value="21">
+<input type="hidden" name="q1" value="">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="bak" value="list">
+<input type="hidden" name="ca_id" value="">
+<input type="hidden" name="ca_id2" value="">
+<input type="hidden" name="ca_id3" value="">
+
+
+<h2>푸드정보</h2>
+
+<div class="tbl_frm02">
+	<table>
+	<colgroup>
+		<col class="w180">
+		<col>
+	</colgroup>
+	<tbody>
+	<tr>
+		<th scope="row">업체코드</th>
+		<td>
+			<input type="text" name="mb_id" value="AP-100001" id="mb_id" required itemname="업체코드" class="required frm_input">
+			<a href="./supply.php" onclick="win_open(this,'pop_supply','550','500','no');return false" class="btn_small">업체선택</a>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">상품코드</th>
+		<td>
+			<input type="text" name="gcode" value="1516934487" required itemname="상품코드" class="required frm_input" readonly style='background-color:#ddd;'>
+			<a href="http://demofran.com/shop/view.php?index_no=21" target="_blank" class="btn_small">미리보기</a>		</td>
+	</tr>
+	<tr>
+		<th scope="row">상품명</th>
+		<td><input type="text" name="gname" value="[루이까또즈] 우븐 숄 머플러 인디라 와인 SA-2HW362WI" required itemname="상품명" class="required frm_input" size="80"></td>
+	</tr>
+	<tr>
+		<th scope="row">짧은설명</th>
+		<td><input type="text" name="explan" value="루이까또즈의 브랜드 아이덴티티 이지적 우아함은 문화와 지성을 겸비한 균형 잡힌 아르다움을 의미합니다. 루이 14세 시대 가장 번성했던 프랑스 문화와 장인정신을 담아 마치 하나의 예술품을 만들듯 탄생한 제품은 루이까또즈의 모든 뮤즈에게 시대를 초월하는 품격과 우아함을 선사합니다.-세련된 컬러감으로 다양한 룩에 포인트로 활용하실 수 있습니다.-연령과 계절에 관계없이 폭넓게 찰용가능한 실용적인 제품■사이즈-가로:50cm x 세로:200cm■소재-아" class="frm_input" size="80"></td>
+	</tr>
+	<tr>
+		<th scope="row">검색키워드</th>
+		<td>
+			<input type="text" name="keywords" value="" class="frm_input wfull">
+			<span class="frm_info fc_125">단어와 단어 사이는 콤마 ( , ) 로 구분하여 여러개를 입력할 수 있습니다. 예시) 빨강, 노랑, 파랑</span>		</td>
+	</tr>
+	<tr>
+		<th scope="row">브랜드</th>
+		<td>
+			<select name="brand_uid">
+				<option value="">선택</option>
+				<option value="37">PREMIUM</option>
+<option value="32">SK매직</option>
+<option value="25" selected="selected">WMF</option>
+<option value="36">로얄네이쳐</option>
+<option value="34">삼성</option>
+<option value="7">스위스밀리터리</option>
+<option value="6">스위스알파인클럽</option>
+<option value="33">신일</option>
+<option value="35">쌤소나이트</option>
+<option value="8">탠디</option>
+<option value="9">테팔</option>
+<option value="38">필립스</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">모델명</th>
+		<td><input type="text" name="model" value="SA-2HW362WI" class="frm_input"></td>
+	</tr>
+	<tr>
+		<th scope="row">생산국(원산지)</th>
+		<td><input type="text" name="origin" value="한국" class="frm_input"></td>
+	</tr>
+	<tr>
+		<th scope="row">제조사</th>
+		<td><input type="text" name="maker" value="(주)나경SA" class="frm_input"></td>
+	</tr>
+	<tr>
+		<th scope="row">과세설정</th>
+		<td class="td_label">
+			<label><input type="radio" name="notax" value="1" checked="checked"> 과세</label>
+			<label><input type="radio" name="notax" value="0"> 면세</label>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">판매여부</th>
+		<td class="td_label">
+			<label><input type="radio" name="isopen" value="1" checked="checked"> 진열</label>
+			<label><input type="radio" name="isopen" value="2"> 품절</label>
+			<label><input type="radio" name="isopen" value="3"> 단종</label>
+			<label><input type="radio" name="isopen" value="4"> 중지</label>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">네이버쇼핑 상품ID</th>
+		<td>
+			<input type="text" name="ec_mall_pid" value="" id="ec_mall_pid" class="frm_input">
+			<span class="frm_info fc_125">네이버쇼핑에 입점한 경우 네이버쇼핑 상품ID를 입력하시면 네이버페이와 연동됩니다.<br>일부 쇼핑몰의 경우 네이버쇼핑 상품ID 대신 쇼핑몰 상품ID를 입력해야 하는 경우가 있습니다.<br>네이버페이 연동과정에서 이 부분에 대한 안내가 이뤄지니 안내받은 대로 값을 입력하시면 됩니다.</span>		</td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+</section>
+
+<div class="btn_confirm">
+    <input type="submit" value="저장" class="btn_large" accesskey="s">
+<a href="./goods.php?code=list&page=1" class="btn_large bx-white">목록</a><a href="./goods.php?code=form" class="btn_large bx-red">추가</a>
+</div>
+
+
+<script>
+function fregform_submit(f) {
+	var multi_caid = new Array();
+	var new_caid = "";
+
+	$("select#sel_ca_id option").each(function() {
+        new_caid = $(this).val();
+        if(new_caid == "")
+            return true;
+
+        multi_caid.push(new_caid);
+    });
+
+    if(multi_caid.length > 0) {
+		$("input[name=ca_id]").val(multi_caid[0]);
+		$("input[name=ca_id2]").val(multi_caid[1]);
+		$("input[name=ca_id3]").val(multi_caid[2]);
+	}
+
+	if(!f.ca_id.value) {
+        alert("카테고리를 하나이상 선택하세요.");
+        return false;
+    }
+
+	var sel_count = $("select#sel_ca_id option").size();
+	if(sel_count > 3) {
+		alert('카테고리는 최대 3개까지만 등록 가능합니다.');
+		return false;
+	}
+
+	var item = new Array();
+    var re_item = gs_id = "";
+
+    $("#reg_relation input[name='re_gs_id[]']").each(function() {
+        gs_id = $(this).val();
+        if(gs_id == "")
+            return true;
+
+        item.push(gs_id);
+    });
+
+    if(item.length > 0)
+        re_item = item.join();
+
+    $("input[name=gs_list]").val(re_item);
+
+	var memo_editor_data = oEditors.getById['memo'].getIR();
+oEditors.getById['memo'].exec('UPDATE_CONTENTS_FIELD', []);
+if(jQuery.inArray(document.getElementById('memo').value.toLowerCase().replace(/^\s*|\s*$/g, ''), ['&nbsp;','<p>&nbsp;</p>','<p><br></p>','<div><br></div>','<p></p>','<br>','']) != -1){document.getElementById('memo').value='';}
+
+	f.action = "./goods/goods_form_update.php";
+    return true;
+}
+
+
+function chk_ppay_dan(no, index){
+	$.post(
+		tb_admin_url+"/goods/goods_form_auto.php",
+		{ "no": no, "index": index },
+		function(data) {
+			$("#chk_ppay_auto").empty().html(data);
+		}
+	);
+}
+</script>
+
+<script>
+chk_sc_type("1");
+chk_simg_type("0");
+chk_stock("0");
+chk_ppay_type("0");
+</script>
+</div>
+
+</div>
+</div>
+<div id="ft">
+	<p>Copyright &copy; coffee namuh. All rights reserved.</p>
+</div>
+
+
+<div id="ajax-loading"><img src="/src/main/webapp/resources/image/admin/ajax-loader.gif"></div>
+<div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+
+<script src="/src/main/webapp/resources/js/admin/admin.js"></script>
+
+<script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+</body>
+</html>

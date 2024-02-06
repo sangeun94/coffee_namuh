@@ -50,9 +50,6 @@ public class UserDAOImpl implements UserDAO{
 		return result;
 	}
 
-	@Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
-
     @Override
     public User findLoginUser(User user) {
     	user = sqlSessionTemplate.selectOne("user_mapper.findLoginUser", user);

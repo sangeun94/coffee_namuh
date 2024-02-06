@@ -99,28 +99,26 @@ public class FeedbackDAOImpl implements FeedbackDAO{
 	}
 
 	// 현우
-	@Autowired
-	SqlSession sqlSession;
 	
 	public List<Feedback> boardList(){
-		List<Feedback> fblist = sqlSession.selectList("customerfeedback.boardList");
+		List<Feedback> fblist = sqlSessionTemplate.selectList("customerfeedback.boardList");
 		return fblist;
 	}
 	
 	public void write(Feedback feedback) {
-		sqlSession.insert("customerfeedback.write", feedback);
+		sqlSessionTemplate.insert("customerfeedback.write", feedback);
 	}
 	
 	public Feedback boardDetail(Integer feedbacknumber) {
-		return sqlSession.selectOne("customerfeedback.boardDetail",feedbacknumber);
+		return sqlSessionTemplate.selectOne("customerfeedback.boardDetail",feedbacknumber);
 	}
 	
 	public int delete(Integer feedbacknumber) {
-		return sqlSession.update("customerfeedback.boardDelete", feedbacknumber);
+		return sqlSessionTemplate.update("customerfeedback.boardDelete", feedbacknumber);
 	}
 	
 	public int update(Feedback feedback) {
-		return sqlSession.update("customerfeedback.boardUpdate", feedback);
+		return sqlSessionTemplate.update("customerfeedback.boardUpdate", feedback);
 	}
 	
 //	public String getCategory(int sb_cate) { //게시판 카테고리

@@ -11,20 +11,20 @@
 
 	<insert id="write" parameterType="Feedback">
 		INSERT INTO customer_feedback (feedbark_number,title, content, user_id,sb_cate)
-		VALUES (#{feedbacknumber}, #{title}, #{content}, #{userid},#{sb_cate})
+		VALUES (#{feedbackNumber}, #{title}, #{content}, #{userId},#{sb_cate})
 	</insert>
 	
 	<!-- MybatisConfig -->
 	<select id="boardDetail" parameterType="Integer" resultType="Feedback">
-		SELECT feedback_number, title, content, feedback_date, feedback_count, user_id FROM customer_feedback WHERE feedback_number=#{feedbacknumber}
+		SELECT feedback_number, title, content, feedback_date, feedback_count, user_id FROM customer_feedback WHERE feedback_number=#{feedbackNumber}
 	</select>
 	
 	<delete id="boardDelete"  parameterType="Integer">
-		DELETE FROM customer_feedback WHERE feedback_number=#{feedbacknumber}
+		DELETE FROM customer_feedback WHERE feedback_number=#{feedbackNumber}
 	</delete>
 	
 	<update id="boardUpdate" parameterType="Feedback">
-		UPDATE customer_feedback SET title=#{title}, content=#{content} WHERE feedback_number=#{feedbacknumber}
+		UPDATE customer_feedback SET title=#{title}, content=#{content} WHERE feedback_number=#{feedbackNumber}
 	</update>
 	
 </mapper>

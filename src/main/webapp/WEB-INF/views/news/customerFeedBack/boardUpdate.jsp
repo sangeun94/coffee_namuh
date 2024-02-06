@@ -10,7 +10,7 @@
 	<form action="boardUpdate" method="post">
 	<input type="text" name="title" value="${update.title }">
 	<textarea rows="" cols="" name="content">${update.content}</textarea>
-	<input type="hidden" name="userid" value="${update.userid}">
+	<input type="hidden" name="userid" value="${update.userId}">
 	<button>글수정하기</button>
 	</form>
 </body>

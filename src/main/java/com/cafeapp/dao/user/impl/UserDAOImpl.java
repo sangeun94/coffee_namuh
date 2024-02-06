@@ -50,6 +50,8 @@ public class UserDAOImpl implements UserDAO{
 		return result;
 	}
 
+	
+	//태현
     @Override
     public User findLoginUser(User user) {
     	user = sqlSessionTemplate.selectOne("user_mapper.findLoginUser", user);
@@ -67,7 +69,7 @@ public class UserDAOImpl implements UserDAO{
 	    return user;
 	}
 
-// 태현
+
     @Override
     public int saveUser(User user) {
         return sqlSessionTemplate.insert("user_mapper.saveUser", user);

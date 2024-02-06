@@ -1,4 +1,4 @@
-package com.cafeapp.controller;
+package com.cafeapp.controller.menu;
 
 import java.util.List;
 

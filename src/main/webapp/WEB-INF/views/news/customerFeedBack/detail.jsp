@@ -18,13 +18,13 @@
  <br>
  <br>
  
-${feedback.feedbacknumber}<br>
-${feedback.title}<button onclick="location.href='/boardDelete/${feedback.feedbacknumber}'">삭제</button>
-				<button onclick="location.href='/boardDelete/${feedback.feedbacknumber}'">수정</button><br> 
+${feedback.feedbackNumber}<br>
+${feedback.title}<button onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
+				<button onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">수정</button><br> 
 ${feedback.content}<br>
-${feedback.feedbackdate}<br>
-${feedback.feedbackcount}<br>
-${feedback.userid}<br>
+${feedback.feedbackDate}<br>
+${feedback.feedbackCount}<br>
+${feedback.userId}<br>
 <a href="/board/1">게시판으로</a><br>
 <a href="/boardWrite">글쓰기</a>
 

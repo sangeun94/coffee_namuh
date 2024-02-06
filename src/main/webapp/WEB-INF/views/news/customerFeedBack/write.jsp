@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/newsCss/NewsCss.css" rel="stylesheet" type="text/css">
+<link href="/css/news.css" rel="stylesheet" type="text/css">
 <style>
   textarea{
                    width:500px; 
@@ -119,6 +119,7 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
 		document.getElementById("writeButton").addEventListener("click",
 				function() {

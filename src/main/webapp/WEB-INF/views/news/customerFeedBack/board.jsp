@@ -137,11 +137,10 @@
             </div>
             </td>
             <td class="board_pc">${list.userId}</td>
-            <td class="board_pc"><fmt:formatDate value="${list.feedbackDate}" pattern="yyyy-MM-dd" /></td>
+            <td class="board_pc">${list.feedbackDate}</td>
             <td class="board_pc">${list.feedbackCount}</td>
         </tr>
     </c:forEach>
-    <tr>
 							
 </tbody>
 							</table>
@@ -163,7 +162,7 @@
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
     document.getElementById("writeButton").addEventListener("click", function() {
-        location.href = "write";
+        location.href = "/boardWrite";
     });
 </script>
 </body>

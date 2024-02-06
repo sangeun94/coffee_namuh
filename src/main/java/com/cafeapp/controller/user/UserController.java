@@ -67,7 +67,7 @@ public class UserController {
         if (loginUser != null) {
             // 로그인 성공 시 처리
             sessionManager.createSession(loginUser, response);
-            return "redirect:/main";
+            return "redirect:/mainhome";
         } else {
             // 로그인 실패 시 처리
             return "redirect:/login";
@@ -89,7 +89,7 @@ public class UserController {
 
         // 로그인 성공 시 메인 페이지로 이동
         model.addAttribute("loginUser", loginUser);
-        return "user/main";
+        return "mainhome/mainhome";
     }
     
     @PostMapping("/login-api")

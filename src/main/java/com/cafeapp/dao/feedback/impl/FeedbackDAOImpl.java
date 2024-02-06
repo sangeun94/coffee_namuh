@@ -105,8 +105,9 @@ public class FeedbackDAOImpl implements FeedbackDAO{
 		return fblist;
 	}
 	
-	public void write(Feedback feedback) {
-		sqlSessionTemplate.insert("customerfeedback.write", feedback);
+	public int write(Feedback feedback) {
+		int result = sqlSessionTemplate.insert("customerfeedback.write", feedback);
+		return result;
 	}
 	
 	public Feedback boardDetail(Integer feedbacknumber) {

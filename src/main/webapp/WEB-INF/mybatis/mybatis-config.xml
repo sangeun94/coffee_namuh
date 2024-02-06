@@ -31,6 +31,10 @@
 		<typeAlias type="com.cafeapp.dto.feedback.Feedback" alias="Feedback"/>
 		
 		<typeAlias type="com.cafeapp.dto.menu.Menu" alias="Menu"/>
+		
+		<!--  -->
+		
+		<typeAlias type="com.cafeapp.dto.shoppingcart.ShoppingCart" alias="ShoppingCart"/>
 	</typeAliases>
 	
 

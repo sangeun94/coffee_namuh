@@ -1,5 +1,9 @@
 package com.cafeapp.dao.shoppingcart;
 
-public class ShoppingCartDAO {
+import java.util.List;
 
+import com.cafeapp.dto.shoppingcart.ShoppingCart;
+
+public interface ShoppingCartDAO {
+	
 }

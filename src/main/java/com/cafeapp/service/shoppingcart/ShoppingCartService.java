@@ -1,5 +1,9 @@
 package com.cafeapp.service.shoppingcart;
 
-public class ShoppingCartService {
+import java.util.List;
+
+import com.cafeapp.dto.shoppingcart.ShoppingCart;
+
+public interface ShoppingCartService {
 
 }

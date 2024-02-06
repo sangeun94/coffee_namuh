@@ -10,8 +10,8 @@
 <link href="/css/news.css" rel="stylesheet" type="text/css">
 <style>
   textarea{
-                   width:500px; 
-					height:100px; 
+                    overflow:hidden;
+					height:400px; 
 					resize: none;
 				}
 
@@ -53,65 +53,18 @@
 					<div class="cont_text_wrap">
 						
 						<div class="cont_list cont_list_content cont_list_content_search">
-							<ul>
-								<li>
-									<div class="board_search_wrap">
-										<div class="board_search">
-											<form action="/boardWrite" method="post">
-												<input type="hidden" name="bbs_category" id="bbs_category"
-													value="4"> <input type="hidden"
-													name="bbs_detail_category" id="bbs_detail_category"
-													value="10">
-												<ul>
-													<li class="board_search_select">
-														<div class="input_select_wrap input_wrap2">
-															<select name="bbs_search_category"
-																id="bbs_search_category">
-																<option value="bbs_tbl_title">제목</option>
-																<option value="bbs_tbl_content">내용</option>
-																<option value="bbs_tbl_name">작성자</option>
-															</select>
-														</div>
-													</li>
-													<li>
-														<div class="input_text_wrap input_wrap2">
-															<label> <input type="textarea" name="bbs_search"
-																id="bbs_search" class="" value=""
-																placeholder="검색어를 입력하세요" required="required">
-															</label>
-														</div>
-													</li>
-													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
-															<input type="submit" value="검색" class="btn btn1" id="">
-														</div>
-													</li>
-
-													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
-															<input type="submit" value="글쓰기"
-																class="btn btn1 float_right" id="writeButton">
-														</div>
-
-													</li>
-												</ul>
-											</form>
-										</div>
-									</div>
-								</li>
-								<li style="text-align: right"></li>
-							</ul>
+						
 							<div class="write_board">
-							<form action="write" method="post">
-								<br> <input id="bbs_search_category" type="text" name="title" class="input_select_wrap input_wrap2" placeholder="제목"><br>
-								<textarea id="bbs_search"  rows="" cols="" name="content" class="input_text_wrap input_wrap2" 
-								placeholder="내용을 입력해주세요."></textarea>
+							<form action="" method="post">
+							<ul>
+								<br> <li><input name="title" id="bbs_search_category" type="text" name="title" class="input_select_wrap input_wrap2" placeholder="제목"></li><br>
+								<li><textarea name="content" id="bbs_search"  rows="" cols="" name="content" class="input_text_wrap" placeholder="내용을 입력해주세요."></textarea></li>
 								<br>
-								<div class="input_btn_wrap input_wrap2">
-								<button type="submit" class="btn btn1">글쓰기</button>
-								</div>
-								<input type="hidden" name="sb_cate" value="">
+								<div class="input_btn_wrap input_wrap2"><button type="submit" class="btn btn1">글쓰기</button></div>
+				
 								</form>
+								<li style="text-align: right"></li>
+								</ul>
 						</div>
 						</table>
 					</div>
@@ -123,7 +76,7 @@
 	<script>
 		document.getElementById("writeButton").addEventListener("click",
 				function() {
-					location.href = "write";
+					location.href = "/boardWrite";
 				});
 	</script>
 </body>

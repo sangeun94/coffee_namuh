@@ -27,10 +27,11 @@ public class FeedbackController {
 	
 	
  //@RequestMapping(value = "/board", method = RequestMethod.GET) 
-	@RequestMapping("/board/{userid}")
-	public String board(@PathVariable String userid,Model model) {
+	@RequestMapping("/board")
+	public String board(Model model) {
 		List<Feedback> boardList = feedbackService.boardList(); // FeedbackService에서 실제로 구현되어야 합니다.
         model.addAttribute("boardList", boardList);
+        System.out.println(boardList);
 		return "news/customerFeedBack/board";
 	}
 	

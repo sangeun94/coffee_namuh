@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+				
+<mapper namespace="customerfeedback">
+	<select id="boardList" resultType="Feedback">
+		<!-- SELECT feedback_number, title, user_id, feedback_date, feedback_count FROM customer_feedback ORDER BY feedback_number DESC -->
+		SELECT * FROM customer_feedback
+	</select>
+
+	<insert id="write" parameterType="Feedback">
+		INSERT INTO customer_feedback (feedbark_number,title, content, user_id,sb_cate)
+		VALUES (#{feedbacknumber}, #{title}, #{content}, #{userid},#{sb_cate})
+	</insert>
+	
+	<!-- MybatisConfig -->
+	<select id="boardDetail" parameterType="Integer" resultType="Feedback">
+		SELECT feedback_number, title, content, feedback_date, feedback_count, user_id FROM customer_feedback WHERE feedback_number=#{feedbacknumber}
+	</select>
+	
+	<delete id="boardDelete"  parameterType="Integer">
+		DELETE FROM customer_feedback WHERE feedback_number=#{feedbacknumber}
+	</delete>
+	
+	<update id="boardUpdate" parameterType="Feedback">
+		UPDATE customer_feedback SET title=#{title}, content=#{content} WHERE feedback_number=#{feedbacknumber}
+	</update>
+	
+</mapper>

@@ -7,8 +7,11 @@ public class OrderList {
 	
 	int orderNumber;
 	String orderDate;
-	String productName;
-	int orderQuantity;
+	
+	String firstProductName;
+	int additionalProductCount;
+	
+	int totalQuantity;
 	int shippingFee;
 	int orderStatus; //0:상품준비중 1:배송준비중 2:배송중 3:배송완료 4:주문취소 5:구매확정
 	String ordererName; //주문자이름 = user_name

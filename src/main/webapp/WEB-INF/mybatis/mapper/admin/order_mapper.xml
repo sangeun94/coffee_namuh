@@ -7,23 +7,29 @@
 	<!-- 주문리스트 조회 및 검색 -->
 	<select id="findOrderListBySearchCondition" resultType="OrderList" parameterType="OrderSearchCondition">
 	    SELECT 
-	        o.order_number,
-	        o.order_date,
-	        p.product_name,
-	        od.order_quantity,
-	        o.shipping_fee,
-	        o.order_status,
-	        u.user_name AS orderer_name,
-	        o.total_price,
-	        pm.payment_method
+		    o.order_number,
+		    MAX(o.order_date) AS order_date,
+		    
+		    (SELECT p.product_name FROM product p 
+		     INNER JOIN order_detail od ON p.product_number = od.product_number
+		     WHERE od.order_number = o.order_number
+		     ORDER BY p.product_name FETCH FIRST 1 ROW ONLY) AS first_product_name,
+		    (SELECT COUNT(*) FROM order_detail WHERE order_number = o.order_number) - 1 AS additional_product_count,
+
+		    SUM(od.order_quantity) AS total_quantity,
+		    MAX(o.shipping_fee) AS shipping_fee,
+		    MAX(o.order_status) AS order_status,
+		    MAX(u.user_name) AS orderer_name,
+		    SUM(od.price * od.order_quantity) AS total_price,
+		    MAX(pm.payment_method) AS payment_method
 	    FROM 
 	        orders o
 	        INNER JOIN order_detail od ON o.order_number = od.order_number
 	        INNER JOIN product p ON od.product_number = p.product_number
 	        INNER JOIN payment pm ON o.order_number = pm.order_number
 	        INNER JOIN users u ON o.user_id = u.user_id
-	    WHERE 
-	        o.order_status = 0 
+	    WHERE 1 = 1
+	        AND o.order_status = 0
 	        <if test="searchType == 'orderNumber' and searchKeyword != null and searchKeyword != ''">
 	            AND o.order_number = #{searchKeyword}
 	        </if>
@@ -37,9 +43,35 @@
 			    AND o.order_date BETWEEN #{orderDateStart} AND #{orderDateEnd}
 			</if>
 	        <if test="searchType == 'paymentMethod' and searchKeyword != null and searchKeyword != ''">
-	            AND pm.payment_method LIKE '%' || #{searchKeyword} || '%'
-
+				AND pm.payment_method = CASE #{searchKeyword}
+	                            WHEN '신용카드' THEN 1
+	                            WHEN '휴대폰결제' THEN 2
+	                            WHEN '무통장입금' THEN 3
+	                        END
 	        </if>
+       	GROUP BY 
+		    o.order_number
+		ORDER BY 
+		    o.order_number	        
+	</select>
+	
+	<!-- 주문상품 상세정보 -->	
+	<select id="findOrderDetailByOrderNumber" resultType="OrderDetail" parameterType="int">
+	    SELECT
+	        o.order_number,
+	        p.product_name,
+	        p.product_type,
+	        od.price,
+	        od.order_quantity,
+	        o.total_price,
+	        o.shipping_fee,
+	        o.order_status
+	    FROM
+	        orders o
+	        INNER JOIN order_detail od ON o.order_number = od.order_number
+	        INNER JOIN product p ON od.product_number = p.product_number
+	    WHERE
+	        o.order_number = #{orderNumber}
 	</select>
 		
 </mapper>

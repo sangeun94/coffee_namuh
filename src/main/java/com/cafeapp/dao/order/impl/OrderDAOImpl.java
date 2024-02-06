@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafeapp.dao.order.OrderDAO;
+import com.cafeapp.dto.order.OrderDetail;
 import com.cafeapp.dto.order.OrderList;
 import com.cafeapp.dto.order.OrderSearchCondition;
 
@@ -24,6 +25,17 @@ public class OrderDAOImpl implements OrderDAO{
 				sqlSessionTemplate.selectList("order_mapper.findOrderListBySearchCondition", orderSearchCondition);
 		
 		return orderList;
+	}
+	
+	
+	//각각 주문상세
+	@Override
+	public List<OrderDetail> findOrderDetailByOrderNumber(int orderNumber) {
+		// TODO Auto-generated method stub
+		
+		List<OrderDetail> orderDetailList = sqlSessionTemplate.selectList("order_mapper.findOrderDetailByOrderNumber", orderNumber);
+		
+		return orderDetailList;
 	}
 	
 	

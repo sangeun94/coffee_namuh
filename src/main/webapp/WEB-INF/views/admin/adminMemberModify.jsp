@@ -43,7 +43,7 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -191,12 +191,12 @@ var tb_admin_url = "";
 </div>
 
 
-<div id="ajax-loading"><img src="/src/main/webapp/resources/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/images/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<script src="/src/main/webapp/resources/js/admin/admin.js"></script>
+<script src="/js/admin/admin.js"></script>
 
-<script src="/src/main/webapp/resources/js/admin/wrest.js"></script>
+<script src="/js/admin/wrest.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

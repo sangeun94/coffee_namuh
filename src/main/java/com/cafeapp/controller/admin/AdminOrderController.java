@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cafeapp.dto.order.OrderDetail;
 import com.cafeapp.dto.order.OrderList;
 import com.cafeapp.dto.order.OrderSearchCondition;
 import com.cafeapp.service.order.OrderService;
@@ -37,6 +40,15 @@ public class AdminOrderController {
 		return "admin/adminOrderList";
 	}
 	
+	// 모달창에 주문상세정보 나오게 하기
+	@ResponseBody
+	@RequestMapping("/admin/orderDetail")
+	public List<OrderDetail> orderDetail(@RequestParam int orderNumber) {
+		
+		List<OrderDetail> orderDetailList = orderService.findOrderDetailByOrderNumber(orderNumber);
+	    
+		return orderDetailList;
+	}
 	
 	
 	

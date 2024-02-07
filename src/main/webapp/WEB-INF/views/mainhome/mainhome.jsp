@@ -40,8 +40,7 @@
 <div class="content"><img src="/images/notice/IMG_2019.jpg"></div>
 <div class="content"><img src="/images/notice/20210201112030.jpg"></div>
 <div class="content"><img src="/images/notice/coding1.jpg"></div>
-<div class="content"><img src="/images/notice/coding2.jpg"></div>
-<div class="content"><%@ include file="/WEB-INF/views/footer/footer.jsp"%></div>
+<div class="content" style="height:576;"><%@ include file="/WEB-INF/views/footer/footer.jsp"%></div>
 
 <div class="chap_list_wrap robo">
 		<ul>

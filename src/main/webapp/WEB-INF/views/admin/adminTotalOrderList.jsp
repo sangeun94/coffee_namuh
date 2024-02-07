@@ -131,8 +131,9 @@ var tb_admin_url = "";
 		<ion-icon name="reader-outline" class="order_outline"></ion-icon><h2>주문관리</h2>
 	</div>
 		<dl>
-			<dt class="o10 menu_toggle">주문관리</dt>		
-	        <dd class="o10 active"><a href="/admin/orderList">주문리스트
+			<dt class="o10 menu_toggle">주문관리</dt>
+	        <dd class="o10 active"><a href="/admin/orderList">주문리스트(전체)			
+	        <dd class="o10 active"><a href="/admin/orderList">주문발주
 	        <dd class="o10"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
 	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
 	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
@@ -142,11 +143,11 @@ var tb_admin_url = "";
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 주문관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 주문리스트		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 주문발주		
         </div>
 	
 <div class="s_wrap">
-	<h1>주문리스트</h1>
+	<h1>주문발주</h1>
 	
 	<h2>기본검색</h2>
 <form action="/admin/orderList" name="fsearch" id="fsearch" method="get">

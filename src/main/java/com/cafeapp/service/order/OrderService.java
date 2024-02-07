@@ -18,4 +18,20 @@ public interface OrderService {
 	
 	//주문상태1 로 변경
 	public int updateOrderStatus1(Order order);
+	
+	//배송준비 리스트 조회 + 검색
+	public List<OrderList> findDeliveryPrepareBySearchCondition(OrderSearchCondition orderSearchCondition);
+
+	//주문상태2 로 변경
+	public int updateOrderStatus2(Order order);
+	
+	//배송중 리스트 목록 및 검색
+	public List<OrderList> findDeliveringBySearchCondition(OrderSearchCondition orderSearchCondition);
+
+	//주문상태3 로 변경
+	public int updateOrderStatus3(Order order);
+
+	//배송중 리스트 목록 및 검색
+	public List<OrderList> findDeliveryCompleteBySearchCondition(OrderSearchCondition orderSearchCondition);
+
 }

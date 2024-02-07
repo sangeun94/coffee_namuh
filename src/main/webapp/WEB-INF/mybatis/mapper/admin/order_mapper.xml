@@ -62,7 +62,7 @@
 	        o.order_number,
 	        p.product_name,
 	        p.product_type,
-	        od.price,
+	        od.price * od.order_quantity AS price,
 	        od.order_quantity,
 	        o.total_price,
 	        o.shipping_fee,
@@ -84,7 +84,6 @@
 	</update>
 	
 	<!-- 배송준비 목록 조회 및 검색 -->
-	<!-- 주문리스트 조회 및 검색 -->
 	<select id="findDeliveryPrepareBySearchCondition" resultType="OrderList" parameterType="OrderSearchCondition">
 	    SELECT 
 		    o.order_number,
@@ -101,14 +100,67 @@
 		   	MAX(o.tracking_number ) AS tracking_number,
 		    MAX(o.order_status) AS order_status,
 		    MAX(u.user_name) AS orderer_name,
-		    SUM(od.price * od.order_quantity) AS total_price,
+		    SUM(od.price * od.order_quantity) AS total_price
 	    FROM 
 	        orders o
 	        INNER JOIN order_detail od ON o.order_number = od.order_number
 	        INNER JOIN product p ON od.product_number = p.product_number
 	        INNER JOIN users u ON o.user_id = u.user_id
 	    WHERE 1 = 1
-	        AND o.order_status = 0
+	        AND o.order_status = 1
+	        <if test="searchType == 'orderNumber' and searchKeyword != null and searchKeyword != ''">
+	            AND o.order_number = #{searchKeyword}
+	        </if>
+	        <if test="searchType == 'productName' and searchKeyword != null and searchKeyword != ''">
+	            AND p.product_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="searchType == 'userName' and searchKeyword != null and searchKeyword != ''">
+	            AND u.user_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="orderDateStart != null and orderDateStart != '' and orderDateEnd != null and orderDateEnd != ''">
+			    AND o.order_date BETWEEN #{orderDateStart} AND #{orderDateEnd}
+			</if>
+			<if test="searchType == 'trackingNumber' and searchKeyword != null and searchKeyword != ''">
+	            AND o.tracking_number LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+       	GROUP BY 
+		    o.order_number
+		ORDER BY 
+		    o.order_number	        
+	</select>		
+		
+	<!-- 배송시작 버튼 눌렀을때 배송중(2)로 상태 변경 -->	
+	<update id="updateOrderStatus2" parameterType="Order">
+	    UPDATE orders
+	    SET order_status = 2
+	    WHERE order_number = #{orderNumber}
+	</update>
+	
+	<!-- 배송중 목록 조회 및 검색 -->
+	<select id="findDeliveringBySearchCondition" resultType="OrderList" parameterType="OrderSearchCondition">
+	    SELECT 
+		    o.order_number,
+		    MAX(o.order_date) AS order_date,
+		    
+		    (SELECT p.product_name FROM product p 
+		     INNER JOIN order_detail od ON p.product_number = od.product_number
+		     WHERE od.order_number = o.order_number
+		     ORDER BY p.product_name FETCH FIRST 1 ROW ONLY) AS first_product_name,
+		    (SELECT COUNT(*) FROM order_detail WHERE order_number = o.order_number) - 1 AS additional_product_count,
+
+		    SUM(od.order_quantity) AS total_quantity,
+		    MAX(o.courier_name) AS courier_name,
+		   	MAX(o.tracking_number ) AS tracking_number,
+		    MAX(o.order_status) AS order_status,
+		    MAX(u.user_name) AS orderer_name,
+		    SUM(od.price * od.order_quantity) AS total_price
+	    FROM 
+	        orders o
+	        INNER JOIN order_detail od ON o.order_number = od.order_number
+	        INNER JOIN product p ON od.product_number = p.product_number
+	        INNER JOIN users u ON o.user_id = u.user_id
+	    WHERE 1 = 1
+	        AND o.order_status = 2
 	        <if test="searchType == 'orderNumber' and searchKeyword != null and searchKeyword != ''">
 	            AND o.order_number = #{searchKeyword}
 	        </if>
@@ -129,5 +181,60 @@
 		ORDER BY 
 		    o.order_number	        
 	</select>
+	
+	<!-- 배송완료 버튼 눌렀을때 배송완료(3)로 상태 변경 -->	
+	<update id="updateOrderStatus3" parameterType="Order">
+	    UPDATE orders
+	    SET order_status = 3
+	    WHERE order_number = #{orderNumber}
+	</update>
+	
+	<!-- 배송완료 목록 조회 및 검색 -->
+	<select id="findDeliveryCompleteBySearchCondition" resultType="OrderList" parameterType="OrderSearchCondition">
+	    SELECT 
+		    o.order_number,
+		    MAX(o.order_date) AS order_date,
+		    
+		    (SELECT p.product_name FROM product p 
+		     INNER JOIN order_detail od ON p.product_number = od.product_number
+		     WHERE od.order_number = o.order_number
+		     ORDER BY p.product_name FETCH FIRST 1 ROW ONLY) AS first_product_name,
+		    (SELECT COUNT(*) FROM order_detail WHERE order_number = o.order_number) - 1 AS additional_product_count,
+
+		    SUM(od.order_quantity) AS total_quantity,
+		    MAX(o.courier_name) AS courier_name,
+		   	MAX(o.tracking_number ) AS tracking_number,
+		    MAX(o.order_status) AS order_status,
+		    MAX(u.user_name) AS orderer_name,
+		    SUM(od.price * od.order_quantity) AS total_price
+	    FROM 
+	        orders o
+	        INNER JOIN order_detail od ON o.order_number = od.order_number
+	        INNER JOIN product p ON od.product_number = p.product_number
+	        INNER JOIN users u ON o.user_id = u.user_id
+	    WHERE 1 = 1
+	        AND o.order_status = 3
+	        <if test="searchType == 'orderNumber' and searchKeyword != null and searchKeyword != ''">
+	            AND o.order_number = #{searchKeyword}
+	        </if>
+	        <if test="searchType == 'productName' and searchKeyword != null and searchKeyword != ''">
+	            AND p.product_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="searchType == 'userName' and searchKeyword != null and searchKeyword != ''">
+	            AND u.user_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="orderDateStart != null and orderDateStart != '' and orderDateEnd != null and orderDateEnd != ''">
+			    AND o.order_date BETWEEN #{orderDateStart} AND #{orderDateEnd}
+			</if>
+			<if test="searchType == 'trackingNumber' and searchKeyword != null and searchKeyword != ''">
+	            AND o.tracking_number LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+       	GROUP BY 
+		    o.order_number
+		ORDER BY 
+		    o.order_number	        
+	</select>
+	
+	
 	
 </mapper>

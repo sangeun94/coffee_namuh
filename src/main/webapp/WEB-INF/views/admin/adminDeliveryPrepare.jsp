@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -33,11 +34,55 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/categorylist.js"></script>
 </head>
+
+<style>
+	.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+	}
+	
+	#modalBody {
+		margin-top: 20px;
+	}
+	
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 20% 35%; 
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 40%; 
+	}
+	
+	.close {
+	    color: #aaa;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	    margin-top: -13px;
+	}
+	
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+	
+</style>
+
 <body>
 
 <header id="hd">
@@ -85,11 +130,11 @@ var tb_admin_url = "";
 		<ion-icon name="reader-outline" class="order_outline"></ion-icon><h2>주문관리</h2>
 	</div>
 		<dl>
-		<dt class="o10 menu_toggle">주문관리</dt>		
-        <dd class="o10"><a href="/admin/orderList">주문리스트
-        <dd class="o10 active"><a href="">배송준비</a></dd>		
-        <dd class="o10"><a href="">배송중</a></dd>		
-        <dd class="o10"><a href="">배송완료</a></dd>		
+			<dt class="o10 menu_toggle">주문관리</dt>		
+	        <dd class="o10"><a href="/admin/orderList">주문리스트
+	        <dd class="o10 active"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
+	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
+	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
 	
     </dl>
 	</div>
@@ -104,7 +149,7 @@ var tb_admin_url = "";
 
 
 <h2>기본검색</h2>
-<form name="fsearch" id="fsearch" method="get">
+<form action="/admin/deliveryPrepare" name="fsearch" id="fsearch" method="get">
 <div class="tbl_frm01">
 	<table>
 	<colgroup>
@@ -145,11 +190,9 @@ var tb_admin_url = "";
 </form>
 
 <div class="local_ov mart30">
-	전체 : <b class="fc_red">29</b> 건 조회
-	<strong class="ov_a">총주문액 : 2,099,450원</strong>
+	전체 : <b class="fc_red">${totalOrder}</b> 건 조회
+	<strong class="ov_a">총주문액 : ${totalOrderAmount}원</strong>
 </div>
-
-<form name="forderlist" id="forderlist" method="post">
 
 <div class="tbl_head01">
 	<table id="sodr_list">
@@ -174,7 +217,7 @@ var tb_admin_url = "";
 	</thead>
 	<tbody>
 		<c:forEach var="orderItem" items="${orderList}">
-			<form action="/admin/modifyOrderStatus1" name="forderlist" id="forderlist" method="post">
+			<form action="/admin/modifyOrderStatus2" name="forderlist" id="forderlist" method="post">
 				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 
 			<tr class="list0">
@@ -221,46 +264,6 @@ var tb_admin_url = "";
 	</tbody>
 	</table>
 
-
-
-
-<script>
-$(function(){
-    $("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
-
-	// 주문서출력
-	$("#frmOrderPrint, #frmOrderExcel").on("click", function() {
-		var type = $(this).attr("id");
-		var od_chk = new Array();
-		var od_id = "";
-		var $el_chk = $("input[name='chk[]']");
-
-		$el_chk.each(function(index) {
-			if($(this).is(":checked")) {
-				od_chk.push($("input[name='od_id["+index+"]']").val());
-			}
-		});
-
-		if(od_chk.length > 0) {
-			od_id = od_chk.join();
-		}
-
-		if(od_id == "") {
-			alert("처리할 자료를 하나 이상 선택해 주십시오.");
-			return false;
-		} else {
-			if(type == 'frmOrderPrint') {
-				var url = "./order/order_print.php?od_id="+od_id;
-				window.open(url, "frmOrderPrint", "left=100, top=100, width=670, height=600, scrollbars=yes");
-				return false;
-			} else {
-				this.href = "./order/order_excel2.php?od_id="+od_id;
-				return true;
-			}
-		}
-	});
-});
-</script>
 </div>
 
 </div>
@@ -273,8 +276,98 @@ $(function(){
 <div id="ajax-loading"><img src="/images/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
+<!-- Modal창 -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>주문 상세 정보</h1>
+        <!-- 여기에 주문 상세 정보를 동적으로 삽입할 예정 -->
+        <div id="modalBody">
+            <!-- AJAX로 받은 데이터를 여기에 삽입 -->
+        </div>
+    </div>
+</div>
+
+<!-- 발주확인 메세지 -->
+<c:if test="${not empty successMessage}">
+<script>
+    alert('${successMessage}');
+</script>
+</c:if>
+
+<c:if test="${not empty errorMessage}">
+<script>
+    alert('${errorMessage}');
+</script>
+</c:if>
+
+
+
 <script src="/js/admin/admin.js"></script>
 
 <script src="/js/admin/wrest.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+// 모달 변수를 전역적으로 초기화
+var modal = document.getElementById('myModal');
+
+$(function() {
+    // 'fsearch'라는 ID를 가진 폼의 내용을 초기화하는 함수
+    function resetSearchForm() {
+        document.getElementById('fsearch').reset();
+    }
+
+ // 모든 '.detailBtn' 버튼에 대해 클릭 이벤트 리스너를 설정
+    $(document).on('click', '.detailBtn', function() {
+        var orderNumber = $(this).data('order-number'); // data-order-number 속성에서 주문 번호 가져오기
+
+        $.ajax({
+            url: '/admin/orderDetail', // 서버의 주문 상세 정보 조회 엔드포인트
+            type: 'GET',
+            dataType: 'json', // 응답 데이터 타입을 JSON으로 지정
+            data: { orderNumber: orderNumber }, // 요청 매개변수로 주문 번호 전달
+            success: function(orderDetailList) {
+                // 모달 창의 내용을 업데이트하기 위한 HTML 초기화
+                var modalContent = '<div class="tbl_head01"><table class="sodr_list"><colgroup>' +
+				                    '</colgroup><thead>' +
+				                    '<tr><th scope="col">주문번호</th><th scope="col">주문상품</th>' +
+				                    '<th scope="col">수량</th><th scope="col">총금액</th></tr></thead><tbody>';
+
+				$.each(orderDetailList, function(index, orderDetail) {
+				    modalContent += '<tr class="list0">' +
+				                    '<td>' + orderDetail.orderNumber + '</td>' +
+				                    '<td>' + orderDetail.productName + '</td>' +
+				                    '<td>' + orderDetail.orderQuantity + '</td>' +
+				                    '<td>' + orderDetail.price + '</td>' +
+				                    '</tr>';
+                });
+                
+                modalContent += '</table>'; // 테이블 닫기
+                
+                $('#modalBody').html(modalContent); // 모달 본문에 HTML 삽입
+                modal.style.display = 'block'; // 모달 창 표시
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX 요청 실패: ", status, error);
+            }
+        });
+    });
+
+    // '.close' 클래스를 가진 요소를 클릭했을 때 모달을 닫음
+    $(document).on('click', '.close', function() {
+        modal.style.display = "none";
+    });
+
+    // 모달 외부를 클릭했을 때 모달을 닫음
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+});
+</script>
 </body>
 </html>

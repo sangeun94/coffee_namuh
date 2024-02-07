@@ -75,11 +75,95 @@ public class AdminOrderController {
 	
 	//배송준비 목록 및 검색
 	@RequestMapping("/admin/deliveryPrepare")
-	public String deliveryPrepare() {
+	public String deliveryPrepare(Model model, @ModelAttribute OrderSearchCondition orderSearchCondition) {
+		System.out.println(orderSearchCondition);
 		
+		List<OrderList> orderList = orderService.findDeliveryPrepareBySearchCondition(orderSearchCondition); //검색
+		
+		//Java 8의 Stream API를 사용하여 orderList 내의 각 주문의 totalPrice를 합산하는 방법
+	    long totalOrderAmount = orderList.stream()
+                						.mapToLong(order -> order.getTotalPrice())
+                						.sum();
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("totalOrder", orderList.size()); //총주문건수
+		model.addAttribute("totalOrderAmount", totalOrderAmount); //총주문액
+
 		return "admin/adminDeliveryPrepare";
 	}
 	
+	// 배송시작 눌렀을때 배송중(2)로 수정
+	@PostMapping("/admin/modifyOrderStatus2")
+	public String modifyOrderStatus2(Order order, RedirectAttributes redirectAttributes) {
+	    System.out.println(order);
+	    
+	    int result = orderService.updateOrderStatus2(order);
+	    
+	    if (result > 0) {
+	        // 성공 시 메시지 설정
+	        redirectAttributes.addFlashAttribute("successMessage", "배송 시작되었습니다.");
+	        return "redirect:/admin/deliveryPrepare";
+	    } else {
+	        // 실패 시 메시지 설정
+	        redirectAttributes.addFlashAttribute("errorMessage", "실패하셨습니다.");
+	        return "redirect:/admin/deliveryPrepare"; // 실패 시에도 동일한 페이지로
+	    }
+	}
 	
+	//배송중 목록 및 검색
+	@RequestMapping("/admin/delivering")
+	public String delivering(Model model, @ModelAttribute OrderSearchCondition orderSearchCondition) {
+		System.out.println(orderSearchCondition);
+		
+		List<OrderList> orderList = orderService.findDeliveringBySearchCondition(orderSearchCondition); //검색
+		
+		//Java 8의 Stream API를 사용하여 orderList 내의 각 주문의 totalPrice를 합산하는 방법
+	    long totalOrderAmount = orderList.stream()
+                						.mapToLong(order -> order.getTotalPrice())
+                						.sum();
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("totalOrder", orderList.size()); //총주문건수
+		model.addAttribute("totalOrderAmount", totalOrderAmount); //총주문액
+
+		return "admin/adminDelivering";
+	}
+	
+	// 배송완료 눌렀을때 배송완료(3)로 수정
+	@PostMapping("/admin/modifyOrderStatus3")
+	public String modifyOrderStatus3(Order order, RedirectAttributes redirectAttributes) {
+	    System.out.println(order);
+	    
+	    int result = orderService.updateOrderStatus3(order);
+	    
+	    if (result > 0) {
+	        // 성공 시 메시지 설정
+	        redirectAttributes.addFlashAttribute("successMessage", "배송 완료되었습니다.");
+	        return "redirect:/admin/delivering";
+	    } else {
+	        // 실패 시 메시지 설정
+	        redirectAttributes.addFlashAttribute("errorMessage", "실패하셨습니다.");
+	        return "redirect:/admin/delivering"; // 실패 시에도 동일한 페이지로
+	    }
+	}
+	
+	//배송완료 목록 및 검색
+	@RequestMapping("/admin/deliveryComplete")
+	public String deliveryComplete(Model model, @ModelAttribute OrderSearchCondition orderSearchCondition) {
+		System.out.println(orderSearchCondition);
+		
+		List<OrderList> orderList = orderService.findDeliveryCompleteBySearchCondition(orderSearchCondition); //검색
+		
+		//Java 8의 Stream API를 사용하여 orderList 내의 각 주문의 totalPrice를 합산하는 방법
+	    long totalOrderAmount = orderList.stream()
+                						.mapToLong(order -> order.getTotalPrice())
+                						.sum();
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("totalOrder", orderList.size()); //총주문건수
+		model.addAttribute("totalOrderAmount", totalOrderAmount); //총주문액
+
+		return "admin/adminDeliveryComplete";
+	}
 	
 }

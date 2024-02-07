@@ -47,5 +47,55 @@ public class OrderServiceImpl implements OrderService{
 		
 		return result;
 	}
+
+	//배송준비 리스트 조회 + 검색
+	@Override
+	public List<OrderList> findDeliveryPrepareBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		
+		List<OrderList> orderList = orderDAO.findDeliveryPrepareBySearchCondition(orderSearchCondition);
+		
+		return orderList;
+
+	}
+
+	//주문상태 2로 변경
+	@Override
+	public int updateOrderStatus2(Order order) {
+		// TODO Auto-generated method stub
+		
+		int result = orderDAO.updateOrderStatus2(order);
+		
+		return result;
+	}
+
+	//배송중 리스트 조회 + 검색
+	@Override
+	public List<OrderList> findDeliveringBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		
+		List<OrderList> orderList = orderDAO.findDeliveringBySearchCondition(orderSearchCondition);
+		
+		return orderList;
+	}
 	
+	//주문상태 3로 변경
+	@Override
+	public int updateOrderStatus3(Order order) {
+		// TODO Auto-generated method stub
+		
+		int result = orderDAO.updateOrderStatus3(order);
+		
+		return result;
+	}
+	
+	//배송완료 리스트 조회 + 검색
+	@Override
+	public List<OrderList> findDeliveryCompleteBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		
+		List<OrderList> orderList = orderDAO.findDeliveryCompleteBySearchCondition(orderSearchCondition);
+		
+		return orderList;
+	}
 }

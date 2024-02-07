@@ -48,6 +48,57 @@ public class OrderDAOImpl implements OrderDAO{
 		
 		return result;
 	}
+
+	//배송준비 리스트 및 검색
+	@Override
+	public List<OrderList> findDeliveryPrepareBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		
+		List<OrderList> orderList = 
+				sqlSessionTemplate.selectList("order_mapper.findDeliveryPrepareBySearchCondition", orderSearchCondition);
+		
+		return orderList;
+	}
+
+	//주문상태 2로 상태 변경
+	@Override
+	public int updateOrderStatus2(Order order) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("order_mapper.updateOrderStatus2", order);
+		
+		return result;
+	}
+
+
+	//배송중 리스트 및 검색
+	@Override
+	public List<OrderList> findDeliveringBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		List<OrderList> orderList = 
+				sqlSessionTemplate.selectList("order_mapper.findDeliveringBySearchCondition", orderSearchCondition);
+		
+		return orderList;
+	}
 	
+	//주문상태 3로 상태 변경
+	@Override
+	public int updateOrderStatus3(Order order) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("order_mapper.updateOrderStatus3", order);
+		
+		return result;
+	}
+
+	//배송완료 리스트 및 검색
+	@Override
+	public List<OrderList> findDeliveryCompleteBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		List<OrderList> orderList = 
+				sqlSessionTemplate.selectList("order_mapper.findDeliveryCompleteBySearchCondition", orderSearchCondition);
+		
+		return orderList;
+	}
 	
 }

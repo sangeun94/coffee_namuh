@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findUserById(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.findUserById(userId);
 	}
 
 	

@@ -13,6 +13,7 @@ public class LoginManager {
 	//세션에 로그인 기록
 	public void setSessionLogin(String userId, HttpSession session) { //session방식
 		session.setAttribute(sessionLoginId, userId);
+					//			"loginId", 	"th3904";
 	}
 	
 	public void setSessionLogin(String userId, HttpServletRequest request) { //request방식으로 오버로딩
@@ -25,8 +26,17 @@ public class LoginManager {
 		if(session != null && session.getAttribute(sessionLoginId) != null) { //로그인 된 경우
 			return true;
 		}
-		
+				
 		return false;
+	}
+	
+	public String getUserId(HttpSession session) {
+		
+//		session.getAttribute(sessionLoginId)  //"th3904"
+//						//  "loginId"
+//		session.setAttribute("loginId", userId);
+		
+		return (String) session.getAttribute(sessionLoginId);
 	}
 	
 	public boolean isLogin(HttpServletRequest request) { //request로 들어온 경우

@@ -133,17 +133,17 @@ body {
 
 <div class="label-input-group">
     <label>비밀번호:</label>
-    <input type="text" id="userPassword" name="userPassword" value="${user.userPassword}">
+    <input type="text" id="userPassword" name="userPassword" value="${user.userPassword}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>이메일:</label>
-    <input type="email" id="userEmail" name="userEmail" value="${user.userEmail}">
+    <input type="email" id="userEmail" name="userEmail" value="${user.userEmail}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>생년월일:</label>
-    <input type="text" id="userBirth" name="userBirth" value="${user.userBirth}">
+    <input type="text" id="userBirth" name="userBirth" value="${user.userBirth}" disabled>
 </div>
 
 <div class="label-input-group">

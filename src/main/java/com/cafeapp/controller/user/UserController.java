@@ -194,19 +194,18 @@ public class UserController {
     
 
     @GetMapping("/mypage")
-    public String showMyPage(@RequestParam String userId, Model model, HttpSession session) {
-    	 userId = (String) session.getAttribute("userId"); // 세션에서 로그인된 사용자의 아이디 가져오기 
-    	 
+    public String showMyPage( Model model, HttpSession session) {
+    	loginManager.isLogin(session);
+    	String userId = loginManager.getUserId(session);
     	 
     	        User user = userService.findUserById(userId);
     	 
     	        if (user != null) {
-    	            model.addAttribute("user", user);
-    	            return "mypage"; // mypage.jsp로 이동
+    	            model.addAttribute("user", user); 
     	        }
     	   
     	        
-        // 로그인되지 않은 경우 또는 사용자 정보를 찾을 수 없는 경우 로그인 페이지로 이동
+       
         return "user/mypage";
     }
 

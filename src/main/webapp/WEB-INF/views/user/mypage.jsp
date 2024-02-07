@@ -128,35 +128,35 @@ body {
 
 <div class="label-input-group">
     <label>아이디:</label>
-    <input type="text" id="userId" name="userId" value="${user.userId}" disabled>
+    <input type="text" id="DBuserId" name="DBuserId" value="${user.userId}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>비밀번호:</label>
-    <input type="text" id="userPassword" name="userPassword" value="${user.userPassword}" disabled>
+    <input type="text" id="DBuserPassword" name="DBuserPassword" value="${user.userPassword}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>이메일:</label>
-    <input type="email" id="userEmail" name="userEmail" value="${user.userEmail}" disabled>
+    <input type="email" id="DBuserEmail" name="DBuserEmail" value="${user.userEmail}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>생년월일:</label>
-    <input type="text" id="userBirth" name="userBirth" value="${user.userBirth}" disabled>
+    <input type="text" id="DBuserBirth" name="DBuserBirth" value="${user.userBirth}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>우편번호:</label>
-    <input type="text" id="userUpdateZipcode" name="userUpdateZipcode" value="${user.userZipcode}" disabled>
+    <input type="text" id="DBuserZipcode" name="DBuserUpdateZipcode" value="${user.userZipcode}" disabled>
 </div>
 
 <div class="label-input-group">
     <label>주소:</label>
-    <input type="text" id="userUpdateAddress" name="userUpdateAddress" value="${user.userAddress}" disabled>
+    <input type="text" id="DBuserAddress" name="DBuserAddress" value="${user.userAddress}" disabled>
     
     <label>상세주소:</label>
-    <input type="text" id="userUpdateDetailAddress" name="userUpdateDetailAddress" value="${user.userDetailAddress}" disabled>
+    <input type="text" id="DBuserDetailAddress" name="DBuserDetailAddress" value="${user.userDetailAddress}" disabled>
 </div>
 
 	
@@ -171,32 +171,35 @@ body {
 	<div class="modal">
 	    <div class="modal_body">
 	        <h2>정보 수정</h2>
-	        <form id="updateFormModal">
-	            <label>이름:</label>
-	            <input type="text" id="updateUserName" name="userName" value="" >
-	
+	        <form id="updateFormModal" action="/mypage" method="post">
+				<!-- user_id를 hidden으로 추가 -->
+            	<input type="hidden" id="userId" name="userId" value="${user.userId}">
+            
 	            <label>비밀번호:</label>
-	            <input type="password" id="updateUserPassword" name="userPassword" value="">
+	            <input type="password" id="userPassword" name="userPassword" value="${user.userPassword}">
 	            <div id="pwCheckResult"></div>
 	
 	            <label>비밀번호 확인:</label>
-	            <input type="password" id="updateUserConfirmPassword" name="userConfirmPassword">
+	            <input type="password" id="userConfirmPassword" name="userConfirmPassword" value="${user.userConfirmPassword}">
 	            <div id="pwConfirmCheckResult"></div>
 	
 	            <label>이메일:</label>
-	            <input type="email" id="updateUserEmail" name="userEmail" value="">
+	            <input type="email" id="userEmail" name="userEmail" value="${user.userEmail}">
 	            <div id="emailCheckResult"></div>
 
 	            <label>우편번호:</label>
-	            <input type="text" id="userZipcode" name="userZipcode" value="">
+	            <input type="text" id="userZipcode" name="userZipcode" value="${user.userZipcode}">
 	            <input type="button" value="우편번호검색" id="btn">
-	
+				<div id="zipCheckResult"></div>
+				
 	            <label>주소:</label>
-	            <input type="text" id="userAddress" name="userAddress" value="">
-	
+	            <input type="text" id="userAddress" name="userAddress" value="${user.userAddress}">
+				<div id="AddressCheckResult"></div>
+				
 	            <label>상세주소:</label>
-	            <input type="text" id="userDetailAddress" name="userDetailAddress" value="">
-	
+	            <input type="text" id="userDetailAddress" name="userDetailAddress" value="${user.userDetailAddress}">
+				<div id="detailAddressCheckResult"></div>
+				
 	            <button type="submit">수정하기</button>
 	            <button type="button" class="btn-close-modal">취소</button>
 	        </form>
@@ -209,7 +212,7 @@ body {
 	
 	
 	
-	<script>
+	<script>//모달창 스크립트
 	    document.addEventListener('DOMContentLoaded', function () {
 	        const btnOpenUpdateModal = document.querySelector('button');
 	        const modal = document.querySelector('.modal');
@@ -230,7 +233,7 @@ body {
 
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
+	<script>//주소창 스크립트
         const btn = document.querySelector("#btn");
         btn.addEventListener("click", () => {
             new daum.Postcode({
@@ -264,8 +267,111 @@ body {
 	
 	
 	
+    <script>//pw, confirmPw, email 유효성 검증
     
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        
+        const userPasswordInput = document.getElementById('userPassword');
+        const userConfirmPasswordInput = document.getElementById('userConfirmPassword');
+        const userEmailInput = document.getElementById('userEmail');
+        const userBirthInput = document.getElementById('userBirth');
+        
+	 // userPassword 검증
+	    userPasswordInput.addEventListener('input', function () {
+		    const userPassword = userPasswordInput.value;
+		    const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+		    
+		    if (!pwRegex.test(userPassword)) {
+		        userPasswordInput.style.background = 'pink';
+		        pwCheckResult.textContent = '비밀번호는 특수문자 포함 8자 이상이어야 합니다.';
+		    } else {
+		        userPasswordInput.style.background = 'aqua';
+		        pwCheckResult.textContent = '';
+		    }
+		});
+	    
+	 	// user컨펌Password 검증
+	    userConfirmPasswordInput.addEventListener('input', function () {
+	        const userPassword = userPasswordInput.value;
+	        const userConfirmPassword = userConfirmPasswordInput.value;
+	        const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
 	
+	        if (userPassword !== userConfirmPassword) {
+	            userConfirmPasswordInput.style.background = 'pink';
+	            pwConfirmCheckResult.textContent = '동일하지 않은 비밀번호입니다.';
+	        } else if (!pwRegex.test(userPassword)) {
+	            userConfirmPasswordInput.style.background = 'pink';
+	            pwConfirmCheckResult.textContent = '비밀번호는 특수문자 포함 8자 이상이어야 합니다.';
+	        } else {
+	            userConfirmPasswordInput.style.background = 'aqua';
+	            pwConfirmCheckResult.textContent = '';
+	        }
+	    });
+	    
+	  //userEmail
+        userEmailInput.addEventListener('input', function () {
+            if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(userEmailInput.value)) {
+                userEmailInput.style.background = 'pink';
+                emailCheckResult.textContent = '올바른 이메일 주소를 입력해주세요.';
+            } else {
+            	userEmailInput.style.background = 'aqua';
+            	emailCheckResult.textContent = '';
+            }
+        });
+	    
+	    //생년월일 검증
+	    userBirthInput.addEventListener('input', function () {
+	        const userBirth = userBirthInput.value;
+	        const birthRegex = /^19\d{6}$/;
+	
+	        if (!birthRegex.test(userBirth)) {
+	            userBirthInput.style.background = 'pink';
+	            birthCheckResult.textContent = '생년월일 8자리를 입력해주세요. (19YYMMDD)';
+	        } else {
+	            userBirthInput.style.background = 'aqua';
+	            birthCheckResult.textContent = '';
+	        }
+	    });
+	    
+	
+	    document.getElementById('infoForm').addEventListener('submit', function (e) {
+	        if (!validateForm()) {
+	            e.preventDefault();
+	        }
+	    });
+	
+	    function displayError(field, message) {
+	        document.getElementById(field).style.background = 'pink';
+	        document.getElementById(field + 'ErrorMsg').textContent = message;
+	    }
+	
+	    function removeError(field) {
+	        document.getElementById(field).style.background = 'aqua';
+	        document.getElementById(field + 'ErrorMsg').textContent = '';
+	    }
+	});
+	</script>
+	
+	<script>//주소창 유효성 검증
+	    document.getElementById('updateFormModal').addEventListener('submit', function (e) {
+	        const userZipcodeInput = document.getElementById('userZipcode');
+	        const userAddressInput = document.getElementById('userAddress');
+	        const userDetailAddressInput = document.getElementById('userDetailAddress');
+	
+	        // 주소 필수 입력 검증
+	        if (!userZipcodeInput.value.trim() || !userAddressInput.value.trim() || !userDetailAddressInput.value.trim()) {
+	            e.preventDefault();
+	            alert('주소를 입력은 필수 입니다.'); // 혹은 원하는 다른 처리를 수행할 수 있습니다.
+	        }
+	
+	        if (!validateForm()) {
+	            e.preventDefault();
+	        }
+	    });
+	  	
+	    
+	</script>
 	
 </body>
 </html>

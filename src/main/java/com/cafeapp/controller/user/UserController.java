@@ -144,21 +144,15 @@ public class UserController {
     	return"user/main";
     }
     
-    @RequestMapping("/adminLogin")
+   
+  //adminLogin
+    @GetMapping("/adminLogin")
     public String adminPage() {
     	return"admin/adminLogin";
     }
     
-  //adminLogin
-    
-    @GetMapping("/admin")
-    public String showAdminLoginForm(Model model) {
-        model.addAttribute("user", new User());
-        
-        return "/adminLogin";
-    }
 
-    @PostMapping("/admin/adminLogin")
+    @PostMapping("/adminLogin")
     public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session) {
         User adminLoginUser = userService.isValidAdminLogin(user);
         
@@ -210,7 +204,23 @@ public class UserController {
     }
 
     
-    
+    @PostMapping("/mypage")
+    public String showMyPageProcess(User user, HttpSession session) {
+        // 여기서 user에는 모달 폼에서 넘어온 데이터가 담겨 있습니다.
+    	loginManager.isLogin(session);
+    	String userId = loginManager.getUserId(session);
+    	
+        // Update 로직 수행
+        int result = userService.updateUserInfo(user);
 
-    
-}
+        if (result > 0) {
+            // 업데이트 성공 시
+            return "redirect:/mypage";
+        } else {
+            // 업데이트 실패 시
+            return "user/main";
+        }
+    }
+
+    }
+

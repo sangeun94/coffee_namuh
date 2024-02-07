@@ -46,14 +46,13 @@
 	<!-- 사용자 정보 업데이트 -->
 	<update id="updateUser" parameterType="User">
 	    UPDATE users
-	    SET user_name = #{userName},
+	    SET
 	        user_password = #{userPassword},
 	        user_confirm_password =#{userConfirmPassword},
 	        user_email = #{userEmail},
-	        user_birth = #{userBirth},
-	        user_zipcode = #{userUpdateZipcode},
-	        user_address = #{userUpdateAddress},
-	        user_detail_address = #{userUpdateDetailAddress}
+	        user_zipcode = #{userZipcode},
+	        user_address = #{userAddress},
+	        user_detail_address = #{userDetailAddress}
 	    WHERE
 	    	 user_id = #{userId}
 	</update>

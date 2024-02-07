@@ -113,7 +113,7 @@ var tb_admin_url = "";
 		
 		<tr>
 			<th scope="row"><label>아이디</label></th>
-			<td><input type="text" name="userId" value="${user.userId}" class="frm_input" size="20" maxlength="20"></td>
+			<td>${user.userId}</td>
 		</tr>
 		<tr>
 			<th scope="row"><label>임시 비밀번호</label></th>

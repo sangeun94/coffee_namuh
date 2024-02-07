@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="menu_mapper">
+
+	<!-- 음료 리스트 조회 및 검색 -->
+	<select id="findDrinkBySearchCondition" resultType="MenuList" parameterType="MenuSearchCondition">
+	    SELECT m.menu_number, m.menu_type, m.menu_name, m.menu_description, m.menu_size, m.menu_calories, m.menu_allergy_info, m.menu_saturated_fat, m.menu_sugars, m.menu_sodium, m.menu_protein, m.menu_caffeine, f.file_id, f.file_name, f.file_path
+	    FROM menu m
+	    LEFT JOIN FILE_INFO f ON m.file_id = f.file_id
+	    WHERE 1 = 1
+	        AND m.menu_number BETWEEN 1 AND 82
+	    <if test="searchType == 'menuNumber' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_number) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'menuName' and searchKeyword != null and searchKeyword != ''">
+	        AND LOWER(m.menu_name) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+	    </if>
+	    <if test="searchType == 'menuDescription' and searchKeyword != null and searchKeyword != ''">
+	        AND LOWER(m.menu_description) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+	    </if>
+	    <if test="menuType != null and menuType != ''">
+	        AND m.menu_type = #{menuType}
+	    </if>
+	    <if test="menuSize != null and menuSize != ''">
+	        AND m.menu_size = #{menuSize}
+	    </if>
+	    <if test="menuAllergyInfo != null and menuAllergyInfo != ''">
+	        AND m.menu_allergy_info = #{menuAllergyInfo}
+	    </if>
+	    <if test="searchType == 'menuCalories' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_calories) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'menuSaturatedFat' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_saturated_fat) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'menuSugars' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_sugars) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'menuSodium' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_sodium) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'menuProtein' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_protein) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'menuCaffeine' and searchKeyword != null and searchKeyword != ''">
+	        AND TO_CHAR(m.menu_caffeine) LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    ORDER BY m.menu_number
+	</select>
+	
+</mapper>

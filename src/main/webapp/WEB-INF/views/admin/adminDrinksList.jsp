@@ -1,13 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <!-- jstl 쓸때!! -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
-<html lang="ko">
+<html lang="ko"> 
 <head>
 <meta charset="utf-8">
 <title>관리자 페이지</title>
-<link type="text/css" href="/src/main/webapp/resources/css/admin/reset.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/basic.css" rel="stylesheet">
-<link type="text/css" href="/src/main/webapp/resources/css/admin/button.css" rel="stylesheet">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/admin.css">
-<link rel="stylesheet" href="/src/main/webapp/resources/css/admin/jquery-ui.css">
+<link type="text/css" href="/css/admin/reset.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/basic.css" rel="stylesheet">
+<link type="text/css" href="/css/admin/button.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin/admin.css">
+<link rel="stylesheet" href="/css/admin/jquery-ui.css">
 
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,17 +34,17 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/src/main/webapp/resources/js/admin/jquery-1.8.3.min.js"></script>
-<script src="/src/main/webapp/resources/js/admin/jquery-ui-1.10.3.custom.js"></script>
-<script src="/src/main/webapp/resources/js/admin/common.js"></script>
-<script src="/src/main/webapp/resources/js/admin/categorylist.js"></script>
+<!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
+<script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/admin/common.js"></script>
+<script src="/js/admin/categorylist.js"></script>
 </head>
 <body>
 
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/src/main/webapp/resources/image/admin/logo.gif" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -95,28 +102,6 @@ var tb_admin_url = "";
 <div class="s_wrap">
 	<h1>음료 관리</h1>
 	
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
-<script>
-jQuery(function($){
-    $.datepicker.regional["ko"] = {
-        closeText: "닫기",
-        prevText: "이전달",
-        nextText: "다음달",
-        currentText: "오늘",
-        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
-        monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
-        dayNames: ["일","월","화","수","목","금","토"],
-        dayNamesShort: ["일","월","화","수","목","금","토"],
-        dayNamesMin: ["일","월","화","수","목","금","토"],
-        weekHeader: "Wk",
-        dateFormat: "yymmdd",
-        firstDay: 0,
-        isRTL: false,
-        showMonthAfterYear: true,
-        yearSuffix: ""
-    };
-	$.datepicker.setDefaults($.datepicker.regional["ko"]);
-});
 </script>
 <h2>기본검색</h2>
 <form name="fsearch" id="fsearch" method="get">

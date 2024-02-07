@@ -135,7 +135,7 @@ var tb_admin_url = "";
         <button type="submit" class="btn_medium"> 검색 </button>
         <button type="button" class="btn_medium grey" onclick="resetSearchForm()"> 초기화 </button>      
 	</div>
-	</form>
+</form>
 	
 	
 	<div class="local_ov mart30">

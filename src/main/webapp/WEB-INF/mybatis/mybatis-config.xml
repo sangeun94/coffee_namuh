@@ -27,6 +27,9 @@
 		<typeAlias type="com.cafeapp.dto.order.OrderDetail" alias="OrderDetail" />	
 		<typeAlias type="com.cafeapp.dto.order.Order" alias="Order" />
 	
+		<typeAlias type="com.cafeapp.dto.menu.MenuList" alias="MenuList" />
+		<typeAlias type="com.cafeapp.dto.menu.MenuSearchCondition" alias="MenuSearchCondition" />
+	
 	
 		<!--  -->
 		<typeAlias type="com.cafeapp.dto.user.User" alias="User" />

@@ -1,6 +1,7 @@
 package com.cafeapp.dao.user;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cafeapp.dto.user.User;
 import com.cafeapp.dto.user.UserSearchCondition;
@@ -30,4 +31,6 @@ public interface UserDAO {
     int updateUser(User user);
   
     User findUserById(String userId);
+    
+    
 }

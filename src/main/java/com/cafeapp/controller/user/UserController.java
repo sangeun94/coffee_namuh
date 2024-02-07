@@ -221,6 +221,26 @@ public class UserController {
             return "user/main";
         }
     }
+    
+    
+    
+    @RequestMapping("/getFindId")
+    public String getFindIdPage() {
+        // getFindId 페이지로 이동하는 로직을 추가하세요.
+        return "user/getFindId";
+    }
+
+    
+    
+    @PostMapping("/getFindId")
+    public String getFindId(Model model) {
+        
+        
+        return "user/getFindId";
+    }
+
+
+    
 
     }
 

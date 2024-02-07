@@ -117,7 +117,11 @@ button {
     <button type="submit">로그인</button>
 </form>
 
-
+	<div>
+	    <a href="/getFindId">아이디 찾기</a>
+	    <span> | </span>
+	    <a href="/getFindPw">비밀번호 찾기</a>
+	</div>
 
 </body>
 </html>

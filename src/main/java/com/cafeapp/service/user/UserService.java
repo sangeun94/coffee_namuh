@@ -2,6 +2,7 @@ package com.cafeapp.service.user;
 
 import com.cafeapp.dto.user.User;
 import java.util.List;
+import java.util.Map;
 
 import com.cafeapp.dto.user.User;
 import com.cafeapp.dto.user.UserSearchCondition;
@@ -30,5 +31,7 @@ public interface UserService {
     int updateUserInfo(User user);
     
     User findUserById(String userId);
+    
+    
 
 }

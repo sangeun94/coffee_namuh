@@ -86,7 +86,8 @@ public class UserDAOImpl implements UserDAO{
     public int updateUser(User user) {
         return sqlSessionTemplate.update("user_mapper.updateUser", user);
     }
-	
-	
+
+
+    
 	
 }

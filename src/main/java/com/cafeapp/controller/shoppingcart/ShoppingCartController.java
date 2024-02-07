@@ -21,4 +21,8 @@ public class ShoppingCartController {
 	 @Autowired
 	 ShoppingCartService shoppingCartService;
 	
+	 @RequestMapping("/shoppingcart")
+		public String Notice() {
+			return "shoppingCart/shoppingCart";
+		}
 }

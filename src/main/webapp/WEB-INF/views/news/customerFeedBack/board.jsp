@@ -122,7 +122,6 @@
 										<th>제목</th>
 										<th class="board_pc">글쓴이</th>
 										<th>날짜</th>
-										<th class="board_pc">조회</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -138,7 +137,6 @@
             </td>
             <td class="board_pc">${list.userId}</td>
             <td class="board_pc">${list.feedbackDate}</td>
-            <td class="board_pc">${list.feedbackCount}</td>
         </tr>
     </c:forEach>
 							

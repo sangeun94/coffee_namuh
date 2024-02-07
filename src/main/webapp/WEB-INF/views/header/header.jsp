@@ -432,7 +432,7 @@
 </head>
 <body>
  <!-- 상단 타이틀 -->
-  <div class="head_wrap header_tt">
+  <div class="head_wrap header_tt header">
     <div class="head">
         <div class="head_logo">
             <a href="/mainhome">

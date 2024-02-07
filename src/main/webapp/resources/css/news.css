@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     }
+    .bodybox{
+   
+    height: 100px;
+    }
     /* all */
            a, a:link, a:focus{text-decoration:none; color:inherit; cursor:pointer;}
            img{border:0; max-width:100%; vertical-align:middle; image-rendering:-webkit-optimize-contrast;}

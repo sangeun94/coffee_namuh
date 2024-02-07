@@ -12,4 +12,6 @@ import com.cafeapp.service.shoppingcart.ShoppingCartService;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
+	
+	
 }

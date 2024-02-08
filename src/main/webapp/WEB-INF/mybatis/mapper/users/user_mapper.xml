@@ -68,8 +68,18 @@
 		select count(*) from users where user_Email = #{UserEmail}
 	</select>
 	
+	<!--비밀번호 찾기-->
+	<select id="countUsers" resultType="Integer" parameterType="User">
+	    SELECT COUNT(*) FROM users
+	    WHERE user_id = #{userId} AND user_name = #{userName} AND user_email = #{userEmail}
+	</select>
 	
-	
+	<update id="updatePassword" parameterType="User">
+	    UPDATE users
+	    SET user_password = #{userPassword},
+	    	user_confirm_password = #{userConfirmPassword}
+	    WHERE user_id = #{userId} AND user_name = #{userName} AND user_email = #{userEmail}
+	</update>
 
 
 </mapper>

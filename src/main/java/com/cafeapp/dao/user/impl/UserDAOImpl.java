@@ -98,8 +98,16 @@ public class UserDAOImpl implements UserDAO{
     public int findEmailCheck(String userEmail) {
         return sqlSessionTemplate.selectOne("user_mapper.findEmailCheck", userEmail);
     }
+	
+	@Override
+    public int countUsers(User user) {
+        return sqlSessionTemplate.selectOne("user_mapper.countUsers", user);
+    }
 
+    @Override
+    public int updatePassword(User user) {
+        return sqlSessionTemplate.update("user_mapper.updatePassword", user);
+    }
 
-    
 	
 }

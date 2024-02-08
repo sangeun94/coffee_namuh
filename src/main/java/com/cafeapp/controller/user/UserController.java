@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -255,6 +256,53 @@ public class UserController {
     public String findIdPage() {
         return "user/findId";
     }
+
+    
+    
+ 
+   
+
+     @GetMapping("/getFindPw")
+     public String findPwPage(Model model) {
+            
+         return "user/getFindPw";
+     }
+     
+     @PostMapping("findPw")
+     public String findPwdCheck(HttpServletRequest request, Model model,
+							             @RequestParam("userId") String id,
+							             @RequestParam("userName") String name,
+							             @RequestParam("userEmail") String email,
+							             User user) {
+         try {
+             user.setUserId(id);
+             user.setUserName(name);
+             user.setUserEmail(email);
+
+             int search = userService.countUsers(user);
+
+             if (search == 0) {
+                 model.addAttribute("msg", "기입된 정보가 잘못되었습니다. 다시 입력해주세요.");
+             }
+
+             String newPwd = RandomStringUtils.randomAlphanumeric(10);
+             user.setUserPassword(newPwd);
+             user.setUserConfirmPassword(newPwd);
+             userService.updatePassword(user);
+
+             model.addAttribute("newPwd", newPwd);
+
+         } catch (Exception e) {
+             e.printStackTrace();
+             model.addAttribute("msg", "오류가 발생되었습니다.");
+         }
+         return "user/findPw";
+     }
+
+       
+
+
+    
 
     
 

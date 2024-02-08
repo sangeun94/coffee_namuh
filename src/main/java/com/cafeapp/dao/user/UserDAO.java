@@ -39,7 +39,8 @@ public interface UserDAO {
     //
     
     //비밀번호 찾기
-   
+    int countUsers(User user);
+    int updatePassword(User user);
     //
     
 }

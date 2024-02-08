@@ -62,6 +62,7 @@
 			<exclude-mapping path="/getFindId" />
 			<exclude-mapping path="/findId" />
 			<exclude-mapping path="/getFindPw" />
+			<exclude-mapping path="/findPw" />
 			<exclude-mapping path="/main" />
 			<beans:bean class="com.cafeapp.interceptor.LoginInterceptor" />
 		</interceptor>

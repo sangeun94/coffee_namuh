@@ -118,6 +118,16 @@ public class UserServiceImpl implements UserService{
 		return userDAO.findEmailCheck(userEmail);
 	}
 	
-	
+	@Override
+    public int countUsers(User user) {
+        return userDAO.countUsers(user);
+    }
 
+    @Override
+    public boolean updatePassword(User user) {
+        int rowsAffected = userDAO.updatePassword(user);
+        return rowsAffected > 0;
+    }
+	
+    
 }

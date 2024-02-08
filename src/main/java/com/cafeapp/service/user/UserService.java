@@ -39,6 +39,7 @@ public interface UserService {
     //
     
     //비밀번호찾기
-   
+    int countUsers(User user);
     
+    boolean updatePassword(User user);
 }

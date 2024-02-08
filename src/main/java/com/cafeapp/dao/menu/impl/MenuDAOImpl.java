@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cafeapp.dao.menu.MenuDAO;
 import com.cafeapp.dto.menu.Menu;
+import com.cafeapp.dto.menu.MenuObject;
 
 @Repository
 public class MenuDAOImpl implements MenuDAO {
@@ -21,6 +22,14 @@ public class MenuDAOImpl implements MenuDAO {
 
 		// TODO Auto-generated method stub
 		List<Menu> menuList = sqlSessionTemplate.selectList("menu_mapper.ShowMenuList");
+
+		return menuList;
+	}
+	
+	public List<MenuObject> OnlyShowMenuList() {
+
+		// TODO Auto-generated method stub
+		List<MenuObject> menuList = sqlSessionTemplate.selectList("menu_mapper.OnlyShowMenuList");
 
 		return menuList;
 	}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cafeapp.dao.menu.MenuDAO;
 import com.cafeapp.dto.menu.Menu;
+import com.cafeapp.dto.menu.MenuObject;
 import com.cafeapp.service.menu.MenuService;
 
 @Service
@@ -18,6 +19,11 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Menu> ShowMenuList() {
 		List<Menu> menuList = menuDAO.ShowMenuList();
+		return menuList;
+	}
+	
+	public List<MenuObject> OnlyShowMenuList(){
+		List<MenuObject> menuList = menuDAO.OnlyShowMenuList();
 		return menuList;
 	}
 }

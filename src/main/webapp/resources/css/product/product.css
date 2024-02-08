@@ -1,0 +1,208 @@
+* {
+	margin: 0;
+	padding: 0px;
+	box-sizing: border-box;
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+body::-webkit-scrollbar {
+	width: 10px; /* 스크롤바의 너비 */
+}
+
+body::-webkit-scrollbar-thumb {
+	height: 30%; /* 스크롤바의 길이 */
+	background: #1A3B33; /* 스크롤바의 색상 */
+}
+
+body::-webkit-scrollbar-track {
+	background: lightgray; /*스크롤바 뒷 배경 색상*/
+}
+
+.cont {
+	width: 100%;
+	padding: 200px 50px 50px 50px;
+}
+
+.cont-head {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.cont-title-info {
+	font-size: 1.5rem;
+}
+
+.cont-title {
+	font-size: 4rem;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #1A3B33;
+}
+
+.cont-text-info {
+	font-size: 1rem;
+}
+
+.cont-select {
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.cont-select-title {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.cont-select-fieldset {
+	margin-top: 50px;
+	padding: 30px;
+	border-radius: 10px;
+	border: 1px solid lightgray;
+}
+
+.cont-select-subtitle {
+	font-size: 1.5rem;
+	padding-bottom: 25px;
+}
+
+.mdl {
+	margin-bottom: 50px;
+}
+
+.mfl {
+	margin-bottom: 50px;
+}
+
+.pl {
+	margin-bottom: 50px;
+}
+
+.cont-menu-title {
+	width: 99.6%;
+	font-size: 1.3rem;
+	font-weight: bold;
+	padding: 10px 10px 10px 30px;
+	background-color: #F4F4F2;
+}
+
+.wrapper {
+	width: 80%;
+	padding-top: 25px;
+}
+
+input[type="checkbox"] {
+	display: inline-block;
+	position: relative;
+	margin-right: 0.25rem;
+	/* 기존 코드에 추가 */
+	appearance: none;
+	/* 기본 체크 박스 스타일 제거 */
+	-webkit-appearance: none;
+	/* Safari 및 Chrome 용 */
+	-moz-appearance: none;
+	/* Firefox 용 */
+	width: 20px;
+	/* 체크 박스의 가로 크기 조정 */
+	height: 20px;
+	/* 체크 박스의 세로 크기 조정 */
+	border: 2px solid #1A3B33;
+	/* 체크 박스 테두리 스타일 및 색상 지정 */
+}
+
+/* 체크된 상태의 스타일 */
+input[type="checkbox"]:checked::before {
+	content: '';
+	/* 체크 표시를 생성합니다. */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	background-color: #1A3B33;
+	/* 체크 표시의 색상을 흰색으로 설정합니다. */
+}
+
+label {
+	display: inline-flex;
+	/* Flexbox를 사용하여 내부 요소를 가로로 정렬합니다. */
+	align-items: center;
+	/* 수직 중앙 정렬을 위해 사용됩니다. */
+	position: relative;
+	box-sizing: border-box;
+	margin-right: 15px;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+ul {
+	list-style: none;
+}
+
+hr {
+	border: 1px solid lightgray;
+}
+
+.menu-item-box {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.menu-item {
+	display: flex;
+	width: 100%;
+	flex-flow: column wrap;
+	align-items: center;
+	margin-top: 30px;
+	word-wrap: break-word;
+	margin-right: 12.5px;
+	cursor: pointer;
+}
+
+.menu-img {
+	width: 280px;
+	overflow: hidden;
+}
+
+.menu-title {
+	font-size: 0.9rem;
+	text-align: center;
+	padding-top: 15px;
+}
+
+.menu-img img {
+	transition: transform 0.3s ease; /* 변환 효과를 부드럽게 만듭니다. */
+}
+
+.menu-item:hover .menu-img img {
+	transform: scale(1.1); /* 마우스를 올릴 때 이미지를 1.1배 확대합니다. */
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 0px;
+    background-color: #47322D;
+    color: white;
+    width: 100%; /* 버튼의 너비를 조정합니다. */
+    height: 40px; /* 버튼의 높이를 조정합니다. */
+    line-height: 40px; /* 버튼의 텍스트를 버튼 가운데로 정렬합니다. */
+    text-align: center; /* 버튼의 텍스트를 가운데로 정렬합니다. */
+    cursor: pointer;
+    display: none;
+    font-size: 1rem;
+    transition: background-color 0.3s; /* 배경색 변경 시 부드러운 전환 효과를 추가합니다. */
+    justify-content: center; /* 수평 가운데 정렬을 위해 flex를 사용합니다. */
+    align-items: center; /* 수직 가운데 정렬을 위해 flex를 사용합니다. */
+}
+
+.scroll-to-top:hover {
+    background-color: #804000;
+}

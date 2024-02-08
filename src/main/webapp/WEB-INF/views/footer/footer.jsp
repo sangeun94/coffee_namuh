@@ -7,7 +7,7 @@
         <title>Footer Design</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../../css/footer.css">
+        <link rel="stylesheet" href="../../css/footer/footer.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;600;700;900&display=swap">
         <style>
     
@@ -43,22 +43,22 @@
                     <div class="footer-col">
                         <h4 class="h4">메뉴소개</h4>
                         <ul>
-                            <li><a href="#">음료</a></li>
-                            <li><a href="#">푸드</a></li>
+                            <li><a href="/menu/menu_drink">음료</a></li>
+                            <li><a href="/menu/menu_food">푸드</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4 class="h4">스토어</h4>
                         <ul>
-                            <li><a href="#">상품</a></li>
+                            <li><a href="/store/product">상품</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4 class="h4">나무소식</h4>
                         <ul>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">1:1 상담</a></li>
+                            <li><a href="/notice">공지사항</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="/board">1:1 상담</a></li>
                         </ul>
                     </div>
                 </div>

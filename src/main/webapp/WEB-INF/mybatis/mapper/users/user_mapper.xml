@@ -58,7 +58,18 @@
 	</update>
 
 	
-
+	
+	<!--아이디 찾기-->
+	<select id="findUserByEmail" resultType="com.cafeapp.dto.user.User" parameterType="String">
+    	SELECT * FROM users WHERE user_email = #{userEmail}
+	</select>
+	
+	<select id="findEmailCheck" resultType="int">
+		select count(*) from users where user_Email = #{UserEmail}
+	</select>
+	
+	
+	
 
 
 </mapper>

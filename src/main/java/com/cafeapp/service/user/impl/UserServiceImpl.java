@@ -107,7 +107,17 @@ public class UserServiceImpl implements UserService{
 	}
 
 	
+	@Override
+    public List<User> findUserByEmail(String userEmail) {
+        return userDAO.findUserByEmail(userEmail);
+    }
 
-	 
+	@Override
+	public int findEmailCheck(String userEmail) {
+		// TODO Auto-generated method stub
+		return userDAO.findEmailCheck(userEmail);
+	}
+	
+	
 
 }

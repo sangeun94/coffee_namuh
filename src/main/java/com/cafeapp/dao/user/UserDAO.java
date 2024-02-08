@@ -32,5 +32,14 @@ public interface UserDAO {
   
     User findUserById(String userId);
     
+    //아이디 찾기
+    List<User> findUserByEmail(String userEmail);
+    
+    int findEmailCheck(String userEmail);
+    //
+    
+    //비밀번호 찾기
+   
+    //
     
 }

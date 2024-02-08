@@ -32,6 +32,13 @@ public interface UserService {
     
     User findUserById(String userId);
     
+    //아이디찾기
+    List<User> findUserByEmail(String userEmail);
     
-
+    int findEmailCheck(String userEmail);
+    //
+    
+    //비밀번호찾기
+   
+    
 }

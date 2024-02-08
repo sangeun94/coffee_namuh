@@ -1,6 +1,7 @@
 package com.cafeapp.controller.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -224,21 +225,36 @@ public class UserController {
     
     
     
-    @RequestMapping("/getFindId")
+    @GetMapping("/getFindId")
     public String getFindIdPage() {
-        // getFindId 페이지로 이동하는 로직을 추가하세요.
         return "user/getFindId";
     }
 
     
-    
-    @PostMapping("/getFindId")
-    public String getFindId(Model model) {
-        
-        
-        return "user/getFindId";
+    @PostMapping("/findId")
+    public String getFindId(String userEmail, Model model) {
+        try {
+            List<User> userList = userService.findUserByEmail(userEmail);
+
+            if (userList == null) {
+                model.addAttribute("msg", "이메일을 확인해주세요");
+                return "user/getFindId";
+            } else {
+                model.addAttribute("user", userList);
+                return "user/findId";
+            }
+        } catch (Exception e) {
+            // 예외 처리
+            e.printStackTrace();
+            model.addAttribute("msg", "오류가 발생했습니다");
+            return "user/findId";
+        }
     }
 
+    @GetMapping("/findId")
+    public String findIdPage() {
+        return "user/findId";
+    }
 
     
 

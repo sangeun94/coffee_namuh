@@ -122,7 +122,7 @@ button {
 	    <span> | </span>
 	    <a href="/getFindPw">비밀번호 찾기</a>
 	</div>
-
+</div>
 </body>
 </html>
 

@@ -86,6 +86,18 @@ public class UserDAOImpl implements UserDAO{
     public int updateUser(User user) {
         return sqlSessionTemplate.update("user_mapper.updateUser", user);
     }
+    
+    //email로 id 찾기
+	@Override
+	public List<User> findUserByEmail(String userEmail) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("user_mapper.findUserByEmail", userEmail);
+	}
+	
+	@Override
+    public int findEmailCheck(String userEmail) {
+        return sqlSessionTemplate.selectOne("user_mapper.findEmailCheck", userEmail);
+    }
 
 
     

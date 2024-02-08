@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,52 +107,21 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="board_pc">공지</td>
-										<td>
-											<div class="text_wrap">
-												<div class="text">
-													<a href="detail/?bbs_idx=194&bbs_category=1&bbs_page=1">
-														<em> 나무NMC커피 원두 관련 공지 </em>
-													</a>
+										
+									<c:forEach var="announceList" items="${announcementList}">
+										<tr>
+											<td class="board_pc">${announceList.faqNumber}</td>
+											<td>
+												<div class="text_wrap">
+													<div class="text">
+														<a href="/detail/${announceList.faqNumber}">${announceList.question}</a>
+													</div>
 												</div>
-											</div>
-										</td>
-										<td class="board_pc">나무NMC커피</td>
-										<td>2023-02-21</td>
-										<td class="board_pc">815</td>
-									</tr>
-									<tr>
-										<td class="board_pc">2</td>
-										<td>
-											<div class="text_wrap">
-												<div class="text">
-													<a
-														href="detail/?bbs_idx=199&bbs_category=1&bbs_detail_category=&bbs_page=1">
-														<em> 탄소중립실천포인트제 도입 안내 </em>
-													</a>
-												</div>
-											</div>
-										</td>
-										<td class="board_pc">메가MGC커피</td>
-										<td>2023-03-16</td>
-										<td class="board_pc">1532</td>
-									</tr>
-									<tr>
-										<td class="board_pc">1</td>
-										<td>
-											<div class="text_wrap">
-												<div class="text">
-													<a
-														href="detail/?bbs_idx=198&bbs_category=1&bbs_detail_category=&bbs_page=1">
-														<em> 메가MGC커피 영양성분표 </em>
-													</a>
-												</div>
-											</div>
-										</td>
-										<td class="board_pc">메가MGC커피</td>
-										<td>2023-03-14</td>
-										<td class="board_pc">3028</td>
-									</tr>
+											</td>
+											<td class="board_pc">${announceList.userId}</td>
+											<td class="board_pc">${announceList.postDate}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

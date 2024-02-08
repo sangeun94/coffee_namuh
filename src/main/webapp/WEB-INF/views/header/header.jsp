@@ -503,7 +503,7 @@
                         <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
                                                                             <li>
-                                        <a href="/Notice">
+                                        <a href="/notice">
                                             공지사항												</a>
                                     </li>
                                                                             <li>
@@ -535,7 +535,7 @@
 	<ul>
 			        <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"></a></li>
                     <li><a href="/logout"><img src="/images/notice/logoutIcon.jpg"></a></li>
-                    <li><a href="/menu_drink"><img src="/images/notice/basket.jpg"></a></li>
+                    <li><a href="/shoppingcart"><img src="/images/notice/basket.jpg"></a></li>
                     <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>		</ul>
 	</ul>
 	<%-- <%

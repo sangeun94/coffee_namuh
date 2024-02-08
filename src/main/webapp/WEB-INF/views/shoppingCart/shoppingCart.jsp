@@ -234,7 +234,7 @@ a{
 /* 로고, 검색, 로그인 */
 .top_area{
 	width: 100%;
-    height: 150px;
+    height: 100px;
     /* background-color: #f7f0b9; */
 }
 /* 로고 영역 */
@@ -438,25 +438,9 @@ a{
 <div class="wrapper">
 	<div class="wrap">
 		
-		<div class="top_area">
+		
 			<!-- 로고영역 -->
-			<div class="logo_area">
-				<a href="/main"><img src="/resources/img/mLogo.png"></a>
-			</div>
-			<div class="search_area">
-                	<div class="search_wrap">
-                		<form id="searchForm" action="/search" method="get">
-                			<div class="search_input">
-                				<select name="type">
-                					<option value="T">책 제목</option>
-                					<option value="A">작가</option>
-                				</select>
-                				<input type="text" name="keyword" value="<c:out value="${pageMaker.cri.keyword}"/>">
-                    			<button class='btn search_btn'>검 색</button>                				
-                			</div>
-                		</form>
-                	</div>
-			</div>
+			
 			<%-- <div class="login_area">
 			
 				<!-- 로그인 하지 않은 상태 -->
@@ -475,7 +459,7 @@ a{
 					</div>
 				</c:if>
 				 --%>
-			</div>
+			
 			<div class="clearfix"></div>			
 		</div>
 		<div class="content_area">
@@ -586,7 +570,7 @@ a{
 									</tbody>
 								</table>
 							</td>
-							<
+							
 						</tr>
 					</table>
 				</div>

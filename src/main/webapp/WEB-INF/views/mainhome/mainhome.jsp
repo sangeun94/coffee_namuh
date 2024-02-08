@@ -35,12 +35,12 @@
 <body>
 <%@ include file="/WEB-INF/views/header/header.jsp"%>
 
-<div class="content"style="margin-top: 50px"><img src="/images/notice/20210201112150.jpg"></div>
+<div class="content"><img src="/images/notice/20210201112150.jpg"></div>
 <div class="content"><img src="/images/notice/mqdefault.jpg"></div>
 <div class="content"><img src="/images/notice/IMG_2019.jpg"></div>
 <div class="content"><img src="/images/notice/20210201112030.jpg"></div>
 <div class="content"><img src="/images/notice/coding1.jpg"></div>
-<div class="content" style="height:576;"><%@ include file="/WEB-INF/views/footer/footer.jsp"%></div>
+<div class="content"><%@ include file="/WEB-INF/views/footer/footer.jsp"%></div>
 
 <div class="chap_list_wrap robo">
 		<ul>
@@ -65,7 +65,7 @@
 			<li class="chap_list">
 				<span></span>
 				<div class="chap_list_wrap_title">
-					MEGA
+					NAMUH
 				</div>
 			</li>
 			<li class="chap_list">

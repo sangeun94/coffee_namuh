@@ -53,7 +53,7 @@
 					<div class="cont_text_wrap">
 						
 						<div class="cont_list cont_list_content cont_list_content_search">
-						
+						<table>
 							<div class="write_board">
 							<form action="" method="post">
 							<ul>

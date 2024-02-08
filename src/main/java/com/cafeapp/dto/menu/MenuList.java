@@ -20,10 +20,10 @@ public class MenuList {
 	int fileId;
 	
 	String fileName; // menu_drink_cold_brew_coffee_나이트로_바닐라_크림.jpg
-	String originalFileName;
+	String originalFileName; 
 	String filePath; // /fileStorage/drink/
 	String fileExtension;
 	long fileSize;
 	
-	String fullFilePath; // join 으로 한번에 가져오는 경우
+	String fullFilePath; // join 으로 한번에 file_path + file_name 가져오는 경우
 }

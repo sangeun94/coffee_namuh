@@ -60,6 +60,6 @@ a:link, a:visited{color:#454545;text-decoration:none;}
 a:hover, a:focus, a:active{color:#454545;text-decoration:underline;}
 table{border-collapse:collapse;border-spacing:0;}
 table caption{height:0;font-size:0;line-height:0;overflow:hidden;}
-table th{background-color:#f8f8f8;white-space:nowrap;text-overflow:ellipsis;line-height:1.3em;}
+table th{background-color:#f8f8f8;text-overflow:ellipsis;line-height:1.3em;}
 table, th, thead, tfoot{outline:0;}
 thead, tfoot{font-size:12px;line-height:1em;vertical-align:baseline;}

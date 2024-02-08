@@ -63,7 +63,7 @@ var tb_admin_url = "";
 				</li>
 				
 				<li class="gnb_1dli active">
-					<a href="" class="gnb_1da">상품관리</a>
+					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
 					<a href="" class="gnb_1da">주문관리</a>
@@ -88,10 +88,9 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="g10 menu_toggle">상품관리</dt>		
-        <dd class="g10 active"><a href="">음료 관리</a></dd>				
+        <dd class="g10 active"><a href="/admin/drinkList">음료 관리</a></dd>				
         <dd class="g10"><a href="">푸드 관리</a></dd>		
         <dd class="g10"><a href="">상품 관리</a></dd>		
-        <dd class="g10"><a href="">전체 매출액</a></dd>		
         </dl>
 	</div>
 	<div id="content">
@@ -110,9 +109,7 @@ var tb_admin_url = "";
 	<div class="tbl_frm01">
 		<table class="tablef">
 		<colgroup>
-			<col class="w100">
-			<col>
-			<col class="w100">
+			<col class="w120">
 			<col>
 		</colgroup>
 		<tbody>
@@ -136,18 +133,18 @@ var tb_admin_url = "";
 		<tr>
 			<th scope="row">음료 타입</th>
 			<td>
-				<label><input type="radio" name="menuType" value="5"> 전체 </label>	
-				<label><input type="radio" name="menuType" value="0"> 콜드브루 </label>
-				<label><input type="radio" name="menuType" value="1"> 에스프레소 </label>
-				<label><input type="radio" name="menuType" value="2"> 프라푸치노 </label>
-				<label><input type="radio" name="menuType" value="3"> 티 </label>					
-				<label><input type="radio" name="menuType" value="4"> 기타 </label>			
+				<label><input type="radio" name="menuType" value="0" checked="checked"> 전체 </label>	
+				<label><input type="radio" name="menuType" value="1"> 콜드브루 </label>
+				<label><input type="radio" name="menuType" value="2"> 에스프레소 </label>
+				<label><input type="radio" name="menuType" value="3"> 프라푸치노 </label>
+				<label><input type="radio" name="menuType" value="4"> 티 </label>					
+				<label><input type="radio" name="menuType" value="5"> 기타 </label>			
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">사이즈</th>
 			<td>
-				<label><input type="radio" name="menuSize" value="0" checked="checked"> 전체</label>
+				<label><input type="radio" name="menuSize" value="" checked="checked"> 전체</label>
 				<label><input type="radio" name="menuSize" value="1oz"> 1oz </label>
 				<label><input type="radio" name="menuSize" value="7oz"> 7oz </label>
 				<label><input type="radio" name="menuSize" value="12oz"> 12oz </label>
@@ -158,11 +155,11 @@ var tb_admin_url = "";
 		<tr>
 			<th scope="row">알레르기 정보</th>
 			<td>
-				<label><input type="radio" name="menuAllergyInfo" value="4" checked="checked"> 전체</label>
-				<label><input type="radio" name="menuAllergyInfo" value="0"> 우유 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="1"> 대두 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="2"> 우유 및 대두 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="3"> 없음 </label>
+				<label><input type="radio" name="menuAllergyInfo" value="0" checked="checked"> 전체</label>
+				<label><input type="radio" name="menuAllergyInfo" value="1"> 우유 </label>
+				<label><input type="radio" name="menuAllergyInfo" value="2"> 대두 </label>
+				<label><input type="radio" name="menuAllergyInfo" value="3"> 우유 및 대두 </label>
+				<label><input type="radio" name="menuAllergyInfo" value="4"> 없음 </label>
 	
 			</td>
 		</tr>
@@ -183,7 +180,7 @@ var tb_admin_url = "";
 	
 	<div class="local_frm01">
 		<input type="submit" name="act_button" value="선택삭제" class="btn_lsmall bx-white" onclick="document.pressed=this.value">
-		<a href="/admin/register" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
+		<a href="/admin/drinkRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
 	</div>
 	
 	<div class="tbl_head02">
@@ -192,16 +189,16 @@ var tb_admin_url = "";
 			<col class="w10">
 			<col class="w20">
 			<col class="w40">
+			<col class="w40">
 			<col class="w50">
-			<col class="w70">
-			<col class="w30">
-			<col class="w30">
-			<col class="w30">
-			<col class="w30">
-			<col class="w30">
-			<col class="w30">
-			<col class="w30">
-			<col class="w30">
+			<col class="w20">
+			<col class="w20">
+			<col class="w20">
+			<col class="w20">
+			<col class="w20">
+			<col class="w20">
+			<col class="w20">
+			<col class="w20">
 			<col class="w30">			
 		</colgroup>
 		<thead>
@@ -219,7 +216,7 @@ var tb_admin_url = "";
 			<th scope="col">나트륨</th>
 			<th scope="col">단백질</th>
 			<th scope="col">카페인 함유량</th>
-			<th scope="col">음료 정보 수정</th>
+			<th scope="col">정보 수정</th>
 	
 		</tr>
 		
@@ -238,10 +235,10 @@ var tb_admin_url = "";
 				<td>${menuItem.menuCalories}kcal</td>
 				<td>
 					<c:choose>
-				        <c:when test="${menuItem.menuAllergyInfo == 0}">우유</c:when>
-				        <c:when test="${menuItem.menuAllergyInfo == 1}">대두</c:when>
-				        <c:when test="${menuItem.menuAllergyInfo == 2}">우유 및 대두</c:when>
-				        <c:when test="${menuItem.menuAllergyInfo == 3}">없음</c:when>
+				        <c:when test="${menuItem.menuAllergyInfo == 1}">우유</c:when>
+				        <c:when test="${menuItem.menuAllergyInfo == 2}">대두</c:when>
+				        <c:when test="${menuItem.menuAllergyInfo == 3}">우유 및 대두</c:when>
+				        <c:when test="${menuItem.menuAllergyInfo == 4}">없음</c:when>
 				    </c:choose>
 				</td>
 				<td>${menuItem.menuSaturatedFat}g</td>
@@ -250,7 +247,7 @@ var tb_admin_url = "";
 				<td>${menuItem.menuProtein}g</td>
 				<td>${menuItem.menuCaffeine}mg</td>
 				<td>
-					<button type="button" id="btn_modify" onclick="window.location.href='/admin/modifyFaq?faqNumber=${faqItem.faqNumber}'" class="btn_lsmall">수정</button>
+					<button type="button" id="btn_modify" onclick="window.location.href='/admin/drinkModify?menuNumber=${menuItem.menuNumber}'" class="btn_lsmall">수정</button>
 				</td>
 			</tr>
 			</c:forEach>
@@ -258,9 +255,8 @@ var tb_admin_url = "";
 		</table>
 	</div>
 	<div class="local_frm02">
-		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-	
-		<a href="/admin/registerFaq" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon> 상품등록</a>
+		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>	
+		<a href="/admin/drinkRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
 	</div>
 
 </div>
@@ -314,21 +310,6 @@ var tb_admin_url = "";
    		});
     });
 
-    function changePageSize(pageSize) {
-        // URL 변경 전 출력
-        console.log("Current URL:", window.location.href);
-        
-        let searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('pageSize', pageSize);
-        searchParams.set('pageNum', 1);
-        
-        // 변경할 URL 출력
-        console.log("Updated search params:", searchParams.toString());
-        window.location.search = searchParams.toString();
-        
-        // URL 변경 후 출력 (이 코드는 실제로는 작동하지 않을 수 있습니다, 페이지가 리로드되기 때문입니다)
-        console.log("New URL:", window.location.href);
-    }
 
 </script>
 

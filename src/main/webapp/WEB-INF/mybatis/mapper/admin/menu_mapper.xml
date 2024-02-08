@@ -10,7 +10,7 @@
 	    FROM menu m
 	    LEFT JOIN FILE_INFO f ON m.file_id = f.file_id
 	    WHERE 1 = 1
-	        AND m.menu_number BETWEEN 1 AND 82
+	        AND m.menu_number BETWEEN 1 AND 1000
 	    <if test="searchType == 'menuNumber' and searchKeyword != null and searchKeyword != ''">
 	        AND TO_CHAR(m.menu_number) LIKE '%' || #{searchKeyword} || '%'
 	    </if>
@@ -49,5 +49,52 @@
 	    </if>
 	    ORDER BY m.menu_number
 	</select>
+	
+	<!-- 음료 신규등록 -->	
+	<insert id="saveDrinkList" parameterType="MenuList">
+		INSERT INTO menu
+		VALUES (drink_number_seq.NEXTVAL, #{menuType}, #{menuName}, #{menuDescription}, #{menuSize}, #{menuCalories}, 
+				#{menuAllergyInfo}, #{menuSaturatedFat}, #{menuSugars}, #{menuSodium}, #{menuProtein}, #{menuCaffeine}, #{fileId} )
+	</insert>
+	
+	<!-- 파일 정보 생성 -->
+	<insert id="saveFileInfo" parameterType="FileInfo">
+		INSERT INTO FILE_INFO
+		VALUES ( file_info_seq.nextval, #{fileName}, #{originalFileName}, 
+				#{filePath}, #{fileExtension}, #{fileSize})
+	</insert> 
+	
+	<!-- DB에 저장된 fileId를 가져오기 위해.. -->
+	<select id="findFileInfoByFileName" parameterType="String" resultType="FileInfo">
+		SELECT * 
+		FROM FILE_INFO
+		WHERE file_name = #{fileName}
+	</select>
+
+	<!-- 음료 정보 수정을 위한 정보 불러오기 -->
+	<select id="findMenuByMenuNumber" parameterType="int" resultType="MenuList">
+		SELECT m.*, f.*
+		FROM MENU m
+		JOIN FILE_INFO f ON m.file_id = f.file_id
+		WHERE m.menu_number = #{menu_number}
+	</select>
+	
+	<!-- 음료 정보 수정 -->
+	<update id="modifyMenu" parameterType="MenuList">
+	    UPDATE menu
+	    SET menu_type = #{menuType},
+	        menu_name = #{menuName},
+	        menu_description = #{menuDescription},
+	        menu_size = #{menuSize},
+	        menu_calories = #{menuCalories},
+	        menu_allergy_info = #{menuAllergyInfo},
+	        menu_saturated_fat = #{menuSaturatedFat},
+	        menu_sugars = #{menuSugars},
+	        menu_sodium = #{menuSodium},
+	        menu_protein = #{menuProtein},
+	        menu_caffeine = #{menuCaffeine},
+	       	file_id = #{fileId}	        	         
+	    WHERE menu_number = #{menuNumber}
+	</update>
 	
 </mapper>

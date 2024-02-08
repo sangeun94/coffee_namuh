@@ -30,6 +30,9 @@
 		<typeAlias type="com.cafeapp.dto.menu.MenuList" alias="MenuList" />
 		<typeAlias type="com.cafeapp.dto.menu.MenuSearchCondition" alias="MenuSearchCondition" />
 	
+		<typeAlias type="com.cafeapp.dto.util.FileInfo" alias="FileInfo" />
+	
+	
 	
 		<!--  -->
 		<typeAlias type="com.cafeapp.dto.user.User" alias="User" />

@@ -83,6 +83,7 @@
         <form class="user" action="/findId" method="POST">
             <div class="form-group">
                 <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" name="userEmail" placeholder="이메일을 입력해주세요.">
+            	<div id="emailCheckResult"></div>
             </div>
             <button type="submit">아이디 찾기</button>
         </form>
@@ -92,6 +93,9 @@
         <div class="text-center">
             <a class="small" href="/main">메인페이지</a>
         </div>
+
+     
+        
         <!-- 추가된 부분 -->
         <script type="text/javascript">
             var msg = "${msg}";
@@ -99,6 +103,40 @@
                 alert(msg);
             }
         </script>
+        
+        
+        <script>
+    	document.addEventListener('DOMContentLoaded', function () {
+    		const userEmailInput = document.getElementById('userEmail');
+    		
+    		//userEmail
+            userEmailInput.addEventListener('input', function () {
+                if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(userEmailInput.value)) {
+                    userEmailInput.style.background = 'pink';
+                    emailCheckResult.textContent = '올바른 이메일 주소를 입력해주세요.';
+                } else {
+                	userEmailInput.style.background = 'aqua';
+                	emailCheckResult.textContent = '';
+                }
+            });
+    		
+            document.getElementById('infoForm').addEventListener('submit', function (e) {
+                if (!validateForm()) {
+                    e.preventDefault();
+                }
+            });
+
+            function displayError(field, message) {
+                document.getElementById(field).style.background = 'pink';
+                document.getElementById(field + 'ErrorMsg').textContent = message;
+            }
+
+            function removeError(field) {
+                document.getElementById(field).style.background = 'aqua';
+                document.getElementById(field + 'ErrorMsg').textContent = '';
+            }
+        });
+            </script>
     </div>
 </body>
 </html>

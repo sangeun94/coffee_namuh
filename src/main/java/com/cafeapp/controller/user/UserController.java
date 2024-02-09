@@ -133,13 +133,7 @@ public class UserController {
         return response;
     }
     
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-    	loginManager.logout(session);
-    	
-        return "redirect:/login";
-    }
-    
+   
     
     @RequestMapping("/main")
     public String main() {
@@ -178,15 +172,7 @@ public class UserController {
         return "admin/main";
     }
 
-    
-    
-    @GetMapping("/admin/logout")
-    public String logoutAdmin(HttpServletRequest request, HttpServletResponse response, Model model) {
-        
-
-        return "redirect:/adminLogin";
-    }
-    
+   
     
 
     @GetMapping("/mypage")
@@ -319,8 +305,16 @@ public class UserController {
          return "user/withdrawal"; 
      }
     
-
+     //로그아웃
+     @GetMapping("/logout")
+     public String logout(HttpSession session) {
+     	loginManager.logout(session);
+     	
+         return "redirect:/login";
+     }
+     
     
+     
 
     }
 

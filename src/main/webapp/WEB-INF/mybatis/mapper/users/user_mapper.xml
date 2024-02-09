@@ -87,6 +87,4 @@
 	    SET is_member = 0
 	    WHERE user_id = #{userId}
 	</update>
-
-
 </mapper>

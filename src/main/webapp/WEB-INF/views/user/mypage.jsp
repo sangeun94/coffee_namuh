@@ -249,6 +249,25 @@ button {
 	</div>
 	
 	
+	<!-- 로그아웃 버튼 추가 -->
+<button id="logoutButton">로그아웃</button>
+
+<!-- 기존의 스크립트 아래에 추가 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // ... 기존 스크립트 코드 ...
+
+        // 로그아웃 버튼 클릭 시 이벤트 처리
+        const logoutButton = document.getElementById('logoutButton');
+
+        logoutButton.addEventListener('click', function () {
+            // 로그아웃 처리를 위한 로직을 추가할 수 있습니다.
+            // 여기서는 간단하게 '/logout' 경로로 이동하는 예제를 보여드립니다.
+            window.location.href = '/logout'; // 이동하고자 하는 경로로 변경해주세요.
+        });
+    });
+</script>
+	
 	<script>//회원정보 모달창 스크립트
 	    document.addEventListener('DOMContentLoaded', function () {
 	        const btnOpenUpdateModal = document.querySelector('button');

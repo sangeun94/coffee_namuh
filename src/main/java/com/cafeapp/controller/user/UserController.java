@@ -48,7 +48,7 @@ public class UserController {
 
         if (result > 0) {
             // 회원가입 성공 시 처리
-            return "user/login";
+        	return "redirect:/login";
         } else {
             // 회원가입 실패 시 처리
             return "redirect:/user/register";
@@ -300,8 +300,24 @@ public class UserController {
      }
 
        
+     
+  // 회원탈퇴 페이지로 이동
+     @GetMapping("/withdrawal")
+     public String withdrawalPage() {
+         return "user/withdrawal";
+     }
 
-
+     // 회원탈퇴
+     @PostMapping("/withdrawal")
+     public String withdrawUser(@RequestParam("userId") String userId, Model model) {
+         int result = userService.withdrawUser(userId);
+         if (result > 0) {
+             model.addAttribute("withdrawalSuccess", true);
+         } else {
+             model.addAttribute("withdrawalSuccess", false);
+         }
+         return "user/withdrawal"; 
+     }
     
 
     

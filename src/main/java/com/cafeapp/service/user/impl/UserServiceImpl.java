@@ -129,5 +129,8 @@ public class UserServiceImpl implements UserService{
         return rowsAffected > 0;
     }
 	
-    
+    @Override
+    public int withdrawUser(String userId) {
+        return userDAO.withdrawUser(userId);
+    }
 }

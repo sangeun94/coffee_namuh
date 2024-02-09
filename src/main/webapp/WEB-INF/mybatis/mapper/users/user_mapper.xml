@@ -81,5 +81,12 @@
 	    WHERE user_id = #{userId} AND user_name = #{userName} AND user_email = #{userEmail}
 	</update>
 
+	<!-- 회원탈퇴 -->
+	<update id="withdrawUser" parameterType="String">
+	    UPDATE users
+	    SET is_member = 0
+	    WHERE user_id = #{userId}
+	</update>
+
 
 </mapper>

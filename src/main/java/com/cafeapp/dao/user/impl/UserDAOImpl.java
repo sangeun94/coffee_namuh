@@ -108,6 +108,11 @@ public class UserDAOImpl implements UserDAO{
     public int updatePassword(User user) {
         return sqlSessionTemplate.update("user_mapper.updatePassword", user);
     }
-
-	
+    
+    @Override
+    public int withdrawUser(String userId) {
+        return sqlSessionTemplate.update("user_mapper.withdrawUser", userId);
+    }
+    
+    
 }

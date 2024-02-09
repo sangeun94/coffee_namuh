@@ -42,4 +42,7 @@ public interface UserService {
     int countUsers(User user);
     
     boolean updatePassword(User user);
+    
+    //회원탈퇴
+    int withdrawUser(String userId);
 }

@@ -43,4 +43,6 @@ public interface UserDAO {
     int updatePassword(User user);
     //
     
+    //회원탈퇴
+    int withdrawUser(String userId);
 }

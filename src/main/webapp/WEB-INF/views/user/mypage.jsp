@@ -44,7 +44,7 @@ body {
 }
 
 .profile-header {
-	background-color: #1A3B33;
+	
 	color: #fff;
 	padding: 20px;
 	text-align: center;
@@ -52,40 +52,61 @@ body {
 	border-top-right-radius: 8px;
 }
 
+#profile-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    display: inline-block; /* 추가된 부분: 이미지를 인라인 요소로 설정 */
+    vertical-align: middle; /* 추가된 부분: 이미지를 수직 가운데 정렬 */
+}
+
+h1 {
+    color: #1A3B33;
+    display: inline-block; /* 추가된 부분: 텍스트를 인라인 요소로 설정 */
+    vertical-align: middle; /* 추가된 부분: 텍스트를 수직 가운데 정렬 */
+    margin: 0; /* 추가된 부분: 기본 마진 제거 */
+}
+
 .profile-form {
 	padding: 20px;
 }
 
 .label-input-group {
-	margin-bottom: 16px;
+    margin-bottom: 20px; /* 각 라벨-입력 그룹의 간격을 늘립니다. */
 }
 
 .label-input-group label {
-	display: block;
-	margin-bottom: 8px;
-	color: #333;
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+    width: 15%; /* 수정된 부분: 라벨 박스 크기를 줄임 */
+    text-align: left;
+    margin-left: 30px;
 }
 
 .label-input-group input {
-	width: calc(100% - 16px);
-	padding: 8px;
-	margin-bottom: 16px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
+    display: inline-block;
+    width: 70%; /* 수정된 부분: 입력 필드 크기 조정 */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.button-container {
-	text-align: center;
+button {
+    background-color: #1A3B33;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
 }
-
-.button-container button {
-	background-color: #1A3B33;
-	color: #fff;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
+.button-container button:hover {
+    background-color: #155c4d;
 }
 /* 모달 스타일 추가 */
 .modal {
@@ -113,16 +134,19 @@ body {
 }
 
 
+
 </style>
 </head>
 <body>
 	<div id="container">
 		<div class="profile-header">
+		<img id="profile-image" src="/images/user/COFFEENAMUH_logo.png">
 			<h1>마이페이지</h1>
+			
 		</div>
 		<form action="" method="method">
 		<div class="label-input-group">
-    <label>성함:</label>
+    <label>성  함:</label>
     <input type="text" id="userName" name="userName" value="${user.userName}" disabled>
 </div>
 
@@ -132,12 +156,12 @@ body {
 </div>
 
 <div class="label-input-group">
-    <label>비밀번호:</label>
+    <label>패스워드:</label>
     <input type="text" id="DBuserPassword" name="DBuserPassword" value="${user.userPassword}" disabled>
 </div>
 
 <div class="label-input-group">
-    <label>이메일:</label>
+    <label>Email:</label>
     <input type="email" id="DBuserEmail" name="DBuserEmail" value="${user.userEmail}" disabled>
 </div>
 
@@ -152,7 +176,7 @@ body {
 </div>
 
 <div class="label-input-group">
-    <label>주소:</label>
+    <label>주  소:</label>
     <input type="text" id="DBuserAddress" name="DBuserAddress" value="${user.userAddress}" disabled>
     
     <label>상세주소:</label>
@@ -162,14 +186,15 @@ body {
 	
 		</form>
 		
-    <button>회원정보 수정하기</button>
-    
+    <button>회원정보 수정하기</button><br><br>
+    <button type="submit">회원탈퇴</button>
 	</div>
 	
 
 	<!-- 모달창 -->
 	<div class="modal">
 	    <div class="modal_body">
+	    	<img id="profile-image" src="/images/user/COFFEENAMUH_logo.png">
 	        <h2>정보 수정</h2>
 	        <form id="updateFormModal" action="/mypage" method="post">
 				<!-- user_id를 hidden으로 추가 -->
@@ -203,16 +228,28 @@ body {
 	            <button type="submit">수정하기</button>
 	            <button type="button" class="btn-close-modal">취소</button>
 	        </form>
-	
-		
-		
-		
 	    </div>
 	</div>
 	
 	
+	<!-- 새로운 모달창 (회원탈퇴) -->
+	<div class="modal" id="withdrawModal">
+	    <div class="modal_body">
+	        <h2>회원탈퇴</h2>
+	        <form id="withdrawFormModal" action="/withdrawal" method="post">
+	            <!-- user_id를 hidden으로 추가 -->
+	            <input type="hidden" name="userId" value="${user.userId}">
+	            
+	            <p>정말로 탈퇴하시겠습니까? 탈퇴 후에는 복구할 수 없습니다.</p>
 	
-	<script>//모달창 스크립트
+	            <button type="submit">탈퇴하기</button>
+	            <button type="button" class="btn-close-modal">취소</button>
+	        </form>
+	    </div>
+	</div>
+	
+	
+	<script>//회원정보 모달창 스크립트
 	    document.addEventListener('DOMContentLoaded', function () {
 	        const btnOpenUpdateModal = document.querySelector('button');
 	        const modal = document.querySelector('.modal');
@@ -225,6 +262,35 @@ body {
 	
 	        btnCancel.addEventListener('click', function () {
 	            modal.style.display = 'none';
+	        });
+	    });
+	</script>
+
+
+	<script>
+	    document.addEventListener('DOMContentLoaded', function () {
+	        const btnOpenUpdateModal = document.querySelector('#container button:first-of-type');
+	        const btnOpenWithdrawModal = document.querySelector('#container button:last-of-type');
+	        const modalUpdate = document.querySelector('#updateModal');
+	        const modalWithdraw = document.querySelector('#withdrawModal');
+	
+	        btnOpenUpdateModal.addEventListener('click', function () {
+	            modalUpdate.style.display = 'flex';
+	        });
+	
+	        btnOpenWithdrawModal.addEventListener('click', function () {
+	            modalWithdraw.style.display = 'flex';
+	        });
+	
+	        const btnCancelUpdate = document.querySelector('#updateModal .btn-close-modal');
+	        const btnCancelWithdraw = document.querySelector('#withdrawModal .btn-close-modal');
+	
+	        btnCancelUpdate.addEventListener('click', function () {
+	            modalUpdate.style.display = 'none';
+	        });
+	
+	        btnCancelWithdraw.addEventListener('click', function () {
+	            modalWithdraw.style.display = 'none';
 	        });
 	    });
 	</script>

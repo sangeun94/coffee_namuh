@@ -105,7 +105,7 @@
 </head>
 <body>
     <div id="container">
-        <img id="profile-image" src="/image/user/COFFEENAMUH_logo.png">
+        <img id="profile-image" src="/images/user/COFFEENAMUH_logo.png">
 
         <h2>회원가입</h2>
 

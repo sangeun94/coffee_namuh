@@ -138,47 +138,46 @@ public class AdminMenuController {
 	
 	@PostMapping("/admin/drinkModify")
 	public String drinkModifyProcess(MenuFile menuFile, @RequestParam int menuNumber, RedirectAttributes redirectAttributes) {
-		
-//		fileInfo 테이블에 새롭게 하나 만들어지는거고 (insert)
-//		MenuList 테이블은 수정되는거지 (update)
-//		MenuList 테이블에 있는 수정된 file_id가 새롭게 만들어진 fileInfo테이블 거랑 연결되게끔 하는거지!
-		
-		try {
-	        FileInfo fileInfo = fileManager.storeFile(menuFile.getProfileImage(), "drink/");
-	        int result = menuService.saveFileInfo(fileInfo);
-	        
-	        if (result > 0) {
-	            FileInfo savedFileInfo = menuService.findFileInfoByFileName(fileInfo.getFileName());
-	            
-	            // 메뉴 정보를 업데이트하는 부분
-	            MenuList menuList = new MenuList();
-	            menuList.setMenuNumber(menuNumber);
-	            menuList.setMenuType(menuFile.getMenuType());
-	            menuList.setMenuName(menuFile.getMenuName());
-	            menuList.setMenuDescription(menuFile.getMenuDescription());
-	            menuList.setMenuSize(menuFile.getMenuSize());
-	            menuList.setMenuCalories(menuFile.getMenuCalories());
-	            menuList.setMenuAllergyInfo(menuFile.getMenuAllergyInfo());
-	            menuList.setMenuSaturatedFat(menuFile.getMenuSaturatedFat());
-	            menuList.setMenuSugars(menuFile.getMenuSugars());
-	            menuList.setMenuSodium(menuFile.getMenuSodium());
-	            menuList.setMenuProtein(menuFile.getMenuProtein());
-	            menuList.setMenuCaffeine(menuFile.getMenuCaffeine());
+	    MenuList menuList = new MenuList();
+	    menuList.setMenuNumber(menuNumber);
+	    menuList.setMenuType(menuFile.getMenuType());
+	    menuList.setMenuName(menuFile.getMenuName());
+	    menuList.setMenuDescription(menuFile.getMenuDescription());
+	    menuList.setMenuSize(menuFile.getMenuSize());
+	    menuList.setMenuCalories(menuFile.getMenuCalories());
+	    menuList.setMenuAllergyInfo(menuFile.getMenuAllergyInfo());
+	    menuList.setMenuSaturatedFat(menuFile.getMenuSaturatedFat());
+	    menuList.setMenuSugars(menuFile.getMenuSugars());
+	    menuList.setMenuSodium(menuFile.getMenuSodium());
+	    menuList.setMenuProtein(menuFile.getMenuProtein());
+	    menuList.setMenuCaffeine(menuFile.getMenuCaffeine());
 
-	            menuList.setFileId(savedFileInfo.getFileId()); // 새로운 파일 ID 세팅
+	    try {
+	        // 파일이 존재하는 경우에만 파일 저장 로직을 수행합니다.
+	        if (!menuFile.getProfileImage().isEmpty()) {
+	            FileInfo fileInfo = fileManager.storeFile(menuFile.getProfileImage(), "drink/");
+	            int result = menuService.saveFileInfo(fileInfo);
 	            
-	            int result2 = menuService.modifyMenu(menuList);
-	            
-	            if (result2 > 0) {
-	                redirectAttributes.addFlashAttribute("successMessage", "수정되었습니다.");
-	                return "redirect:/admin/drinkList";
+	            if (result > 0) {
+	                FileInfo savedFileInfo = menuService.findFileInfoByFileName(fileInfo.getFileName());
+	                menuList.setFileId(savedFileInfo.getFileId()); // 새로운 파일 ID 세팅
 	            } else {
-	                // 데이터 업데이트 실패
-	                redirectAttributes.addFlashAttribute("errorMessage", "수정에 실패하였습니다.");
+	                redirectAttributes.addFlashAttribute("errorMessage", "파일 저장에 실패하였습니다.");
 	                return "redirect:/admin/drinkModify";
 	            }
 	        } else {
-	            // 파일 정보 저장 실패
+	            // 새 파일이 업로드되지 않았다면 기존의 fileId를 사용합니다.
+	            menuList.setFileId(menuFile.getPreviousFileId());
+	        }
+
+	        // 메뉴 정보를 업데이트하는 부분
+	        int result2 = menuService.modifyMenu(menuList);
+	        
+	        if (result2 > 0) {
+	            redirectAttributes.addFlashAttribute("successMessage", "수정되었습니다.");
+	            return "redirect:/admin/drinkList";
+	        } else {
+	            // 데이터 업데이트 실패
 	            redirectAttributes.addFlashAttribute("errorMessage", "수정에 실패하였습니다.");
 	            return "redirect:/admin/drinkModify";
 	        }
@@ -187,8 +186,6 @@ public class AdminMenuController {
 	        redirectAttributes.addFlashAttribute("errorMessage", "수정에 실패하였습니다.");
 	        return "redirect:/admin/drinkModify";
 	    }
-		
-	}
-	
+	}	
 	
 }

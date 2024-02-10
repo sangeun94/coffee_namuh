@@ -53,8 +53,7 @@ public class AdminOrderController {
 		return orderDetailList;
 	}
 	
-	
-	// 발주확인 눌렀을때 배송준비중(1)로 수정
+	// 발주확인 눌렀을때 배송준비중(2)로 수정
 	@PostMapping("/admin/modifyOrderStatus1")
 	public String modifyOrderStatus1(Order order, RedirectAttributes redirectAttributes) {
 	    System.out.println(order);
@@ -92,7 +91,19 @@ public class AdminOrderController {
 		return "admin/adminDeliveryPrepare";
 	}
 	
-	// 배송시작 눌렀을때 배송중(2)로 수정
+	//배송준비 단계에서 운송장번호 수기입력 -> 수정
+    @PostMapping("/admin/updateTrackingNumber")
+    public String updateTrackingNumber(Order order, RedirectAttributes redirectAttributes) {
+        int result = orderService.updateTrackingNumber(order);
+        if (result > 0) {
+            redirectAttributes.addFlashAttribute("successMessage", "운송장 번호가 저장되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "운송장 번호 저장에 실패했습니다.");
+        }
+        return "redirect:/admin/deliveryPrepare";
+    }
+    
+	// 배송시작 눌렀을때 배송중(3)로 수정
 	@PostMapping("/admin/modifyOrderStatus2")
 	public String modifyOrderStatus2(Order order, RedirectAttributes redirectAttributes) {
 	    System.out.println(order);
@@ -129,7 +140,7 @@ public class AdminOrderController {
 		return "admin/adminDelivering";
 	}
 	
-	// 배송완료 눌렀을때 배송완료(3)로 수정
+	// 배송완료 눌렀을때 배송완료(4)로 수정
 	@PostMapping("/admin/modifyOrderStatus3")
 	public String modifyOrderStatus3(Order order, RedirectAttributes redirectAttributes) {
 	    System.out.println(order);

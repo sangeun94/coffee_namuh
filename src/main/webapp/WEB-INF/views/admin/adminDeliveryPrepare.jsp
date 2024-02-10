@@ -217,8 +217,6 @@ var tb_admin_url = "";
 	</thead>
 	<tbody>
 		<c:forEach var="orderItem" items="${orderList}">
-			<form action="/admin/modifyOrderStatus2" name="forderlist" id="forderlist" method="post">
-				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 
 			<tr class="list0">
 				<td>${orderItem.orderNumber}</td>
@@ -242,7 +240,16 @@ var tb_admin_url = "";
 		        </td>
 				<td>${orderItem.totalQuantity}</td>
 				<td>${orderItem.courierName}</td>
-				<td>${orderItem.trackingNumber}</td>			
+			<form action="/admin/updateTrackingNumber" method="post">
+        		<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
+				<td>
+					<%-- ${orderItem.trackingNumber} --%>
+					<!-- 운송장번호 : 배송준비단계에서 수기로 작성 -->	
+					<input type="text" name="trackingNumber" class="frm_input" value="" placeholder="운송장번호를 입력해주세요." style="width:200px;"/>				
+					<button type="submit" id="btn_modify" class="btn_small">저장</button>
+					
+				</td>
+			</form>				
 				<td>
 				    <c:choose>
 				        <c:when test="${orderItem.orderStatus == 0}">상품준비중</c:when>
@@ -255,11 +262,13 @@ var tb_admin_url = "";
 				</td>
 				<td>${orderItem.ordererName}</td>
 				<td>${orderItem.totalPrice}</td>
+			<form action="/admin/modifyOrderStatus2" name="forderlist" id="forderlist" method="post">
+				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 				<td>
 					<button type="submit" id="btn_modify" class="btn_lsmall">배송시작</button>
 				</td>
-			</tr>
 			</form>
+			</tr>
 		</c:forEach>
 	</tbody>
 	</table>

@@ -20,6 +20,8 @@ public class MenuFile {
 	int menuProtein;
 	int menuCaffeine; 
 
+	int previousFileId; // 사용자가 선택하지 않은 경우 기존 파일 정보를 유지 : 이전 파일 ID
+	
 	MultipartFile profileImage; //파일
 
 }

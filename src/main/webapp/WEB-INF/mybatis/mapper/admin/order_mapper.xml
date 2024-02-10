@@ -75,7 +75,6 @@
 	        o.order_number = #{orderNumber}
 	</select>
 		
-		
 	<!-- 발주확인 버튼 눌렀을때 배송준비(2)로 상태 변경 -->	
 	<update id="updateOrderStatus1" parameterType="Order">
 	    UPDATE orders
@@ -129,6 +128,13 @@
 		    o.order_number	        
 	</select>		
 		
+	<!-- 배송준비 단계에서 운송장번호 수기입력 -> 수정 -->	
+	<update id="updateTrackingNumber" parameterType="Order">
+	    UPDATE orders
+	    SET tracking_number = #{trackingNumber}
+	    WHERE order_number = #{orderNumber}
+	</update>
+	
 	<!-- 배송시작 버튼 눌렀을때 배송중(3)로 상태 변경 -->	
 	<update id="updateOrderStatus2" parameterType="Order">
 	    UPDATE orders

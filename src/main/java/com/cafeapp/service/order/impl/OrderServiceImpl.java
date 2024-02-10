@@ -37,8 +37,8 @@ public class OrderServiceImpl implements OrderService{
 		
 		return orderDetailList;
 	}
-
-	//주문상태 1로 변경
+	
+	//주문상태 2로 변경
 	@Override
 	public int updateOrderStatus1(Order order) {
 		// TODO Auto-generated method stub
@@ -59,7 +59,17 @@ public class OrderServiceImpl implements OrderService{
 
 	}
 
-	//주문상태 2로 변경
+	//배송준비 단계에서 운송장번호 수기입력 -> 수정
+	@Override
+	public int updateTrackingNumber(Order order) {
+		// TODO Auto-generated method stub
+		
+		int result = orderDAO.updateTrackingNumber(order);
+		
+		return result;
+	}
+	
+	//주문상태 3로 변경
 	@Override
 	public int updateOrderStatus2(Order order) {
 		// TODO Auto-generated method stub
@@ -79,7 +89,7 @@ public class OrderServiceImpl implements OrderService{
 		return orderList;
 	}
 	
-	//주문상태 3로 변경
+	//주문상태 4로 변경
 	@Override
 	public int updateOrderStatus3(Order order) {
 		// TODO Auto-generated method stub
@@ -98,4 +108,5 @@ public class OrderServiceImpl implements OrderService{
 		
 		return orderList;
 	}
+	
 }

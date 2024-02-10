@@ -113,14 +113,25 @@ var tb_admin_url = "";
 		</colgroup>
 		<tbody>
 		<tr class="item_img_fld">
-			<th scope="row">이미지 </th>
-			<td>
-				<div class="item_file_fld">
-					<input type="file" name="profileImage">
-					<span class="frm_info fc_125">이전 파일 : ${menuList.originalFileName}</span>
-					
-				</div>
-			</td>
+		    <th scope="row">이미지</th>
+		    <td>
+		        <div>
+		            <!-- 이전에 업로드된 파일의 미리보기 이미지 (사용 가능하다면) -->
+		            <%-- <img src="${menuList.filePath}${menuList.fileName}" alt="Uploaded Image Preview" style="width:70px; height:70px;"> --%>
+		            <!-- 사용자가 새 파일을 업로드할 수 있는 입력 필드 -->
+		            <input type="file" name="profileImage">
+		        </div>
+		           	<!-- 이전 파일 이름을 보여주는 부분 -->
+		            <span>이전 파일: ${menuList.originalFileName}</span>
+		            <!-- 이전 파일 정보를 저장하는 숨겨진 필드 -->
+		            <input type="hidden" name="previousFileId" value="${menuList.fileId}">
+<%-- 		            <input type="hidden" name="fileId" value="${menuList.fileId}">
+		            <input type="hidden" name="fileName" value="${menuList.fileName}">
+		            <input type="hidden" name="originalFileName" value="${menuList.originalFileName}">
+		            <input type="hidden" name="filePath" value="${menuList.filePath}">
+		            <input type="hidden" name="fileExtension" value="${menuList.fileExtension}">
+		            <input type="hidden" name="fileSize" value="${menuList.fileSize}"> --%>
+		    </td>
 		</tr>
 		<tr>
 			<th scope="row">음료 타입</th>
@@ -221,20 +232,6 @@ var tb_admin_url = "";
 <div id="ajax-loading"><img src="/images/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
-<c:if test="${not empty successMessage}">
-<script type="text/javascript">
-    alert("${successMessage}");
-    window.location.href = '/admin/drinkList'; // 성공 메시지를 보여준 후 목록 페이지로 이동
-</script>
-</c:if>
-
-<c:if test="${not empty errorMessage}">
-<script type="text/javascript">
-    alert("${errorMessage}");
-</script>
-</c:if>
-
-
 <script src="/js/admin/admin.js"></script>
 
 <script src="/js/admin/wrest.js"></script>
@@ -244,12 +241,12 @@ var tb_admin_url = "";
 function validateForm() {
     var menuName = document.forms["drinkForm"]["menuName"].value;
     var menuDescription = document.forms["drinkForm"]["menuDescription"].value;
-    var profileImage = document.forms["drinkForm"]["profileImage"].value;
+/*     var profileImage = document.forms["drinkForm"]["profileImage"].value;
 
     if (profileImage == null || profileImage.trim() == "") {
         alert("파일 첨부 해주세요.");
         return false; // 폼 제출을 방지
-    }
+    } */
     
     if (menuName == null || menuName.trim() == "") {
         alert("메뉴 이름을 입력해주세요.");
@@ -264,6 +261,19 @@ function validateForm() {
     return true; // 유효성 검사 통과, 폼 제출 진행
 }
 </script>
+
+<c:if test="${not empty successMessage}">
+<script type="text/javascript">
+    alert('<c:out value="${successMessage}"/>');
+    window.location.href = '/admin/drinkList'; // 성공 메시지를 보여준 후 목록 페이지로 이동
+</script>
+</c:if>
+
+<c:if test="${not empty errorMessage}">
+<script type="text/javascript">
+    alert('<c:out value="${errorMessage}"/>');
+</script>
+</c:if>
 
 </body>
 </html>

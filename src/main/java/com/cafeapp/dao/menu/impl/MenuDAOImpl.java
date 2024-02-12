@@ -91,5 +91,37 @@ public class MenuDAOImpl implements MenuDAO {
 				
 		return result;
 	}
+
+
+	//음료 삭제
+	@Override
+	public int removeMenu(int menuNumber) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("menu_mapper.removeMenu", menuNumber);
+		
+		return result;
+	}
+
+
+//	=========================================
+	//푸드리스트 목록 및 검색
+	@Override
+	public List<MenuList> findFoodBySearchCondition(MenuSearchCondition menuSearchCondition) {
+		// TODO Auto-generated method stub
+		List<MenuList> menuList = 
+				sqlSessionTemplate.selectList("menu_mapper.findFoodBySearchCondition", menuSearchCondition);
+		
+		return menuList;
+	}
 	
+	//푸드 생성
+	@Override
+	public int saveFoodList(MenuList menuList) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("menu_mapper.saveFoodList", menuList);
+		
+		return result;
+	}
 }

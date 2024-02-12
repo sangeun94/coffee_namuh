@@ -132,21 +132,21 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 			<dt class="o10 menu_toggle">주문관리</dt>		
-	        <dd class="o10 active"><a href="/admin/orderList">주문리스트
+	        <dd class="o10 active"><a href="/admin/orderList">신규주문</a></dd>
 	        <dd class="o10"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
 	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
 	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
 	
-    </dl>
+    	</dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 주문관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 주문리스트		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 신규주문		
         </div>
 	
 <div class="s_wrap">
-	<h1>주문리스트</h1>
+	<h1>신규 주문</h1>
 	
 	<h2>기본검색</h2>
 <form action="/admin/orderList" name="fsearch" id="fsearch" method="get">
@@ -252,12 +252,12 @@ var tb_admin_url = "";
 				<td>${orderItem.shippingFee}</td>
 				<td>
 				    <c:choose>
-				        <c:when test="${orderItem.orderStatus == 0}">상품준비중</c:when>
-				        <c:when test="${orderItem.orderStatus == 1}">배송준비중</c:when>
-				        <c:when test="${orderItem.orderStatus == 2}">배송중</c:when>
-				        <c:when test="${orderItem.orderStatus == 3}">배송완료</c:when>
-				        <c:when test="${orderItem.orderStatus == 4}">주문취소</c:when>
-				        <c:when test="${orderItem.orderStatus == 5}">구매확정</c:when>
+				        <c:when test="${orderItem.orderStatus == 1}">상품준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 2}">배송준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 3}">배송중</c:when>
+				        <c:when test="${orderItem.orderStatus == 4}">배송완료</c:when>
+				        <c:when test="${orderItem.orderStatus == 5}">주문취소</c:when>
+				        <c:when test="${orderItem.orderStatus == 6}">구매확정</c:when>
 				    </c:choose>
 				</td>
 				<td>${orderItem.ordererName}</td>

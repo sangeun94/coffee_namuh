@@ -19,6 +19,6 @@ public class OrderList {
 	int paymentMethod; //1:신용카드, 2:휴대폰결제, 3:무통장입금
 	
 	String courierName; //택배회사
-	int trackingNumber; //운송장번호
+	String trackingNumber; //운송장번호
 	
 }

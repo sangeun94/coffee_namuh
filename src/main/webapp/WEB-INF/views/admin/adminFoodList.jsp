@@ -40,6 +40,51 @@ var tb_admin_url = "";
 <script src="/js/admin/categorylist.js"></script>
 
 </head>
+
+<style>
+	/* 슬라이더 전체 스타일 */
+input[type=range] {
+  -webkit-appearance: none; /* 크롬, 사파리, 오페라에서 기본 디자인 제거 */
+  width: 100%; /* 전체 너비 */
+  margin: 10px 0; /* 슬라이더와 다른 요소 사이의 여백 */
+}
+
+/* 슬라이더 트랙(바탕) 스타일 */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px; /* 트랙의 높이 */
+  cursor: pointer;
+  background: #3071A9; /* 트랙의 배경색 */
+  border-radius: 5px; /* 트랙의 둥근 모서리 */
+}
+
+/* 슬라이더 썸(손잡이) 스타일 */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* 기본 디자인 제거 */
+  height: 20px; /* 썸의 높이 */
+  width: 20px; /* 썸의 너비 */
+  border-radius: 50%; /* 썸을 원형으로 만듦 */
+  background: #ffffff; /* 썸의 배경색 */
+  cursor: pointer;
+  margin-top: -6px; /* 트랙 중앙에 썸을 위치시키기 위한 조정 */
+}
+
+/* 슬라이더에 포커스 됐을 때의 스타일 */
+input[type=range]:focus {
+  outline: none; /* 기본 아웃라인 제거 */
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd; /* 포커스 됐을 때의 트랙 색상 변경 */
+}
+
+/* 슬라이더 호버 스타일 */
+input[type=range]:hover::-webkit-slider-thumb {
+  background: #blue; /* 호버됐을 때 썸의 색상 변경 */
+}
+
+</style>
+
 <body>
 
 <header id="hd">
@@ -88,23 +133,23 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="g10 menu_toggle">상품관리</dt>		
-        <dd class="g10 active"><a href="/admin/drinkList">음료 관리</a></dd>				
-        <dd class="g10"><a href="/admin/foodList">푸드 관리</a></dd>		
+        <dd class="g10"><a href="/admin/drinkList">음료 관리</a></dd>				
+        <dd class="g10 active"><a href="/admin/foodList">푸드 관리</a></dd>		
         <dd class="g10"><a href="">상품 관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 상품관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 음료관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 푸드관리		
         </div>
 	
 <div class="s_wrap">
-	<h1>음료 관리</h1>
+	<h1>푸드 관리</h1>
 	
 </script>
 <h2>기본검색</h2>
-<form action="/admin/drinkList" name="fsearch" id="fsearch" method="get">
+<form action="/admin/foodList" name="fsearch" id="fsearch" method="get">
 
 	<div class="tbl_frm01">
 		<table class="tablef">
@@ -117,9 +162,9 @@ var tb_admin_url = "";
 			<th scope="row">검색어</th>
 			<td>
 				<select name="searchType">
-					<option value="menuNumber">음료번호</option>
-					<option value="menuName">음료이름</option>
-					<option value="menuDescription">음료설명</option>
+					<option value="menuNumber">푸드번호</option>
+					<option value="menuName">푸드이름</option>
+					<option value="menuDescription">푸드설명</option>
 					<option value="menuCalories">칼로리</option>
 					<option value="menuSaturatedFat">포화지방</option>
 					<option value="menuSugars">당류</option>
@@ -131,27 +176,25 @@ var tb_admin_url = "";
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">음료 타입</th>
+			<th scope="row">푸드 타입</th>
 			<td>
 				<label><input type="radio" name="menuType" value="0" checked="checked"> 전체 </label>	
-				<label><input type="radio" name="menuType" value="1"> 콜드브루 </label>
-				<label><input type="radio" name="menuType" value="2"> 에스프레소 </label>
-				<label><input type="radio" name="menuType" value="3"> 프라푸치노 </label>
-				<label><input type="radio" name="menuType" value="4"> 티 </label>					
-				<label><input type="radio" name="menuType" value="5"> 기타 </label>			
+				<label><input type="radio" name="menuType" value="6"> 브레드 </label>
+				<label><input type="radio" name="menuType" value="7"> 케이크 </label>
+				<label><input type="radio" name="menuType" value="8"> 샌드위치 </label>
+		
 			</td>
 		</tr>
+
 		<tr>
-			<th scope="row">사이즈</th>
+			<th scope="row">총 내용량</th>
 			<td>
-				<label><input type="radio" name="menuSize" value="0" checked="checked"> 전체</label>
-				<label><input type="radio" name="menuSize" value="1"> 1oz </label>
-				<label><input type="radio" name="menuSize" value="7"> 7oz </label>
-				<label><input type="radio" name="menuSize" value="12"> 12oz </label>
-				<label><input type="radio" name="menuSize" value="16"> 16oz </label>
-	
+				<label for="menuSize"></label>
+				<input type="range" id="menuSize" name="menuSize" min="0" max="500" value="500" oninput="updateMenuSizeDisplay(this.value);" class="frm_input w90">
+				<span id="menuSizeDisplay">0g</span>			
 			</td>
 		</tr>
+
 		<tr>
 			<th scope="row">알레르기 정보</th>
 			<td>
@@ -176,11 +219,11 @@ var tb_admin_url = "";
 		전체 : <b class="fc_red">${totalMenuList}</b> 건 조회
 	</div>
 	
-<form id="frm_customers" action="/admin/drinkRemove" method="post">
+<form id="frm_customers" action="/admin/foodRemove" method="post">
 	
 	<div class="local_frm01">
 		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-		<a href="/admin/drinkRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
+		<a href="/admin/foodRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
 	</div>
 	
 	<div class="tbl_head02">
@@ -208,7 +251,7 @@ var tb_admin_url = "";
 			<th scope="col">이미지</th>
 			<th scope="col">이름</th>
 			<th scope="col">설명</th>	
-			<th scope="col">사이즈</th>
+			<th scope="col">총 내용량</th>
 			<th scope="col">칼로리</th>
 			<th scope="col">알레르기 정보</th>
 			<th scope="col">포화지방</th>
@@ -231,7 +274,7 @@ var tb_admin_url = "";
 				<td ><img src="${menuItem.fullFilePath}" width="70" height="70"></td>
 				<td>${menuItem.menuName}</td>
 				<td>${menuItem.menuDescription}</td>
-				<td>${menuItem.menuSize}oz</td>
+				<td>${menuItem.menuSize}g</td>
 				<td>${menuItem.menuCalories}kcal</td>
 				<td>
 					<c:choose>
@@ -247,7 +290,7 @@ var tb_admin_url = "";
 				<td>${menuItem.menuProtein}g</td>
 				<td>${menuItem.menuCaffeine}mg</td>
 				<td>
-					<button type="button" id="btn_modify" onclick="window.location.href='/admin/drinkModify?menuNumber=${menuItem.menuNumber}'" class="btn_lsmall">수정</button>
+					<button type="button" id="btn_modify" onclick="window.location.href='/admin/foodModify?menuNumber=${menuItem.menuNumber}'" class="btn_lsmall">수정</button>
 				</td>
 			</tr>
 			</c:forEach>
@@ -256,7 +299,7 @@ var tb_admin_url = "";
 	</div>
 	<div class="local_frm02">
 		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-		<a href="/admin/drinkRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
+		<a href="/admin/foodRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
 	</div>
 
 </div>
@@ -316,6 +359,14 @@ var tb_admin_url = "";
     	});
     });
 
+    function updateMenuSizeDisplay(value) {
+        document.getElementById('menuSizeDisplay').textContent = value + 'g';
+    }
+
+    // 페이지 로드 시 슬라이더의 초기 값을 설정합니다.
+    document.addEventListener('DOMContentLoaded', function() {
+        updateMenuSizeDisplay(document.getElementById('menuSize').value);
+    });
 
 </script>
 

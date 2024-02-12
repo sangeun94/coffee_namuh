@@ -11,7 +11,7 @@ public class MenuFile {
 	int menuType;
 	String menuName;
 	String menuDescription;
-	String menuSize;
+	int menuSize;
 	int menuCalories;
 	int menuAllergyInfo;
 	int menuSaturatedFat;

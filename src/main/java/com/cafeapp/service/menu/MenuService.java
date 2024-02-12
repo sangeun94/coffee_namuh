@@ -29,4 +29,14 @@ public interface MenuService {
 	//음료 정보 수정
 	public int modifyMenu(MenuList menuList);
 	
+	//음료 삭제
+	public int removeMenu(List<Integer> menuNumbers);
+	
+//	========================================
+	//푸드리스트 목록 및 검색
+	public List<MenuList> findFoodBySearchCondition(MenuSearchCondition menuSearchCondition);
+
+	//푸드리스트 생성
+	public int saveFoodList(MenuList menuList);
+	
 }

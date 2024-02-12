@@ -8,7 +8,7 @@ public class Menu {
 	int menuType;		//menuType;
 	String menuName;
 	String menuDescription;
-	String menuSize;
+	int menuSize;
 	int menuCalories;
 	int menuAllergyInfo;
 	int menuSaturatedFat;

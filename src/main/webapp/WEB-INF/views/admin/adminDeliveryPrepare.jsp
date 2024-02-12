@@ -131,12 +131,12 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 			<dt class="o10 menu_toggle">주문관리</dt>		
-	        <dd class="o10"><a href="/admin/orderList">주문리스트
-	        <dd class="o10 active"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
-	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
-	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
-	
-    </dl>
+			<dd class="o10"><a href="/admin/orderList">신규주문</a></dd>
+			<dd class="o10 active"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
+			<dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
+			<dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
+
+		</dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
@@ -197,7 +197,17 @@ var tb_admin_url = "";
 <div class="tbl_head01">
 	<table id="sodr_list">
 	<colgroup>
-
+<%-- 		<col class="w30">
+		<col class="w90">
+		<col class="w100">
+		<col class="w40">
+		<col class="w30">
+		<col class="w70">
+		<col>
+		<col class="w90">
+		<col class="w50">
+		<col class="w50">
+		<col class="w40"> --%>
 	</colgroup>
 	<thead>
 	<tr>
@@ -212,7 +222,6 @@ var tb_admin_url = "";
 		<th scope="col">주문자</th>
 		<th scope="col">총주문액</th>
 		<th scope="col">배송</th>
-
 	</tr>
 	</thead>
 	<tbody>
@@ -240,24 +249,23 @@ var tb_admin_url = "";
 		        </td>
 				<td>${orderItem.totalQuantity}</td>
 				<td>${orderItem.courierName}</td>
-			<form action="/admin/updateTrackingNumber" method="post">
+			<form id="updateTrackingNumberForm" action="/admin/updateTrackingNumber" method="post">
         		<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 				<td>
-					<%-- ${orderItem.trackingNumber} --%>
 					<!-- 운송장번호 : 배송준비단계에서 수기로 작성 -->	
-					<input type="text" name="trackingNumber" class="frm_input" value="" placeholder="운송장번호를 입력해주세요." style="width:200px;"/>				
-					<button type="submit" id="btn_modify" class="btn_small">저장</button>
-					
+					<input type="text" name="trackingNumber" class="frm_input" value="" placeholder="운송장번호 8자리를 입력해주세요." style="width:180px;"/>				
+					<button type="submit" id="saveTrackingNumber" class="btn_small">저장</button>
+					<p>운송장번호 : ${orderItem.trackingNumber}</p>
 				</td>
 			</form>				
 				<td>
 				    <c:choose>
-				        <c:when test="${orderItem.orderStatus == 0}">상품준비중</c:when>
-				        <c:when test="${orderItem.orderStatus == 1}">배송준비중</c:when>
-				        <c:when test="${orderItem.orderStatus == 2}">배송중</c:when>
-				        <c:when test="${orderItem.orderStatus == 3}">배송완료</c:when>
-				        <c:when test="${orderItem.orderStatus == 4}">주문취소</c:when>
-				        <c:when test="${orderItem.orderStatus == 5}">구매확정</c:when>
+				        <c:when test="${orderItem.orderStatus == 1}">상품준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 2}">배송준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 3}">배송중</c:when>
+				        <c:when test="${orderItem.orderStatus == 4}">배송완료</c:when>
+				        <c:when test="${orderItem.orderStatus == 5}">주문취소</c:when>
+				        <c:when test="${orderItem.orderStatus == 6}">구매확정</c:when>
 				    </c:choose>
 				</td>
 				<td>${orderItem.ordererName}</td>
@@ -376,6 +384,24 @@ $(function() {
             modal.style.display = "none";
         }
     };
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('forderlist').addEventListener('submit', function(event) {
+        // 운송장 번호 입력 필드의 값을 가져옵니다. 예시에서는 input[name="trackingNumber"]를 사용합니다.
+        var trackingNumberInput = this.querySelector('input[name="trackingNumber"]');
+        var trackingNumber = trackingNumberInput ? trackingNumberInput.value.trim() : '';
+
+        // 운송장 번호가 입력되지 않았다면, 폼 제출을 방지하고 경고를 표시합니다.
+        if (!trackingNumber) {
+            alert('운송장 번호를 입력해주세요.');
+            event.preventDefault(); // 폼 제출 방지
+            return false;
+        }
+
+        // 운송장 번호가 입력되었다면, 폼 제출을 진행합니다.
+        return true;
+    });
 });
 </script>
 </body>

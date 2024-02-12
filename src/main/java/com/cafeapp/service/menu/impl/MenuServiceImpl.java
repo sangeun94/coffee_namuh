@@ -83,4 +83,38 @@ public class MenuServiceImpl implements MenuService {
 		
 		return result;
 	}
+
+	//음료 삭제
+	@Override
+	public int removeMenu(List<Integer> menuNumbers) {
+		// TODO Auto-generated method stub
+		
+		int result = 0;
+		for (int i=0; i<menuNumbers.size(); i++) {
+			result = result + menuDAO.removeMenu(menuNumbers.get(i));
+		}
+		
+		return result;
+
+	}
+	
+//	=========================================
+	//푸드리스트 목록 및 검색
+	@Override
+	public List<MenuList> findFoodBySearchCondition(MenuSearchCondition menuSearchCondition) {
+		// TODO Auto-generated method stub
+		List<MenuList> menuList = menuDAO.findFoodBySearchCondition(menuSearchCondition);
+		
+		return menuList;
+	}
+	
+	//푸드리스트 생성
+	@Override
+	public int saveFoodList(MenuList menuList) {
+		// TODO Auto-generated method stub
+		
+		int result = menuDAO.saveFoodList(menuList);
+		
+		return result;
+	}
 }

@@ -86,23 +86,23 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="g10 menu_toggle">상품관리</dt>		
-        <dd class="g10 active"><a href="">음료 관리</a></dd>				
-        <dd class="g10"><a href="">푸드 관리</a></dd>		
+        <dd class="g10"><a href="/admin/drinkList">음료 관리</a></dd>				
+        <dd class="g10 active"><a href="/admin/foodList">푸드 관리</a></dd>		
         <dd class="g10"><a href="">상품 관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 상품관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 음료관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 푸드관리		
         </div>	
 <div class="s_wrap">
-	<h1>음료 추가</h1>
+	<h1>푸드 추가</h1>
 	
 	
-<form action="/admin/drinkRegister" name="drinkForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+<form action="/admin/foodRegister" name="foodForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
 
-	<h2>음료정보</h2>
+	<h2>푸드정보</h2>
 	
 	<div class="tbl_frm02">
 		<table>
@@ -120,34 +120,29 @@ var tb_admin_url = "";
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">음료 타입</th>
+			<th scope="row">푸드 타입</th>
 			<td>
 				<select name="menuType">
-					<option value="1">콜드 브루</option>
-					<option value="2">에스프레소</option>
-					<option value="3">프라푸치노</option>
-					<option value="4">티</option>
-					<option value="5">기타</option>
+					<option value="6">브레드</option>
+					<option value="7">케이크</option>
+					<option value="8">샌드위치</option>
 				</select>		
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">음료 이름</th>
+			<th scope="row">푸드 이름</th>
 			<td><input type="text" name="menuName" value="" class="frm_input"></td>
 		</tr>
 		<tr> 
-			<th scope="row">음료 설명</th>
+			<th scope="row">푸드 설명</th>
 			<td>
 				<textarea id="memo" name="menuDescription" class="smarteditor2" maxlength="65536" style="width:60%"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">음료 사이즈</th>
-			<td class="td_label">
-				<label><input type="radio" name="menuSize" value="1oz"> 1oz </label>
-				<label><input type="radio" name="menuSize" value="7oz"> 7oz </label>
-				<label><input type="radio" name="menuSize" value="12oz" checked="checked"> 12oz </label>
-				<label><input type="radio" name="menuSize" value="16oz"> 16oz </label>
+			<th scope="row">푸드 총 내용량</th>
+			<td>
+				<input type="text" name="menuSize" value="" class="frm_input"  style="width:80px;text-align: right;"> g			
 			</td>
 		</tr>
 		<tr>
@@ -201,7 +196,7 @@ var tb_admin_url = "";
 	</div>	
 	<div class="btn_confirm">
 		<button type="submit" class="btn_large"> 추가 </button>			
-		<a href="/admin/drinkList" class="btn_large bx-white">목록</a>
+		<a href="/admin/foodList" class="btn_large bx-white">목록</a>
 	</div>
 </form>
 
@@ -225,9 +220,9 @@ var tb_admin_url = "";
 <script>
 // 폼 제출 핸들러
 function validateForm() {
-    var menuName = document.forms["drinkForm"]["menuName"].value;
-    var menuDescription = document.forms["drinkForm"]["menuDescription"].value;
-    var profileImage = document.forms["drinkForm"]["profileImage"].value;
+    var menuName = document.forms["foodForm"]["menuName"].value;
+    var menuDescription = document.forms["foodForm"]["menuDescription"].value;
+    var profileImage = document.forms["foodForm"]["profileImage"].value;
 
     if (profileImage == null || profileImage.trim() == "") {
         alert("파일 첨부 해주세요.");
@@ -253,10 +248,10 @@ function validateForm() {
 function setDefaultValueForNumberFields() {
     var fields = ["menuCalories", "menuSaturatedFat", "menuSugars", "menuSodium", "menuProtein", "menuCaffeine"];
     fields.forEach(function(field) {
-        var element = document.forms["drinkForm"][field];
+        var element = document.forms["foodForm"][field];
         var value = element ? element.value : "";
         if (!value.trim()) {
-            document.forms["drinkForm"][field].value = "0";
+            document.forms["foodForm"][field].value = "0";
         }
     });
 }

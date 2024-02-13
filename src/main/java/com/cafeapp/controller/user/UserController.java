@@ -147,6 +147,8 @@ public class UserController {
     	return"admin/adminLogin";
     }
     
+    
+    
 
     @PostMapping("/adminLogin")
     public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session) {
@@ -173,7 +175,12 @@ public class UserController {
     }
 
    
-    
+    @GetMapping("/admin/logout")
+    public String logoutAdmin(HttpServletRequest request, HttpServletResponse response, Model model) {
+        
+
+        return "redirect:/adminLogin";
+    }
 
     @GetMapping("/mypage")
     public String showMyPage( Model model, HttpSession session) {

@@ -31,7 +31,7 @@ var tb_shop_url  = "";
 var tb_admin_url = "";
 </script>
 
-<script src="/js/admin/jquery-1.8.3.min.js"></script>
+<!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/categorylist.js"></script>
@@ -96,8 +96,8 @@ var tb_admin_url = "";
 <div class="s_wrap">
 	<h1>관리자 정보수정</h1>
 	
-<form name="fregform" action="" method="post">
-<input type="hidden" name="token" value="">
+<form action="" method="post">
+<input type="hidden" name="" value="">
 
 <h2>비밀번호 수정</h2>
 <div class="tbl_frm01">
@@ -108,9 +108,9 @@ var tb_admin_url = "";
 	</colgroup>
 	<tbody>
 	<tr>
-		<th scope="row">관리자 비밀번호</th>
+		<th scope="row">새 비밀번호</th>
 		<td>
-			<input type="text" name="passwd" class="frm_input">
+			<input type="text" name="" class="frm_input">
 			<span class="frm_info fc_125">비밀번호는 되도록 영,숫자를 같이 사용하시는 것이 좋습니다.<br>비밀번호는 상점 관리에 매우 중요하므로 상점 관리자 외 정보유출을 주의하시고 정기적으로 비밀번호를 변경하세요.</span>		
 		</td>
 	</tr>

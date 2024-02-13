@@ -538,11 +538,11 @@
     	
          if ("2".equals(UserId)) {
 	%> --%>
-	<ul>
-			        <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"></a></li>
+	<ul>			
+			        <li><a href="/mypage?userId=${user.userId}">마이페이지</a><img src="/images/notice/mypageIcon.png"></a></li>
                     <li><a href="/logout"><img src="/images/notice/logoutIcon.png"></a></li>
                     <li><a href="/shoppingcart"><img src="/images/notice/basket.png"></a></li>
-                    <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>		</ul>
+                    <li><a href="/admin/adminMember" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>		</ul>
 	</ul>
 	<%-- <%
     	} else {
@@ -559,10 +559,10 @@
     } else {
 	%> --%>
 	
-		<!-- 	<ul>
+	<ul>
 				<li class="libar" ><a href="/login">로그인</a> </li>
 				<li class="libar li-list" ><a href="/join">회원가입</a> </li>
-	</ul> -->
+	</ul>
 	</div>
 
 	<%-- <%

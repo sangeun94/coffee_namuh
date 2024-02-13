@@ -70,7 +70,7 @@ public class UserController {
         System.out.println(loginUser);
         if (loginUser != null) {
             // 로그인 성공 시 처리
-        	loginManager.setSessionLogin(loginUser.getUserId(), session);
+        	loginManager.setSessionLogin(loginUser.getUserId(), session);           
             //sessionManager.createSession(loginUser, response);
             
             return "redirect:/mainhome";
@@ -80,11 +80,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/main")
-    public String showMainPage(HttpServletRequest request, Model model) {
-      
-        return "user/main";
-    }
     
     @PostMapping("/login-api")
     @ResponseBody
@@ -137,7 +132,7 @@ public class UserController {
     
     @RequestMapping("/main")
     public String main() {
-    	return"user/main";
+    	return"mainhome/mainhome";
     }
     
    
@@ -147,9 +142,6 @@ public class UserController {
     	return"admin/adminLogin";
     }
     
-    
-    
-
     @PostMapping("/admin/adminLogin")
     public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session) {
         User adminLoginUser = userService.isValidAdminLogin(user);
@@ -160,6 +152,9 @@ public class UserController {
         if (adminLoginUser != null) {
             // 로그인 성공 시 처리
         	loginManager.setSessionLogin(adminLoginUser.getUserId(), session);
+            // 사용자 이름도 세션에 저장
+            session.setAttribute("userName", adminLoginUser.getUserName());
+        	
             return "redirect:/admin/adminMember";
         } else {
             // 로그인 실패 시 처리
@@ -168,19 +163,15 @@ public class UserController {
         
     }
 
-    @GetMapping("/admin/main")
-    public String showAdminMainPage(HttpServletRequest request, Model model) {
-     
-        return "admin/main";
+    //관리자 로그아웃
+    @GetMapping("/admin/logout")
+    public String adminLogout(HttpSession session) {
+    	loginManager.logout(session);
+    	
+        return "redirect:admin/adminLogin";
     }
 
    
-    @GetMapping("/admin/logout")
-    public String logoutAdmin(HttpServletRequest request, HttpServletResponse response, Model model) {
-        
-
-        return "redirect:/adminLogin";
-    }
 
     @GetMapping("/mypage")
     public String showMyPage( Model model, HttpSession session) {

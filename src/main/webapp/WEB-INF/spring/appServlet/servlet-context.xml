@@ -63,7 +63,7 @@
 			<exclude-mapping path="/findId" />
 			<exclude-mapping path="/getFindPw" />
 			<exclude-mapping path="/findPw" />
-			<exclude-mapping path="/mainhome" />
+			<exclude-mapping path="/main" />
 			<exclude-mapping path="/withdrawal" />
 			<exclude-mapping path="/customer/isDuplicatedId" />
 			

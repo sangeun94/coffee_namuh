@@ -75,6 +75,25 @@ public class AdminMemberController {
 		
 	}
 	
+	//관리자 비밀번호 수정
+	@GetMapping("/admin/modifyAdmin")
+	public String modifyAdmin() {
 	
+		return "admin/adminEdit";
+	}
+	
+	@PostMapping("/admin/modifyAdmin")
+	public String modifyAdminProcess(@ModelAttribute User user) { 
+		System.out.println(user);
+			
+		int result = userService.modifyAdmin(user);
+		
+		if (result > 0) { //저장 성공
+			return "redirect:/admin/adminMember"; //수정성공
+		} else { //저장 실패
+			return "admin/adminEdit"; //수정실패
+		}
+		
+	}
 	
 }

@@ -61,4 +61,13 @@
 		WHERE
 			user_number = #{userNumber}
 	</update>
+	
+	<!-- 관리자 비밀번호 수정 -->
+		<update id="modifyAdmin" parameterType="User" >
+		UPDATE users
+		SET user_password = #{userPassword}	
+		WHERE
+			user_number = #{userNumber}
+	</update>
+	
 </mapper>

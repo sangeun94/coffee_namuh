@@ -32,11 +32,13 @@ public interface FeedbackService {
 
 	public List<Feedback> boardList();
 	
-	public void write(Feedback feedback);
+	public int write(Feedback feedback);
 	
 	public Feedback boardDetail(Integer sb_no);
 	
 	public int delete(Integer sb_no);
 	
 	public int update(Feedback feedback);
+	
+	public List<Response> findResponselistByFeedbackNumber(int feedbackNumber);
 }

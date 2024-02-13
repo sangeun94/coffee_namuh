@@ -84,36 +84,10 @@
 		<form action="/boardWrite">
 		<div>			<hr>
 			<div class="contentbox">${faq.answer}</div>
-			<hr>
-			<div class="input_btn_wrap input_wrap2">
-		<%-- 	<button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${faq.feedbackNumber}'">삭제</button>
-			<button class="btnwd5 btn1 float_right" onclick="location.href='/boardUpdate/${faq.feedbackNumber}'">수정</button> --%>
-			</div>
+			
 			</div>
 			</form>
-			<hr>
-			<div class="cont_list cont_list_content cont_list_content_search">
-								<form action="/boardWrite" method="post">
-									<ul>
-										<li>
-											<div class="board_search_wrap">
-											<li><textarea name="content" id="bbs_search"  rows="" cols="" name="content" class="input_text_wrap1 li_left" placeholder="내용을 입력해주세요."></textarea></li>
-											
-												<div class="board_search">
-													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
-														
-															<input type="submit" value="글쓰기"
-																class="btnntwidth btn1 float_right" id="writeButton">
-														</div>
-
-													</li>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</form>
-							</div>
+			
 							<hr><br>
 			<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 </body>

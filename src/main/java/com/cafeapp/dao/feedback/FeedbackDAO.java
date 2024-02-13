@@ -44,5 +44,6 @@ public interface FeedbackDAO {
 	
 	public int update(Feedback feedback);
 	
+	public List<Response> findResponselistByFeedbackNumber(int feedbackNumber);
 //	public String getCategory(int sb_cate);//게시판 카테고리
 }

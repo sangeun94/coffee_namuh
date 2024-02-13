@@ -49,7 +49,7 @@ public class FeedbackDAOImpl implements FeedbackDAO{
 	}
 
 	//댓글 정보 -> 수정하기 전에 나오게하는 각각의 정보
-	@Override
+	@Override 
 	public ResponseWithFeedback findResponseByResponseNumber(int responseNumber) {
 		// TODO Auto-generated method stub
 		
@@ -122,6 +122,9 @@ public class FeedbackDAOImpl implements FeedbackDAO{
 		return sqlSessionTemplate.update("customerfeedback.boardUpdate", feedback);
 	}
 	
+	public List<Response> findResponselistByFeedbackNumber(int feedbackNumber) {
+	    return sqlSessionTemplate.selectList("customerfeedback.findResponselistByFeedbackNumber", feedbackNumber);
+	}
 //	public String getCategory(int sb_cate) { //게시판 카테고리
 //		return sqlSession.selectOne("customerfeedback.getCategory",sb_cate);
 //	}

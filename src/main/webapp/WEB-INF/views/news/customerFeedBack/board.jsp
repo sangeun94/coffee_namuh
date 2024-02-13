@@ -49,7 +49,7 @@
 								<li>
 									<div class="board_search_wrap">
 										<div class="board_search">
-											<form action="/boardWrite" method="post">
+											<form id="writeForm"  action="/boardWrite" method="get">
 												<input type="hidden" name="bbs_category" id="bbs_category"
 													value="4"> <input type="hidden"
 													name="bbs_detail_category" id="bbs_detail_category"
@@ -119,8 +119,9 @@
 	
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
-    document.getElementById("writeButton").addEventListener("click", function() {
-        location.href = "/boardWrite";
+    document.getElementById("writeButton").addEventListener("click", function(event) {
+    	event.preventDefault(); // 기본 동작 방지
+        document.getElementById("writeForm").submit(); // form 제출
     });
 </script>
 </body>

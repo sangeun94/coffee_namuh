@@ -22,7 +22,7 @@
 	</insert>
 
 	<select id="findUserById" resultType="com.cafeapp.dto.user.User" parameterType="String">
-        SELECT * FROM users WHERE user_id = #{id}
+        SELECT * FROM users WHERE user_id = #{userId}
     </select>
 
 
@@ -44,15 +44,47 @@
 
 	
 	<!-- 사용자 정보 업데이트 -->
-    <update id="updateUser" parameterType="User">
-        UPDATE users
-        SET user_name = #{userName}, user_password = #{userPassword},
-            user_email = #{userEmail}, user_zipcode = #{userZipcode},
-            user_address = #{userAddress}, user_detail_address = #{userDetailAddress}
-        WHERE user_id = #{userId}
-    </update>
+	<update id="updateUser" parameterType="User">
+	    UPDATE users
+	    SET
+	        user_password = #{userPassword},
+	        user_confirm_password =#{userConfirmPassword},
+	        user_email = #{userEmail},
+	        user_zipcode = #{userZipcode},
+	        user_address = #{userAddress},
+	        user_detail_address = #{userDetailAddress}
+	    WHERE
+	    	 user_id = #{userId}
+	</update>
 
 	
+	
+	<!--아이디 찾기-->
+	<select id="findUserByEmail" resultType="com.cafeapp.dto.user.User" parameterType="String">
+    	SELECT * FROM users WHERE user_email = #{userEmail}
+	</select>
+	
+	<select id="findEmailCheck" resultType="int">
+		select count(*) from users where user_Email = #{UserEmail}
+	</select>
+	
+	<!--비밀번호 찾기-->
+	<select id="countUsers" resultType="Integer" parameterType="User">
+	    SELECT COUNT(*) FROM users
+	    WHERE user_id = #{userId} AND user_name = #{userName} AND user_email = #{userEmail}
+	</select>
+	
+	<update id="updatePassword" parameterType="User">
+	    UPDATE users
+	    SET user_password = #{userPassword},
+	    	user_confirm_password = #{userConfirmPassword}
+	    WHERE user_id = #{userId} AND user_name = #{userName} AND user_email = #{userEmail}
+	</update>
 
-
+	<!-- 회원탈퇴 -->
+	<update id="withdrawUser" parameterType="String">
+	    UPDATE users
+	    SET is_member = 0
+	    WHERE user_id = #{userId}
+	</update>
 </mapper>

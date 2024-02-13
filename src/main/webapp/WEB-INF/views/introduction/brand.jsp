@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>main.jsp입니다</h1>
-	<a href="/mypage?userId=${user.userId}">마이페이지</a>
 	
 </body>
 </html>

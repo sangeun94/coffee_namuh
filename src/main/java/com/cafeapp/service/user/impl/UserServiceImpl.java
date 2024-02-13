@@ -1,6 +1,8 @@
 package com.cafeapp.service.user.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,7 +71,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User isValidAdminLogin(User user) {
 		// 관리자 로그인 로직 구현
+		System.out.println("service " + user);
 		User adminLoginUser = userDAO.findLoginAdmin(user);
+		System.out.println("service " + adminLoginUser);
 		if (adminLoginUser != null && adminLoginUser.getIsMember() == CommonCode.USER_ISMEMBER_ADMIN) {
 			adminLoginUser.setIsMember(CommonCode.USER_ISMEMBER_ADMIN); // 이 부분 수정
 			System.out.println("service " + adminLoginUser);
@@ -96,4 +100,39 @@ public class UserServiceImpl implements UserService{
         return userDAO.updateUser(user);
     }
 
+	@Override
+	public User findUserById(String userId) {
+		// TODO Auto-generated method stub
+		return userDAO.findUserById(userId);
+	}
+
+	
+	@Override
+    public List<User> findUserByEmail(String userEmail) {
+        return userDAO.findUserByEmail(userEmail);
+    }
+
+	@Override
+	public int findEmailCheck(String userEmail) {
+		// TODO Auto-generated method stub
+		return userDAO.findEmailCheck(userEmail);
+	}
+	
+	@Override
+    public int countUsers(User user) {
+        return userDAO.countUsers(user);
+    }
+
+    @Override
+    public boolean updatePassword(User user) {
+        int rowsAffected = userDAO.updatePassword(user);
+        return rowsAffected > 0;
+    }
+	
+    @Override
+    public int withdrawUser(String userId) {
+        return userDAO.withdrawUser(userId);
+    }
+    
+   
 }

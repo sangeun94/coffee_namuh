@@ -136,7 +136,7 @@ button {
         
         <h2>로그인</h2>
 
-        <form id="infoForm" action="/login" method="post">
+<form id="infoForm" action="/login" method="post">
     <label>아이디:</label>
     <input type="text" id="userId" name="userId">
 

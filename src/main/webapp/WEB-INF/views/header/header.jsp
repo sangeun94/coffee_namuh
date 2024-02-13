@@ -1,6 +1,7 @@
 <%@page import="com.cafeapp.dto.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +98,7 @@
 			   }
 
         /* head */
-.head_wrap{background:#fff; position:fixed; top:0; width:100%; margin:auto 0; z-index:9999; vertical-align:middle; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1); padding:0px 20px; text-align:center; transition: All 0.2s ease; -webkit-transition: All 0.2s ease; -moz-transition: All 0.2s ease; -o-transition: All 0.2s ease;}
+.head_wrap{background:#fff; position:fixed; top:0; width:100%; margin:auto 0; z-index:9999; vertical-align:middle; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1); text-align:center; transition: All 0.2s ease; -webkit-transition: All 0.2s ease; -moz-transition: All 0.2s ease; -o-transition: All 0.2s ease;}
 	.main_body .head_wrap{background:none; box-shadow:none;}
 	.head_over{background:#fff !important; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1) !important;}
 	.head_fixed{background:#fff !important; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1) !important;}
@@ -433,10 +434,8 @@
 <body>
  <!-- 상단 타이틀 -->
   <div class="head_wrap header_tt header">
-  <div class="head_wrap header_tt header">
     <div class="head">
         <div class="head_logo">
-            <a href="/mainhome">
             <a href="/mainhome">
                 <img src="/images/notice/CoffeeNamuh_White_BG.png" class="head_logo_img_fixed">
             </a>
@@ -499,9 +498,7 @@
                     </li>
                     
                     <li>
-                                                                <a href="/faq" class="pc">
-                                    나무소식										</a>
-                                <a class="m head_menu_down">나무소식</a>
+                                
                                                                 <a href="/faq" class="pc">
                                     나무소식										</a>
                                 <a class="m head_menu_down">나무소식</a>
@@ -559,11 +556,18 @@
     } else {
 	%> --%>
 	
-	<ul>
-				<li class="libar" ><a href="/login">로그인</a> </li>
-				<li class="libar li-list" ><a href="/join">회원가입</a> </li>
-	</ul>
-	</div>
+		 	<br>
+			 <!-- 로그인하지 않았을 때 -->
+		    <c:if test="${empty sessionScope.userName}">
+		        <a href="/login">로그인</a>
+		        <a href="/register">회원가입</a>
+		    </c:if>
+		
+		    <!-- 로그인 했을 때 -->
+		    <c:if test="${not empty sessionScope.userName}">
+		        <span>환영합니다, <span>${sessionScope.userName}</span>님!</span>
+		    </c:if>
+		</div>
 
 	<%-- <%
     }

@@ -44,8 +44,18 @@ public class NewsController {
 		model.addAttribute("announcementList", announcementList);
 		model.addAttribute("totalAnnouncement", announcementList.size());
 		
+		System.out.println(announcementList);
 		return "news/notice/notice";
 	}
+	
+	@GetMapping("/noticedetail/{noticenumber}")
+	public String noticedetail(@PathVariable int noticenumber, Model model) {
+		Announcement announcement = announcementService.findAnnounceByAnnouncementNumber(noticenumber);
+        model.addAttribute("announcement", announcement);
+        System.out.println(announcement);
+		return "news/notice/noticedetail";
+	}
+	
 	@RequestMapping("/faq")
 	public String faq(Model model, @ModelAttribute FaqSearchCondition faqSearchCondition) {
 		System.out.println(faqSearchCondition);

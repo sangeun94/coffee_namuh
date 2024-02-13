@@ -44,18 +44,7 @@
 						<div class="cont_text">궁금하신 내용을 검색해 주세요.</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_tab">
-							<ul>
-								<li><a href="?bbs_category=4"> 전체 </a></li>
-								<li class="cont_tab5"><a
-									href="?bbs_category=4&bbs_detail_category=5"> 가맹문의 </a></li>
-								<li class="cont_tab6"><a
-									href="?bbs_category=4&bbs_detail_category=6"> 매장정보 </a></li>
-
-								<li class="cont_tab7"><a
-									href="?bbs_category=4&bbs_detail_category=10"> 고객의 소리 </a></li>
-							</ul>
-						</div>
+			
 						<div class="cont_list cont_list_content cont_list_content_search">
 							<ul>
 								<li>

@@ -443,22 +443,22 @@
             <div class="head_menu">
                 <ul>
                     <li>
-                                                                <a href="/about/brand/" class="pc">
+                                                                <a href="" class="pc">
                                     나무 스토리										</a>
                                 <a class="m head_menu_down">
                                     나무 스토리										</a>
                             <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
                                                                                 <li>
-                                            <a href="/about/brand/">
+                                            <a href="">
                                                 브랜드													</a>
                                         </li>
                                                                                 <li>
-                                            <a href="/about/bi/">
+                                            <a href="">
                                                 BI													</a>
                                         </li>
                                                                                 <li>
-                                            <a href="/about/map/">
+                                            <a href="">
                                                 오시는 길													</a>
                                         </li>
                                                                                                             </ul>
@@ -472,15 +472,15 @@
                             <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
                                                                                 <li>
-                                            <a href="/menu/?menu_category1=1&menu_category2=1">
+                                            <a href="">
                                                 음료													</a>
                                         </li>
                                                                                 <li>
-                                            <a href="/menu/?menu_category1=2&menu_category2=2">
+                                            <a href="">
                                                 푸드													</a>
                                         </li>
                                                                                 <li>
-                                            <a href="/menu/?menu_category1=3&menu_category2=3">
+                                            <a href="">
                                                 상품													</a>
                                         </li>
                                                                                                                                                     </ul>
@@ -534,8 +534,8 @@
 	%> --%>
 	<ul>
 			        <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"></a></li>
-                    <li><a href="/logout"><img src="/images/notice/logoutIcon.jpg"></a></li>
-                    <li><a href="/shoppingcart"><img src="/images/notice/basket.jpg"></a></li>
+                    <li><a href="/logout"><img src="/images/notice/logoutIcon.png"></a></li>
+                    <li><a href="/shoppingcart"><img src="/images/notice/basket.png"></a></li>
                     <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>		</ul>
 	</ul>
 	<%-- <%

@@ -43,18 +43,7 @@
 						<div class="cont_text">궁금하신 내용을 질문해 주세요.</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_tab">
-							<ul>
-								<li><a href="?bbs_category=4"> 전체 </a></li>
-								<li class="cont_tab5"><a
-									href="?bbs_category=4&bbs_detail_category=5"> 가맹문의 </a></li>
-								<li class="cont_tab6"><a
-									href="?bbs_category=4&bbs_detail_category=6"> 매장정보 </a></li>
-
-								<li class="cont_tab7"><a
-									href="?bbs_category=4&bbs_detail_category=10"> 고객의 소리 </a></li>
-							</ul>
-						</div>
+						
 						<div class="cont_list cont_list_content cont_list_content_search">
 							<ul>
 								<li>
@@ -66,29 +55,7 @@
 													name="bbs_detail_category" id="bbs_detail_category"
 													value="10">
 												<ul>
-													<li class="board_search_select">
-														<div class="input_select_wrap input_wrap2">
-															<select name="bbs_search_category"
-																id="bbs_search_category">
-																<option value="bbs_tbl_title">제목</option>
-																<option value="bbs_tbl_content">내용</option>
-																<option value="bbs_tbl_name">작성자</option>
-															</select>
-														</div>
-													</li>
-													<li>
-														<div class="input_text_wrap input_wrap2">
-															<label> <input type="text" name="bbs_search"
-																id="bbs_search" class="" value=""
-																placeholder="검색어를 입력하세요" required="required">
-															</label>
-														</div>
-													</li>
-													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
-															<input type="submit" value="검색" class="btn btn1" id="">
-														</div>
-													</li>
+											
 
 													<li class="board_search_btn">
 														<div class="input_btn_wrap input_wrap2">
@@ -102,7 +69,7 @@
 										</div>
 									</div>
 								</li>
-								<li style="text-align: right"></li>
+								<li style="text-align: left;"></li>
 							</ul>
 						</div>
 					</div>

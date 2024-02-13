@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,33 +107,25 @@
 								</thead>
 								<tbody>
 									<tr>
-										
-									<c:forEach var="announceList" items="${announcementList}">
-										<tr>
-											<td class="board_pc">${announceList.faqNumber}</td>
-											<td>
-												<div class="text_wrap">
-													<div class="text">
-														<a href="/detail/${announceList.faqNumber}">${announceList.question}</a>
+
+										<c:forEach var="announceList" items="${announcementList}">
+											<tr>
+												<td class="board_pc">${announceList.announcementNumber}</td>
+												<td>
+													<div class="text_wrap">
+														<div class="text">
+															<a href="/noticedetail/${announceList.announcementNumber}">${announceList.title}</a>
+														</div>
 													</div>
-												</div>
-											</td>
-											<td class="board_pc">${announceList.userId}</td>
-											<td class="board_pc">${announceList.postDate}</td>
-										</tr>
-									</c:forEach>
+												</td>
+												<td class="board_pc">${announceList.userId}</td>
+												<td class="board_pc">${announceList.postDate}</td>
+											</tr>
+										</c:forEach>
 								</tbody>
 							</table>
 						</div>
-						<div class="board_page_wrap">
-							<div class="board_page">
-								<ul>
-									<li class='fo_re'><a><span>처음</span></a></li>
-									<li class='board_page_check'><a><span>1</span></a></li>
-									<li><a><span>마지막</span></a></li>
-								</ul>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>

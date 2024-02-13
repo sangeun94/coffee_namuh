@@ -53,7 +53,7 @@
 					<div class="cont_title_wrap">
 						<div class="cont_title_info">NAMUH NEWS</div>
 						<div class="cont_title robo color">
-							<h2>FAQ</h2>
+							<h2>NAMUH</h2>
 						</div>
 					</div>
 					<div class="cont_text_wrap">
@@ -71,11 +71,11 @@
 				<div class="cont_boxs text_center">
 					<div class="cont_title_wrap">
 						<div class="cont_title">
-							<b>${faq.question}</b>
+							<b>${announcement.title}</b>
 						</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_text">${faq.userId} ${faq.postDate} </div>
+						<div class="cont_text">${announcement.userId} ${announcement.postDate} </div>
 					</div>
 					</div>
 					</div>
@@ -83,7 +83,7 @@
 					</div>
 		<form action="/boardWrite">
 		<div>			<hr>
-			<div class="contentbox">${faq.answer}</div>
+			<div class="contentbox">${announcement.content}</div>
 			<hr>
 			<div class="input_btn_wrap input_wrap2">
 		<%-- 	<button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${faq.feedbackNumber}'">삭제</button>

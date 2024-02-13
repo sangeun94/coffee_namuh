@@ -75,7 +75,8 @@
 			<exclude-mapping path="/detail/** "/>
 			
 			<exclude-mapping path="/menu/**" />
-			<exclude-mapping path="/product/**" />
+			<exclude-mapping path="/store/**" />
+			<exclude-mapping path="/cart/**" />
 			
 			<exclude-mapping path="/css/**" />
 	        <exclude-mapping path="/js/**" />

@@ -1,43 +1,62 @@
-<%@page import="com.cafeapp.dto.cart.Cart"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-request.setCharacterEncoding("utf-8");
-String name = request.getParameter("name");
-String price = request.getParameter("price");
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<html>
+<head>
+    <title>COFFEE NAMUH</title>
+    <link rel="shortcut icon" href="../images/favicon-32x32.png"
+	type="image/x-icon">
+	<link href="../css/cart/cartProcess.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- 헤더 -->
+	<%@ include file="/WEB-INF/views/header/header.jsp"%>
+	
+	 <div class="cont">
+        <div class="cont-head">
+            <div class="cont-title-info">장바구니 목록</div>
+            <div class="cont-title">
+                CART LIST
+            </div>
+            <div class="cont-text-info">※결제하기 전, 수량과 금액을 다시 한번 확인해주시기 바랍니다.</div>
+        </div>
+        <div class="cont-select">
+            <div class="cont-select-title">목록</div>
+            <fieldset class="cont-select-fieldset">
+                <div class="cont-select-subtitle">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="td-title td0">선택</td>
+                                <td class="td-title td1">이미지</td>
+                                <td class="td-title td2">이름</td>
+                                <td class="td-title td3">수량</td>
+                                <td class="td-title td4">가격</td>
+                            </tr>
+                            <tr>
+                                <td><label><input type="checkbox" class="chkbox" checked><span></span></label></td>
+                                <td><img class="td1-img" src="../../images/product/product_mug_커피나무_하우스_머그_237ml.jpg">
+                                </td>
+                                <td>커피나무 하우스 머그 237ml</td>
+                                <td><input type="number" id="usernumber" name="usernumber" value="1"></td>
+                                <td>10000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
 
-ArrayList<Cart> cart = null;
+        <p class=text-center>총 결제할 금액은 <span class="total-price"></span>원 입니다.</p>
+        <div class="back-btn" onclick="javascript:history.go(-1)">취소</div>
+        <div class="order-btn">주문하기</div>
 
-Object obj = session.getAttribute("cart");	//세션 객체에서 cart 값을 가져온다.
+    </div>
 
-if(obj == null) {	//세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
-	cart = new ArrayList<Cart>();	
-} else {			//세션 정보가 있으면 강제로 캐스팅 : 추가 주문
-	cart = (ArrayList<Cart>) obj;
-}
-
-int pos = -1;	//등록된 제품이 없다
-//장바구니 세션에 동일한 제품이 있을 경우 : 수량(cnt) 증가
-/* for(int i = 0; i < cart.size(); i++) {
-	Cart dto = cart.get(i);
-	if(dto.getName().equals(name)) {
-		pos = 1;
-		dto.setCnt(dto.getCnt() + 1);
-		break;
-	}
-} */
-
-//장바구니 세션에 등록된 제품이 없을 경우 : CartDTO 객체를 생성하여 배열에 등록(add())
-if(pos == -1) {
-	Cart dto = new Cart();
-/* 	dto.setName(name);
-	dto.setPrice(Integer.parseInt(price.replace(",", "")));	//1,500 ▶ 1500 : 쉼표 제거 후 정수형으로 랩핑
-	dto.setCnt(1); */
-	cart.add(dto);
-}
-
-//cart 세션 객체를 만들어 준다.
-session.setAttribute("cart", cart);
-%>
-
-<script>alert("장바구니에 담았습니다."); location.href = "ShopMallMain.jsp"</script>
+	 <!-- 푸터 -->
+	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
+	<script type="text/javascript" src="../js/cart/cartProcess.js"></script>
+</body>
+</html>

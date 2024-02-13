@@ -62,3 +62,13 @@ document.getElementById('scrollToTopButton').addEventListener('click', function(
         behavior: 'smooth'
     });
 });
+
+// jQuery를 사용하여 마우스가 올라갔을 때와 나갔을 때의 이벤트를 처리합니다.
+$(document).ready(function() {
+    // 담기 버튼을 클릭했을 때의 이벤트
+    $('.add-to-cart').on('click', function() {
+        // 해당 상품의 장바구니 페이지 URL을 가져와서 이동합니다.
+        var cartUrl = $(this).data('cart-url');
+        window.location.href = cartUrl;
+    });
+});

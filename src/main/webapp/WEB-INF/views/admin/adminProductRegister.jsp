@@ -75,22 +75,22 @@
 		<dl>
 		<dt class="g10 menu_toggle">상품관리</dt>		
         <dd class="g10"><a href="/admin/drinkList">음료 관리</a></dd>				
-        <dd class="g10 active"><a href="/admin/foodList">푸드 관리</a></dd>		
-        <dd class="g10"><a href="/admin/productList">상품 관리</a></dd>		
+        <dd class="g10"><a href="/admin/foodList">푸드 관리</a></dd>		
+        <dd class="g10 active"><a href="/admin/productList">상품 관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 상품관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 푸드관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 상품 관리		
         </div>	
 <div class="s_wrap">
-	<h1>푸드 추가</h1>
+	<h1>상품 추가</h1>
 	
 	
-<form action="/admin/foodRegister" name="foodForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+<form action="/admin/productRegister" name="productForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
 
-	<h2>푸드정보</h2>
+	<h2>음료정보</h2>
 	
 	<div class="tbl_frm02">
 		<table>
@@ -108,74 +108,49 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">푸드 타입</th>
+			<th scope="row">상품 타입</th>
 			<td>
-				<select name="menuType">
-					<option value="6">브레드</option>
-					<option value="7">케이크</option>
-					<option value="8">샌드위치</option>
+				<select name="productType">
+					<option value="1">머그</option>
+					<option value="2">텀블러</option>
+					<option value="3">원두</option>
+					<option value="4">악세서리</option>
 				</select>		
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">푸드 이름</th>
-			<td><input type="text" name="menuName" value="" class="frm_input"></td>
+			<th scope="row">상품 상태</th>
+			<td>
+				<select name="productStatus">
+					<option value="1">판매중</option>
+					<option value="2">품절</option>
+					<option value="3">판매종료</option>
+				</select>		
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">상품 이름</th>
+			<td><input type="text" name="productName" value="" class="frm_input"></td>
 		</tr>
 		<tr> 
-			<th scope="row">푸드 설명</th>
+			<th scope="row">상품 설명</th>
 			<td>
-				<textarea id="memo" name="menuDescription" class="smarteditor2" maxlength="65536" style="width:60%"></textarea>
+				<textarea id="memo" name="productDescription" class="smarteditor2" maxlength="65536" style="width:60%"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">푸드 총 내용량</th>
-			<td>
-				<input type="text" name="menuSize" value="" class="frm_input"  style="width:80px;text-align: right;"> g			
-			</td>
+			<th scope="row">상품 가격</th>
+			<td><input type="text" name="productPrice" value="" class="frm_input" style="width:80px;text-align: right;">원</td>
 		</tr>
 		<tr>
-			<th scope="row">알레르기 정보</th>
-			<td class="td_label">
-				<label><input type="radio" name="menuAllergyInfo" value="4" checked="checked"> 없음 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="1"> 우유 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="2"> 대두 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="3"> 우유 및 대두 </label>
-			</td>
+			<th scope="row">상품 사이즈 (텀블러,머그: ml, 원두,악세서리: g)</th>
+			<td><input type="text" name="productSize" value="" class="frm_input" style="width:80px;text-align: right;">ml / g</td>
+
 		</tr>
 		<tr>
-			<th scope="row">칼로리</th>
+			<th scope="row">재고 수량</th>
 			<td>
-				<input type="text" name="menuCalories" value="" class="frm_input"  style="width:80px;text-align: right;"> kcal
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">포화지방</th>
-			<td>
-				<input type="text" name="menuSaturatedFat" value="" class="frm_input"  style="width:80px;text-align: right;"> g
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">당류</th>
-			<td>
-				<input type="text" name="menuSugars" value="" class="frm_input"  style="width:80px;text-align: right;"> g
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">나트륨</th>
-			<td>
-				<input type="text" name="menuSodium" value="" class="frm_input"  style="width:80px;text-align: right;"> mg
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">단백질</th>
-			<td>
-				<input type="text" name="menuProtein" value="" class="frm_input"  style="width:80px;text-align: right;"> g
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">카페인 함유량</th>
-			<td>
-				<input type="text" name="menuCaffeine" value="" class="frm_input"  style="width:80px;text-align: right;"> mg
+				<input type="text" name="productStockQuantity" value="" class="frm_input"  style="width:80px;text-align: right;"> 개
 			</td>
 		</tr>
 		
@@ -184,7 +159,7 @@
 	</div>	
 	<div class="btn_confirm">
 		<button type="submit" class="btn_large"> 추가 </button>			
-		<a href="/admin/foodList" class="btn_large bx-white">목록</a>
+		<a href="/admin/productList" class="btn_large bx-white">목록</a>
 	</div>
 </form>
 
@@ -208,22 +183,22 @@
 <script>
 // 폼 제출 핸들러
 function validateForm() {
-    var menuName = document.forms["foodForm"]["menuName"].value;
-    var menuDescription = document.forms["foodForm"]["menuDescription"].value;
-    var profileImage = document.forms["foodForm"]["profileImage"].value;
+    var productName = document.forms["productForm"]["productName"].value;
+    var productDescription = document.forms["productForm"]["productDescription"].value;
+    var profileImage = document.forms["productForm"]["profileImage"].value;
 
     if (profileImage == null || profileImage.trim() == "") {
         alert("파일 첨부 해주세요.");
         return false; // 폼 제출을 방지
     }
     
-    if (menuName == null || menuName.trim() == "") {
-        alert("메뉴 이름을 입력해주세요.");
+    if (productName == null || productName.trim() == "") {
+        alert("상품 이름을 입력해주세요.");
         return false; // 폼 제출을 방지
     }
     
-    if (menuDescription == null || menuDescription.trim() == "") {
-        alert("메뉴 설명을 입력해주세요.");
+    if (productDescription == null || productDescription.trim() == "") {
+        alert("상품 설명을 입력해주세요.");
         return false; // 폼 제출을 방지
     }
     
@@ -234,12 +209,12 @@ function validateForm() {
 }
 
 function setDefaultValueForNumberFields() {
-    var fields = ["menuCalories", "menuSaturatedFat", "menuSugars", "menuSodium", "menuProtein", "menuCaffeine"];
+    var fields = ["productPrice", "productStockQuantity", "productSize"];
     fields.forEach(function(field) {
-        var element = document.forms["foodForm"][field];
+        var element = document.forms["productForm"][field];
         var value = element ? element.value : "";
         if (!value.trim()) {
-            document.forms["foodForm"][field].value = "0";
+            document.forms["productForm"][field].value = "0";
         }
     });
 }

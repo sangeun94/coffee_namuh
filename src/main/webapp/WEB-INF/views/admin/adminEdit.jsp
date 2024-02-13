@@ -22,15 +22,6 @@
 
 <link rel="shortcut icon" href="" type="image/x-icon">
 
-
-<script>
-// 자바스크립트에서 사용하는 전역변수 선언
-var tb_url		 = "";
-var tb_bbs_url	 = "";
-var tb_shop_url  = "";
-var tb_admin_url = "";
-</script>
-
 <!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
@@ -41,13 +32,12 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="">관리자정보</a></li>
-				<li><a href="">관리자홈</a></li>
-				<li><a href="" target="_blank">쇼핑몰</a></li>
-				<li id="tnb_logout"><a href="">로그아웃</a></li>
+				<li> ${sessionScope.userName} 님 접속</li>
+				<li><a href="/main" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>
 
@@ -55,22 +45,20 @@ var tb_admin_url = "";
 			<h2>관리자 주메뉴</h2>
 			<ul id="gnb_1dul">
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">회원관리</a>
+					<a href="/admin/adminMember" class="gnb_1da">회원관리</a>
 				</li>
-				
+
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">상품관리</a>
+					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">주문관리</a>
+					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
 				</li>
-				
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">고객지원</a>
+					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
 				</li>
-				
 				<li class="gnb_1dli active">
-					<a href="" class="gnb_1da">마이페이지</a>
+					<a href="/admin/modifyAdmin" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -84,7 +72,7 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="q10 menu_toggle">환경설정</dt>		
-        <dd class="q10 active"><a href="">관리자 정보수정</a></dd>		
+        <dd class="q10 active"><a href="/admin/modifyAdmin">관리자 정보수정</a></dd>		
         </dl>
 	</div>
 	<div id="content">
@@ -96,8 +84,7 @@ var tb_admin_url = "";
 <div class="s_wrap">
 	<h1>관리자 정보수정</h1>
 	
-<form action="" method="post">
-<input type="hidden" name="" value="">
+<form action="/admin/modifyAdmin" method="post">
 
 <h2>비밀번호 수정</h2>
 <div class="tbl_frm01">
@@ -110,7 +97,7 @@ var tb_admin_url = "";
 	<tr>
 		<th scope="row">새 비밀번호</th>
 		<td>
-			<input type="text" name="" class="frm_input">
+			<input type="password" name="userPassword" class="frm_input">
 			<span class="frm_info fc_125">비밀번호는 되도록 영,숫자를 같이 사용하시는 것이 좋습니다.<br>비밀번호는 상점 관리에 매우 중요하므로 상점 관리자 외 정보유출을 주의하시고 정기적으로 비밀번호를 변경하세요.</span>		
 		</td>
 	</tr>

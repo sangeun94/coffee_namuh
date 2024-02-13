@@ -11,6 +11,8 @@ import com.cafeapp.dto.menu.Menu;
 import com.cafeapp.dto.menu.MenuList;
 import com.cafeapp.dto.menu.MenuSearchCondition;
 import com.cafeapp.dto.order.OrderList;
+import com.cafeapp.dto.product.ProductList;
+import com.cafeapp.dto.product.ProductSearchCondition;
 import com.cafeapp.dto.util.FileInfo;
 
 @Repository
@@ -121,6 +123,58 @@ public class MenuDAOImpl implements MenuDAO {
 		// TODO Auto-generated method stub
 		
 		int result = sqlSessionTemplate.insert("menu_mapper.saveFoodList", menuList);
+		
+		return result;
+	}
+
+//	====================================================================
+	//상품 리스트 목록 및 검색
+	@Override
+	public List<ProductList> findProductBySearchCondition(ProductSearchCondition productSearchCondition) {
+		// TODO Auto-generated method stub
+		
+		List<ProductList> productList = 
+				sqlSessionTemplate.selectList("menu_mapper.findProductBySearchCondition", productSearchCondition);
+		
+		return productList;
+	}
+
+	//상품 생성
+	@Override
+	public int saveProductList(ProductList productList) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("menu_mapper.saveProductList", productList);
+		
+		return result;
+	}
+
+	//상품 각각의 정보 불러오기
+	@Override
+	public ProductList findProductByProductNumber(int productNumber) {
+		// TODO Auto-generated method stub
+		ProductList productList = sqlSessionTemplate.selectOne("menu_mapper.findProductByProductNumber", productNumber);
+		
+		return productList;
+
+	}
+
+	//상품 정보 수정
+	@Override
+	public int modifyProduct(ProductList productList) {
+		// TODO Auto-generated method stub
+		int result = sqlSessionTemplate.update("menu_mapper.modifyProduct", productList);
+		
+		return result;
+	}
+
+
+	//상품 삭제
+	@Override
+	public int removeProduct(int productNumber) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("menu_mapper.removeProduct", productNumber);
 		
 		return result;
 	}

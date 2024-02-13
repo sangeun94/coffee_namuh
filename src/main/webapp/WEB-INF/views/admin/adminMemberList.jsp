@@ -25,15 +25,6 @@
 
 <link rel="shortcut icon" href="" type="image/x-icon">
 
-
-<script>
-// 자바스크립트에서 사용하는 전역변수 선언
-var tb_url		 = "";
-var tb_bbs_url	 = "";
-var tb_shop_url  = "";
-var tb_admin_url = "";
-</script>
-
 <!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
@@ -70,7 +61,7 @@ var tb_admin_url = "";
 					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">마이페이지</a>
+					<a href="/admin/modifyAdmin" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -84,7 +75,7 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="m10 menu_toggle">회원관리</dt>		
-        <dd class="m10 active"><a href="">회원 정보관리</a></dd>		
+        <dd class="m10 active"><a href="/admin/adminMember">회원 정보관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">

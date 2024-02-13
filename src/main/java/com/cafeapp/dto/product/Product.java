@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class Product {
 	int productNumber;
-	int productType;
+	int productType; //1: 머그 2: 텀블러 3: 원두 4: 악세사리
 	String productName;
 	String productDescription;
 	int producPrice;
-	String productSize;
+	String productSize; //텀블러,머그: ml 원두: g
 	int productStockQuantity;
-	int productStatus;
+	int productStatus; //1: 판매중 2: 품절 3: 판매종료
 	int fileId;
 	String filePath;
 	String fileName;

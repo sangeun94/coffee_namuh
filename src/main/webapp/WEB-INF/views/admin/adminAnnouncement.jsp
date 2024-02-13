@@ -25,15 +25,6 @@
 
 <link rel="shortcut icon" href="" type="image/x-icon">
 
-
-<script>
-// 자바스크립트에서 사용하는 전역변수 선언
-var tb_url		 = "";
-var tb_bbs_url	 = "";
-var tb_shop_url  = "";
-var tb_admin_url = "";
-</script>
-
 <!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
@@ -44,13 +35,12 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="">관리자정보</a></li>
-				<li><a href="">관리자홈</a></li>
-				<li><a href="" target="_blank">쇼핑몰</a></li>
-				<li id="tnb_logout"><a href="">로그아웃</a></li>
+				<li> ${sessionScope.userName} 님 접속</li>
+				<li><a href="/main" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>
 
@@ -60,20 +50,18 @@ var tb_admin_url = "";
 				<li class="gnb_1dli">
 					<a href="/admin/adminMember" class="gnb_1da">회원관리</a>
 				</li>
-				
-				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">상품관리</a>
-				</li>
-				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">주문관리</a>
-				</li>
 
+				<li class="gnb_1dli">
+					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
+				</li>
+				<li class="gnb_1dli">
+					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
+				</li>
 				<li class="gnb_1dli active">
-					<a href="" class="gnb_1da">고객지원</a>
+					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
 				</li>
-
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">마이페이지</a>
+					<a href="/admin/modifyAdmin" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -83,15 +71,14 @@ var tb_admin_url = "";
 	
 <div id="snb">
 	<div class="snb_header ico_config">
-		<ion-icon name="accessibility-outline" class="announcement_outline"></ion-icon><h2>고객지원</h2>
+        <ion-icon name="accessibility-outline" class="announcement_outline"></ion-icon><h2>고객지원</h2>
 	</div>
-		<dl>
+    <dl>
 		<dt class="h10 menu_toggle">고객지원</dt>		
-        <dd class="h10"><a href="">1:1 상담문의</a></dd>		        
+        <dd class="h10"><a href="/admin/feedback">1:1 상담문의</a></dd>	    		
         <dt class="h20 menu_toggle">기타 관리</dt>			
         <dd class="h20 active"><a href="/admin/announcement">공지사항 관리</a></dd>        
-        <dd class="h20"><a href="">FAQ 관리</a></dd>	
-        </dl>	
+        <dd class="h20"><a href="/admin/faq">FAQ 관리</a></dd>	
         </dl>
 	</div>
 	<div id="content">

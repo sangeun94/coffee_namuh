@@ -66,6 +66,8 @@
 			<exclude-mapping path="/main" />
 			<exclude-mapping path="/withdrawal" />
 			<exclude-mapping path="/customer/isDuplicatedId" />
+			<exclude-mapping path="/" />
+			
 			
 			<exclude-mapping path="/notice" />
 			<exclude-mapping path="/noticedetail/**" />

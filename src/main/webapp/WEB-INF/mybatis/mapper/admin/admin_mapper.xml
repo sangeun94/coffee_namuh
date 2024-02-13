@@ -49,7 +49,7 @@
 	<!-- 회원 정보수정 -->
 	<update id="modifyMember" parameterType="User" >
 		UPDATE users
-		SET user_id = #{userId},
+		SET 
 			user_password = #{userPassword},
 			user_email = #{userEmail},
 			user_name = #{userName},

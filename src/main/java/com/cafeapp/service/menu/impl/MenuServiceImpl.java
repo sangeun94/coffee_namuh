@@ -9,6 +9,8 @@ import com.cafeapp.dao.menu.MenuDAO;
 import com.cafeapp.dto.menu.Menu;
 import com.cafeapp.dto.menu.MenuList;
 import com.cafeapp.dto.menu.MenuSearchCondition;
+import com.cafeapp.dto.product.ProductList;
+import com.cafeapp.dto.product.ProductSearchCondition;
 import com.cafeapp.dto.util.FileInfo;
 import com.cafeapp.service.menu.MenuService;
 
@@ -116,5 +118,59 @@ public class MenuServiceImpl implements MenuService {
 		int result = menuDAO.saveFoodList(menuList);
 		
 		return result;
+	}
+
+//	=========================================================
+	//상품리스트 목록 및 검색
+	@Override
+	public List<ProductList> findProductBySearchCondition(ProductSearchCondition productSearchCondition) {
+		// TODO Auto-generated method stub
+		
+		List<ProductList> productList = menuDAO.findProductBySearchCondition(productSearchCondition);
+		
+		return productList;
+	}
+
+	//상품 생성
+	@Override
+	public int saveProductList(ProductList productList) {
+		// TODO Auto-generated method stub
+		
+		int result = menuDAO.saveProductList(productList);
+		
+		return result;
+	}
+	
+	//상품 각각의 정보 불러오기
+	@Override
+	public ProductList findProductByProductNumber(int productNumber) {
+		// TODO Auto-generated method stub
+		ProductList productList = menuDAO.findProductByProductNumber(productNumber);
+		
+		return productList;
+	}
+	
+	//상품 정보 수정
+	@Override
+	public int modifyProduct(ProductList productList) {
+		// TODO Auto-generated method stub
+		
+		int result = menuDAO.modifyProduct(productList);
+		
+		return result;
+	}
+
+	//상품 삭제
+	@Override
+	public int removeProduct(List<Integer> productNumbers) {
+		// TODO Auto-generated method stub
+		
+		int result = 0;
+		for (int i=0; i<productNumbers.size(); i++) {
+			result = result + menuDAO.removeProduct(productNumbers.get(i));
+		}
+		
+		return result;
+
 	}
 }

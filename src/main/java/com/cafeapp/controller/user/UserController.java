@@ -31,6 +31,12 @@ public class UserController {
     @Autowired
 	LoginManager loginManager;
 
+    //맨 처음 경로 main
+	@RequestMapping("/")
+	public String home() {
+		return "redirect:/main";
+	}
+     
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -154,7 +160,9 @@ public class UserController {
         	loginManager.setSessionLogin(adminLoginUser.getUserId(), session);
             // 사용자 이름도 세션에 저장
             session.setAttribute("userName", adminLoginUser.getUserName());
-        	
+            // userNumber도 세션에 저장
+            session.setAttribute("userNumber", adminLoginUser.getUserNumber());
+            
             return "redirect:/admin/adminMember";
         } else {
             // 로그인 실패 시 처리

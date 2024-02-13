@@ -72,19 +72,17 @@ public class UserController {
             // 로그인 성공 시 처리
         	loginManager.setSessionLogin(loginUser.getUserId(), session);
             //sessionManager.createSession(loginUser, response);
+        	// 사용자 이름도 세션에 저장
+            session.setAttribute("userName", loginUser.getUserName());
             
-            return "redirect:/mainhome";
+            return "redirect:/main";
         } else {
             // 로그인 실패 시 처리
             return "redirect:/login";
         }
     }
 
-    @GetMapping("/main")
-    public String showMainPage(HttpServletRequest request, Model model) {
-      
-        return "user/main";
-    }
+    
     
     @PostMapping("/login-api")
     @ResponseBody
@@ -137,7 +135,7 @@ public class UserController {
     
     @RequestMapping("/main")
     public String main() {
-    	return"user/main";
+    	return"mainhome/mainhome";
     }
     
    
@@ -168,11 +166,7 @@ public class UserController {
         
     }
 
-    @GetMapping("/admin/main")
-    public String showAdminMainPage(HttpServletRequest request, Model model) {
-     
-        return "admin/main";
-    }
+    
 
    
     @GetMapping("/admin/logout")
@@ -320,7 +314,11 @@ public class UserController {
          return "redirect:/login";
      }
      
+     
+     
     
+     
+     
      
 
     }

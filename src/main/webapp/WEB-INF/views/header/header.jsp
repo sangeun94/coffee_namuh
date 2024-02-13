@@ -1,6 +1,7 @@
 <%@page import="com.cafeapp.dto.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -559,11 +560,18 @@
     } else {
 	%> --%>
 	
-		<!-- 	<ul>
-				<li class="libar" ><a href="/login">로그인</a> </li>
-				<li class="libar li-list" ><a href="/join">회원가입</a> </li>
-	</ul> -->
-	</div>
+		 	<br>
+			 <!-- 로그인하지 않았을 때 -->
+		    <c:if test="${empty sessionScope.userName}">
+		        <a href="/login">로그인</a>
+		        <a href="/register">회원가입</a>
+		    </c:if>
+		
+		    <!-- 로그인 했을 때 -->
+		    <c:if test="${not empty sessionScope.userName}">
+		        <span>환영합니다, <span>${sessionScope.userName}</span>님!</span>
+		    </c:if>
+		</div>
 
 	<%-- <%
     }

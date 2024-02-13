@@ -271,7 +271,7 @@
 		    
 		    if (!pwRegex.test(userPassword)) {
 		        userPasswordInput.style.background = 'pink';
-		        pwCheckResult.textContent = '비밀번호는 특수문자 포함 8자 이상이어야 합니다.';
+		        pwCheckResult.textContent = '비밀번호는 문자, 특수문자, 숫자 포함 8자 이상이어야 합니다.';
 		    } else {
 		        userPasswordInput.style.background = 'aqua';
 		        pwCheckResult.textContent = '';
@@ -310,11 +310,11 @@
         //생년월일 검증
         userBirthInput.addEventListener('input', function () {
             const userBirth = userBirthInput.value;
-            const birthRegex = /^19\d{6}$/;
+            const birthRegex = /^\d{8}$/;;
 
             if (!birthRegex.test(userBirth)) {
                 userBirthInput.style.background = 'pink';
-                birthCheckResult.textContent = '생년월일 8자리를 입력해주세요. (19YYMMDD)';
+                birthCheckResult.textContent = '생년월일 8자리를 입력해주세요. (YYYYMMDD)';
             } else {
                 userBirthInput.style.background = 'aqua';
                 birthCheckResult.textContent = '';
@@ -356,11 +356,18 @@
 
         if (!validateForm()) {
             e.preventDefault();
+        } else {
+            // 회원가입 성공 시 alert 띄우고 페이지 이동
+            alert('COFFEENAMUH 회원이 되어주셔서 감사합니다');
+            window.location.href = "/login";
         }
     });
-  	
+
    
 </script>
+
+
+
 
 
 </body>

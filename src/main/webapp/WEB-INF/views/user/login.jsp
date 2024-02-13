@@ -143,7 +143,7 @@ button {
     <label>비밀번호:</label>
     <input type="password" id="userPassword" name="userPassword">
 
-    <button type="submit">CAFFNAMUH 로그인</button>
+    <button type="submit">COFFEENAMUH 로그인</button>
     
 </form>
 
@@ -155,6 +155,18 @@ button {
 	    <a href="/register">회원가입</a>
 	</div>
 </div>
+
+
+<script>
+// URL에서 'loginFailed' 매개변수 확인
+const urlParams = new URLSearchParams(window.location.search);
+const loginFailed = urlParams.get('loginFailed');
+
+// 'loginFailed'가 true이면 경고 메시지 표시
+if (loginFailed) {
+    alert("아이디와 비밀번호를 확인해주세요.");
+}
+</script>
 </body>
 </html>
 

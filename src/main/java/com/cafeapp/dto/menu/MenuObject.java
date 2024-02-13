@@ -3,12 +3,12 @@ package com.cafeapp.dto.menu;
 import lombok.Data;
 
 @Data
-public class Menu {
+public class MenuObject {
 	int menuNumber;
 	int menuType;		//menuType;
 	String menuName;
 	String menuDescription;
-	int menuSize;
+	String menuSize;
 	int menuCalories;
 	int menuAllergyInfo;
 	int menuSaturatedFat;
@@ -21,7 +21,3 @@ public class Menu {
 	String fileName;
 	String originalFileName;
 }
-
-
-
-

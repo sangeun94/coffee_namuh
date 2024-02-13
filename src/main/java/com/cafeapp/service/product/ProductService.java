@@ -1,5 +1,11 @@
 package com.cafeapp.service.product;
 
-public class ProductService {
+import java.util.List;
+
+import com.cafeapp.dto.product.Product;
+
+public interface ProductService {
+	
+	public List<Product> ShowProductList();
 
 }

@@ -433,8 +433,10 @@
 <body>
  <!-- 상단 타이틀 -->
   <div class="head_wrap header_tt header">
+  <div class="head_wrap header_tt header">
     <div class="head">
         <div class="head_logo">
+            <a href="/mainhome">
             <a href="/mainhome">
                 <img src="/images/notice/CoffeeNamuh_White_BG.png" class="head_logo_img_fixed">
             </a>
@@ -500,6 +502,9 @@
                                                                 <a href="/faq" class="pc">
                                     나무소식										</a>
                                 <a class="m head_menu_down">나무소식</a>
+                                                                <a href="/faq" class="pc">
+                                    나무소식										</a>
+                                <a class="m head_menu_down">나무소식</a>
                         <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
                                                                             <li>
@@ -511,6 +516,7 @@
                                             FAQ												</a>
                                     </li>
                                                                                                                         <li>
+                                            <a href="/board">
                                             <a href="/board">
                                                 고객의 소리													</a>
                                         </li>

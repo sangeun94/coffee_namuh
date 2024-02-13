@@ -3,5 +3,7 @@
 				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 				
 <mapper namespace="product_mapper">
-
+<select id="ShowProductList" resultType="com.cafeapp.dto.product.Product">
+		select DISTINCT * from product p,file_info fi where p.file_id = fi.file_id order by p.file_id
+	</select>
 </mapper>

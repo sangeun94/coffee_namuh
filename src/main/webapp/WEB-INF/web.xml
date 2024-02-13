@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 	                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
-<!-- 톰캣 관련 -->
+	<!-- 톰캣 관련 -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -24,6 +24,15 @@
 			<max-file-size>31457280</max-file-size>   <!-- 30mb -->
 			<max-request-size>1004857600</max-request-size>  <!-- 100mb -->
 		</multipart-config>
+	</servlet>
+
+	<servlet>
+		<servlet-name>jsp</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+		<init-param>
+			<param-name>mappedfile</param-name>
+			<param-value>false</param-value>
+		</init-param>
 	</servlet>
 
 

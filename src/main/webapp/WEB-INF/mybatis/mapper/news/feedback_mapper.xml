@@ -6,12 +6,12 @@
 <mapper namespace="customerfeedback">
 	<select id="boardList" resultType="Feedback">
 		<!-- SELECT feedback_number, title, user_id, feedback_date, feedback_count FROM customer_feedback ORDER BY feedback_number DESC -->
-		SELECT * FROM customer_feedback
+		SELECT * FROM customer_feedback ORDER BY feedback_number DESC
 	</select>
 
 	<insert id="write" parameterType="Feedback">
-		INSERT INTO customer_feedback (feedbark_number,title, content, user_id,sb_cate)
-		VALUES (#{feedbackNumber}, #{title}, #{content}, #{userId},#{sb_cate})
+		INSERT INTO customer_feedback (feedback_number,title, content, user_id,Feedback_date,feedback_count)
+		VALUES (SEQ_FEEDBACK_PK.nextval, #{title}, #{content}, #{userId},TO_CHAR(SYSDATE, 'YYYY-MM-DD'),#{feedbackCount})
 	</insert>
 	
 	<!-- MybatisConfig -->

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,13 +89,13 @@
 															<input type="submit" value="검색" class="btn btn1" id="">
 														</div>
 													</li>
-													
+
 													<li class="board_search_btn">
 														<div class="input_btn_wrap input_wrap2">
 															<input type="submit" value="글쓰기"
 																class="btn btn1 float_right" id="writeButton">
 														</div>
-														
+
 													</li>
 												</ul>
 											</form>
@@ -115,55 +115,45 @@
 									<col class="board_w150 board_pc">
 									<col class="board_w100">
 									<col class="board_w100 board_pc">
-								</colgroup>					
+								</colgroup>
 								<thead>
 									<tr>
 										<th class="board_pc">번호</th>
 										<th>제목</th>
 										<th class="board_pc">글쓴이</th>
 										<th>날짜</th>
-										<th class="board_pc">조회</th>
 									</tr>
 								</thead>
 								<tbody>
-    <c:forEach var="list" items="${boardList}">
-        <tr>
-            <td class="board_pc">${list.feedbackNumber}</td>
-            <td>
-            <div class="text_wrap">
-            <div class="text">
-            <a href="/detail/${list.feedbackNumber}">${list.title}</a>
-            </div>
-            </div>
-            </td>
-            <td class="board_pc">${list.userId}</td>
-            <td class="board_pc"><fmt:formatDate value="${list.feedbackDate}" pattern="yyyy-MM-dd" /></td>
-            <td class="board_pc">${list.feedbackCount}</td>
-        </tr>
-    </c:forEach>
-    <tr>
-							
-</tbody>
+									<c:forEach var="list" items="${boardList}">
+										<tr>
+											<td class="board_pc">${list.feedbackNumber}</td>
+											<td>
+												<div class="text_wrap">
+													<div class="text">
+														<a href="/detail/${list.feedbackNumber}">${list.title}</a>
+													</div>
+												</div>
+											</td>
+											<td class="board_pc">${list.userId}</td>
+											<td class="board_pc">${list.feedbackDate}</td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
 							</table>
 						</div>
-						<div class="board_page_wrap">
-							<div class="board_page">
-								<ul>
-									<li class='fo_re'><a><span>처음</span></a></li>
-									<li class='board_page_check'><a><span>1</span></a></li>
-									<li><a><span>마지막</span></a></li>
-								</ul>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
     document.getElementById("writeButton").addEventListener("click", function() {
-        location.href = "write";
+        location.href = "/boardWrite";
     });
 </script>
 </body>

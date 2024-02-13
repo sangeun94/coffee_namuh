@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafeapp.mapper.ShoppingCartMapper">
+
+    <insert id="addToCart" parameterType="com.cafeapp.dto.shoppingcart.ShoppingCart">
+        INSERT INTO shopping_cart (user_id, product_number, cart_quantity)
+        VALUES (#{userId}, #{productNumber}, #{cartQuantity})
+    </insert>
+
+    <delete id="removeFromCart" parameterType="map">
+        DELETE FROM shopping_cart WHERE user_id = #{userId} AND product_number = #{productNumber}
+    </delete>
+
+    <select id="findByUserId" resultType="com.cafeapp.dto.shoppingcart.ShoppingCart">
+        SELECT * FROM shopping_cart WHERE user_id = #{userId}
+    </select>
+
+	<update id="modifyCount">
+		UPDATE shopping_cart set product_number = #{productNumber} where user_id ={userId}
+	</update>
+</mapper>

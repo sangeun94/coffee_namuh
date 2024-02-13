@@ -71,11 +71,11 @@
 				<div class="cont_boxs text_center">
 					<div class="cont_title_wrap">
 						<div class="cont_title">
-							<b>${feedback.title}</b>
+							<b>${faq.question}</b>
 						</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_text">${feedback.userId} ${feedback.feedbackDate} </div>
+						<div class="cont_text">${faq.userId} ${faq.postDate} </div>
 					</div>
 					</div>
 					</div>
@@ -83,11 +83,11 @@
 					</div>
 		<form action="/boardWrite">
 		<div>			<hr>
-			<div class="contentbox">${feedback.content}</div>
+			<div class="contentbox">${faq.answer}</div>
 			<hr>
 			<div class="input_btn_wrap input_wrap2">
-			<button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
-			<button class="btnwd5 btn1 float_right" onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
+		<%-- 	<button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${faq.feedbackNumber}'">삭제</button>
+			<button class="btnwd5 btn1 float_right" onclick="location.href='/boardUpdate/${faq.feedbackNumber}'">수정</button> --%>
 			</div>
 			</div>
 			</form>

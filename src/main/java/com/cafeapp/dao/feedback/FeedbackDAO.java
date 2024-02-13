@@ -36,7 +36,7 @@ public interface FeedbackDAO {
 //	현우
 	public List<Feedback> boardList();
 	
-	public void write(Feedback feedback);
+	public int write(Feedback feedback);
 	
 	public Feedback boardDetail(Integer feedbacknumber);
 	

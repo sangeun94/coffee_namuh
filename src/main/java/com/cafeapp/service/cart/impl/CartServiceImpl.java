@@ -3,9 +3,12 @@ package com.cafeapp.service.cart.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.cafeapp.dto.cart.Cart;
 import com.cafeapp.service.cart.CartService;
 
+@Service
 public class CartServiceImpl implements CartService {
 	// 장바구니 상품 목록을 저장하는 리스트
 	private List<Cart> cartItems = new ArrayList<>();

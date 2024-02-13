@@ -34,45 +34,45 @@
 
 <style>
 	/* 슬라이더 전체 스타일 */
-input[type=range] {
-  -webkit-appearance: none; /* 크롬, 사파리, 오페라에서 기본 디자인 제거 */
-  width: 100%; /* 전체 너비 */
-  margin: 10px 0; /* 슬라이더와 다른 요소 사이의 여백 */
-}
-
-/* 슬라이더 트랙(바탕) 스타일 */
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8px; /* 트랙의 높이 */
-  cursor: pointer;
-  background: #3071A9; /* 트랙의 배경색 */
-  border-radius: 5px; /* 트랙의 둥근 모서리 */
-}
-
-/* 슬라이더 썸(손잡이) 스타일 */
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* 기본 디자인 제거 */
-  height: 20px; /* 썸의 높이 */
-  width: 20px; /* 썸의 너비 */
-  border-radius: 50%; /* 썸을 원형으로 만듦 */
-  background: #ffffff; /* 썸의 배경색 */
-  cursor: pointer;
-  margin-top: -6px; /* 트랙 중앙에 썸을 위치시키기 위한 조정 */
-}
-
-/* 슬라이더에 포커스 됐을 때의 스타일 */
-input[type=range]:focus {
-  outline: none; /* 기본 아웃라인 제거 */
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #367ebd; /* 포커스 됐을 때의 트랙 색상 변경 */
-}
-
-/* 슬라이더 호버 스타일 */
-input[type=range]:hover::-webkit-slider-thumb {
-  background: #blue; /* 호버됐을 때 썸의 색상 변경 */
-}
+	input[type=range] {
+	  -webkit-appearance: none; 
+	  width: 100%; 
+	  margin: 10px 0; 
+	}
+	
+	/* 슬라이더 트랙(바탕) 스타일 */
+	input[type=range]::-webkit-slider-runnable-track {
+	  width: 100%;
+	  height: 8px; /* 트랙의 높이 */
+	  cursor: pointer;
+	  background: #3071A9; /* 트랙의 배경색 */
+	  border-radius: 5px; /* 트랙의 둥근 모서리 */
+	}
+	
+	/* 슬라이더 썸(손잡이) 스타일 */
+	input[type=range]::-webkit-slider-thumb {
+	  -webkit-appearance: none; /* 기본 디자인 제거 */
+	  height: 20px; /* 썸의 높이 */
+	  width: 20px; /* 썸의 너비 */
+	  border-radius: 50%; /* 썸을 원형으로 만듦 */
+	  background: #e8e6ed; /* 썸의 배경색 */
+	  cursor: pointer;
+	  margin-top: -6px; /* 트랙 중앙에 썸을 위치시키기 위한 조정 */
+	}
+	
+	/* 슬라이더에 포커스 됐을 때의 스타일 */
+	input[type=range]:focus {
+	  outline: none; /* 기본 아웃라인 제거 */
+	}
+	
+	input[type=range]:focus::-webkit-slider-runnable-track {
+	  background: #367ebd; /* 포커스 됐을 때의 트랙 색상 변경 */
+	}
+	
+	/* 슬라이더 호버 스타일 */
+	input[type=range]:hover::-webkit-slider-thumb {
+	  background: #blue; /* 호버됐을 때 썸의 색상 변경 */
+	}
 
 </style>
 
@@ -178,7 +178,7 @@ input[type=range]:hover::-webkit-slider-thumb {
 			<th scope="row">총 내용량</th>
 			<td>
 				<label for="menuSize"></label>
-				<input type="range" id="menuSize" name="menuSize" min="0" max="500" value="500" oninput="updateMenuSizeDisplay(this.value);" class="frm_input w90">
+				<input type="range" id="menuSize" name="menuSize" min="0" max="500" value="500" oninput="updateMenuSizeDisplay(this.value);" class="w120">
 				<span id="menuSizeDisplay">0g</span>			
 			</td>
 		</tr>

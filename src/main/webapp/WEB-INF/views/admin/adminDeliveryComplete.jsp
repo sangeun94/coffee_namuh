@@ -206,7 +206,7 @@
 	</thead>
 	<tbody>
 		<c:forEach var="orderItem" items="${orderList}">
-			<form action="/admin/modifyOrderStatus5" name="forderlist" id="forderlist" method="post">
+			<form action="" name="forderlist" id="forderlist" method="post">
 				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 
 			<tr class="list0">

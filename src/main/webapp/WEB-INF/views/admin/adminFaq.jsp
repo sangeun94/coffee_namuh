@@ -112,7 +112,7 @@
 		<tr>
 			<th scope="row">검색일자</th>
 			<td>
-				<input type="date" name="postDate" value="" id="to_date" class="frm_input w80" maxlength="10" autocomplete="off">	
+				<input type="date" name="postDate" value="" id="to_date" class="frm_input w90" maxlength="20" autocomplete="off">	
 			</td>
 		</tr>
 		</tbody>

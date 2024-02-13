@@ -44,7 +44,7 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -213,7 +213,7 @@ var tb_admin_url = "";
 </div>
 
 
-<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/images/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
 <script src="/js/admin/admin.js"></script>
@@ -222,37 +222,6 @@ var tb_admin_url = "";
 
 <script type="text/javascript" src="/js/admin/jquery-ui.min.js"></script>
 <script>
-jQuery(function($) {
-    $.datepicker.regional["ko"] = {
-        closeText: "닫기",
-        prevText: "이전달",
-        nextText: "다음달",
-        currentText: "오늘",
-        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)",
-                     "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
-        monthNamesShort: ["1월","2월","3월","4월","5월","6월",
-                          "7월","8월","9월","10월","11월","12월"],
-        dayNames: ["일","월","화","수","목","금","토"],
-        dayNamesShort: ["일","월","화","수","목","금","토"],
-        dayNamesMin: ["일","월","화","수","목","금","토"],
-        weekHeader: "Wk",
-        dateFormat: "yy-mm-dd",
-        firstDay: 0,
-        isRTL: false,
-        showMonthAfterYear: true,
-        yearSuffix: ""
-    };
-    $.datepicker.setDefaults($.datepicker.regional["ko"]);
-    
-    $("#to_date").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "yy-mm-dd",
-        showButtonPanel: true,
-        yearRange: "c-99:c+99",
-        maxDate: "+0d"
-    });
-});
 	
 	// 'fsearch'라는 ID를 가진 폼의 내용을 초기화
 	function resetSearchForm() {
@@ -279,23 +248,38 @@ jQuery(function($) {
             });
         }
     }; */
-    
-    document.querySelectorAll('.btn_delete').addEventListener('click', ()=>{
-		const chb_arr = document.querySelectorAll('.chb_checkNumber');
-		
-		let sendArr = [];
-		
-		chb_arr.forEach(function(item){
-			if(item.checked == true){
-				console.log(item.value);
-				sendArr.push(item.value);
-			}
-		});
-		
-		console.log(sendArr);
-		//JavaScript 객체나 배열 sendArr를 JSON 형식의 문자열로 변환
-		console.log(JSON.stringify(sendArr));
 
+    
+    document.querySelectorAll('.btn_delete').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // 폼 자동 제출 방지
+
+            if (confirm("정말 삭제하시겠습니까?")) {
+                console.log('삭제 확인 누름');
+
+                const chb_arr = document.querySelectorAll('.chb_checkNumber');
+
+                let sendArr = [];
+
+                chb_arr.forEach(function(item) {
+                    if (item.checked === true) {
+                        console.log(item.value);
+                        sendArr.push(item.value);
+                    }
+                });
+
+                console.log(sendArr);
+                console.log(JSON.stringify(sendArr));
+
+                // 필요한 경우 폼 제출
+                var form = document.querySelector('#frm_customers');
+                    if (form) {
+                        form.submit();
+                    } else {
+                        console.error('Form not found');
+                    }
+            }
+    	});
     });
 
 

@@ -44,12 +44,11 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="">관리자정보</a></li>
-				<li><a href="">관리자홈</a></li>
-				<li><a href="" target="_blank">홈페이지</a></li>
+				<li><a href="">admin님 접속</a></li>
+				<li><a href="" target="_blank">COFFEE NAMUH 홈페이지</a></li>
 				<li id="tnb_logout"><a href="">로그아웃</a></li>
 			</ul>
 		</div>
@@ -193,7 +192,7 @@ var tb_admin_url = "";
 </div>
 
 
-<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/images/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
 
 <script src="/js/admin/admin.js"></script>

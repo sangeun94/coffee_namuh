@@ -4,6 +4,6 @@
 				
 <mapper namespace="menu_mapper">
 	<select id="ShowMenuList" resultType="com.cafeapp.dto.menu.Menu">
-		SELECT * FROM MENU ORDER BY MENU_NUMBER
+		select DISTINCT * from menu m,file_info fi where m.file_id = fi.file_id order by m.file_id
 	</select>
 </mapper>

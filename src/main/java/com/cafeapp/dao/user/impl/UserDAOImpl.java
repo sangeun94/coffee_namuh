@@ -49,8 +49,9 @@ public class UserDAOImpl implements UserDAO{
 		
 		return result;
 	}
-
-
+	
+	
+	// 태현
     @Override
     public User findLoginUser(User user) {
     	user = sqlSessionTemplate.selectOne("user_mapper.findLoginUser", user);
@@ -68,32 +69,49 @@ public class UserDAOImpl implements UserDAO{
 	    return user;
 	}
 
-// 태현
     @Override
     public int saveUser(User user) {
         return sqlSessionTemplate.insert("user_mapper.saveUser", user);
     }
 
-    @Override
-    public List<User> findUserList() {
-        return sqlSessionTemplate.selectList("user_mapper.findUserList");
-    }
 
     @Override
-    public User findUserById(String id) {
-        return sqlSessionTemplate.selectOne("user_mapper.findUserById", id);
+    public User findUserById(String userId) {
+        return sqlSessionTemplate.selectOne("user_mapper.findUserById", userId);
     }
 
-    @Override
-    public List<User> findUserListByUserType(String userType) {
-        return sqlSessionTemplate.selectList("user_mapper.findUserListByUserType", userType);
-    }
 
     @Override
     public int updateUser(User user) {
         return sqlSessionTemplate.update("user_mapper.updateUser", user);
     }
+    
+    //email로 id 찾기
+	@Override
+	public List<User> findUserByEmail(String userEmail) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("user_mapper.findUserByEmail", userEmail);
+	}
 	
+	@Override
+    public int findEmailCheck(String userEmail) {
+        return sqlSessionTemplate.selectOne("user_mapper.findEmailCheck", userEmail);
+    }
 	
-	
+	@Override
+    public int countUsers(User user) {
+        return sqlSessionTemplate.selectOne("user_mapper.countUsers", user);
+    }
+
+    @Override
+    public int updatePassword(User user) {
+        return sqlSessionTemplate.update("user_mapper.updatePassword", user);
+    }
+    
+    @Override
+    public int withdrawUser(String userId) {
+        return sqlSessionTemplate.update("user_mapper.withdrawUser", userId);
+    }
+    
+    
 }

@@ -24,6 +24,15 @@
 	
 		<typeAlias type="com.cafeapp.dto.order.OrderList" alias="OrderList" />
 		<typeAlias type="com.cafeapp.dto.order.OrderSearchCondition" alias="OrderSearchCondition" />
+		<typeAlias type="com.cafeapp.dto.order.OrderDetail" alias="OrderDetail" />	
+		<typeAlias type="com.cafeapp.dto.order.Order" alias="Order" />
+	
+		<typeAlias type="com.cafeapp.dto.menu.MenuList" alias="MenuList" />
+		<typeAlias type="com.cafeapp.dto.menu.MenuSearchCondition" alias="MenuSearchCondition" />
+	
+		<typeAlias type="com.cafeapp.dto.util.FileInfo" alias="FileInfo" />
+	
+	
 	
 		<!--  -->
 		<typeAlias type="com.cafeapp.dto.user.User" alias="User" />
@@ -31,10 +40,12 @@
 		<typeAlias type="com.cafeapp.dto.feedback.Feedback" alias="Feedback"/>
 		
 		<typeAlias type="com.cafeapp.dto.menu.Menu" alias="Menu"/>
-		
-		<!--  -->
-		
+		<typeAlias type="com.cafeapp.dto.menu.MenuObject" alias="MenuObject"/>
+		<typeAlias type="com.cafeapp.dto.file.File" alias="File"/>
+		<typeAlias type="com.cafeapp.dto.product.Product" alias="Product"/>
+		<typeAlias type="com.cafeapp.dto.cart.Cart" alias="Cart"/>
 		<typeAlias type="com.cafeapp.dto.shoppingcart.ShoppingCart" alias="ShoppingCart"/>
+
 	</typeAliases>
 	
 

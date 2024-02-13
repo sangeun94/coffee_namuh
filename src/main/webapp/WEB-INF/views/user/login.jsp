@@ -98,12 +98,41 @@ button {
     box-sizing: border-box;
 }
 
+        div a {
+            text-decoration: none;
+        }
+
+        div a:hover {
+            text-decoration: underline;
+        }
+        
+        button {
+            width: 48%; 
+            padding: 8px; 
+        }
+
+        div span {
+        margin: 0 10px;
+        color: #1A3B33; 
+	    }
+	
+	    
+	    div a {
+	        text-decoration: none;
+	        margin-right: 10px;
+	        color: #1A3B33; 
+	    }
+	
+	    
+	    div a:last-child {
+	        margin-right: 0; 
+	    }
        
     </style>
 </head>
 <body>
     <div id="container">
-        <img id="profile-image" src="/image/user/COFFEENAMUH_logo.png" >
+        <img id="profile-image" src="/images/user/COFFEENAMUH_logo.png" >
         
         <h2>로그인</h2>
 
@@ -114,11 +143,18 @@ button {
     <label>비밀번호:</label>
     <input type="password" id="userPassword" name="userPassword">
 
-    <button type="submit">로그인</button>
+    <button type="submit">CAFFNAMUH 로그인</button>
+    
 </form>
 
-
-
+	<div>
+	    <a href="/getFindId">아이디 찾기</a>
+	    <span> | </span>
+	    <a href="/getFindPw">비밀번호 찾기</a>
+	    <span> | </span>
+	    <a href="/register">회원가입</a>
+	</div>
+</div>
 </body>
 </html>
 

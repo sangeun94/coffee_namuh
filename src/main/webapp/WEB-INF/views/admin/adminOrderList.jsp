@@ -5,6 +5,8 @@
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -39,12 +41,55 @@ var tb_admin_url = "";
 <script src="/js/admin/common.js"></script>
 <script src="/js/admin/categorylist.js"></script>
 </head>
-<body>
 
+<style>
+	.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+	}
+	
+	#modalBody {
+		margin-top: 20px;
+	}
+	
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 20% 35%; 
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 40%; 
+	}
+	
+	.close {
+	    color: #aaa;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	    margin-top: -13px;
+	}
+	
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+	
+</style>
+
+<body>
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/image/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
 		<div id="tnb">
 			<ul>
 				<li><a href="">관리자정보</a></li>
@@ -86,49 +131,25 @@ var tb_admin_url = "";
 		<ion-icon name="reader-outline" class="order_outline"></ion-icon><h2>주문관리</h2>
 	</div>
 		<dl>
-		<dt class="o10 menu_toggle">주문관리</dt>		
-        <dd class="o10 active"><a href="/admin/orderList">주문리스트(전체)
-        <dd class="o10"><a href="">배송준비</a></dd>		
-        <dd class="o10"><a href="">배송중</a></dd>		
-        <dd class="o10"><a href="">배송완료</a></dd>		
+			<dt class="o10 menu_toggle">주문관리</dt>		
+	        <dd class="o10 active"><a href="/admin/orderList">신규주문</a></dd>
+	        <dd class="o10"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
+	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
+	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
 	
-    </dl>
+    	</dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 주문관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 주문리스트(전체)		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 신규주문		
         </div>
 	
 <div class="s_wrap">
-	<h1>주문리스트(전체)</h1>
+	<h1>신규 주문</h1>
 	
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
-<script>
-jQuery(function($){
-    $.datepicker.regional["ko"] = {
-        closeText: "닫기",
-        prevText: "이전달",
-        nextText: "다음달",
-        currentText: "오늘",
-        monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
-        monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
-        dayNames: ["일","월","화","수","목","금","토"],
-        dayNamesShort: ["일","월","화","수","목","금","토"],
-        dayNamesMin: ["일","월","화","수","목","금","토"],
-        weekHeader: "Wk",
-        dateFormat: "yymmdd",
-        firstDay: 0,
-        isRTL: false,
-        showMonthAfterYear: true,
-        yearSuffix: ""
-    };
-	$.datepicker.setDefaults($.datepicker.regional["ko"]);
-});
-</script>
-<h2>기본검색</h2>
+	<h2>기본검색</h2>
 <form action="/admin/orderList" name="fsearch" id="fsearch" method="get">
-<input type="hidden" name="code" value="list">
 
 	<div class="tbl_frm01">
 		<table>
@@ -151,20 +172,17 @@ jQuery(function($){
 		<tr>
 			<th scope="row">기간검색</th>
 			<td>
-				<select name="sel_field">
-					<option value="">주문일</option>	
-				</select>
 				<label for="fr_date" class="sound_only">시작일</label>
-				<input type="date" name="orderDateStart" value="" id="fr_date" class="frm_input w80" maxlength="10">
+				<input type="date" name="orderDateStart" value="" id="fr_date" class="frm_input w90" maxlength="20">
 				 ~ 
 				<label for="to_date" class="sound_only">종료일</label>
-				<input type="date" name="orderDateEnd" value="" id="to_date" class="frm_input w80" maxlength="10">
+				<input type="date" name="orderDateEnd" value="" id="to_date" class="frm_input w90" maxlength="20">
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">결제방법</th>
 			<td>
-				<label><input type="radio" name="paymentMethod" value="" checked="checked"> 전체</label>
+				<label><input type="radio" name="paymentMethod" value="0" checked="checked"> 전체</label>
 				<label><input type="radio" name="paymentMethod" value="1"> 신용카드</label>
 				<label><input type="radio" name="paymentMethod" value="2"> 휴대폰결제</label>
 				<label><input type="radio" name="paymentMethod" value="3"> 무통장입금</label>
@@ -185,29 +203,17 @@ jQuery(function($){
 	<strong class="ov_a">총주문액 : ${totalOrderAmount}원</strong>
 </div>
 
-<form name="forderlist" id="forderlist" method="post">
-<input type="hidden" name="q1" value="code=list">
-<input type="hidden" name="page" value="1">
-
 <div class="tbl_head01">
 	<table id="sodr_list">
 	<colgroup>
-		<col class="w50">
-		<col class="w100">
-		<col class="w150">
-		<col class="w40">
-		<col class="w40">
-		<col class="w60">
-		<col class="w80">
-		<col class="w80">
-		<col class="w90">
-		<col class="w90">
+
 	</colgroup>
 	<thead>
 	<tr>
 		<th scope="col">주문번호</th>
 		<th scope="col">주문일시</th>
 		<th scope="col">주문상품</th>
+		<th scope="col"></th>	
 		<th scope="col">수량</th>
 		<th scope="col">배송비</th>
 		<th scope="col">주문상태</th>
@@ -220,37 +226,58 @@ jQuery(function($){
 	</thead>
 	<tbody>
 		<c:forEach var="orderItem" items="${orderList}">
+			<form action="/admin/modifyOrderStatus1" name="forderlist" id="forderlist" method="post">
+				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
 			<tr class="list0">
 				<td>${orderItem.orderNumber}</td>
-				<td>${orderItem.orderDate}</td>
-				<td>${orderItem.productName}</td>
-				<td>${orderItem.orderQuantity}</td>
+				<td>
+	            	<!-- parseDate를 사용하여 문자열을 날짜 객체로 변환 -->
+					<fmt:parseDate value="${orderItem.orderDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate"/>
+					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" />						            	
+	            </td>
+				<td>
+				    <c:choose>
+				        <c:when test="${orderItem.additionalProductCount == 0}">
+				            ${orderItem.firstProductName}
+				        </c:when>
+				        <c:otherwise>
+				            ${orderItem.firstProductName} 외 ${orderItem.additionalProductCount}건
+				        </c:otherwise>
+				    </c:choose>
+				</td>
+				<td>
+		            <button type="button" class="btn_lsmall detailBtn" data-order-number="${orderItem.orderNumber}">상세정보</button>
+		        </td>
+				<td>${orderItem.totalQuantity}</td>
 				<td>${orderItem.shippingFee}</td>
-				<td>${orderItem.orderStatus}</td>
+				<td>
+				    <c:choose>
+				        <c:when test="${orderItem.orderStatus == 1}">상품준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 2}">배송준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 3}">배송중</c:when>
+				        <c:when test="${orderItem.orderStatus == 4}">배송완료</c:when>
+				        <c:when test="${orderItem.orderStatus == 5}">주문취소</c:when>
+				        <c:when test="${orderItem.orderStatus == 6}">구매확정</c:when>
+				    </c:choose>
+				</td>
 				<td>${orderItem.ordererName}</td>
 				<td>${orderItem.totalPrice}</td>
-				<td>${orderItem.paymentMethod}</td>
 				<td>
-					<button type="button" id="btn_modify" onclick="window.location.href='/admin/modifyAnnounce?announcementNumber=${announceItem.announcementNumber}'" class="btn_lsmall">발주확인</button>
+				    <c:choose>
+				        <c:when test="${orderItem.paymentMethod == 1}">신용카드</c:when>
+				        <c:when test="${orderItem.paymentMethod == 2}">휴대폰결제</c:when>
+				        <c:when test="${orderItem.paymentMethod == 3}">무통장입금</c:when>
+				    </c:choose>
+				</td>
+				<td>
+					<button type="submit" id="btn_modify" class="btn_lsmall">발주확인</button>
 				</td>
 			</tr>
+			</form>
 		</c:forEach>
 	</tbody>
 	</table>
 
-
-
-
-<script>
-$(function(){
-    $("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" 
-});
-
-	// 'fsearch'라는 ID를 가진 폼의 내용을 초기화
-	function resetSearchForm() {
-	    document.getElementById('fsearch').reset();
-	}
-</script>
 </div>
 
 </div>
@@ -260,11 +287,104 @@ $(function(){
 </div>
 
 
-<div id="ajax-loading"><img src="/image/admin/ajax-loader.gif"></div>
+<div id="ajax-loading"><img src="/images/admin/ajax-loader.gif"></div>
 <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+
+
+<!-- Modal창 -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>주문 상세 정보</h1>
+        <!-- 여기에 주문 상세 정보를 동적으로 삽입할 예정 -->
+        <div id="modalBody">
+            <!-- AJAX로 받은 데이터를 여기에 삽입 -->
+        </div>
+    </div>
+</div>
+
+<!-- 발주확인 메세지 -->
+<c:if test="${not empty successMessage}">
+<script>
+    alert('${successMessage}');
+</script>
+</c:if>
+
+<c:if test="${not empty errorMessage}">
+<script>
+    alert('${errorMessage}');
+</script>
+</c:if>
+
+
 
 <script src="/js/admin/admin.js"></script>
 
 <script src="/js/admin/wrest.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+// 모달 변수를 전역적으로 초기화
+var modal = document.getElementById('myModal');
+
+$(function() {
+    // 'fsearch'라는 ID를 가진 폼의 내용을 초기화하는 함수
+    function resetSearchForm() {
+        document.getElementById('fsearch').reset();
+    }
+
+ // 모든 '.detailBtn' 버튼에 대해 클릭 이벤트 리스너를 설정
+    $(document).on('click', '.detailBtn', function() {
+        var orderNumber = $(this).data('order-number'); // data-order-number 속성에서 주문 번호 가져오기
+
+        $.ajax({
+            url: '/admin/orderDetail', // 서버의 주문 상세 정보 조회 엔드포인트
+            type: 'GET',
+            dataType: 'json', // 응답 데이터 타입을 JSON으로 지정
+            data: { orderNumber: orderNumber }, // 요청 매개변수로 주문 번호 전달
+            success: function(orderDetailList) {
+                // 모달 창의 내용을 업데이트하기 위한 HTML 초기화
+                var modalContent = '<div class="tbl_head01"><table class="sodr_list"><colgroup>' +
+				                    '</colgroup><thead>' +
+				                    '<tr><th scope="col">주문번호</th><th scope="col">주문상품</th>' +
+				                    '<th scope="col">수량</th><th scope="col">총금액</th></tr></thead><tbody>';
+
+				$.each(orderDetailList, function(index, orderDetail) {
+				    modalContent += '<tr class="list0">' +
+				                    '<td>' + orderDetail.orderNumber + '</td>' +
+				                    '<td>' + orderDetail.productName + '</td>' +
+				                    '<td>' + orderDetail.orderQuantity + '</td>' +
+				                    '<td>' + orderDetail.price + '</td>' +
+				                    '</tr>';
+                });
+                
+                modalContent += '</table>'; // 테이블 닫기
+                
+                $('#modalBody').html(modalContent); // 모달 본문에 HTML 삽입
+                modal.style.display = 'block'; // 모달 창 표시
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX 요청 실패: ", status, error);
+            }
+        });
+    });
+
+    // '.close' 클래스를 가진 요소를 클릭했을 때 모달을 닫음
+    $(document).on('click', '.close', function() {
+        modal.style.display = "none";
+    });
+
+    // 모달 외부를 클릭했을 때 모달을 닫음
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+});
+</script>
+
+
 </body>
 </html>

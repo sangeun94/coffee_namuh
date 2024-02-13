@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class FeedbackResponseDTO {
 	
-	    Long responseNumber;
-	    Long feedbackNumber;
+	    int responseNumber;
+	    int feedbackNumber;
 	    String userId;
 	    String comment;
 	    String responseDate;

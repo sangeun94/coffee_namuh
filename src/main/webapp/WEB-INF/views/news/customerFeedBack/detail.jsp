@@ -9,43 +9,87 @@
 <title>Insert title here</title>
 <link href="/css/news.css" rel="stylesheet" type="text/css">
 <style>
-	        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-		.bodybox {
-			height: 100px;
-		}
+.bodybox {
+	height: 100px;
+}
 
-		.titlebox{
-			width: 100%;
-			height: 100px;
-		}
-		.contentbox{
-			width:100%;
-			height: 400px
-		}
-		 .btnntwidth{width:5%;font-family:'Noto Sans kr',sans-serif; border:1px solid #e0e0e0; font-weight:400; font-size:12px; text-align:center; padding:0px 20px; height:100%; font-weight:500; cursor:pointer; font-weight:500; transition:All 0.2s ease; -webkit-transition:All 0.2s ease; -o-transition:All 0.2s ease; -ms-transition:All 0.2s ease; overflow:hidden;}
-		 .btnwd5{width:50%;font-family:'Noto Sans kr',sans-serif; border:1px solid #e0e0e0; font-weight:400; font-size:12px; text-align:center; padding:0px 20px; height:100%; font-weight:500; cursor:pointer; font-weight:500; transition:All 0.2s ease; -webkit-transition:All 0.2s ease; -o-transition:All 0.2s ease; -ms-transition:All 0.2s ease; overflow:hidden;}
-		 
-		 textarea{
-                    overflow:hidden;
-					height:45px; 
-					resize: none;
-				}
-				.input_text_wrap1{position:relative;width:95%; display:inline-block; font-size:16px;}
-		.li_left{
-		float:left;
-		}
+.titlebox {
+	width: 100%;
+	height: 100px;
+}
+
+.contentbox {
+	width: 100%;
+	height: 400px
+}
+
+.btnntwidth {
+	width: 5%;
+	font-family: 'Noto Sans kr', sans-serif;
+	border: 1px solid #e0e0e0;
+	font-weight: 400;
+	font-size: 12px;
+	text-align: center;
+	padding: 0px 20px;
+	height: 100%;
+	font-weight: 500;
+	cursor: pointer;
+	font-weight: 500;
+	transition: All 0.2s ease;
+	-webkit-transition: All 0.2s ease;
+	-o-transition: All 0.2s ease;
+	-ms-transition: All 0.2s ease;
+	overflow: hidden;
+}
+
+.btnwd5 {
+	width: 50%;
+	font-family: 'Noto Sans kr', sans-serif;
+	border: 1px solid #e0e0e0;
+	font-weight: 400;
+	font-size: 12px;
+	text-align: center;
+	padding: 0px 20px;
+	height: 100%;
+	font-weight: 500;
+	cursor: pointer;
+	font-weight: 500;
+	transition: All 0.2s ease;
+	-webkit-transition: All 0.2s ease;
+	-o-transition: All 0.2s ease;
+	-ms-transition: All 0.2s ease;
+	overflow: hidden;
+}
+
+textarea {
+	overflow: hidden;
+	height: 45px;
+	resize: none;
+}
+
+.input_text_wrap1 {
+	position: relative;
+	width: 95%;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.li_left {
+	float: left;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
 
 	<div class="bodybox"></div>
-	
+
 	<div class="cont_wrap bbs_wrap">
 		<div class="cont">
 			<div class="cont_box cont_head">
@@ -75,46 +119,94 @@
 						</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_text">${feedback.userId} ${feedback.feedbackDate} </div>
+						<div class="cont_text">${feedback.userId}
+							${feedback.feedbackDate}</div>
 					</div>
-					</div>
-					</div>
-					</div>
-					</div>
-		<form action="/boardWrite">
-		<div>			<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form action="/boardWrite">
+		<div>
+			<hr>
 			<div class="contentbox">${feedback.content}</div>
 			<hr>
 			<div class="input_btn_wrap input_wrap2">
-			<button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
-			<button class="btnwd5 btn1 float_right" onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
+				<button class="btnwd5 btn1 float_right"
+					onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
+				<button class="btnwd5 btn1 float_right"
+					onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
 			</div>
-			</div>
-			</form>
-			<hr>
-			<div class="cont_list cont_list_content cont_list_content_search">
-								<form action="/boardWrite" method="post">
-									<ul>
-										<li>
-											<div class="board_search_wrap">
-											<li><textarea name="content" id="bbs_search"  rows="" cols="" name="content" class="input_text_wrap1 li_left" placeholder="내용을 입력해주세요."></textarea></li>
-											
-												<div class="board_search">
-													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
-														
-															<input type="submit" value="글쓰기"
-																class="btnntwidth btn1 float_right" id="writeButton">
-														</div>
+		</div>
+	</form>
+	<hr>
+	<div class="cont_list cont_list_content cont_list_content_search">
+		<form action="/boardWrite" method="post">
+			<ul>
+				<li>
+					<div class="board_search_wrap">
+						<li><textarea name="content" id="bbs_search" rows="" cols=""
+								name="content" class="input_text_wrap1 li_left"
+								placeholder="내용을 입력해주세요."></textarea></li>
 
-													</li>
-												</div>
-											</div>
-										</li>
-									</ul>
+						<div class="board_search">
+							<li class="board_search_btn">
+								<div class="input_btn_wrap input_wrap2">
+
+									<input type="submit" value="글쓰기"
+										class="btnntwidth btn1 float_right" id="writeButton">
+								</div>
+								<div id="comments">
+									<!-- 여기에 댓글이 동적으로 추가됩니다. -->
+								</div> <!-- 댓글 입력 폼 -->
+								<form id="commentForm">
+									<textarea id="commentText" rows="4" cols="50"></textarea>
+									<br>
+									<button type="submit">댓글 작성</button>
 								</form>
-							</div>
-							<hr><br>
-			<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
+
+							</li>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<hr>
+	<br>
+	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
+	
+	
+<script>
+    // 댓글 입력 폼에 제출 이벤트 추가
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // 기본 제출 동작 방지
+
+        // 입력된 댓글 내용 가져오기
+        var comment = document.getElementById('commentText').value;
+
+        // 댓글 내용이 비어 있는지 확인
+        if (comment.trim() === '') {
+            alert('댓글 내용을 입력하세요.');
+            return;
+        }
+
+        // 댓글 추가 함수 호출
+        addComment(comment);
+
+        // 입력 폼 초기화
+        document.getElementById('commentText').value = '';
+    });
+
+    // 댓글 추가 함수
+    function addComment(comment) {
+        // 새로운 댓글 요소 생성
+        var newComment = document.createElement('div');
+        newComment.textContent = comment;
+
+        // 댓글 표시 영역에 추가
+        document.getElementById('comments').appendChild(newComment);
+    }
+</script>
 </body>
 </html>

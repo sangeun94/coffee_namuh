@@ -73,7 +73,7 @@ public class UserController {
         	loginManager.setSessionLogin(loginUser.getUserId(), session);
             //sessionManager.createSession(loginUser, response);
             
-            return "redirect:/main";
+            return "redirect:/mainhome";
         } else {
             // 로그인 실패 시 처리
             return "redirect:/login";
@@ -142,7 +142,7 @@ public class UserController {
     
    
   //adminLogin
-    @GetMapping("/adminLogin")
+    @GetMapping("/admin/adminLogin")
     public String adminPage() {
     	return"admin/adminLogin";
     }
@@ -150,7 +150,7 @@ public class UserController {
     
     
 
-    @PostMapping("/adminLogin")
+    @PostMapping("/admin/adminLogin")
     public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session) {
         User adminLoginUser = userService.isValidAdminLogin(user);
         
@@ -163,7 +163,7 @@ public class UserController {
             return "redirect:/admin/adminMember";
         } else {
             // 로그인 실패 시 처리
-        	return "redirect:/adminlogin";
+        	return "redirect:admin/adminLogin";
         }
         
     }

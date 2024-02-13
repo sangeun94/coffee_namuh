@@ -56,18 +56,41 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**" />
-			<exclude-mapping path="/adminLogin" />
+			<exclude-mapping path="/admin/**" />
 			<exclude-mapping path="/login" />
 			<exclude-mapping path="/register" />
 			<exclude-mapping path="/getFindId" />
 			<exclude-mapping path="/findId" />
 			<exclude-mapping path="/getFindPw" />
 			<exclude-mapping path="/findPw" />
-			<exclude-mapping path="/main" />
+			<exclude-mapping path="/mainhome" />
 			<exclude-mapping path="/withdrawal" />
+			<exclude-mapping path="/customer/isDuplicatedId" />
+			
+			<exclude-mapping path="/notice" />
+			<exclude-mapping path="/noticedetail/**" />
+			<exclude-mapping path="/faq" />
+			<exclude-mapping path="/faqdetail/**" />
+			<exclude-mapping path="/board" />
+			<exclude-mapping path="/detail/** "/>
+			
+			<exclude-mapping path="/menu/**" />
+			<exclude-mapping path="/product/**" />
+			
+			<exclude-mapping path="/css/**" />
+	        <exclude-mapping path="/js/**" />
+	        <exclude-mapping path="/images/**"/>
+	        <exclude-mapping path="/fileStorage/**" />
 			
 			<beans:bean class="com.cafeapp.interceptor.LoginInterceptor" />
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/**" />
+			<exclude-mapping path="/admin/adminLogin" />
+			<beans:bean class="com.cafeapp.interceptor.AdminLoginInterceptor" />
+		</interceptor>
+		
 	</interceptors> 
 
 

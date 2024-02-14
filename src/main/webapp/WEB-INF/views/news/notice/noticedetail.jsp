@@ -60,7 +60,7 @@
 						<div class="cont_text cont_list_map">
 							<ul>
 								<li>홈</li>
-								<li>메가소식</li>
+								<li>나무소식</li>
 								<li>고객의 소리</li>
 							</ul>
 						</div>

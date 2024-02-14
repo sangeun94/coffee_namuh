@@ -17,8 +17,8 @@
 			<div class="cont_box cont_head">
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
-						<div class="cont_title_info">MEGA NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title_info">NAMUH NEWS</div>
+						<div class="cont_title robo">
 							<h2>FAQ</h2>
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 						<div class="cont_text cont_list_map">
 							<ul>
 								<li>홈</li>
-								<li>메가소식</li>
+								<li>나무소식</li>
 								<li>FAQ</li>
 							</ul>
 						</div>
@@ -44,7 +44,7 @@
 						<div class="cont_text">궁금하신 내용을 검색해 주세요.</div>
 					</div>
 					<div class="cont_text_wrap">
-			
+
 						<div class="cont_list cont_list_content cont_list_content_search">
 							<ul>
 								<li>
@@ -91,20 +91,14 @@
 					<div class="cont_text_wrap">
 						<div class="board_list">
 							<table>
-								<colgroup>
-									<col class="board_w75 board_pc">
-									<col>
-									<col class="board_w150 board_pc">
-									<col class="board_w100">
-									<col class="board_w100 board_pc">
-								</colgroup>
+
 								<thead>
 									<tr>
 										<th class="board_pc">번호</th>
 										<th>제목</th>
 										<th class="board_pc">글쓴이</th>
 										<th>날짜</th>
-										<th class="board_pc">조회</th>
+
 									</tr>
 								</thead>
 								<tbody>
@@ -120,7 +114,11 @@
 												</div>
 											</td>
 											<td class="board_pc">${faqList.userId}</td>
-											<td class="board_pc">${faqList.postDate}</td>
+
+											<td><fmt:parseDate value="${faqList.postDate}"
+													pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate" /> <fmt:formatDate
+													value="${parsedDate}" pattern="yy-MM-dd" /></td>
+
 										</tr>
 									</c:forEach>
 								</tbody>

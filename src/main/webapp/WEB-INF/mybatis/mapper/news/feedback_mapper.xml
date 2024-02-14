@@ -6,7 +6,7 @@
 <mapper namespace="customerfeedback">
 	<select id="boardList" resultType="Feedback">
 		<!-- SELECT feedback_number, title, user_id, feedback_date, feedback_count FROM customer_feedback ORDER BY feedback_number DESC -->
-		SELECT * FROM customer_feedback ORDER BY feedback_number DESC
+		SELECT feedback_number,title, user_id, TO_CHAR(SYSDATE, 'YYYY-MM-DD') feedback_date FROM customer_feedback ORDER BY feedback_number DESC
 	</select>
 
 	<insert id="write" parameterType="Feedback">

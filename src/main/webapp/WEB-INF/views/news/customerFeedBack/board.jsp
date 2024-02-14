@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/css/news.css" rel="stylesheet" type="text/css">
+<style>
+.color {
+	color : #ffffff !important;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
@@ -16,8 +21,8 @@
 			<div class="cont_box cont_head">
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
-						<div class="cont_title_info">MEGA NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title_info">NAMUH NEWS</div>
+						<div class="cont_title robo">
 							<h2>FAQ</h2>
 						</div>
 					</div>
@@ -25,8 +30,8 @@
 						<div class="cont_text cont_list_map">
 							<ul>
 								<li>홈</li>
-								<li>메가소식</li>
-								<li>고객의 소리</li>
+								<li>나무소식</li>
+								<li>1 : 1 상담</li>
 							</ul>
 						</div>
 					</div>
@@ -36,7 +41,7 @@
 				<div class="cont_boxs text_center">
 					<div class="cont_title_wrap">
 						<div class="cont_title">
-							<b>1:1 질문 </b>
+							<b>1 : 1 상담 </b>
 						</div>
 					</div>
 					<div class="cont_text_wrap">
@@ -49,11 +54,9 @@
 								<li>
 									<div class="board_search_wrap">
 										<div class="board_search">
-											<form id="writeForm"  action="/boardWrite" method="get">
-												<input type="hidden" name="bbs_category" id="bbs_category"
-													value="4"> <input type="hidden"
-													name="bbs_detail_category" id="bbs_detail_category"
-													value="10">
+											 <form id="writeForm" action="<c:url value='/boardWrite' />" method="get">
+                                                <input type="hidden" name="bbs_category" id="bbs_category" value="4">
+                                                <input type="hidden" name="bbs_detail_category" id="bbs_detail_category" value="10">
 												<ul>
 											
 
@@ -78,7 +81,6 @@
 							<table>
 								<colgroup>
 									<col class="board_w75 board_pc">
-									<col>
 									<col class="board_w150 board_pc">
 									<col class="board_w100">
 									<col class="board_w100 board_pc">
@@ -119,9 +121,22 @@
 	
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
-    document.getElementById("writeButton").addEventListener("click", function(event) {
-    	event.preventDefault(); // 기본 동작 방지
-        document.getElementById("writeForm").submit(); // form 제출
+	document.getElementById("writeButton").addEventListener("click", function(event) {
+		document.getElementById("writeButton").addEventListener("click", function(event) {
+            // 이벤트의 기본 동작을 막음
+            event.preventDefault();
+            
+            // 로그인 여부 확인
+            if (${not empty sessionScope.userName}) {
+                // 로그인된 경우 글쓰기 페이지로 이동
+                document.getElementById("writeForm").submit();
+            } else {
+                // 로그인되지 않은 경우 알림창 표시 후 로그인 페이지로 이동
+                alert("로그인이 필요합니다.");
+                window.location.href = "<c:url value='/login' />";
+            }
+        });
+
     });
 </script>
 </body>

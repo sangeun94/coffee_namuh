@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafeapp.common.CommonCode;
 import com.cafeapp.dto.user.User;
@@ -30,7 +31,7 @@ public class UserController {
     
     @Autowired
 	LoginManager loginManager;
-
+    
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -63,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(User user, HttpServletResponse response, HttpSession session) {
+    public String loginUser(User user, HttpServletResponse response, HttpSession session, RedirectAttributes redirectAttributes) {
     	System.out.println(user);
         User loginUser = userService.isValidCustomerLogin(user);
 
@@ -78,6 +79,7 @@ public class UserController {
             return "redirect:/main";
         } else {
             // 로그인 실패 시 처리
+        	redirectAttributes.addAttribute("loginFailed", true);
             return "redirect:/login";
         }
     }
@@ -149,7 +151,7 @@ public class UserController {
     
 
     @PostMapping("/admin/adminLogin")
-    public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session) {
+    public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session, RedirectAttributes redirectAttributes) {
         User adminLoginUser = userService.isValidAdminLogin(user);
         
         System.out.println(adminLoginUser);
@@ -161,7 +163,8 @@ public class UserController {
             return "redirect:/admin/adminMember";
         } else {
             // 로그인 실패 시 처리
-        	return "redirect:admin/adminLogin";
+        	redirectAttributes.addAttribute("loginFailed", true);
+        	return "redirect:/admin/adminLogin";
         }
         
     }
@@ -316,7 +319,10 @@ public class UserController {
      
      
      
-    
+    @RequestMapping("/brand")
+    public String brand() {
+    	return "introduction/brand";
+    }
      
      
      

@@ -108,8 +108,16 @@ button {
 </form>
 </div>
 
+<script>
 
+const urlParams = new URLSearchParams(window.location.search);
+const loginFailed = urlParams.get('loginFailed');
 
+// 'loginFailed'가 true이면 경고 메시지 표시
+if (loginFailed) {
+    alert("관리자 계정으로만 로그인이 가능합니다.");
+}
+</script>
 
 </body>
 </html>

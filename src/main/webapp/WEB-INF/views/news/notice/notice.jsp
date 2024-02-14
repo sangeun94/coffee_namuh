@@ -16,8 +16,8 @@
 			<div class="cont_box cont_head">
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
-						<div class="cont_title_info">Namuh NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title_info">NAMUH NEWS</div>
+						<div class="cont_title robo">
 							<h2>NAMUH NOTICE</h2>
 						</div>
 					</div>
@@ -91,7 +91,6 @@
 							<table>
 								<colgroup>
 									<col class="board_w75 board_pc">
-									<col>
 									<col class="board_w150 board_pc">
 									<col class="board_w100">
 									<col class="board_w100 board_pc">
@@ -102,7 +101,7 @@
 										<th>제목</th>
 										<th class="board_pc">글쓴이</th>
 										<th>날짜</th>
-										<th class="board_pc">조회</th>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -119,7 +118,12 @@
 													</div>
 												</td>
 												<td class="board_pc">${announceList.userId}</td>
-												<td class="board_pc">${announceList.postDate}</td>
+												
+												                  <td>
+                     <!-- parseDate를 사용하여 문자열을 날짜 객체로 변환 -->
+                  <fmt:parseDate value="${announceList.postDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate"/>
+                  <fmt:formatDate value="${parsedDate}" pattern="yy-MM-dd" />                                 
+                  </td>
 											</tr>
 										</c:forEach>
 								</tbody>

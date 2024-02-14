@@ -24,10 +24,6 @@
 	height: 100px;
 }
 
-.contentbox {
-	width: 100%;
-	height: 400px
-}
 
 .btnntwidth {
 	width: 5%;
@@ -49,7 +45,7 @@
 }
 
 .btnwd5 {
-	width: 50%;
+	width: 40%;
 	font-family: 'Noto Sans kr', sans-serif;
 	border: 1px solid #e0e0e0;
 	font-weight: 400;
@@ -96,7 +92,7 @@ textarea {
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
 						<div class="cont_title_info">NAMUH NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title robo">
 							<h2>FAQ</h2>
 						</div>
 					</div>
@@ -104,7 +100,7 @@ textarea {
 						<div class="cont_text cont_list_map">
 							<ul>
 								<li>홈</li>
-								<li>메가소식</li>
+								<li>나무소식</li>
 								<li>고객의 소리</li>
 							</ul>
 						</div>
@@ -112,33 +108,37 @@ textarea {
 				</div>
 			</div>
 			<div class="cont_box brand01">
-				<div class="cont_boxs text_center">
+				<div class="cont_boxsr">
 					<div class="cont_title_wrap">
-						<div class="cont_title">
-							<b>${feedback.title}</b>
+						<div class="board_detail_title">
+							<h1>${feedback.title}<br></h1>
+							<div class="board_detail_title_info">
+								<div class="float_right">
+									<span>구분 질문</span>
+									<span>작성자 ${feedback.userId}</span>
+									<span>작성일 ${feedback.feedbackDate}</span>
+								</div>
+							</div>
 						</div>
+						
 					</div>
-					<div class="cont_text_wrap">
-						<div class="cont_text">
-							작성자 : ${feedback.userId}<br> 작성일 : ${feedback.feedbackDate}
-						</div>
-					</div>
+				
 				</div>
 			</div>
 		</div>
 	</div>
 	
-		<div>
-			<hr>
-			<div class="contentbox">${feedback.content}</div>
-			<hr>
+		<div class="board_detail_text_wrap">
+			
+			<div class="board_detail_text"><span>${feedback.content}</span></div>
+			
 	<div class="input_btn_wrap input_wrap2">
     <!-- 삭제 버튼 -->
     <c:set var="isAuthor" value="${feedback.userId eq loggedInUserId}" />
 <c:if test="${isAuthor}">
     <div class="input_btn_wrap input_wrap2">
-        <button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
-        <button class="btnwd5 btn1 float_right" onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
+        <button class="btnwd5 btn1" onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
+        <button class="btnwd5 btn1" onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
     </div>
 </c:if>
 </div>
@@ -150,7 +150,7 @@ textarea {
 				<tbody>
 					 <c:forEach var="response" items="${responseList}">
 						<tr>
-							<td class="board_pc">${response.responseNumber}</td>
+							<td class="board_pc"><h3></h3></td>
 							
 							<td>
 								<div class="text_wrap">
@@ -159,8 +159,11 @@ textarea {
 									</div>
 								</div>
 							</td>
-							<td class="board_pc">${response.userId}</td>
-							<td class="board_pc">${response.responseDate}</td>
+							<td class="board_pc">Admin</td>
+							
+							<td><fmt:parseDate value="${response.responseDate}"
+													pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate" /> <fmt:formatDate
+													value="${parsedDate}" pattern="yy-MM-dd" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>

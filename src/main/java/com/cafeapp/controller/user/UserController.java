@@ -73,7 +73,9 @@ public class UserController {
             // 로그인 성공 시 처리
         	loginManager.setSessionLogin(loginUser.getUserId(), session);           
             //sessionManager.createSession(loginUser, response);
-            
+            // 사용자 이름도 세션에 저장
+            session.setAttribute("userName", loginUser.getUserName());
+
             return "redirect:/mainhome";
         } else {
             // 로그인 실패 시 처리

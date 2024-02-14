@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/css/news.css" rel="stylesheet" type="text/css">
+<style>
+.color {
+	color : #ffffff !important;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
@@ -16,8 +21,8 @@
 			<div class="cont_box cont_head">
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
-						<div class="cont_title_info">MEGA NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title_info">NAMUH NEWS</div>
+						<div class="cont_title robo">
 							<h2>FAQ</h2>
 						</div>
 					</div>
@@ -25,8 +30,8 @@
 						<div class="cont_text cont_list_map">
 							<ul>
 								<li>홈</li>
-								<li>메가소식</li>
-								<li>고객의 소리</li>
+								<li>나무소식</li>
+								<li>1 : 1 상담</li>
 							</ul>
 						</div>
 					</div>
@@ -76,7 +81,6 @@
 							<table>
 								<colgroup>
 									<col class="board_w75 board_pc">
-									<col>
 									<col class="board_w150 board_pc">
 									<col class="board_w100">
 									<col class="board_w100 board_pc">

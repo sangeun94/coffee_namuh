@@ -31,17 +31,16 @@ public class UserController {
     
     @Autowired
 	LoginManager loginManager;
-    
-    @RequestMapping("/")
+        @RequestMapping("/")
     public String main() {
-    	return"mainhome/mainhome";
+       return"mainhome/mainhome";
     }
     
     @RequestMapping("/mainHome")
     public String mainHome() {
-    	return"mainhome/mainhome";
+       return"mainhome/mainhome";
     }
-    
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -141,7 +140,6 @@ public class UserController {
 
         return response;
     }
-    
     
    
   //adminLogin
@@ -319,7 +317,7 @@ public class UserController {
      public String logout(HttpSession session) {
      	loginManager.logout(session);
      	
-         return "redirect:/login";
+         return "redirect:/mainHome";
      }
      
     
@@ -329,7 +327,11 @@ public class UserController {
     	return "introduction/brand";
     }
      
-     
+    
+    @RequestMapping("/bi")
+    public String bi() {
+    	return "introduction/bi";
+    }
      
 
     }

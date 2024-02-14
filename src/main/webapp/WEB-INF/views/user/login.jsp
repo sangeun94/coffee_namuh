@@ -132,8 +132,9 @@ button {
 </head>
 <body>
     <div id="container">
-        <img id="profile-image" src="/images/user/COFFEENAMUH_logo.png" >
-        
+    <a href="/">
+        <img id="profile-image" src="/images/user/Coffee Namuh NONEBG_logo.png" >
+       </a> 
         <h2>로그인</h2>
 
 <form id="infoForm" action="/login" method="post">
@@ -143,7 +144,7 @@ button {
     <label>비밀번호:</label>
     <input type="password" id="userPassword" name="userPassword">
 
-    <button type="submit">COFFEENAMUH 로그인</button>
+    <button type="submit">로그인</button>
     
 </form>
 

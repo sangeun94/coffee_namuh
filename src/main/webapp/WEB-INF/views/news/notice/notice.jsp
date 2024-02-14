@@ -36,11 +36,11 @@
 				<div class="cont_boxs text_center">
 					<div class="cont_title_wrap">
 						<div class="cont_title">
-							<b>나무NMC커피 공지사항 </b>
+							<b>커피나무 공지사항 </b>
 						</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_text">나무NMC커피 소식을 알려드립니다.</div>
+						<div class="cont_text">커피나무 소식을 알려드립니다.</div>
 					</div>
 					<div class="cont_text_wrap">
 						<div class="cont_list cont_list_content cont_list_content_search">

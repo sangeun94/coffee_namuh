@@ -63,11 +63,12 @@
 			<exclude-mapping path="/findId" />
 			<exclude-mapping path="/getFindPw" />
 			<exclude-mapping path="/findPw" />
-			<exclude-mapping path="/main" />
+			<exclude-mapping path="/mainHome" />
 			<exclude-mapping path="/withdrawal" />
 			<exclude-mapping path="/customer/isDuplicatedId" />
 			<exclude-mapping path="/" />
-			
+			<exclude-mapping path="/brand" />
+			<exclude-mapping path="/bi" />
 			
 			<exclude-mapping path="/notice" />
 			<exclude-mapping path="/noticedetail/**" />

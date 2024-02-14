@@ -79,6 +79,15 @@ textarea {
 .li_left {
 	float: left;
 }
+.board_pc{
+width:100%;
+border-top: 1px solid rgba(0,0,0,0.1);
+}
+.pdding{
+padding: 30px
+px
+ 70px !important;
+}
 </style>
 </head>
 <body>
@@ -101,7 +110,7 @@ textarea {
 							<ul>
 								<li>홈</li>
 								<li>나무소식</li>
-								<li>고객의 소리</li>
+								<li>1:1 상담</li>
 							</ul>
 						</div>
 					</div>
@@ -150,20 +159,26 @@ textarea {
 				<tbody>
 					 <c:forEach var="response" items="${responseList}">
 						<tr>
-							<td class="board_pc"><h3></h3></td>
-							
-							<td>
+							<td class="board_pc"><h3>관리자의 답변</h3></td>
+							</tr>
+							<tr>
+							<td class="pdding">
 								<div class="text_wrap">
-									<div class="text">
-										${response.responseContent}</a>
+									<div class="text ">
+									<span>${response.responseContent}</span><br>
+									<div class="board_detail_title_info">
+								<div class="float_right">
+									
+									<span>작성자 : Admin</span>
+							<span><fmt:parseDate value="${response.responseDate}"
+													pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate" /> <fmt:formatDate
+													value="${parsedDate}" pattern="yy-MM-dd" /></span>
+								</div>
+							</div>
+										
 									</div>
 								</div>
 							</td>
-							<td class="board_pc">Admin</td>
-							
-							<td><fmt:parseDate value="${response.responseDate}"
-													pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate" /> <fmt:formatDate
-													value="${parsedDate}" pattern="yy-MM-dd" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -319,7 +319,10 @@ public class UserController {
      
      
      
-    
+    @RequestMapping("/brand")
+    public String brand() {
+    	return "introduction/brand";
+    }
      
      
      

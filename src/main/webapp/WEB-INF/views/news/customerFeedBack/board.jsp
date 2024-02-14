@@ -49,11 +49,9 @@
 								<li>
 									<div class="board_search_wrap">
 										<div class="board_search">
-											<form id="writeForm"  action="/boardWrite" method="get">
-												<input type="hidden" name="bbs_category" id="bbs_category"
-													value="4"> <input type="hidden"
-													name="bbs_detail_category" id="bbs_detail_category"
-													value="10">
+											 <form id="writeForm" action="<c:url value='/boardWrite' />" method="get">
+                                                <input type="hidden" name="bbs_category" id="bbs_category" value="4">
+                                                <input type="hidden" name="bbs_detail_category" id="bbs_detail_category" value="10">
 												<ul>
 											
 
@@ -121,7 +119,14 @@
 	<script>
     document.getElementById("writeButton").addEventListener("click", function(event) {
     	event.preventDefault(); // 기본 동작 방지
-        document.getElementById("writeForm").submit(); // form 제출
+    	if (isLoggedIn) {
+            // 로그인된 경우 글쓰기 페이지로 이동
+            document.getElementById("writeForm").submit();
+        } else {
+            // 로그인되지 않은 경우 알림창 표시 후 로그인 페이지로 이동
+            alert("로그인이 필요합니다.");
+            window.location.href = "<c:url value='/login' />";
+        }
     });
 </script>
 </body>

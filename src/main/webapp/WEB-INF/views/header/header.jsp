@@ -539,16 +539,17 @@
 	<c:if test="${empty sessionScope.userName}">
 	<ul>	
 					<li><a href="/login"><img src="/images/notice/loginIcon3.png"><span>로그인</span></a></li>
-                    <li><a href="/join"><img src="/images/notice/joinIcon.png"><span>회원가입</span></a></li>
-                    <li><a href="/menu_drink" target="_blank"><img src="/images/notice/basket.png"><span>장바구니</span></a></li>
-                     <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>        		
+                    <li><a href="/register"><img src="/images/notice/joinIcon.png"><span>회원가입</span></a></li>
+                    <li><a href="/login" target="_blank"><img src="/images/notice/basket.png"><span>장바구니</span></a></li>
+                     <li><a href="/admin/adminLogin" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>  
+    </ul>      		
 	</c:if>
-	</ul>
+	
 	<!-- 로그인 했을 때 -->
 	 <c:if test="${not empty sessionScope.userName}">
 	 <ul>
 	 <span class="snsspan">환영합니다, <span>${sessionScope.userName}</span>님!</span>
-   			        <li><a href="/shoppingcart"><img src="/images/notice/basket.png"><span>장바구니</span></a></li>
+   			        <li><a href="/cart"><img src="/images/notice/basket.png"><span>장바구니</span></a></li>
 			        <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"><span>마이페이지</span></a></li>
                     <li><a href="/logout"><img src="/images/notice/logoutIcon.png"><span>로그아웃</span></a></li>
    		</ul> 
@@ -558,6 +559,19 @@
 
 	
 	</div>
+	
+	
+	<br>
+          <!-- 로그인하지 않았을 때 -->
+          <c:if test="${empty sessionScope.userName}">
+              <a href="/login">로그인</a>
+              <a href="/register">회원가입</a>
+          </c:if>
+      
+          <!-- 로그인 했을 때 -->
+          <c:if test="${not empty sessionScope.userName}">
+              <span>환영합니다, <span>${sessionScope.userName}</span>님!</span>
+          </c:if>
 	
                
             </div>

@@ -50,6 +50,18 @@ public class UserServiceImpl implements UserService{
 		
 		return result;
 	}
+	
+	//관리자 비밀번호 수정
+	@Override
+	public int modifyAdmin(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = userDAO.modifyAdmin(user);
+		
+		return result;
+	}
+	
+	
 
 // 태현
 	@Override
@@ -133,6 +145,7 @@ public class UserServiceImpl implements UserService{
     public int withdrawUser(String userId) {
         return userDAO.withdrawUser(userId);
     }
+
     
    
 }

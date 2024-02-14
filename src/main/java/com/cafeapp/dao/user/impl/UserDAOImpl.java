@@ -50,6 +50,17 @@ public class UserDAOImpl implements UserDAO{
 		return result;
 	}
 	
+	//관리자 비밀번호 수정
+	@Override
+	public int modifyAdmin(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("admin_mapper.modifyAdmin", user);
+		
+		return result;
+	}
+    
+	
 	
 	// 태현
     @Override
@@ -112,6 +123,6 @@ public class UserDAOImpl implements UserDAO{
     public int withdrawUser(String userId) {
         return sqlSessionTemplate.update("user_mapper.withdrawUser", userId);
     }
-    
+
     
 }

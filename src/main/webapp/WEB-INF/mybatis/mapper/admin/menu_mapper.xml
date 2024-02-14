@@ -79,7 +79,7 @@
 		WHERE m.menu_number = #{menu_number}
 	</select>
 	
-	<!-- 음료 정보 수정 -->
+	<!-- 음료,푸드 정보 수정 -->
 	<update id="modifyMenu" parameterType="MenuList">
 	    UPDATE menu
 	    SET menu_type = #{menuType},
@@ -97,7 +97,7 @@
 	    WHERE menu_number = #{menuNumber}
 	</update>
 	
-	<!-- 음료 삭제  -->
+	<!-- 음료,푸드 삭제  -->
 	<delete id="removeMenu" parameterType="int">
 		DELETE FROM menu
 		WHERE menu_number = #{menuNumber}
@@ -158,9 +158,81 @@
 	<!-- 푸드 신규등록 -->	
 	<insert id="saveFoodList" parameterType="MenuList">
 		INSERT INTO menu
-		VALUES (food_number_seq .NEXTVAL, #{menuType}, #{menuName}, #{menuDescription}, #{menuSize}, #{menuCalories}, 
+		VALUES (food_number_seq.NEXTVAL, #{menuType}, #{menuName}, #{menuDescription}, #{menuSize}, #{menuCalories}, 
 				#{menuAllergyInfo}, #{menuSaturatedFat}, #{menuSugars}, #{menuSodium}, #{menuProtein}, #{menuCaffeine}, #{fileId} )
 	</insert>
 	
+	
+	<!-- 상품 리스트 조회 및 검색 -->
+	<select id="findProductBySearchCondition" resultType="ProductList" parameterType="ProductSearchCondition">
+	    SELECT p.product_number, p.product_type, p.product_name, p.product_description, p.product_price,
+	           p.product_size, p.product_stock_quantity, p.product_status, f.file_id, f.file_name, f.file_path
+	    FROM product p
+	    LEFT JOIN FILE_INFO f ON p.file_id = f.file_id
+	    WHERE 1=1
+	    <if test="searchType == 'productNumber' and searchKeyword != null and searchKeyword != ''">
+	        AND p.product_number LIKE '%' || #{searchKeyword} || '%'
+	    </if>
+	    <if test="searchType == 'productName' and searchKeyword != null and searchKeyword != ''">
+	        AND LOWER(p.product_name) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+	    </if>
+	    <if test="searchType == 'productDescription' and searchKeyword != null and searchKeyword != ''">
+	        AND LOWER(p.product_description) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+	    </if>
+	    <if test="minPrice != null and maxPrice != null">
+	        AND p.product_price BETWEEN #{minPrice} AND #{maxPrice}
+	    </if>
+	    <if test="productType != null and productType != ''">
+	        AND p.product_type = #{productType}
+	    </if>
+	    <if test="productStatus != null and productStatus != ''">
+	        AND p.product_status = #{productStatus}
+	    </if>
+	    <if test="mlSizeStart != null and mlSizeEnd != null">
+	        AND p.product_size BETWEEN #{mlSizeStart} AND #{mlSizeEnd}
+	    </if>
+	   	<if test="beansSizeStart != null and beansSizeEnd != null">
+	        AND p.product_size BETWEEN #{beansSizeStart} AND #{beansSizeEnd}
+	    </if>
+	    <if test="productStockQuantity != null and productStockQuantity != ''">
+	        AND p.product_stock_quantity >= #{productStockQuantity}
+	    </if>
+	    ORDER BY p.product_number
+	</select>
+	
+	<!-- 상품 신규등록 -->	
+	<insert id="saveProductList" parameterType="ProductList">
+	    INSERT INTO product
+	    (product_number, product_type, product_name, product_description, product_price, product_size, product_stock_quantity, product_status, file_id)
+	    VALUES (product_number_seq.NEXTVAL, #{productType}, #{productName}, #{productDescription}, #{productPrice}, #{productSize}, #{productStockQuantity}, #{productStatus}, #{fileId})
+	</insert>
+	
+	<!-- 상품 정보 수정을 위한 정보 불러오기 -->
+	<select id="findProductByProductNumber" parameterType="int" resultType="ProductList">
+	    SELECT p.*, f.*
+	    FROM product p
+	    LEFT JOIN FILE_INFO f ON p.file_id = f.file_id
+	    WHERE p.product_number = #{productNumber}
+	</select>
+	
+	<!-- 상품 정보 수정 -->
+	<update id="modifyProduct" parameterType="ProductList">
+	    UPDATE product
+	    SET product_type = #{productType},
+	        product_name = #{productName},
+	        product_description = #{productDescription},
+	        product_price = #{productPrice},
+	        product_size = #{productSize},
+	        product_stock_quantity = #{productStockQuantity},
+	        product_status = #{productStatus},
+	        file_id = #{fileId}         
+	    WHERE product_number = #{productNumber}
+	</update>
+	
+	<!-- 상품 삭제  -->
+	<delete id="removeProduct" parameterType="int">
+		DELETE FROM product
+		WHERE product_number = #{productNumber}
+	</delete>
 	
 </mapper>

@@ -16,6 +16,11 @@ public interface UserDAO {
 	
 	//회원정보수정
 	public int modifyMember(User user);
+	
+	//관리자 비밀번호 수정
+	public int modifyAdmin(User user);
+	
+	
 
 // 태현
 	//로그인

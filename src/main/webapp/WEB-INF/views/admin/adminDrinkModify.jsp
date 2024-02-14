@@ -24,15 +24,6 @@
 
 <link rel="shortcut icon" href="" type="image/x-icon">
 
-
-<script>
-// 자바스크립트에서 사용하는 전역변수 선언
-var tb_url		 = "";
-var tb_bbs_url	 = "";
-var tb_shop_url  = "";
-var tb_admin_url = "";
-</script>
-
 <!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
@@ -43,13 +34,12 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="">관리자정보</a></li>
-				<li><a href="">관리자홈</a></li>
-				<li><a href="" target="_blank">쇼핑몰</a></li>
-				<li id="tnb_logout"><a href="">로그아웃</a></li>
+				<li> ${sessionScope.userName} 님 접속</li>
+				<li><a href="/main" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>
 
@@ -57,22 +47,20 @@ var tb_admin_url = "";
 			<h2>관리자 주메뉴</h2>
 			<ul id="gnb_1dul">
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">회원관리</a>
+					<a href="/admin/adminMember" class="gnb_1da">회원관리</a>
 				</li>
-				
+
 				<li class="gnb_1dli active">
-					<a href="" class="gnb_1da">상품관리</a>
+					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">주문관리</a>
+					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
 				</li>
-				
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">고객지원</a>
+					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
 				</li>
-				
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">마이페이지</a>
+					<a href="/admin/modifyAdmin" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -86,9 +74,9 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 		<dt class="g10 menu_toggle">상품관리</dt>		
-        <dd class="g10 active"><a href="">음료 관리</a></dd>				
-        <dd class="g10"><a href="">푸드 관리</a></dd>		
-        <dd class="g10"><a href="">상품 관리</a></dd>		
+        <dd class="g10 active"><a href="/admin/drinkList">음료 관리</a></dd>				
+        <dd class="g10"><a href="/admin/foodList">푸드 관리</a></dd>		
+        <dd class="g10"><a href="/admin/productList">상품 관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">
@@ -158,10 +146,10 @@ var tb_admin_url = "";
 		<tr>
 			<th scope="row">음료 사이즈</th>
 			<td class="td_label">
-				<label><input type="radio" name="menuSize" value="1oz" ${menuList.menuSize == '1oz' ? 'checked' : ''}> 1oz </label>
-				<label><input type="radio" name="menuSize" value="7oz" ${menuList.menuSize == '7oz' ? 'checked' : ''}> 7oz </label>
-				<label><input type="radio" name="menuSize" value="12oz" checked="checked" ${menuList.menuSize == '12oz' ? 'checked' : ''}> 12oz </label>
-				<label><input type="radio" name="menuSize" value="16oz" ${menuList.menuSize == '16oz' ? 'checked' : ''}> 16oz </label>
+				<label><input type="radio" name="menuSize" value="1" ${menuList.menuSize == '1' ? 'checked' : ''}> 1oz </label>
+				<label><input type="radio" name="menuSize" value="7" ${menuList.menuSize == '7' ? 'checked' : ''}> 7oz </label>
+				<label><input type="radio" name="menuSize" value="12" checked="checked" ${menuList.menuSize == '12' ? 'checked' : ''}> 12oz </label>
+				<label><input type="radio" name="menuSize" value="16" ${menuList.menuSize == '16' ? 'checked' : ''}> 16oz </label>
 			</td>
 		</tr>
 		<tr>

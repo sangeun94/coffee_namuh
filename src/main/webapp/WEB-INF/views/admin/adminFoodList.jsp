@@ -25,15 +25,6 @@
 
 <link rel="shortcut icon" href="" type="image/x-icon">
 
-
-<script>
-// 자바스크립트에서 사용하는 전역변수 선언
-var tb_url		 = "";
-var tb_bbs_url	 = "";
-var tb_shop_url  = "";
-var tb_admin_url = "";
-</script>
-
 <!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>
 <script src="/js/admin/common.js"></script>
@@ -43,45 +34,45 @@ var tb_admin_url = "";
 
 <style>
 	/* 슬라이더 전체 스타일 */
-input[type=range] {
-  -webkit-appearance: none; /* 크롬, 사파리, 오페라에서 기본 디자인 제거 */
-  width: 100%; /* 전체 너비 */
-  margin: 10px 0; /* 슬라이더와 다른 요소 사이의 여백 */
-}
-
-/* 슬라이더 트랙(바탕) 스타일 */
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8px; /* 트랙의 높이 */
-  cursor: pointer;
-  background: #3071A9; /* 트랙의 배경색 */
-  border-radius: 5px; /* 트랙의 둥근 모서리 */
-}
-
-/* 슬라이더 썸(손잡이) 스타일 */
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* 기본 디자인 제거 */
-  height: 20px; /* 썸의 높이 */
-  width: 20px; /* 썸의 너비 */
-  border-radius: 50%; /* 썸을 원형으로 만듦 */
-  background: #ffffff; /* 썸의 배경색 */
-  cursor: pointer;
-  margin-top: -6px; /* 트랙 중앙에 썸을 위치시키기 위한 조정 */
-}
-
-/* 슬라이더에 포커스 됐을 때의 스타일 */
-input[type=range]:focus {
-  outline: none; /* 기본 아웃라인 제거 */
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #367ebd; /* 포커스 됐을 때의 트랙 색상 변경 */
-}
-
-/* 슬라이더 호버 스타일 */
-input[type=range]:hover::-webkit-slider-thumb {
-  background: #blue; /* 호버됐을 때 썸의 색상 변경 */
-}
+	input[type=range] {
+	  -webkit-appearance: none; 
+	  width: 100%; 
+	  margin: 10px 0; 
+	}
+	
+	/* 슬라이더 트랙(바탕) 스타일 */
+	input[type=range]::-webkit-slider-runnable-track {
+	  width: 100%;
+	  height: 8px; /* 트랙의 높이 */
+	  cursor: pointer;
+	  background: #3071A9; /* 트랙의 배경색 */
+	  border-radius: 5px; /* 트랙의 둥근 모서리 */
+	}
+	
+	/* 슬라이더 썸(손잡이) 스타일 */
+	input[type=range]::-webkit-slider-thumb {
+	  -webkit-appearance: none; /* 기본 디자인 제거 */
+	  height: 20px; /* 썸의 높이 */
+	  width: 20px; /* 썸의 너비 */
+	  border-radius: 50%; /* 썸을 원형으로 만듦 */
+	  background: #e8e6ed; /* 썸의 배경색 */
+	  cursor: pointer;
+	  margin-top: -6px; /* 트랙 중앙에 썸을 위치시키기 위한 조정 */
+	}
+	
+	/* 슬라이더에 포커스 됐을 때의 스타일 */
+	input[type=range]:focus {
+	  outline: none; /* 기본 아웃라인 제거 */
+	}
+	
+	input[type=range]:focus::-webkit-slider-runnable-track {
+	  background: #367ebd; /* 포커스 됐을 때의 트랙 색상 변경 */
+	}
+	
+	/* 슬라이더 호버 스타일 */
+	input[type=range]:hover::-webkit-slider-thumb {
+	  background: #blue; /* 호버됐을 때 썸의 색상 변경 */
+	}
 
 </style>
 
@@ -90,13 +81,12 @@ input[type=range]:hover::-webkit-slider-thumb {
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="">관리자정보</a></li>
-				<li><a href="">관리자홈</a></li>
-				<li><a href="" target="_blank">홈페이지</a></li>
-				<li id="tnb_logout"><a href="">로그아웃</a></li>
+				<li> ${sessionScope.userName} 님 접속</li>
+				<li><a href="/main" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>
 
@@ -104,22 +94,20 @@ input[type=range]:hover::-webkit-slider-thumb {
 			<h2>관리자 주메뉴</h2>
 			<ul id="gnb_1dul">
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">회원관리</a>
+					<a href="/admin/adminMember" class="gnb_1da">회원관리</a>
 				</li>
-				
+
 				<li class="gnb_1dli active">
 					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">주문관리</a>
+					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
 				</li>
-				
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">고객지원</a>
+					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
 				</li>
-				
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">마이페이지</a>
+					<a href="/admin/modifyAdmin" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -135,7 +123,7 @@ input[type=range]:hover::-webkit-slider-thumb {
 		<dt class="g10 menu_toggle">상품관리</dt>		
         <dd class="g10"><a href="/admin/drinkList">음료 관리</a></dd>				
         <dd class="g10 active"><a href="/admin/foodList">푸드 관리</a></dd>		
-        <dd class="g10"><a href="">상품 관리</a></dd>		
+        <dd class="g10"><a href="/admin/productList">상품 관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">
@@ -190,7 +178,7 @@ input[type=range]:hover::-webkit-slider-thumb {
 			<th scope="row">총 내용량</th>
 			<td>
 				<label for="menuSize"></label>
-				<input type="range" id="menuSize" name="menuSize" min="0" max="500" value="500" oninput="updateMenuSizeDisplay(this.value);" class="frm_input w90">
+				<input type="range" id="menuSize" name="menuSize" min="0" max="500" value="500" oninput="updateMenuSizeDisplay(this.value);" class="w120">
 				<span id="menuSizeDisplay">0g</span>			
 			</td>
 		</tr>

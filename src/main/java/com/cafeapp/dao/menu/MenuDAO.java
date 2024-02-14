@@ -5,6 +5,8 @@ import java.util.List;
 import com.cafeapp.dto.menu.Menu;
 import com.cafeapp.dto.menu.MenuList;
 import com.cafeapp.dto.menu.MenuSearchCondition;
+import com.cafeapp.dto.product.ProductList;
+import com.cafeapp.dto.product.ProductSearchCondition;
 import com.cafeapp.dto.util.FileInfo;
 
 
@@ -39,5 +41,23 @@ public interface MenuDAO {
 
 	//푸드리스트 생성
 	public int saveFoodList(MenuList menuList);
+	
+//	========================================
+	//상품 리스트 목록 및 검색
+	public List<ProductList> findProductBySearchCondition(ProductSearchCondition productSearchCondition);
+
+	//상품 생성
+	public int saveProductList(ProductList productList);
+	
+	//상품 각각의 정보 불러오기
+	public ProductList findProductByProductNumber(int productNumber);
+	
+	//상품 정보 수정
+	public int modifyProduct(ProductList productList);
+	
+	//상품 삭제
+	public int removeProduct(int productNumber);
+
+	
 	
 }

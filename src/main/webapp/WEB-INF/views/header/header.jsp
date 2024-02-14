@@ -554,17 +554,6 @@
    		</ul> 
    </c:if>
 	
-		<%-- <!-- 로그인하지 않았을 때 -->
-		    <c:if test="${empty sessionScope.userName}">
-		        <a href="/login">로그인</a>
-		        <a href="/register">회원가입</a>
-		    </c:if>
-		
-		    <!-- 로그인 했을 때 -->
-		    <c:if test="${not empty sessionScope.userName}">
-		        <span>환영합니다, <span>${sessionScope.userName}</span>님!</span>
-		    </c:if>
-		 --%>
 		</div>
 
 	

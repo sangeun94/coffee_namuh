@@ -3,6 +3,7 @@ package com.cafeapp.controller.admin;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,6 +76,27 @@ public class AdminMemberController {
 		
 	}
 	
+	//관리자 비밀번호 수정
+	@GetMapping("/admin/modifyAdmin")
+	public String modifyAdmin() {
+	    
+		return "admin/adminEdit";
+	}
 	
+	@PostMapping("/admin/modifyAdmin")
+	public String modifyAdminProcess(@ModelAttribute User user, HttpSession session) { 
+		System.out.println(user);
+		
+		user.setUserNumber((int)session.getAttribute("userNumber"));
+		
+		int result = userService.modifyAdmin(user);
+				
+		if (result > 0) { //저장 성공
+			return "redirect:/admin/modifyAdmin"; //수정성공
+		} else { //저장 실패
+			return "redirect:/admin/modifyAdmin"; //수정실패
+		}
+		
+	}
 	
 }

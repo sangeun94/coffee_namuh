@@ -76,23 +76,22 @@
 	</div>
 		<dl>
 		<dt class="g10 menu_toggle">상품관리</dt>		
-        <dd class="g10 active"><a href="/admin/drinkList">음료 관리</a></dd>				
+        <dd class="g10"><a href="/admin/drinkList">음료 관리</a></dd>				
         <dd class="g10"><a href="/admin/foodList">푸드 관리</a></dd>		
-        <dd class="g10"><a href="/admin/productList">상품 관리</a></dd>		
+        <dd class="g10 active"><a href="/admin/productList">상품 관리</a></dd>		
         </dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 상품관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 음료관리		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 상품 관리		
         </div>
 	
 <div class="s_wrap">
-	<h1>음료 관리</h1>
+	<h1>상품 관리</h1>
 	
-</script>
 <h2>기본검색</h2>
-<form action="/admin/drinkList" name="fsearch" id="fsearch" method="get">
+<form action="/admin/productList" name="fsearch" id="fsearch" method="get">
 
 	<div class="tbl_frm01">
 		<table class="tablef">
@@ -105,52 +104,74 @@
 			<th scope="row">검색어</th>
 			<td>
 				<select name="searchType">
-					<option value="menuNumber">음료번호</option>
-					<option value="menuName">음료이름</option>
-					<option value="menuDescription">음료설명</option>
-					<option value="menuCalories">칼로리</option>
-					<option value="menuSaturatedFat">포화지방</option>
-					<option value="menuSugars">당류</option>
-					<option value="menuSodium">나트륨</option>
-					<option value="menuProtein">단백질</option>
-					<option value="menuCaffeine">카페인함유량</option>
+					<option value="productNumber">상품번호</option>
+					<option value="productName">상품이름</option>
+					<option value="productDescription">상품설명</option>
 				</select>
 				<input type="text" name="searchKeyword" value="" class="frm_input" size="30">
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">음료 타입</th>
+			<th scope="row">상품 타입</th>
 			<td>
-				<label><input type="radio" name="menuType" value="0" checked="checked"> 전체 </label>	
-				<label><input type="radio" name="menuType" value="1"> 콜드브루 </label>
-				<label><input type="radio" name="menuType" value="2"> 에스프레소 </label>
-				<label><input type="radio" name="menuType" value="3"> 프라푸치노 </label>
-				<label><input type="radio" name="menuType" value="4"> 티 </label>					
-				<label><input type="radio" name="menuType" value="5"> 기타 </label>			
+				<label><input type="radio" name="productType" value="0" checked="checked"> 전체 </label>	
+				<label><input type="radio" name="productType" value="1"> 머그 </label>
+				<label><input type="radio" name="productType" value="2"> 텀블러 </label>
+				<label><input type="radio" name="productType" value="3"> 원두 </label>
+				<label><input type="radio" name="productType" value="4"> 악세서리 </label>					
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">사이즈</th>
+			<th scope="row">상태</th>
 			<td>
-				<label><input type="radio" name="menuSize" value="0" checked="checked"> 전체</label>
-				<label><input type="radio" name="menuSize" value="1"> 1oz </label>
-				<label><input type="radio" name="menuSize" value="7"> 7oz </label>
-				<label><input type="radio" name="menuSize" value="12"> 12oz </label>
-				<label><input type="radio" name="menuSize" value="16"> 16oz </label>
+				<label><input type="radio" name="productStatus" value="0" checked="checked"> 전체</label>
+				<label><input type="radio" name="productStatus" value="1"> 판매중 </label>
+				<label><input type="radio" name="productStatus" value="2"> 품절 </label>
+				<label><input type="radio" name="productStatus" value="3"> 판매종료 </label>
 	
 			</td>
 		</tr>
 		<tr>
-			<th scope="row">알레르기 정보</th>
+			<th scope="row">가격</th>
 			<td>
-				<label><input type="radio" name="menuAllergyInfo" value="0" checked="checked"> 전체</label>
-				<label><input type="radio" name="menuAllergyInfo" value="1"> 우유 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="2"> 대두 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="3"> 우유 및 대두 </label>
-				<label><input type="radio" name="menuAllergyInfo" value="4"> 없음 </label>
-	
+				<label for="" class=""></label>
+				<input type="number" name="minPrice" min="0" value="" id="" class="frm_input w90" maxlength="20">원
+				 ~ 
+				<label for="" class=""></label>
+				<input type="number" name="maxPrice" max="50000" value="" id="" class="frm_input w90" maxlength="20">원
+				
 			</td>
 		</tr>
+		<tr>
+			<th scope="row">텀블러,머그</th>
+			<td>
+				<label for="" class=""></label>
+				<input type="number" name="mlSizeStart" min="0" value="" id="" class="frm_input w90" maxlength="20">ml
+				 ~ 
+				<label for="" class=""></label>
+				<input type="number" name="mlSizeEnd" max="50000" value="" id="" class="frm_input w90" maxlength="20">ml
+				
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">원두</th>
+			<td>
+				<label for="" class=""></label>
+				<input type="number" name="beansSizeStart" min="0" value="" id="" class="frm_input w90" maxlength="20">g
+				 ~ 
+				<label for="" class=""></label>
+				<input type="number" name="beansSizeEnd" max="50000" value="" id="" class="frm_input w90" maxlength="20">g
+				
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">재고수량</th>
+			<td>
+				<input type="number" name="productStockQuantity" min="0" max="50000" value="" id="" class="frm_input w90" maxlength="20">개 이상
+			</td>
+		</tr>
+		
+		
 		</tbody>
 		</table>
 	</div>
@@ -161,33 +182,20 @@
 </form>
 	
 	<div class="local_ov mart30">
-		전체 : <b class="fc_red">${totalMenuList}</b> 건 조회
+		전체 : <b class="fc_red">${totalProductList}</b> 건 조회
 	</div>
 	
-<form id="frm_customers" action="/admin/drinkRemove" method="post">
+<form id="frm_customers" action="/admin/productRemove" method="post">
 	
 	<div class="local_frm01">
 		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-		<a href="/admin/drinkRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
+		<a href="/admin/productRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
 	</div>
 	
 	<div class="tbl_head02">
 		<table id="sodr_list" class="tablef">
 		<colgroup>
-			<col class="w10">
-			<col class="w20">
-			<col class="w40">
-			<col class="w40">
-			<col class="w50">
-			<col class="w20">
-			<col class="w20">
-			<col class="w20">
-			<col class="w20">
-			<col class="w20">
-			<col class="w20">
-			<col class="w20">
-			<col class="w20">
-			<col class="w30">			
+			
 		</colgroup>
 		<thead>
 		<tr>
@@ -197,45 +205,45 @@
 			<th scope="col">이름</th>
 			<th scope="col">설명</th>	
 			<th scope="col">사이즈</th>
-			<th scope="col">칼로리</th>
-			<th scope="col">알레르기 정보</th>
-			<th scope="col">포화지방</th>
-			<th scope="col">당류</th>
-			<th scope="col">나트륨</th>
-			<th scope="col">단백질</th>
-			<th scope="col">카페인 함유량</th>
+			<th scope="col">가격</th>
+			<th scope="col">재고수량</th>
+			<th scope="col">상태</th>
 			<th scope="col">정보 수정</th>
 	
 		</tr>
 		
 		</thead>
 		<tbody>
-			<c:forEach var="menuItem" items="${menuList}">
+			<c:forEach var="productItem" items="${productList}">
 				<tr class="list1">
 				<td>
-					<input type="checkbox" class="chb_checkNumber" name="menuNumber" value="${menuItem.menuNumber}">
+					<input type="checkbox" class="chb_checkNumber" name="productNumber" value="${productItem.productNumber}">
 				</td>
-				<td >${menuItem.menuNumber}</td>
-				<td ><img src="${menuItem.fullFilePath}" width="70" height="70"></td>
-				<td>${menuItem.menuName}</td>
-				<td>${menuItem.menuDescription}</td>
-				<td>${menuItem.menuSize}oz</td>
-				<td>${menuItem.menuCalories}kcal</td>
+				<td >${productItem.productNumber}</td>
+				<td ><img src="${productItem.fullFilePath}" width="70" height="70"></td>
+				<td>${productItem.productName}</td>
+				<td>${productItem.productDescription}</td>
 				<td>
-					<c:choose>
-				        <c:when test="${menuItem.menuAllergyInfo == 1}">우유</c:when>
-				        <c:when test="${menuItem.menuAllergyInfo == 2}">대두</c:when>
-				        <c:when test="${menuItem.menuAllergyInfo == 3}">우유 및 대두</c:when>
-				        <c:when test="${menuItem.menuAllergyInfo == 4}">없음</c:when>
+				    <c:choose>
+				        <c:when test="${productItem.productType == 1 or productItem.productType == 2}">
+				            ${productItem.productSize}ml
+				        </c:when>
+				        <c:when test="${productItem.productType == 3 or productItem.productType == 4}">
+				            ${productItem.productSize}g
+				        </c:when>
 				    </c:choose>
 				</td>
-				<td>${menuItem.menuSaturatedFat}g</td>
-				<td>${menuItem.menuSugars}g</td>
-				<td>${menuItem.menuSodium}mg</td>
-				<td>${menuItem.menuProtein}g</td>
-				<td>${menuItem.menuCaffeine}mg</td>
+				<td>${productItem.productPrice}원</td>
+				<td>${productItem.productStockQuantity}개</td>
 				<td>
-					<button type="button" id="btn_modify" onclick="window.location.href='/admin/drinkModify?menuNumber=${menuItem.menuNumber}'" class="btn_lsmall">수정</button>
+					<c:choose>
+				        <c:when test="${productItem.productStatus == 1}">판매중</c:when>
+				        <c:when test="${productItem.productStatus == 2}">품절</c:when>
+				        <c:when test="${productItem.productStatus == 3}">판매종료</c:when>
+				    </c:choose>
+				</td>
+				<td>
+					<button type="button" id="btn_modify" onclick="window.location.href='/admin/productModify?productNumber=${productItem.productNumber}'" class="btn_lsmall">수정</button>
 				</td>
 			</tr>
 			</c:forEach>
@@ -244,7 +252,7 @@
 	</div>
 	<div class="local_frm02">
 		<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
-		<a href="/admin/drinkRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
+		<a href="/admin/productRegister" class="fr btn_lsmall red"><ion-icon name="add-outline"></ion-icon>상품등록</a>
 	</div>
 
 </div>
@@ -303,6 +311,15 @@
             }
     	});
     });
+    
+/*     function updateProductPriceDisplay(value) {
+        document.getElementById('productPriceDisplay').textContent = value + 'g';
+    }
+
+    // 페이지 로드 시 슬라이더의 초기 값을 설정합니다.
+    document.addEventListener('DOMContentLoaded', function() {
+        updateMenuSizeDisplay(document.getElementById('productPrice').value);
+    }); */
 
 
 </script>

@@ -71,12 +71,10 @@ public class UserController {
         System.out.println(loginUser);
         if (loginUser != null) {
             // 로그인 성공 시 처리
-        	loginManager.setSessionLogin(loginUser.getUserId(), session);
+        	loginManager.setSessionLogin(loginUser.getUserId(), session);           
             //sessionManager.createSession(loginUser, response);
-        	// 사용자 이름도 세션에 저장
-            session.setAttribute("userName", loginUser.getUserName());
             
-            return "redirect:/main";
+            return "redirect:/mainhome";
         } else {
             // 로그인 실패 시 처리
         	redirectAttributes.addAttribute("loginFailed", true);
@@ -84,7 +82,6 @@ public class UserController {
         }
     }
 
-    
     
     @PostMapping("/login-api")
     @ResponseBody
@@ -147,9 +144,6 @@ public class UserController {
     	return"admin/adminLogin";
     }
     
-    
-    
-
     @PostMapping("/admin/adminLogin")
     public String loginAdminUser(User user, HttpServletResponse response ,HttpSession session, RedirectAttributes redirectAttributes) {
         User adminLoginUser = userService.isValidAdminLogin(user);
@@ -160,6 +154,11 @@ public class UserController {
         if (adminLoginUser != null) {
             // 로그인 성공 시 처리
         	loginManager.setSessionLogin(adminLoginUser.getUserId(), session);
+            // 사용자 이름도 세션에 저장
+            session.setAttribute("userName", adminLoginUser.getUserName());
+            // userNumber도 세션에 저장
+            session.setAttribute("userNumber", adminLoginUser.getUserNumber());
+            
             return "redirect:/admin/adminMember";
         } else {
             // 로그인 실패 시 처리
@@ -169,15 +168,15 @@ public class UserController {
         
     }
 
-    
+    //관리자 로그아웃
+    @GetMapping("/admin/logout")
+    public String adminLogout(HttpSession session) {
+    	loginManager.logout(session);
+    	
+        return "redirect:admin/adminLogin";
+    }
 
    
-    @GetMapping("/admin/logout")
-    public String logoutAdmin(HttpServletRequest request, HttpServletResponse response, Model model) {
-        
-
-        return "redirect:/adminLogin";
-    }
 
     @GetMapping("/mypage")
     public String showMyPage( Model model, HttpSession session) {
@@ -317,7 +316,7 @@ public class UserController {
          return "redirect:/login";
      }
      
-     
+    
      
     @RequestMapping("/brand")
     public String brand() {

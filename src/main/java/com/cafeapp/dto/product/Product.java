@@ -8,7 +8,7 @@ public class Product {
 	int productType;
 	String productName;
 	String productDescription;
-	int producPrice;
+	int productPrice;
 	String productSize;
 	int productStockQuantity;
 	int productStatus;

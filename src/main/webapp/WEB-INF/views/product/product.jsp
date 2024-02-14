@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>COFFEE NAMUH</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery.min.js"></script>
 <link rel="shortcut icon" href="../images/favicon-32x32.png"
@@ -57,8 +58,11 @@
 										src="${productItem.filePath}${productItem.originalFileName}">
 									</li>
 									<li class="menu-title">
-										<p>${productItem.productName}</p>
+										<p><b>${productItem.productName}</b></p>
+										<p>${productItem.productPrice}원</p>
 									</li>
+									<!-- 아이콘 추가 -->
+    <li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
 							</li>
 						</c:when>
@@ -79,8 +83,10 @@
 										src="${productItem.filePath}${productItem.originalFileName}">
 									</li>
 									<li class="menu-title">
-										<p>${productItem.productName}</p>
+										<p><b>${productItem.productName}</b></p>
+										<p>${productItem.productPrice}원</p>
 									</li>
+									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
 							</li>
 						</c:when>
@@ -101,8 +107,10 @@
 										src="${productItem.filePath}${productItem.originalFileName}">
 									</li>
 									<li class="menu-title">
-										<p>${productItem.productName}</p>
+										<p><b>${productItem.productName}</b></p>
+										<p>${productItem.productPrice}원</p>
 									</li>
+									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
 							</li>
 						</c:when>
@@ -123,8 +131,10 @@
 										src="${productItem.filePath}${productItem.originalFileName}">
 									</li>
 									<li class="menu-title">
-										<p>${productItem.productName}</p>
+										<p><b>${productItem.productName}</b></p>
+										<p>${productItem.productPrice}원</p>
 									</li>
+									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
 							</li>
 						</c:when>

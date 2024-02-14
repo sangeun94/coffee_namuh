@@ -90,3 +90,36 @@ ul {
     color: #ffffff;
     padding-left: 8px;
 }
+
+@media screen and (min-width: 1280px) {
+	 .footer-col{
+		display: "";
+	}
+	ul { 
+	list-style: none;
+}
+
+@media screen and (max-width: 790px) {
+	 .footer-col{
+		display: none;
+	}
+	ul { 
+	list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	 .footer-col{
+		display: none;
+	}
+	ul { 
+	list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+	}
+}
+}

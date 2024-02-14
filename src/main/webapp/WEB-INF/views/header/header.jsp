@@ -442,7 +442,7 @@
   <div class="head_wrap header_tt header">
     <div class="head">
         <div class="head_logo">
-            <a href="/mainhome">
+            <a href="/main">
                 <img src="/images/notice/CoffeeNamuh_White_BG.png" class="head_logo_img_fixed">
             </a>
         </div>
@@ -479,26 +479,23 @@
                             <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
                                                                                 <li>
-                                            <a href="">
+                                            <a href="menu/menu_drink">
                                                 음료													</a>
                                         </li>
                                                                                 <li>
-                                            <a href="">
+                                            <a href="menu/menu_food">
                                                 푸드													</a>
                                         </li>
-                                                                                <li>
-                                            <a href="">
-                                                상품													</a>
-                                        </li>
+                                       
                                                                                                                                                     </ul>
                         </div>
                     </li>
                     <li>
-                        <a href="/store/find/" class="pc">매장</a>
-                                <a class="m head_menu_down">매장</a>
+                        <a href="/store/find/" class="pc">스토어</a>
+                                <a class="m head_menu_down">스토어</a>
                         <div id="fromInsideOut" class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1">
                             <ul>
-                            <li><a href="/store/find/">매장찾기</a></li>			
+                            <li><a href="/store/product">상품</a></li>			
                             </ul>
                         </div>
                     </li>
@@ -521,7 +518,7 @@
                                                                                                                         <li>
                                             <a href="/board">
                                             <a href="/board">
-                                                고객의 소리													</a>
+                                                1:1 상담													</a>
                                         </li>
                                                                     </ul>
                         </div>
@@ -560,7 +557,7 @@
 	
 	</div>
 	
-	
+	<%-- 
 	<br>
           <!-- 로그인하지 않았을 때 -->
           <c:if test="${empty sessionScope.userName}">
@@ -572,7 +569,7 @@
           <c:if test="${not empty sessionScope.userName}">
               <span>환영합니다, <span>${sessionScope.userName}</span>님!</span>
           </c:if>
-	
+	 --%>
                
             </div>
         </div>

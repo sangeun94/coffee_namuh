@@ -36,7 +36,7 @@
 				<div class="cont_boxs text_center">
 					<div class="cont_title_wrap">
 						<div class="cont_title">
-							<b>1:1 질문 </b>
+							<b>1 : 1 상담 </b>
 						</div>
 					</div>
 					<div class="cont_text_wrap">
@@ -117,16 +117,22 @@
 	
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
-    document.getElementById("writeButton").addEventListener("click", function(event) {
-    	event.preventDefault(); // 기본 동작 방지
-    	if (isLoggedIn) {
-            // 로그인된 경우 글쓰기 페이지로 이동
-            document.getElementById("writeForm").submit();
-        } else {
-            // 로그인되지 않은 경우 알림창 표시 후 로그인 페이지로 이동
-            alert("로그인이 필요합니다.");
-            window.location.href = "<c:url value='/login' />";
-        }
+	document.getElementById("writeButton").addEventListener("click", function(event) {
+		document.getElementById("writeButton").addEventListener("click", function(event) {
+            // 이벤트의 기본 동작을 막음
+            event.preventDefault();
+            
+            // 로그인 여부 확인
+            if (${not empty sessionScope.userName}) {
+                // 로그인된 경우 글쓰기 페이지로 이동
+                document.getElementById("writeForm").submit();
+            } else {
+                // 로그인되지 않은 경우 알림창 표시 후 로그인 페이지로 이동
+                alert("로그인이 필요합니다.");
+                window.location.href = "<c:url value='/login' />";
+            }
+        });
+
     });
 </script>
 </body>

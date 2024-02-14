@@ -52,7 +52,7 @@
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
 						<div class="cont_title_info">NAMUH NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title robo">
 							<h2>FAQ</h2>
 						</div>
 					</div>
@@ -67,25 +67,36 @@
 					</div>
 				</div>
 			</div>
-			<div class="cont_box brand01">
-				<div class="cont_boxs text_center">
-					<div class="cont_title_wrap">
-						<div class="cont_title">
-							<b>${faq.question}</b>
-						</div>
-					</div>
-					<div class="cont_text_wrap">
-						<div class="cont_text">${faq.userId} ${faq.postDate} </div>
-					</div>
-					</div>
-					</div>
-					</div>
-					</div>
-		<form action="/boardWrite">
-		<div>			<hr>
-			<div class="contentbox">${faq.answer}</div>
 			
+			<!-- 게시판 시작 -->
+			<div class="cont_box brand01">
+				<div class="cont_boxsr">
+					<div class="cont_title_wrap">
+						<div class="board_detail_title">
+							<h1>${faq.question}<br></h1>
+							<div class="board_detail_title_info">
+								<div class="float_right">
+									<span>구분 질문</span>
+									<span>작성자 ${faq.userId}</span>
+									<span>작성일 ${faq.postDate}</span>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				
+				</div>
 			</div>
+		</div>
+	</div>
+	
+		<div class="board_detail_text_wrap">
+			
+			<div class="board_detail_text"><span>${faq.answer}</span></div>
+			
+	
+		</div>
+		<!-- 게시판끝 밑은 댓글 -->
 			</form>
 			
 							<hr><br>

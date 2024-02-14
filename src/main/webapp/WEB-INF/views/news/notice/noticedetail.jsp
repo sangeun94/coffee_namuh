@@ -52,7 +52,7 @@
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
 						<div class="cont_title_info">NAMUH NEWS</div>
-						<div class="cont_title robo color">
+						<div class="cont_title robo">
 							<h2>NAMUH</h2>
 						</div>
 					</div>

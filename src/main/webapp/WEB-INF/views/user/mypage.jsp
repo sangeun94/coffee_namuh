@@ -138,6 +138,12 @@ button {
 </style>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/header/header.jsp"%>
+
+<br>
+<br>
+<br>
+<br>
 	<div id="container">
 		<div class="profile-header">
 		<img id="profile-image" src="/images/user/COFFEENAMUH_logo.png">
@@ -190,6 +196,10 @@ button {
     <button type="submit">회원탈퇴</button>
 	</div>
 	
+	<br>
+	<br>
+	<br>
+	<br>
 
 	<!-- 모달창 -->
 	<div class="modal">
@@ -457,6 +467,11 @@ button {
 	  	
 	    
 	</script>
+	
+	
+	<!-- 푸터 -->
+<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
+<script type="text/javascript" src="../js/menu/menu_food.js"></script>
 	
 </body>
 </html>

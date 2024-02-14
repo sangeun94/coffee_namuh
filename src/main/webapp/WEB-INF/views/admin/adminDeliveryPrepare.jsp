@@ -83,7 +83,7 @@
 		<div id="tnb">
 			<ul>
 				<li> ${sessionScope.userName} 님 접속</li>
-				<li><a href="/main" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li><a href="/mainHome" target="_blank">COFFEE NAMUH 홈페이지</a></li>
 				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>
@@ -258,8 +258,10 @@
 				</td>
 				<td>${orderItem.ordererName}</td>
 				<td>${orderItem.totalPrice}</td>
-			<form action="/admin/modifyOrderStatus2" name="forderlist" id="forderlist" method="post">
+			<form action="/admin/modifyOrderStatus2" name="forderlist" class="forderlist" method="post">
 				<input type="hidden" name="orderNumber" value="${orderItem.orderNumber}" />
+				<input type="hidden" name="trackingNumber" value="${orderItem.trackingNumber}" />
+				
 				<td>
 					<button type="submit" id="btn_modify" class="btn_lsmall">배송시작</button>
 				</td>
@@ -319,7 +321,7 @@
 // 모달 변수를 전역적으로 초기화
 var modal = document.getElementById('myModal');
 
-$(function() {
+$(document).ready(function() {
     // 'fsearch'라는 ID를 가진 폼의 내용을 초기화하는 함수
     function resetSearchForm() {
         document.getElementById('fsearch').reset();
@@ -372,25 +374,37 @@ $(function() {
             modal.style.display = "none";
         }
     };
-});
+    
+    // '배송시작' 버튼 클릭 이벤트에 대한 처리 로직
+    $('.forderlist').on('submit', function(event) {
+        event.preventDefault(); // 폼 제출을 막습니다.
+		
+        console.log($(event.target).find('input'));        
+        console.log($(event.target).find('input[name="trackingNumber"]'));
+        
+        
+        // 현재 폼에 있는 trackingNumber 입력 필드를 찾습니다.
+        //var trackingNumberInput = this[1];
+        var trackingNumberValue = this[1].value;
+        console.log('---------------');
+		console.log(this[1]);
+		console.log($(this)[1]);
+        //console.log(trackingNumberInput); // 로그에서 input 요소를 확인
+        console.log(trackingNumberValue); // 로그에서 input 값 확인
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('forderlist').addEventListener('submit', function(event) {
-        // 운송장 번호 입력 필드의 값을 가져옵니다. 예시에서는 input[name="trackingNumber"]를 사용합니다.
-        var trackingNumberInput = this.querySelector('input[name="trackingNumber"]');
-        var trackingNumber = trackingNumberInput ? trackingNumberInput.value.trim() : '';
-
-        // 운송장 번호가 입력되지 않았다면, 폼 제출을 방지하고 경고를 표시합니다.
-        if (!trackingNumber) {
-            alert('운송장 번호를 입력해주세요.');
-            event.preventDefault(); // 폼 제출 방지
+        // trackingNumber 값이 존재하는지 확인합니다.
+        if (!trackingNumberValue || trackingNumberValue === "null" || trackingNumberValue.trim() === "") {
+            alert('운송장 번호를 입력하세요.');
             return false;
         }
 
-        // 운송장 번호가 입력되었다면, 폼 제출을 진행합니다.
-        return true;
+        // 폼 제출을 진행합니다.
+        this.submit();
     });
+    
 });
+
+
 </script>
 </body>
 </html>

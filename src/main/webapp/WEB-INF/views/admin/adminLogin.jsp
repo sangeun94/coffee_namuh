@@ -93,7 +93,7 @@ button {
 <body>
 
 <div id="container">
-        <img id="profile-image" src="/images/user/COFFEENAMUH_logo.png" >
+        <img id="profile-image" src="/images/user/Coffee Namuh NONEBG_logo.png" >
         
         <h2>관리자 로그인</h2>
 

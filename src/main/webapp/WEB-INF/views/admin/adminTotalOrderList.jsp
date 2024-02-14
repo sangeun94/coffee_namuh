@@ -133,7 +133,7 @@ var tb_admin_url = "";
 		<dl>
 			<dt class="o10 menu_toggle">주문관리</dt>
 	        <dd class="o10 active"><a href="/admin/orderList">주문리스트(전체)			
-	        <dd class="o10 active"><a href="/admin/orderList">주문발주
+	        <dd class="o10 active"><a href="/admin/orderList">신규주문
 	        <dd class="o10"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
 	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
 	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		

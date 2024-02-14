@@ -91,7 +91,7 @@
         <a href="/login" class="btn-user btn-block">Login </a>
         <hr>
         <div class="text-center">
-            <a class="small" href="/main">메인페이지</a>
+            <a class="small" href="/mainHome">메인페이지</a>
         </div>
 
      

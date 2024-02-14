@@ -55,7 +55,7 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
@@ -80,7 +80,7 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
@@ -104,7 +104,7 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
@@ -128,7 +128,7 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>

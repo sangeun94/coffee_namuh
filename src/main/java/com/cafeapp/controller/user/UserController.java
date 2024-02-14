@@ -31,9 +31,7 @@ public class UserController {
     
     @Autowired
 	LoginManager loginManager;
-    
-    
-    @RequestMapping("/")
+        @RequestMapping("/")
     public String main() {
        return"mainhome/mainhome";
     }
@@ -42,7 +40,7 @@ public class UserController {
     public String mainHome() {
        return"mainhome/mainhome";
     }
-    
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -87,7 +85,7 @@ public class UserController {
             // 사용자 이름도 세션에 저장
             session.setAttribute("userName", loginUser.getUserName());
 
-            return "redirect:/mainhome";
+            return "redirect:/mainHome";
         } else {
             // 로그인 실패 시 처리
         	redirectAttributes.addAttribute("loginFailed", true);
@@ -143,8 +141,6 @@ public class UserController {
         return response;
     }
     
-   
-   
    
   //adminLogin
     @GetMapping("/admin/adminLogin")
@@ -321,7 +317,7 @@ public class UserController {
      public String logout(HttpSession session) {
      	loginManager.logout(session);
      	
-         return "redirect:/login";
+         return "redirect:/mainHome";
      }
      
     
@@ -331,7 +327,11 @@ public class UserController {
     	return "introduction/brand";
     }
      
-     
+    
+    @RequestMapping("/bi")
+    public String bi() {
+    	return "introduction/bi";
+    }
      
 
     }

@@ -95,7 +95,7 @@ textarea {
 			<div class="cont_box cont_head">
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
-						<div class="cont_title_info">MEGA NEWS</div>
+						<div class="cont_title_info">NAMUH NEWS</div>
 						<div class="cont_title robo color">
 							<h2>FAQ</h2>
 						</div>
@@ -119,94 +119,61 @@ textarea {
 						</div>
 					</div>
 					<div class="cont_text_wrap">
-						<div class="cont_text">${feedback.userId}
-							${feedback.feedbackDate}</div>
+						<div class="cont_text">
+							작성자 : ${feedback.userId}<br> 작성일 : ${feedback.feedbackDate}
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<form action="/boardWrite">
+	
 		<div>
 			<hr>
 			<div class="contentbox">${feedback.content}</div>
 			<hr>
-			<div class="input_btn_wrap input_wrap2">
-				<button class="btnwd5 btn1 float_right"
-					onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
-				<button class="btnwd5 btn1 float_right"
-					onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
-			</div>
+	<div class="input_btn_wrap input_wrap2">
+    <!-- 삭제 버튼 -->
+    <c:set var="isAuthor" value="${feedback.userId eq loggedInUserId}" />
+<c:if test="${isAuthor}">
+    <div class="input_btn_wrap input_wrap2">
+        <button class="btnwd5 btn1 float_right" onclick="location.href='/boardDelete/${feedback.feedbackNumber}'">삭제</button>
+        <button class="btnwd5 btn1 float_right" onclick="location.href='/boardUpdate/${feedback.feedbackNumber}'">수정</button>
+    </div>
+</c:if>
+</div>
 		</div>
-	</form>
-	<hr>
-	<div class="cont_list cont_list_content cont_list_content_search">
-		<form action="/boardWrite" method="post">
-			<ul>
-				<li>
-					<div class="board_search_wrap">
-						<li><textarea name="content" id="bbs_search" rows="" cols=""
-								name="content" class="input_text_wrap1 li_left"
-								placeholder="내용을 입력해주세요."></textarea></li>
-
-						<div class="board_search">
-							<li class="board_search_btn">
-								<div class="input_btn_wrap input_wrap2">
-
-									<input type="submit" value="글쓰기"
-										class="btnntwidth btn1 float_right" id="writeButton">
+	
+	<div class="cont_text_wrap">
+		<div class="board_list">
+			<table>
+				<tbody>
+					 <c:forEach var="response" items="${responseList}">
+						<tr>
+							<td class="board_pc">${response.responseNumber}</td>
+							
+							<td>
+								<div class="text_wrap">
+									<div class="text">
+										${response.responseContent}</a>
+									</div>
 								</div>
-								<div id="comments">
-									<!-- 여기에 댓글이 동적으로 추가됩니다. -->
-								</div> <!-- 댓글 입력 폼 -->
-								<form id="commentForm">
-									<textarea id="commentText" rows="4" cols="50"></textarea>
-									<br>
-									<button type="submit">댓글 작성</button>
-								</form>
-
-							</li>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</form>
+							</td>
+							<td class="board_pc">${response.userId}</td>
+							<td class="board_pc">${response.responseDate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<hr>
-	<br>
+
+
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
-	
-	
-<script>
-    // 댓글 입력 폼에 제출 이벤트 추가
-    document.getElementById('commentForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // 기본 제출 동작 방지
+	<
 
-        // 입력된 댓글 내용 가져오기
-        var comment = document.getElementById('commentText').value;
-
-        // 댓글 내용이 비어 있는지 확인
-        if (comment.trim() === '') {
-            alert('댓글 내용을 입력하세요.');
-            return;
-        }
-
-        // 댓글 추가 함수 호출
-        addComment(comment);
-
-        // 입력 폼 초기화
-        document.getElementById('commentText').value = '';
-    });
-
-    // 댓글 추가 함수
-    function addComment(comment) {
-        // 새로운 댓글 요소 생성
-        var newComment = document.createElement('div');
-        newComment.textContent = comment;
-
-        // 댓글 표시 영역에 추가
-        document.getElementById('comments').appendChild(newComment);
-    }
+	<script>
+   
 </script>
 </body>
 </html>

@@ -101,8 +101,9 @@ public class FeedbackServiceImpl implements FeedbackService{
 		return feedbackDAO.boardList();
 	}
 	
-	public void write(Feedback feedback) {
-		feedbackDAO.write(feedback);
+	public int write(Feedback feedback) {
+		int result = feedbackDAO.write(feedback);
+		return result;
 	}
 	
 	public Feedback boardDetail(Integer sb_no) {
@@ -115,6 +116,10 @@ public class FeedbackServiceImpl implements FeedbackService{
 	
 	public int update(Feedback feedback) {
 		return feedbackDAO.update(feedback);
+	}
+	
+	public List<Response> findResponselistByFeedbackNumber(int feedbackNumber) {
+	    return feedbackDAO.findResponselistByFeedbackNumber(feedbackNumber);
 	}
 	
 	/*//게시판 카테고리

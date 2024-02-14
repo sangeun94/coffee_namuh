@@ -11,7 +11,7 @@
 
 	<insert id="write" parameterType="Feedback">
 		INSERT INTO customer_feedback (feedback_number,title, content, user_id,Feedback_date,feedback_count)
-		VALUES (SEQ_FEEDBACK_PK.nextval, #{title}, #{content}, #{userId},TO_CHAR(SYSDATE, 'YYYY-MM-DD'),#{feedbackCount})
+		VALUES (SEQ_FEEDBACK_PK.nextval, #{title}, #{content}, #{userId},SYSDATE,#{feedbackCount})
 	</insert>
 	
 	<!-- MybatisConfig -->
@@ -27,4 +27,8 @@
 		UPDATE customer_feedback SET title=#{title}, content=#{content} WHERE feedback_number=#{feedbackNumber}
 	</update>
 	
+	<select id="findResponselistByFeedbackNumber" parameterType="Integer" resultType="Response">
+		<!-- SELECT feedback_number, title, user_id, feedback_date, feedback_count FROM customer_feedback ORDER BY feedback_number DESC -->
+		SELECT * FROM feedback_response WHERE feedback_number=#{feedbackNumber} ORDER BY feedback_number DESC 
+	</select>
 </mapper>

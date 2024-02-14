@@ -17,7 +17,7 @@ import com.cafeapp.dto.board.FaqSearchCondition;
 import com.cafeapp.dto.feedback.Feedback;
 import com.cafeapp.service.announcement.AnnouncementService;
 import com.cafeapp.service.faq.FaqService;
-import com.cafeapp.service.feedbackresponse.FeedBackResponseService;
+
 
 @Controller
 public class NewsController {

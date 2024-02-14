@@ -183,7 +183,7 @@ public class UserController {
     public String showMyPage( Model model, HttpSession session) {
     	loginManager.isLogin(session);
     	String userId = loginManager.getUserId(session);
-    	 
+    	
     	        User user = userService.findUserById(userId);
     	 
     	        if (user != null) {

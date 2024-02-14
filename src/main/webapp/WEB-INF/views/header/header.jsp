@@ -98,12 +98,12 @@
 			   }
 
         /* head */
-.head_wrap{background:#fff; position:fixed; top:0; width:100%; margin:auto 0; z-index:9999; vertical-align:middle; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1); text-align:center; transition: All 0.2s ease; -webkit-transition: All 0.2s ease; -moz-transition: All 0.2s ease; -o-transition: All 0.2s ease;}
+.head_wrap{background:#fff; position:fixed; top:0; width:100%; margin:auto 0; z-index:9999; vertical-align:middle; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1); text-align:center; transition: All 0.2s ease; -webkit-transition: All 0.2s ease; -moz-transition: All 0.2s ease; -o-transition: All 0.2s ease; padding: 0 30px;}
 	.main_body .head_wrap{background:none; box-shadow:none;}
 	.head_over{background:#fff !important; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1) !important;}
 	.head_fixed{background:#fff !important; box-shadow:0px 0px 5px 0px rgba(0,0,0,0.1) !important;}
 		.head_wrap .head{width:100%; max-width:1280px; margin:0 auto; position:relative; transition: All 0.2s ease; -webkit-transition: All 0.2s ease; -moz-transition: All 0.2s ease; -o-transition: All 0.2s ease;}
-			.head_wrap .head .head_logo{width:200px; position:absolute; top:30px; left:0;}
+			.head_wrap .head .head_logo{width:200px; position:absolute; top:13px; left:0;}
 				.main_body .head_wrap .head .head_logo .head_logo_img{display:block;}
 				.main_body .head_wrap .head .head_logo .head_logo_img_fixed{display:none;}
 				.head_wrap .head .head_logo .head_logo_img{display:none;}
@@ -123,7 +123,8 @@
 							bottom:0; 
 							width:0; 
 							height:1px; 
-							background:#1c1c1b; 
+							/* ul 밑 선 */
+							background:#ffffff; 
 							left:50%; 
 							-webkit-transform:translate(-50%,0); 
 							-ms-transform:translate(-50%,0); 
@@ -134,13 +135,18 @@
 							-o-transition:All 0.2s ease;}
 
 							.head_wrap .head .head_menu > ul > li:hover a:after{width:50%;}
-							.head_wrap .head .head_menu > ul > .check{background:#fdd000;}
+							/* 헤더 li 메뉴 */
+							.head_wrap .head .head_menu > ul > .check{background:#1A3B33; color:#ffffff;}
 							.head_wrap .head .head_menu > ul > .check a:after{width:50%;}
 			.head_wrap .head .head_sns{position:absolute; top:30px; right:0;}
 				.head_wrap .head .head_sns ul li{box-shadow:0px 0px 0px 2px #1c1c1b; border-radius:100%; text-align:center; margin-top:0;}
 					.head_wrap .head .head_sns ul li a{display:block; padding:3px; position:relative;}
+					/* 헤더 오른쪽 아이콘 호버 */
 					.head_wrap .head .head_sns ul li:hover{background:#fdd000; box-shadow:0px 0px 0px 2px #fdd000;}
-					.head_wrap .head .head_sns ul li a span{background:#000; color:#fff; border-radius:100px; padding:2px 6px; font-size:11px; top:90%; position:absolute; left:50%; -webkit-transform:translate(-50%,0); -ms-transform:translate(-50%,0); transform:translate(-50%,0);}
+					.head_wrap .head .head_sns ul li a span{background:#1c1c1b; color:#fff; border-radius:100px; padding:2px 6px; font-size:11px; top:90%; position:absolute; left:50%; -webkit-transform:translate(-50%,0); -ms-transform:translate(-50%,0); transform:translate(-50%,0);}
+.snsspan{
+	padding: 10px;
+}
 
 .pc{display:block !important; margin:0 auto; height: 100px;}
 
@@ -408,14 +414,14 @@
 			   .section_menu .swiper-slide-active{width:75% !important;}
 		   }
 		   
-		   @media screen and (max-width:1280px){
+		 /*   @media screen and (max-width:1280px){
 			   body{position:none; width:100%; left:0; padding-top:0 !important; margin-left:0; font-size:13px;}
 			   .pc{display:none !important;}
 			   .m{display:none !important;}
 			   .t{display:block !important;}
 			   .go_top_wrap{display:none;}
 		   }
-		   
+		    */
 		   @media screen and (max-width:760px){
 			   html, body{font-size:12px;}
 			   .pc{display:none !important;}
@@ -528,36 +534,27 @@
             <div class="cont_list cont_list_small">
       
             
-        <%--     <%
-    User userId = (User);
-
-    if (userId != null) {
-    	
-         if ("2".equals(UserId)) {
-	%> --%>
-	<ul>
+        
+    <!-- 로그인하지 않았을 때 -->
+	<c:if test="${empty sessionScope.userName}">
+	<ul>	
+					<li><a href="/login"><img src="/images/notice/loginIcon3.png"></a></li>
+                    <li><a href="/join"><img src="/images/notice/joinIcon.png"></a></li>
+                    <li><a href="/menu_drink" target="_blank"><img src="/images/notice/basket.jpg"></a></li>
+                     <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>        		
+	</c:if>
+	</ul>
+	<!-- 로그인 했을 때 -->
+	 <c:if test="${not empty sessionScope.userName}">
+	 <ul>
+	 <span class="snsspan">환영합니다, <span>${sessionScope.userName}</span>님!</span>
+   			        <li><a href="/shoppingcart"><img src="/images/notice/basket.png"></a></li>
 			        <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"></a></li>
                     <li><a href="/logout"><img src="/images/notice/logoutIcon.png"></a></li>
-                    <li><a href="/shoppingcart"><img src="/images/notice/basket.png"></a></li>
-                    <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>		</ul>
-	</ul>
-	<%-- <%
-    	} else {
-   %> --%>
-   
-   		<!-- <ul>
-   			        <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"></a></li>
-                    <li><a href="/logout"><img src="/images/notice/logoutIcon.jpg"></a></li>
-                    <li><a href="/menu_drink" target="_blank"><img src="/images/notice/basket.jpg"></a></li>
-   		</ul> -->
-   
-	<%-- <%
-    	}
-    } else {
-	%> --%>
+   		</ul> 
+   </c:if>
 	
-		 	<br>
-			 <!-- 로그인하지 않았을 때 -->
+		<%-- <!-- 로그인하지 않았을 때 -->
 		    <c:if test="${empty sessionScope.userName}">
 		        <a href="/login">로그인</a>
 		        <a href="/register">회원가입</a>
@@ -567,29 +564,13 @@
 		    <c:if test="${not empty sessionScope.userName}">
 		        <span>환영합니다, <span>${sessionScope.userName}</span>님!</span>
 		    </c:if>
+		 --%>
 		</div>
 
-	<%-- <%
-    }
-	%> --%>
+	
 	</div>
 	
-                <!-- <ul>
                
-                    	<a href="/join">
-                    		회원가입
-                    	</a>
-                   	
-                    
-                    	<a href="/login">로그인</a>
-                    
-                    <li><a href="/mypage"><img src="/images/notice/mypageIcon.png"></a></li>
-                    <li><a href="/logout"><img src="/images/notice/logoutIcon.jpg"></a></li>
-                    <li><a href="/menu_drink" target="_blank"><img src="/images/notice/basket.jpg"></a></li>
-                    <li><a href="/manager/" target="_blank"><img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>
-                    
-                    
-                </ul> -->
             </div>
         </div>
         <div class="mobile_menu_icon_wrap m t">

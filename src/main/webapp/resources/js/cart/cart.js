@@ -45,8 +45,8 @@ window.addEventListener('DOMContentLoaded', function () {
             // 이벤트 전파 중지
             event.preventDefault();
         } else {
-            // 체크되었을 경우 /cart/order 페이지로 이동합니다.
-            window.location.href = "/cart/order";
+            alert("결제가 완료되었습니다.");
+            window.location.href = "/mainHome";
         }
     });
 });

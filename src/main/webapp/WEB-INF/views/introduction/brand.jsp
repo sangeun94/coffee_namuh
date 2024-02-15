@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title> COFFEE NAMUH </title>
+<link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
 
 </head>
 <style>

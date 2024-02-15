@@ -20,7 +20,7 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-<link rel="shortcut icon" href="" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
 
 <!-- <script src="/js/admin/jquery-1.8.3.min.js"></script> -->
 <script src="/js/admin/jquery-ui-1.10.3.custom.js"></script>

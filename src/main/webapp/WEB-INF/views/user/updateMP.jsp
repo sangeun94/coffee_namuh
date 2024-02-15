@@ -90,6 +90,7 @@ button {
     box-sizing: border-box;
 }
     </style>
+    <link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
 </head>
 <body>
     <div id="container">

@@ -136,6 +136,8 @@ button {
 
 
 </style>
+<link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
+
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header/header.jsp"%>

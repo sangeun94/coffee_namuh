@@ -89,13 +89,12 @@ var tb_admin_url = "";
 <header id="hd">
 	<div id="hd_wrap">
 		<h1>행복을 주는 쇼핑몰!</h1>
-		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자"></a></div>
+		<div id="logo"><a href=""><img src="/images/admin/white_logo.png" alt="행복을 주는 쇼핑몰! 관리자" class="logo"></a></div>
 		<div id="tnb">
 			<ul>
-				<li><a href="">관리자정보</a></li>
-				<li><a href="">관리자홈</a></li>
-				<li><a href="" target="_blank">쇼핑몰</a></li>
-				<li id="tnb_logout"><a href="">로그아웃</a></li>
+				<li> ${sessionScope.userName} 님 접속</li>
+				<li><a href="/mainHome" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>
 
@@ -103,22 +102,20 @@ var tb_admin_url = "";
 			<h2>관리자 주메뉴</h2>
 			<ul id="gnb_1dul">
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">회원관리</a>
-				</li>
-				
-				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">상품관리</a>
-				</li>
-				<li class="gnb_1dli active">
-					<a href="" class="gnb_1da">주문관리</a>
-				</li>
-				
-				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">고객지원</a>
+					<a href="/admin/adminMember" class="gnb_1da">회원관리</a>
 				</li>
 
 				<li class="gnb_1dli">
-					<a href="" class="gnb_1da">마이페이지</a>
+					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
+				</li>
+				<li class="gnb_1dli active">
+					<a href="/admin/totalOrderList" class="gnb_1da">주문관리</a>
+				</li>
+				<li class="gnb_1dli">
+					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
+				</li>
+				<li class="gnb_1dli">
+					<a href="/admin/modifyAdmin" class="gnb_1da">마이페이지</a>
 				</li>
 			</ul>
 		</nav>
@@ -132,25 +129,25 @@ var tb_admin_url = "";
 	</div>
 		<dl>
 			<dt class="o10 menu_toggle">주문관리</dt>
-	        <dd class="o10 active"><a href="/admin/orderList">주문리스트(전체)			
-	        <dd class="o10 active"><a href="/admin/orderList">신규주문
+			<dd class="o10 active"><a href="/admin/totalOrderList">주문리스트(전체)</a></dd>		
+	        <dd class="o10 "><a href="/admin/orderList">신규주문</a></dd>
 	        <dd class="o10"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
 	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		
 	        <dd class="o10"><a href="/admin/deliveryComplete">배송완료</a></dd>		
 	
-    </dl>
+    	</dl>
 	</div>
 	<div id="content">
 		<div class="breadcrumb">
 			<span>HOME</span> <ion-icon name="chevron-forward-outline"></ion-icon> 주문관리 
-            <ion-icon name="chevron-forward-outline"></ion-icon> 주문발주		
+            <ion-icon name="chevron-forward-outline"></ion-icon> 주문리스트(전체)		
         </div>
 	
 <div class="s_wrap">
-	<h1>주문발주</h1>
+	<h1>주문리스트(전체)</h1>
 	
 	<h2>기본검색</h2>
-<form action="/admin/orderList" name="fsearch" id="fsearch" method="get">
+<form action="/admin/totalOrderList" name="fsearch" id="fsearch" method="get">
 
 	<div class="tbl_frm01">
 		<table>
@@ -190,6 +187,20 @@ var tb_admin_url = "";
 	
 			</td>
 		</tr>
+		<tr>
+			<th scope="row">주문상태</th>
+			<td>
+				<label><input type="radio" name="orderStatus" value="0" checked="checked"> 전체</label>
+				<label><input type="radio" name="orderStatus" value="1"> 상품준비중</label>
+				<label><input type="radio" name="orderStatus" value="2"> 배송준비중</label>
+				<label><input type="radio" name="orderStatus" value="3"> 배송중</label>
+				<label><input type="radio" name="orderStatus" value="4"> 배송완료</label>
+				<label><input type="radio" name="orderStatus" value="5"> 주문취소</label>
+				<label><input type="radio" name="orderStatus" value="6"> 구매확정</label>
+	
+			</td>
+		</tr>
+		
 		</tbody>
 		</table>
 	</div>
@@ -221,8 +232,6 @@ var tb_admin_url = "";
 		<th scope="col">주문자</th>
 		<th scope="col">총주문액</th>
 		<th scope="col">결제방법</th>
-		<th scope="col">발주확인</th>
-
 	</tr>
 	</thead>
 	<tbody>
@@ -253,12 +262,12 @@ var tb_admin_url = "";
 				<td>${orderItem.shippingFee}</td>
 				<td>
 				    <c:choose>
-				        <c:when test="${orderItem.orderStatus == 0}">상품준비중</c:when>
-				        <c:when test="${orderItem.orderStatus == 1}">배송준비중</c:when>
-				        <c:when test="${orderItem.orderStatus == 2}">배송중</c:when>
-				        <c:when test="${orderItem.orderStatus == 3}">배송완료</c:when>
-				        <c:when test="${orderItem.orderStatus == 4}">주문취소</c:when>
-				        <c:when test="${orderItem.orderStatus == 5}">구매확정</c:when>
+				        <c:when test="${orderItem.orderStatus == 1}">상품준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 2}">배송준비중</c:when>
+				        <c:when test="${orderItem.orderStatus == 3}">배송중</c:when>
+				        <c:when test="${orderItem.orderStatus == 4}">배송완료</c:when>
+				        <c:when test="${orderItem.orderStatus == 5}">주문취소</c:when>
+				        <c:when test="${orderItem.orderStatus == 6}">구매확정</c:when>
 				    </c:choose>
 				</td>
 				<td>${orderItem.ordererName}</td>
@@ -269,9 +278,6 @@ var tb_admin_url = "";
 				        <c:when test="${orderItem.paymentMethod == 2}">휴대폰결제</c:when>
 				        <c:when test="${orderItem.paymentMethod == 3}">무통장입금</c:when>
 				    </c:choose>
-				</td>
-				<td>
-					<button type="submit" id="btn_modify" class="btn_lsmall">발주확인</button>
 				</td>
 			</tr>
 			</form>

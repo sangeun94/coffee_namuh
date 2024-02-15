@@ -36,5 +36,8 @@ public interface OrderDAO {
 	//배송완료 리스트 목록 및 검색
 	public List<OrderList> findDeliveryCompleteBySearchCondition(OrderSearchCondition orderSearchCondition);
 
+	//주문리스트(전체) 목록 및 검색
+	public List<OrderList> findTotalOrderListBySearchCondition(OrderSearchCondition orderSearchCondition);
+
 	
 }

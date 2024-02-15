@@ -100,7 +100,7 @@
 					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli active">
-					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
+					<a href="/admin/totalOrderList" class="gnb_1da">주문관리</a>
 				</li>
 				<li class="gnb_1dli">
 					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
@@ -119,7 +119,8 @@
 		<ion-icon name="reader-outline" class="order_outline"></ion-icon><h2>주문관리</h2>
 	</div>
 		<dl>
-			<dt class="o10 menu_toggle">주문관리</dt>		
+			<dt class="o10 menu_toggle">주문관리</dt>
+			<dd class="o10"><a href="/admin/totalOrderList">주문리스트(전체)</a></dd>		
 	        <dd class="o10 active"><a href="/admin/orderList">신규주문</a></dd>
 	        <dd class="o10"><a href="/admin/deliveryPrepare">배송준비</a></dd>		
 	        <dd class="o10"><a href="/admin/delivering">배송중</a></dd>		

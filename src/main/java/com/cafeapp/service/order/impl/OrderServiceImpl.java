@@ -109,4 +109,13 @@ public class OrderServiceImpl implements OrderService{
 		return orderList;
 	}
 	
+	//주문리스트(전체) 목록 및 검색
+	@Override
+	public List<OrderList> findTotalOrderListBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		List<OrderList> orderList = orderDAO.findTotalOrderListBySearchCondition(orderSearchCondition);
+		
+		return orderList;
+	}
+	
 }

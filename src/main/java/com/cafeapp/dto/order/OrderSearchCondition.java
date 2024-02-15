@@ -12,6 +12,7 @@ public class OrderSearchCondition {
     String orderDateEnd; //종료일
 	int paymentMethod; //1:신용카드, 2:휴대폰결제, 3:무통장입금
 	String trackingNumber; 
+	int orderStatus;
 	
 	String searchType;
 	String searchKeyword;

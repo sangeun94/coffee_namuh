@@ -37,4 +37,7 @@ public interface OrderService {
 	//배송중 리스트 목록 및 검색
 	public List<OrderList> findDeliveryCompleteBySearchCondition(OrderSearchCondition orderSearchCondition);
 
+	//주문리스트(전체) 목록 및 검색
+	public List<OrderList> findTotalOrderListBySearchCondition(OrderSearchCondition orderSearchCondition);
+
 }

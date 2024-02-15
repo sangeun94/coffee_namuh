@@ -241,6 +241,54 @@
 		    o.order_number	        
 	</select>
 	
+	<!-- 주문리스트(전체) 조회 및 검색 -->
+	<select id="findTotalOrderListBySearchCondition" resultType="OrderList" parameterType="OrderSearchCondition">
+	    SELECT 
+		    o.order_number,
+		    MAX(o.order_date) AS order_date,
+		    
+		    (SELECT p.product_name FROM product p 
+		     INNER JOIN order_detail od ON p.product_number = od.product_number
+		     WHERE od.order_number = o.order_number
+		     ORDER BY p.product_name FETCH FIRST 1 ROW ONLY) AS first_product_name,
+		    (SELECT COUNT(*) FROM order_detail WHERE order_number = o.order_number) - 1 AS additional_product_count,
+
+		    SUM(od.order_quantity) AS total_quantity,
+		    MAX(o.shipping_fee) AS shipping_fee,
+		    MAX(o.order_status) AS order_status,
+		    MAX(u.user_name) AS orderer_name,
+		    SUM(od.price * od.order_quantity) AS total_price,
+		    MAX(pm.payment_method) AS payment_method
+	    FROM 
+	        orders o
+	        INNER JOIN order_detail od ON o.order_number = od.order_number
+	        INNER JOIN product p ON od.product_number = p.product_number
+	        INNER JOIN payment pm ON o.order_number = pm.order_number
+	        INNER JOIN users u ON o.user_id = u.user_id
+	    WHERE 1 = 1
+	        <if test="searchType == 'orderNumber' and searchKeyword != null and searchKeyword != ''">
+	            AND o.order_number = #{searchKeyword}
+	        </if>
+	        <if test="searchType == 'productName' and searchKeyword != null and searchKeyword != ''">
+	            AND p.product_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="searchType == 'userName' and searchKeyword != null and searchKeyword != ''">
+	            AND u.user_name LIKE '%' || #{searchKeyword} || '%'
+	        </if>
+	        <if test="orderDateStart != null and orderDateStart != '' and orderDateEnd != null and orderDateEnd != ''">
+			    AND o.order_date BETWEEN #{orderDateStart} AND #{orderDateEnd}
+			</if>
+	        <if test="paymentMethod != 0 and paymentMethod != ''">
+				AND pm.payment_method = #{paymentMethod}
+	        </if>
+	       	<if test="orderStatus != 0 and orderStatus != ''">
+				AND o.order_status = #{orderStatus}
+	        </if>
+       	GROUP BY 
+		    o.order_number
+		ORDER BY 
+		    o.order_number	        
+	</select>
 	
 	
 </mapper>

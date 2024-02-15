@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> 관리자 로그인 </title>
 <style>
          body {
     font-family: Arial, sans-serif;
@@ -89,6 +89,9 @@ button {
     box-sizing: border-box;
 }
 </style>
+
+<link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
+
 </head>
 <body>
 

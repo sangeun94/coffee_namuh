@@ -73,7 +73,7 @@
 														</div>
 													</li>
 													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
+														<div class="input_btn_wrap1 input_wrap2">
 															<input type="submit" value="검색" class="btn btn1" id="">
 														</div>
 													</li>

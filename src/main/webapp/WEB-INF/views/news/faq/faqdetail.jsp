@@ -99,7 +99,7 @@
 		<!-- 게시판끝 밑은 댓글 -->
 			</form>
 			
-							<hr><br>
+							<br>
 			<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 </body>
 </html>

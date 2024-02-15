@@ -116,6 +116,7 @@ px
 					</div>
 				</div>
 			</div>
+			<!-- 게시판 시작 -->
 			<div class="cont_box brand01">
 				<div class="cont_boxsr">
 					<div class="cont_title_wrap">
@@ -152,6 +153,7 @@ px
 </c:if>
 </div>
 		</div>
+		<!-- 게시판끝 밑은 댓글 -->
 	
 	<div class="cont_text_wrap">
 		<div class="board_list">

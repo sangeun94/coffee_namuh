@@ -75,7 +75,7 @@
 														</div>
 													</li>
 													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
+														<div class="input_btn_wrap1 input_wrap2">
 															<input type="submit" value="검색" class="btn btn1" id="">
 														</div>
 													</li>
@@ -124,17 +124,7 @@
 								</tbody>
 							</table>
 						</div>
-						<div class="board_page_wrap">
-							<div class="board_page">
-								<ul>
-									<li class='fo_re'><a><span>처음</span></a></li>
-									<li class='board_page_check'><a><span>1</span></a></li>
-									<li><a class='board_page_link'
-										href='?bbs_category=4&bbs_detail_category=&bbs_page=4'
-										&bbs_search_category=&bbs_search='><span>마지막</span></a></li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>

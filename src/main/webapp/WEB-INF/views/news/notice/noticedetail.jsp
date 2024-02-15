@@ -67,35 +67,37 @@
 					</div>
 				</div>
 			</div>
+			<!-- 게시판 시작 -->
 			<div class="cont_box brand01">
-				<div class="cont_boxs text_center">
+				<div class="cont_boxsr">
 					<div class="cont_title_wrap">
-						<div class="cont_title">
-							<b>${announcement.title}</b>
-						</div>
-					</div>
-					<div class="cont_text_wrap">
-						<div class="cont_text">${announcement.userId} ${announcement.postDate} </div>
-					</div>
-					</div>
-					</div>
-					</div>
-					</div>
-		<form action="/boardWrite">
-		<div>			<hr>
-			<div class="contentbox">${announcement.content}</div>
-			<hr>
-			
-			</div>
-			</form>
-			<hr>
-			
-											</div>
-										</li>
-									</ul>
-								</form>
+						<div class="board_detail_title">
+							<h1>${announcement.title}<br></h1>
+							<div class="board_detail_title_info">
+								<div class="float_right">
+									<span>구분 질문</span>
+									<span>작성자 ${announcement.userId}</span>
+									<span>작성일 ${announcement.postDate}</span>
+								</div>
 							</div>
-							<hr><br>
+						</div>
+						
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<div class="board_detail_text_wrap">
+			
+			<div class="board_detail_text"><span>${announcement.content}</span></div>
+			
+	
+		</div>
+		<!-- 게시판끝 밑은 댓글 -->
+
+							<br>
 			<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 			
 

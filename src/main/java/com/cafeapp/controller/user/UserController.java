@@ -31,7 +31,7 @@ public class UserController {
     
     @Autowired
 	LoginManager loginManager;
-    @RequestMapping("/")
+        @RequestMapping("/")
     public String main() {
        return"mainhome/mainhome";
     }
@@ -40,7 +40,6 @@ public class UserController {
     public String mainHome() {
        return"mainhome/mainhome";
     }
-    
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -141,10 +140,6 @@ public class UserController {
 
         return response;
     }
-    
-   
-    
-    
     
    
   //adminLogin

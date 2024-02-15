@@ -55,11 +55,11 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<!-- 아이콘 추가 -->
     <li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
@@ -80,11 +80,11 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
@@ -104,11 +104,11 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
@@ -128,11 +128,11 @@
 							<li>
 								<ul class="menu-item">
 									<li class="menu-img"><img
-										src="${productItem.filePath}${productItem.originalFileName}">
+										src="${productItem.filePath}${productItem.fileName}">
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>

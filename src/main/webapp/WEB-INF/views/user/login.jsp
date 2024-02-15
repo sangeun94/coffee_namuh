@@ -13,7 +13,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
+    <title>COFFEENAMUH 로그인</title>
     <style>
          body {
     font-family: Arial, sans-serif;
@@ -129,6 +129,9 @@ button {
 	    }
        
     </style>
+    
+    <link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
+    
 </head>
 <body>
     <div id="container">

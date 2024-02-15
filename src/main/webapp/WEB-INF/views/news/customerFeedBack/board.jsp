@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>COFFEE NAMUH</title>
+<link rel="shortcut icon" href="../images/favicon-32x32.png"
+	type="image/x-icon">
 <link href="/css/news.css" rel="stylesheet" type="text/css">
-<style>
-.color {
-	color : #ffffff !important;
-}
-</style>
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header/header.jsp"%>
@@ -48,17 +46,20 @@
 						<div class="cont_text">궁금하신 내용을 질문해 주세요.</div>
 					</div>
 					<div class="cont_text_wrap">
-						
+
 						<div class="cont_list cont_list_content cont_list_content_search">
 							<ul>
 								<li>
 									<div class="board_search_wrap">
 										<div class="board_search">
-											 <form id="writeForm" action="<c:url value='/boardWrite' />" method="get">
-                                                <input type="hidden" name="bbs_category" id="bbs_category" value="4">
-                                                <input type="hidden" name="bbs_detail_category" id="bbs_detail_category" value="10">
+											<form id="writeForm" action="<c:url value='/boardWrite' />"
+												method="get">
+												<input type="hidden" name="bbs_category" id="bbs_category"
+													value="4"> <input type="hidden"
+													name="bbs_detail_category" id="bbs_detail_category"
+													value="10">
 												<ul>
-											
+
 
 													<li class="board_search_btn">
 														<div class="input_btn_wrap input_wrap2">
@@ -94,20 +95,29 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="list" items="${boardList}">
-										<tr>
-											<td class="board_pc">${list.feedbackNumber}</td>
-											<td>
-												<div class="text_wrap">
-													<div class="text">
-														<a href="/detail/${list.feedbackNumber}">${list.title}</a>
-													</div>
-												</div>
-											</td>
-											<td class="board_pc">${list.userId}</td>
-											<td class="board_pc">${list.feedbackDate}</td>
-										</tr>
-									</c:forEach>
+		<c:forEach var="list" items="${boardList}">
+    <tr>
+        <td class="board_pc">${list.feedbackNumber}</td>
+        <td>
+            <div class="text_wrap">
+                <div class="text">
+                    <c:choose>
+                        <c:when test="${sessionScope.userName eq '신현우' && list.userId eq 'asdf'}">
+                            <a href="/detail/${list.feedbackNumber}">${list.title}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <c:out value="${list.title}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    <%-- <!-- 디버깅 메시지 -->
+                    <c:out value="${sessionScope.userName}"/> 와 <c:out value="${list.userId}"/> 의 비교 결과: <c:out value="${sessionScope.userName eq '신현우' && list.userId eq 'asdf'}"/> --%>
+                </div>
+            </div>
+        </td>
+        <td class="board_pc">${list.userId}</td>
+        <td class="board_pc">${list.feedbackDate}</td>
+    </tr>
+</c:forEach>
 
 								</tbody>
 							</table>
@@ -118,7 +128,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<%@ include file="/WEB-INF/views/footer/footer.jsp"%>
 	<script>
 	document.getElementById("writeButton").addEventListener("click", function(event) {

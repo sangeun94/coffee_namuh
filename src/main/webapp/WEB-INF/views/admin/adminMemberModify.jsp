@@ -21,7 +21,7 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-<link rel="shortcut icon" href="" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/x-icon">
 
 
 <script>
@@ -47,7 +47,7 @@ var tb_admin_url = "";
 		<div id="tnb">
 			<ul>
 				<li> ${sessionScope.userName} 님 접속</li>
-				<li><a href="/main" target="_blank">COFFEE NAMUH 홈페이지</a></li>
+				<li><a href="/mainHome" target="_blank">COFFEE NAMUH 홈페이지</a></li>
 				<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 			</ul>
 		</div>

@@ -1640,7 +1640,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 									src="/images/notice/joinIcon.png"><span>회원가입</span></a></li>
 							<li><a href="/login" target="_blank"><img
 									src="/images/notice/basket.png"><span>장바구니</span></a></li>
-							<li><a href="/adminLogin" target="_blank"><img
+							<li><a href="/admin/adminLogin" target="_blank"><img
 									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"><span>관리자용</span></a></li>
 						</ul>
 					</c:if>

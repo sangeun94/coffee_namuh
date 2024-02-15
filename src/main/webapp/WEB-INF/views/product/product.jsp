@@ -59,7 +59,7 @@
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<!-- 아이콘 추가 -->
     <li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
@@ -84,7 +84,7 @@
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
@@ -108,7 +108,7 @@
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>
@@ -132,7 +132,7 @@
 									</li>
 									<li class="menu-title">
 										<p><b>${productItem.productName}</b></p>
-										<p>${productItem.productPrice}원</p>
+										<p class="product-price">${productItem.productPrice}원</p>
 									</li>
 									<li class="add-to-cart" data-cart-url="/cart"><i class="fas fa-shopping-cart"></i> 담기</li>
 								</ul>

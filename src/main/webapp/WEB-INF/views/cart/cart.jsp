@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>COFFEE NAMUH</title>
-    <link rel="shortcut icon" href="../images/favicon-32x32.png"
+    <link rel="shortcut icon" href="/images/favicon-32x32.png"
 	type="image/x-icon">
 	<link href="../css/cart/cart.css" rel="stylesheet" type="text/css">
 </head>
@@ -50,7 +50,7 @@
 
         <p class=text-center>총 결제할 금액은 <span class="total-price"></span>원 입니다. (배송비 2500원 포함)</p>
         <div class="back-btn" onclick="javascript:history.go(-1)">취소</div>
-        <div class="order-btn">주문하기</div>
+        <div class="order-btn">결제</div>
 
     </div>
     <!-- 푸터 -->

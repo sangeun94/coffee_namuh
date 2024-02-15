@@ -206,3 +206,8 @@ hr {
 .scroll-to-top:hover {
     background-color: #804000;
 }
+
+.product-price {
+	font-size: 1rem;
+	margin: 10px;
+}

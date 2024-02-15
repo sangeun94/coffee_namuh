@@ -338,6 +338,11 @@ public class UserController {
     	return "introduction/bi";
     }
      
+    
+    @RequestMapping("/map")
+    public String map() {
+    	return "introduction/map";
+    }
 
     }
 

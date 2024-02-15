@@ -3,7 +3,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>COFFEE NAMUH</title>
+    <link rel="shortcut icon" href="../images/favicon-32x32.png"
+	type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="/css/mainhome.css">
   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

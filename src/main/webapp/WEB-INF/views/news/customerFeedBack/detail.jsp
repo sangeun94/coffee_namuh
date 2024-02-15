@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>COFFEE NAMUH</title>
+    <link rel="shortcut icon" href="../images/favicon-32x32.png"
+	type="image/x-icon">
 <link href="/css/news.css" rel="stylesheet" type="text/css">
 <style>
 * {

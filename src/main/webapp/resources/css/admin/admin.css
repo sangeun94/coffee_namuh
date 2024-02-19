@@ -11,6 +11,13 @@
     margin-top: 20px;
 }
 
+.responseContent {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 150px; /* 최대너비 설정 */
+}
+
 
 /*폼*/
 .frm_input,input[type=file] {height:23px;}

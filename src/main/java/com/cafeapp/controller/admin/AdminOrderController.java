@@ -177,4 +177,24 @@ public class AdminOrderController {
 		return "admin/adminDeliveryComplete";
 	}
 	
+	//주문리스트(전체) 목록 및 검색
+	@RequestMapping("/admin/totalOrderList")
+	public String totalOrderList(Model model, @ModelAttribute OrderSearchCondition orderSearchCondition) {		
+		System.out.println(orderSearchCondition);
+		
+		List<OrderList> orderList = orderService.findTotalOrderListBySearchCondition(orderSearchCondition); //검색
+		
+		//Java 8의 Stream API를 사용하여 orderList 내의 각 주문의 totalPrice를 합산하는 방법
+	    long totalOrderAmount = orderList.stream()
+                						.mapToLong(order -> order.getTotalPrice())
+                						.sum();
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("totalOrder", orderList.size()); //총주문건수
+		model.addAttribute("totalOrderAmount", totalOrderAmount); //총주문액
+		
+		return "admin/adminTotalOrderList";
+	}
+
+	
 }

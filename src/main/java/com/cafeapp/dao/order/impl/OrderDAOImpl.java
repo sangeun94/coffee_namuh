@@ -111,5 +111,15 @@ public class OrderDAOImpl implements OrderDAO{
 		return orderList;
 	}
 
+	//주문리스트(전체) 목록 및 검색
+	@Override
+	public List<OrderList> findTotalOrderListBySearchCondition(OrderSearchCondition orderSearchCondition) {
+		// TODO Auto-generated method stub
+		List<OrderList> orderList = 
+				sqlSessionTemplate.selectList("order_mapper.findTotalOrderListBySearchCondition", orderSearchCondition);
+		
+		return orderList;
+	}
+
 	
 }

@@ -52,7 +52,7 @@
 					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
+					<a href="/admin/totalOrderList" class="gnb_1da">주문관리</a>
 				</li>
 				<li class="gnb_1dli">
 					<a href="/admin/feedback" class="gnb_1da">고객지원</a>

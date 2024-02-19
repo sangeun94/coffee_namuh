@@ -20,7 +20,6 @@ public class AdminLoginInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("preHandle");
 		
 		/* LoginManager 생성 전
 		HttpSession session = request.getSession(false); //getter /없으면 생성하지않고 그냥 null로 처리
@@ -45,7 +44,6 @@ public class AdminLoginInterceptor implements HandlerInterceptor{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("postHandle");
 
 		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}
@@ -54,7 +52,6 @@ public class AdminLoginInterceptor implements HandlerInterceptor{
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("afterCompletion");
 
 		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
 	}

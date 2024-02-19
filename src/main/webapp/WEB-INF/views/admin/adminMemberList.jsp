@@ -55,7 +55,7 @@
 					<a href="/admin/drinkList" class="gnb_1da">상품관리</a>
 				</li>
 				<li class="gnb_1dli">
-					<a href="/admin/orderList" class="gnb_1da">주문관리</a>
+					<a href="/admin/totalOrderList" class="gnb_1da">주문관리</a>
 				</li>
 				<li class="gnb_1dli">
 					<a href="/admin/feedback" class="gnb_1da">고객지원</a>
@@ -103,7 +103,7 @@
 						    <option value="userId">아이디</option>
 						    <option value="userEmail">이메일</option>
 						    <option value="userName">이름</option>
-						    <option value="userBirth ">생년월일</option>
+						    <option value="userBirth">생년월일</option>
 						    <option value="userAddress">주소</option>
 						    <option value="isMember">가입상태</option>
 						</select>

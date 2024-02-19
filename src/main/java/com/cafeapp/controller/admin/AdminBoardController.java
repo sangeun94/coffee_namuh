@@ -281,32 +281,41 @@ public class AdminBoardController { // 공지사항, FAQ, 1:1상담
 	//1:1상담+댓글 삭제
 	@PostMapping("/admin/removeFeedback")
 	public String removeFeedback(@RequestParam List<String> feedbackNumber) {
-
-		System.out.println(feedbackNumber);
-
-		// String 리스트를 Integer 리스트로 변환
-	    List<Integer> numbers = feedbackNumber.stream().map(Integer::parseInt)
-	                                               .collect(Collectors.toList());
+	    System.out.println(feedbackNumber);
 	    
-		feedbackService.removeFeedback(numbers);
-				
-		return "redirect:/admin/feedback";
+	    try {
+	        // String 리스트를 Integer 리스트로 변환
+	        List<Integer> numbers = feedbackNumber.stream()
+	                                              .map(Integer::parseInt)
+	                                              .collect(Collectors.toList());
+	        
+	        feedbackService.removeFeedback(numbers);
+	    } catch (NumberFormatException e) {
+	        // 로그 찍기, 오류 처리
+	        System.err.println("숫자 변환 중 오류 발생: " + e.getMessage());
+	        return "redirect:/errorPage"; // 오류 페이지 또는 적절한 페이지로 리다이렉트
+	    }
+	    
+	    return "redirect:/admin/feedback";
 	}
 	
 	//댓글만 삭제
 	@PostMapping("/admin/removeResponse")
 	public String removeResponseProcess(@RequestParam String responseNumber) {
-		
-		int intResponseNumber = Integer.parseInt(responseNumber);
-		
-		int result = feedbackService.removeResponse(intResponseNumber); 
-		
-		if (result > 0) {
-			return "redirect:/admin/feedback"; //삭제성공: feedback 목록 페이지
-		} else {
-			return "admin/adminFeedResModify"; //삭제실패 : 삭제페이지
-		}
-		
-	}
-	
+	    try {
+	        int intResponseNumber = Integer.parseInt(responseNumber);
+	        
+	        int result = feedbackService.removeResponse(intResponseNumber);
+	        
+	        if (result > 0) {
+	            return "redirect:/admin/feedback"; // 삭제 성공: feedback 목록 페이지
+	        } else {
+	            return "admin/adminFeedResModify"; // 삭제 실패: 삭제 페이지
+	        }
+	    } catch (NumberFormatException e) {
+	        // 로그 찍기, 오류 처리
+	        System.err.println("숫자 변환 중 오류 발생: " + e.getMessage());
+	        return "redirect:/errorPage"; // 오류 페이지 또는 적절한 페이지로 리다이렉트
+	    }
+	}	
 }

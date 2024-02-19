@@ -138,7 +138,8 @@
 	<button type="submit" class="btn_delete btn_lsmall bx-white">선택삭제</button>
 	<div class="tbl_head01">
 		<table>	
-		<colgroup>
+		<colgroup>		
+
 		</colgroup>
 		<thead>
 		<tr>
